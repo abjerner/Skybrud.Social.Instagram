@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{84C657A4-047D-426A-987B-27E51FB5C9E6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Skybrud.Social.Instagram</RootNamespace>
+    <AssemblyName>Skybrud.Social.Instagram</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Skybrud.Social">
+      <HintPath>..\..\..\Skybrud.Social\src\Skybrud.Social\bin\Release\Skybrud.Social.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Endpoints\InstagramLocationsEndpoint.cs" />
+    <Compile Include="Endpoints\InstagramMediaEndpoint.cs" />
+    <Compile Include="Endpoints\InstagramRelationshipsEndpoint.cs" />
+    <Compile Include="Endpoints\InstagramTagsEndpoint.cs" />
+    <Compile Include="Endpoints\InstagramUsersEndpoint.cs" />
+    <Compile Include="Endpoints\Raw\InstagramLocationsRawEndpoint.cs" />
+    <Compile Include="Endpoints\Raw\InstagramMediaRawEndpoint.cs" />
+    <Compile Include="Endpoints\Raw\InstagramRelationshipsRawEndpoint.cs" />
+    <Compile Include="Endpoints\Raw\InstagramTagsRawEndpoint.cs" />
+    <Compile Include="Endpoints\Raw\InstagramUsersRawEndpoint.cs" />
+    <Compile Include="Exceptions\InstagramException.cs" />
+    <Compile Include="Exceptions\InstagramNotFoundException.cs" />
+    <Compile Include="Exceptions\InstagramOAuthAccessTokenException.cs" />
+    <Compile Include="Exceptions\InstagramOAuthException.cs" />
+    <Compile Include="InstagramScope.cs" />
+    <Compile Include="InstagramService.cs" />
+    <Compile Include="OAuth\InstagramOAuthClient.cs" />
+    <Compile Include="Objects\Common\InstagramRateLimiting.cs" />
+    <Compile Include="Objects\InstagramAccessTokenSummary.cs" />
+    <Compile Include="Objects\InstagramComment.cs" />
+    <Compile Include="Objects\InstagramImage.cs" />
+    <Compile Include="Objects\InstagramImageSummary.cs" />
+    <Compile Include="Objects\InstagramLocation.cs" />
+    <Compile Include="Objects\InstagramMedia.cs" />
+    <Compile Include="Objects\InstagramMediaSummary.cs" />
+    <Compile Include="Objects\InstagramMetaData.cs" />
+    <Compile Include="Objects\InstagramPosition.cs" />
+    <Compile Include="Objects\InstagramTag.cs" />
+    <Compile Include="Objects\InstagramTaggedUser.cs" />
+    <Compile Include="Objects\InstagramUser.cs" />
+    <Compile Include="Objects\InstagramUserCounts.cs" />
+    <Compile Include="Objects\InstagramUserSummary.cs" />
+    <Compile Include="Objects\InstagramVideo.cs" />
+    <Compile Include="Objects\InstagramVideoSummary.cs" />
+    <Compile Include="Objects\Pagination\InstagramIdBasedPagination.cs" />
+    <Compile Include="Objects\Pagination\InstagramLikedMediaPagination.cs" />
+    <Compile Include="Options\Common\InstagramRecentMediaOptions.cs" />
+    <Compile Include="Options\InstagramMediaSearchOptions.cs" />
+    <Compile Include="Options\InstagramRecentMediaSearchOptions.cs" />
+    <Compile Include="Options\Locations\InstagramLocationRecentMediaOptions.cs" />
+    <Compile Include="Options\Locations\InstagramLocationSearchOptions.cs" />
+    <Compile Include="Options\Relationships\InstagramFollowedByOptions.cs" />
+    <Compile Include="Options\Relationships\InstagramFollowsOptions.cs" />
+    <Compile Include="Options\Tags\InstagramTagRecentMediaOptions.cs" />
+    <Compile Include="Options\Users\InstagramUserFeedOptions.cs" />
+    <Compile Include="Options\Users\InstagramUserLikedMediaOptions.cs" />
+    <Compile Include="Options\Users\InstagramUserRecentMediaOptions.cs" />
+    <Compile Include="Options\Users\InstagramUserSearchOptions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\AssemblyInfoGenerated.cs" />
+    <Compile Include="Responses\InstagramAccessTokenResponse.cs" />
+    <Compile Include="Responses\InstagramLikedMediaResponse.cs" />
+    <Compile Include="Responses\InstagramLocationRecentMediaResponse.cs" />
+    <Compile Include="Responses\InstagramLocationResponse.cs" />
+    <Compile Include="Responses\InstagramLocationsResponse.cs" />
+    <Compile Include="Responses\InstagramMediaResponse.cs" />
+    <Compile Include="Responses\InstagramRecentMediaResponse.cs" />
+    <Compile Include="Responses\InstagramResponse.cs" />
+    <Compile Include="Responses\InstagramSearchTagsResponse.cs" />
+    <Compile Include="Responses\InstagramTagResponse.cs" />
+    <Compile Include="Responses\InstagramUserFeedResponse.cs" />
+    <Compile Include="Responses\InstagramUserResponse.cs" />
+    <Compile Include="Responses\InstagramUsersResponse.cs" />
+    <Compile Include="Scopes\InstagramScope.cs" />
+    <Compile Include="Scopes\InstagramScopeCollection.cs" />
+    <Compile Include="Scopes\InstagramScopes.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Options\Media\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
