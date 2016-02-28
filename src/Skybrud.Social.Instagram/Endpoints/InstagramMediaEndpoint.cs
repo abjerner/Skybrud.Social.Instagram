@@ -1,6 +1,5 @@
 using Skybrud.Social.Instagram.Endpoints.Raw;
 using Skybrud.Social.Instagram.Options;
-using Skybrud.Social.Instagram.Responses;
 using Skybrud.Social.Instagram.Responses.Media;
 
 namespace Skybrud.Social.Instagram.Endpoints {

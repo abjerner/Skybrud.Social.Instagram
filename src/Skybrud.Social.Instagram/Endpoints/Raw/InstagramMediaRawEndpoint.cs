@@ -1,3 +1,4 @@
+using System;
 using Skybrud.Social.Http;
 using Skybrud.Social.Instagram.OAuth;
 using Skybrud.Social.Instagram.Options;
@@ -35,11 +36,12 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// Gets information about a media object.
         /// </summary>
         /// <param name="mediaId">The ID of the media.</param>
-        /// <returns>Returns an instance of <code>SocialHttpResponse</code> representing the response from the Instagram API.</returns>
+        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/media/#get_media</cref>
         /// </see>
         public SocialHttpResponse GetMedia(string mediaId) {
+            if (String.IsNullOrWhiteSpace(mediaId)) throw new ArgumentNullException("mediaId");
             return Client.DoAuthenticatedGetRequest("https://api.instagram.com/v1/media/" + mediaId);
         }
 
@@ -51,7 +53,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// </summary>
         /// <param name="latitude">The latitude of the point.</param>
         /// <param name="longitude">The longitude of the point.</param>
-        /// <returns>Returns an instance of <code>SocialHttpResponse</code> representing the response from the Instagram API.</returns>
+        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/media/#get_media_search</cref>
         /// </see>
@@ -69,7 +71,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// <param name="latitude">The latitude of the point.</param>
         /// <param name="longitude">The longitude of the point.</param>
         /// <param name="distance">The distance/radius in meters. The API allows a maximum radius of 5000 meters.</param>
-        /// <returns>Returns an instance of <code>SocialHttpResponse</code> representing the response from the Instagram API.</returns>
+        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/media/#get_media_search</cref>
         /// </see>
@@ -86,11 +88,12 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// exceed 7 days. Defaults time stamps cover the last 5 days. Can return mix of image and video types.
         /// </summary>
         /// <param name="options">The search options.</param>
-        /// <returns>Returns an instance of <code>SocialHttpResponse</code> representing the response from the Instagram API.</returns>
+        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/media/#get_media_search</cref>
         /// </see>
         public SocialHttpResponse Search(InstagramRecentMediaSearchOptions options) {
+            if (options == null) throw new ArgumentNullException("options");
             return Client.DoAuthenticatedGetRequest("https://api.instagram.com/v1/media/search", options);
         }
 

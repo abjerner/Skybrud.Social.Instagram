@@ -1,6 +1,5 @@
 using Skybrud.Social.Instagram.Endpoints.Raw;
 using Skybrud.Social.Instagram.Options.Relationships;
-using Skybrud.Social.Instagram.Responses;
 using Skybrud.Social.Instagram.Responses.Users;
 
 namespace Skybrud.Social.Instagram.Endpoints {
@@ -42,65 +41,63 @@ namespace Skybrud.Social.Instagram.Endpoints {
         /// <summary>
         /// Get the list of users this user follows.
         /// 
-        /// Required scope: relationships
+        /// Required scope: <code>relationships</code>.
         /// </summary>
         /// <param name="userId">The ID of the user.</param>
         public InstagramUsersResponse Follows(long userId) {
-            return Follows(userId, new InstagramFollowsOptions());
+            return Follows(new InstagramFollowsOptions(userId));
         }
 
         /// <summary>
         /// Get the list of users this user follows.
         /// 
-        /// Required scope: relationships
+        /// Required scope: <code>relationships</code>.
         /// </summary>
         /// <param name="userId">The ID of the user.</param>
         /// <param name="count">The maximum amount of users to return.</param>
         public InstagramUsersResponse Follows(long userId, int count) {
-            return Follows(userId, new InstagramFollowsOptions(count));
+            return Follows(new InstagramFollowsOptions(userId, count));
         }
 
         /// <summary>
         /// Get the list of users this user follows.
         /// 
-        /// Required scope: relationships
+        /// Required scope: <code>relationships</code>.
         /// </summary>
-        /// <param name="userId">The ID of the user.</param>
         /// <param name="options">The options for the call to the API.</param>
-        public InstagramUsersResponse Follows(long userId, InstagramFollowsOptions options) {
-            return InstagramUsersResponse.ParseResponse(Raw.Follows(userId, options));
+        public InstagramUsersResponse Follows(InstagramFollowsOptions options) {
+            return InstagramUsersResponse.ParseResponse(Raw.Follows(options));
         }
 
         /// <summary>
         /// Get the list of users this user is followed by.
         /// 
-        /// Required scope: relationships
+        /// Required scope: <code>relationships</code>.
         /// </summary>
         /// <param name="userId">The ID of the user.</param>
         public InstagramUsersResponse FollowedBy(long userId) {
-            return FollowedBy(userId, new InstagramFollowedByOptions());
+            return FollowedBy(new InstagramFollowedByOptions(userId));
         }
 
         /// <summary>
         /// Get the list of users this user is followed by.
         /// 
-        /// Required scope: relationships
+        /// Required scope: <code>relationships</code>.
         /// </summary>
         /// <param name="userId">The ID of the user.</param>
         /// <param name="count">The maximum amount of users to return.</param>
         public InstagramUsersResponse FollowedBy(long userId, int count) {
-            return FollowedBy(userId, new InstagramFollowedByOptions(count));
+            return FollowedBy(new InstagramFollowedByOptions(userId, count));
         }
 
         /// <summary>
         /// Get the list of users this user is followed by.
         /// 
-        /// Required scope: relationships
+        /// Required scope: <code>relationships</code>.
         /// </summary>
-        /// <param name="userId">The ID of the user.</param>
         /// <param name="options">The options for the call to the API.</param>
-        public InstagramUsersResponse FollowedBy(long userId, InstagramFollowedByOptions options) {
-            return InstagramUsersResponse.ParseResponse(Raw.FollowedBy(userId, options));
+        public InstagramUsersResponse FollowedBy(InstagramFollowedByOptions options) {
+            return InstagramUsersResponse.ParseResponse(Raw.FollowedBy(options));
         }
 
         #endregion

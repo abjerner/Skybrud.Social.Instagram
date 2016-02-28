@@ -14,6 +14,11 @@ namespace Skybrud.Social.Instagram.Options.Relationships {
         #region Properties
 
         /// <summary>
+        /// Gets or sets the ID of the user.
+        /// </summary>
+        public long UserId { get; set; }
+
+        /// <summary>
         /// Gets or sets the maximum amount of users to be returned.
         /// </summary>
         public int Count { get; set; }
@@ -21,17 +26,27 @@ namespace Skybrud.Social.Instagram.Options.Relationships {
         #endregion
 
         #region Constructors
-
+        
         /// <summary>
-        /// Initializes an instance with default options.
+        /// Initializes a new instance with default options.
         /// </summary>
         public InstagramFollowsOptions() { }
 
         /// <summary>
-        /// Initializes an instance with the specified <code>count</code>.
+        /// Initializes a new instance with specified <code>userId</code>.
         /// </summary>
+        /// <param name="userId">The ID of the user.</param>
+        public InstagramFollowsOptions(long userId) {
+            UserId = userId;
+        }
+
+        /// <summary>
+        /// Initializes an instance with the specified <code>userId</code> and <code>count</code>.
+        /// </summary>
+        /// <param name="userId">The ID of the user.</param>
         /// <param name="count">The maximum amount of users to be returned.</param>
-        public InstagramFollowsOptions(int count) {
+        public InstagramFollowsOptions(long userId, int count) {
+            UserId = userId;
             Count = count;
         }
 
@@ -40,7 +55,7 @@ namespace Skybrud.Social.Instagram.Options.Relationships {
         #region Member methods
 
         /// <summary>
-        /// Gets an instance of <code>SocialQueryString</code> representing the GET parameters.
+        /// Gets an instance of <see cref="SocialQueryString"/> representing the GET parameters.
         /// </summary>
         public SocialQueryString GetQueryString() {
             SocialQueryString qs = new SocialQueryString();

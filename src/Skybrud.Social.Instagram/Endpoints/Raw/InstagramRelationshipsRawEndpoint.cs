@@ -1,3 +1,5 @@
+using System;
+using Skybrud.Social.Exceptions;
 using Skybrud.Social.Http;
 using Skybrud.Social.Instagram.OAuth;
 using Skybrud.Social.Instagram.Options.Relationships;
@@ -36,14 +38,15 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// 
         /// Required scope: relationships
         /// </summary>
-        /// <param name="userId">The ID of the user.</param>
         /// <param name="options">The options for the call to the API.</param>
-        /// <returns>Returns an instance of <code>SocialHttpResponse</code> representing the response from the Instagram API.</returns>
+        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/relationships/#get_users_follows</cref>
         /// </see>
-        public SocialHttpResponse Follows(long userId, InstagramFollowsOptions options) {
-            return Client.DoAuthenticatedGetRequest("https://api.instagram.com/v1/users/" + userId + "/follows", options);
+        public SocialHttpResponse Follows(InstagramFollowsOptions options) {
+            if (options == null) throw new ArgumentNullException("options");
+            if (options.UserId == 0) throw new PropertyNotSetException("options.UserId");
+            return Client.DoAuthenticatedGetRequest("https://api.instagram.com/v1/users/" + options.UserId + "/follows", options);
         }
 
         /// <summary>
@@ -51,14 +54,15 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// 
         /// Required scope: relationships
         /// </summary>
-        /// <param name="userId">The ID of the user.</param>
         /// <param name="options">The options for the call to the API.</param>
-        /// <returns>Returns an instance of <code>SocialHttpResponse</code> representing the response from the Instagram API.</returns>
+        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/relationships/#get_users_followed_by</cref>
         /// </see>
-        public SocialHttpResponse FollowedBy(long userId, InstagramFollowedByOptions options) {
-            return Client.DoAuthenticatedGetRequest("https://api.instagram.com/v1/users/" + userId + "/followed-by", options);
+        public SocialHttpResponse FollowedBy(InstagramFollowedByOptions options) {
+            if (options == null) throw new ArgumentNullException("options");
+            if (options.UserId == 0) throw new PropertyNotSetException("options.UserId");
+            return Client.DoAuthenticatedGetRequest("https://api.instagram.com/v1/users/" + options.UserId + "/followed-by", options);
         }
 
         #endregion

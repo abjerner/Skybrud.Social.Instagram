@@ -1,9 +1,7 @@
 using System;
 using Skybrud.Social.Instagram.Endpoints.Raw;
-using Skybrud.Social.Instagram.Objects;
 using Skybrud.Social.Instagram.Objects.Locations;
 using Skybrud.Social.Instagram.Options.Locations;
-using Skybrud.Social.Instagram.Responses;
 using Skybrud.Social.Instagram.Responses.Locations;
 
 namespace Skybrud.Social.Instagram.Endpoints {
@@ -68,19 +66,6 @@ namespace Skybrud.Social.Instagram.Endpoints {
         /// <summary>
         /// Get a list of recent media objects from a given location.
         /// </summary>
-        /// <param name="location">The location.</param>
-        /// <param name="options">The options for the search.</param>
-        /// <see>
-        ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations_media_recent</cref>
-        /// </see>
-        public InstagramLocationRecentMediaResponse GetRecentMedia(InstagramLocation location, InstagramLocationRecentMediaOptions options) {
-            if (location == null) throw new ArgumentNullException("location");
-            return GetRecentMedia(location.Id, options);
-        }
-
-        /// <summary>
-        /// Get a list of recent media objects from a given location.
-        /// </summary>
         /// <param name="locationId">The ID of the location.</param>
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations_media_recent</cref>
@@ -92,13 +77,12 @@ namespace Skybrud.Social.Instagram.Endpoints {
         /// <summary>
         /// Get a list of recent media objects from a given location.
         /// </summary>
-        /// <param name="locationId">The ID of the location.</param>
         /// <param name="options">The options for the search.</param>
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations_media_recent</cref>
         /// </see>
-        public InstagramLocationRecentMediaResponse GetRecentMedia(int locationId, InstagramLocationRecentMediaOptions options) {
-            return InstagramLocationRecentMediaResponse.ParseResponse(Raw.GetRecentMedia(locationId, options));
+        public InstagramLocationRecentMediaResponse GetRecentMedia(InstagramLocationRecentMediaOptions options) {
+            return InstagramLocationRecentMediaResponse.ParseResponse(Raw.GetRecentMedia(options));
         }
 
         /// <summary>

@@ -32,6 +32,37 @@ namespace Skybrud.Social.Instagram.Options.Locations {
 
         #endregion
 
+        #region Constructors
+
+        /// <summary>
+        /// Initialize a new instance with default options.
+        /// </summary>
+        public InstagramLocationSearchOptions() { }
+
+        /// <summary>
+        /// Initializes a new instance from the specified <code>latitude</code> and <code>longitude</code>.
+        /// </summary>
+        /// <param name="latitude">The latitude.</param>
+        /// <param name="longitude">The longitude.</param>
+        public InstagramLocationSearchOptions(double latitude, double longitude) {
+            Latitude = latitude;
+            Longitude = longitude;
+        }
+
+        /// <summary>
+        /// Initializes a new instance from the specified <code>latitude</code> and <code>longitude</code>.
+        /// </summary>
+        /// <param name="latitude">The latitude.</param>
+        /// <param name="longitude">The longitude.</param>
+        /// <param name="distance">The search distance (radius) in meters.</param>
+        public InstagramLocationSearchOptions(double latitude, double longitude, int distance) {
+            Latitude = latitude;
+            Longitude = longitude;
+            Distance = distance;
+        }
+
+        #endregion
+
         #region Methods
 
         /// <summary>
