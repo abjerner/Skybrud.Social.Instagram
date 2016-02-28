@@ -1,6 +1,6 @@
 using Newtonsoft.Json.Linq;
 
-namespace Skybrud.Social.Instagram.Objects {
+namespace Skybrud.Social.Instagram.Objects.Media {
 
     /// <summary>
     /// Class representing an Instagram image.

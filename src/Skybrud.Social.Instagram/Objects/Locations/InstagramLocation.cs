@@ -2,7 +2,7 @@ using Newtonsoft.Json.Linq;
 using Skybrud.Social.Interfaces;
 using Skybrud.Social.Json.Extensions.JObject;
 
-namespace Skybrud.Social.Instagram.Objects {
+namespace Skybrud.Social.Instagram.Objects.Locations {
     
     /// <summary>
     /// Class representing the location of where a media (image or video) was taken. Some media may not have a location.

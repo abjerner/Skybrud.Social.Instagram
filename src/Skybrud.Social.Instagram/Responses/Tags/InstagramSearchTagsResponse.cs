@@ -2,9 +2,10 @@ using System;
 using Newtonsoft.Json.Linq;
 using Skybrud.Social.Http;
 using Skybrud.Social.Instagram.Objects;
+using Skybrud.Social.Instagram.Objects.Tags;
 using Skybrud.Social.Json.Extensions.JObject;
 
-namespace Skybrud.Social.Instagram.Responses {
+namespace Skybrud.Social.Instagram.Responses.Tags {
     
     /// <summary>
     /// Class representing the response of a call for getting a list of tags matching a given query.

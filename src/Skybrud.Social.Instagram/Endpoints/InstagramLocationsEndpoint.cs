@@ -1,8 +1,10 @@
 using System;
 using Skybrud.Social.Instagram.Endpoints.Raw;
 using Skybrud.Social.Instagram.Objects;
+using Skybrud.Social.Instagram.Objects.Locations;
 using Skybrud.Social.Instagram.Options.Locations;
 using Skybrud.Social.Instagram.Responses;
+using Skybrud.Social.Instagram.Responses.Locations;
 
 namespace Skybrud.Social.Instagram.Endpoints {
 

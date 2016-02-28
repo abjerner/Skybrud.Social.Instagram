@@ -1,7 +1,7 @@
 using Newtonsoft.Json.Linq;
 using Skybrud.Social.Json.Extensions.JObject;
 
-namespace Skybrud.Social.Instagram.Objects {
+namespace Skybrud.Social.Instagram.Objects.Tags {
 
     /// <summary>
     /// Class representing a tag in the Instagram API.

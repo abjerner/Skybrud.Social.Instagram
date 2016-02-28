@@ -3,6 +3,8 @@ using System.Globalization;
 using Skybrud.Social.Instagram.Endpoints.Raw;
 using Skybrud.Social.Instagram.Options.Users;
 using Skybrud.Social.Instagram.Responses;
+using Skybrud.Social.Instagram.Responses.Media;
+using Skybrud.Social.Instagram.Responses.Users;
 
 namespace Skybrud.Social.Instagram.Endpoints {
 

@@ -1,10 +1,13 @@
 using System;
 using Newtonsoft.Json.Linq;
 using Skybrud.Social.Instagram.Exceptions;
+using Skybrud.Social.Instagram.Objects.Comments;
+using Skybrud.Social.Instagram.Objects.Locations;
+using Skybrud.Social.Instagram.Objects.Users;
 using Skybrud.Social.Interfaces;
 using Skybrud.Social.Json.Extensions.JObject;
 
-namespace Skybrud.Social.Instagram.Objects {
+namespace Skybrud.Social.Instagram.Objects.Media {
     
     /// <summary>
     /// Abstract class representing an Instagram media. Concrete classes are <see cref="InstagramImage"/> and <see cref="InstagramVideo"/>.

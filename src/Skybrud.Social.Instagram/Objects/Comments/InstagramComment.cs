@@ -1,8 +1,9 @@
 using System;
 using Newtonsoft.Json.Linq;
+using Skybrud.Social.Instagram.Objects.Users;
 using Skybrud.Social.Json.Extensions.JObject;
 
-namespace Skybrud.Social.Instagram.Objects {
+namespace Skybrud.Social.Instagram.Objects.Comments {
 
     /// <summary>
     /// Class representing a comment of a media.

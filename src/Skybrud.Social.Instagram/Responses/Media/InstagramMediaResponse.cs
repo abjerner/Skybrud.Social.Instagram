@@ -2,9 +2,10 @@ using System;
 using Newtonsoft.Json.Linq;
 using Skybrud.Social.Http;
 using Skybrud.Social.Instagram.Objects;
+using Skybrud.Social.Instagram.Objects.Media;
 using Skybrud.Social.Json.Extensions.JObject;
 
-namespace Skybrud.Social.Instagram.Responses {
+namespace Skybrud.Social.Instagram.Responses.Media {
     
     /// <summary>
     /// Class representing the response of a call for getting information about a given media.

@@ -2,10 +2,11 @@ using System;
 using Newtonsoft.Json.Linq;
 using Skybrud.Social.Http;
 using Skybrud.Social.Instagram.Objects;
+using Skybrud.Social.Instagram.Objects.Media;
 using Skybrud.Social.Instagram.Objects.Pagination;
 using Skybrud.Social.Json.Extensions.JObject;
 
-namespace Skybrud.Social.Instagram.Responses {
+namespace Skybrud.Social.Instagram.Responses.Locations {
     
     /// <summary>
     /// Class representing the response of a call to get recent media of a location.

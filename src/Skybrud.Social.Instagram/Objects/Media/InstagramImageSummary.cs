@@ -1,7 +1,7 @@
 using Newtonsoft.Json.Linq;
 using Skybrud.Social.Json.Extensions.JObject;
 
-namespace Skybrud.Social.Instagram.Objects {
+namespace Skybrud.Social.Instagram.Objects.Media {
 
     /// <summary>
     /// Class representing a summary of the image formats available for an Instagram media.

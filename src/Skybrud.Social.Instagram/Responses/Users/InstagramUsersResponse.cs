@@ -2,8 +2,9 @@ using System;
 using Newtonsoft.Json.Linq;
 using Skybrud.Social.Http;
 using Skybrud.Social.Instagram.Objects;
+using Skybrud.Social.Instagram.Objects.Users;
 
-namespace Skybrud.Social.Instagram.Responses {
+namespace Skybrud.Social.Instagram.Responses.Users {
 
     /// <summary>
     /// Class representing the response of a call for getting a list of users.

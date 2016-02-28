@@ -2,7 +2,7 @@
 using Newtonsoft.Json.Linq;
 using Skybrud.Social.Json.Extensions.JObject;
 
-namespace Skybrud.Social.Instagram.Objects {
+namespace Skybrud.Social.Instagram.Objects.Users {
 
     /// <summary>
     /// Class representing information about the user tagged in a media.
