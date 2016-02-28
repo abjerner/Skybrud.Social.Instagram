@@ -1,11 +1,12 @@
-using Skybrud.Social.Json;
+using Newtonsoft.Json.Linq;
+using Skybrud.Social.Json.Extensions.JObject;
 
 namespace Skybrud.Social.Instagram.Objects {
 
     /// <summary>
     /// Class with various statistics about a user.
     /// </summary>
-    public class InstagramUserCounts : SocialJsonObject {
+    public class InstagramUserCounts : InstagramObject {
 
         #region Properties
 
@@ -28,24 +29,23 @@ namespace Skybrud.Social.Instagram.Objects {
 
         #region Constructors
 
-        private InstagramUserCounts(JsonObject obj) : base(obj) { }
+        private InstagramUserCounts(JObject obj) : base(obj) {
+            Media = obj.GetInt32("media");
+            FollowedBy = obj.GetInt32("followed_by");
+            Follows = obj.GetInt32("follows");
+        }
 
         #endregion
 
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <code>obj</code> into an instance of <code>InstagramUserCounts</code>.
+        /// Gets an instance of <see cref="InstagramUserCounts"/> from the specified <code>obj</code>.
         /// </summary>
-        /// <param name="obj">The instance of <code>JsonObject</code> to be parsed.</param>
-        /// <returns>Returns an instance of <code>InstagramUserCounts</code>.</returns>
-        public static InstagramUserCounts Parse(JsonObject obj) {
-            if (obj == null) return null;
-            return new InstagramUserCounts(obj) {
-                Media = obj.GetInt32("media"),
-                FollowedBy = obj.GetInt32("followed_by"),
-                Follows = obj.GetInt32("follows")
-            };
+        /// <param name="obj">The instance of <see cref="JObject"/> to parse.</param>
+        /// <returns>Returns an instance of <see cref="InstagramUserCounts"/>.</returns>
+        public static InstagramUserCounts Parse(JObject obj) {
+            return obj == null ? null : new InstagramUserCounts(obj);
         }
 
         #endregion

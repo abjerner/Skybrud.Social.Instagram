@@ -1,12 +1,13 @@
 using System;
-using Skybrud.Social.Json;
+using Newtonsoft.Json.Linq;
+using Skybrud.Social.Json.Extensions.JObject;
 
 namespace Skybrud.Social.Instagram.Objects {
 
     /// <summary>
     /// Class representing a summary of an Instagram user.
     /// </summary>
-    public class InstagramUserSummary : SocialJsonObject {
+    public class InstagramUserSummary : InstagramObject {
 
         #region Properties
 
@@ -30,46 +31,42 @@ namespace Skybrud.Social.Instagram.Objects {
         /// </summary>
         public string ProfilePicture { get; private set; }
 
+        /// <summary>
+        /// Gets whether the user has specified a full name.
+        /// </summary>
+        public bool HasFullName {
+            get { return !String.IsNullOrWhiteSpace(FullName); }
+        }
+
+        /// <summary>
+        /// Gets whether the user has uploaded a profile picture.
+        /// </summary>
+        public bool HasProfilePicture {
+            get { return !String.IsNullOrWhiteSpace(ProfilePicture); }
+        }
+
         #endregion
 
         #region Constructors
 
-        private InstagramUserSummary(JsonObject obj) : base(obj) { }
+        private InstagramUserSummary(JObject obj) : base(obj) {
+            Id = obj.GetInt64("id");
+            Username = obj.GetString("username");
+            FullName = obj.GetString("full_name");
+            ProfilePicture = obj.GetString("profile_picture");
+        }
 
         #endregion
 
         #region Static methods
 
         /// <summary>
-        /// Loads a user from the JSON file at the specified <var>path</var>.
+        /// Gets an instance of <see cref="InstagramUserSummary"/> from the specified <code>obj</code>.
         /// </summary>
-        /// <param name="path">The path to the file.</param>
-        public static InstagramUserSummary LoadJson(string path) {
-            return JsonObject.LoadJson(path, Parse);
-        }
-
-        /// <summary>
-        /// Gets a user from the specified JSON string.
-        /// </summary>
-        /// <param name="json">The JSON string representation of the object.</param>
-        public static InstagramUserSummary ParseJson(string json) {
-            return JsonObject.ParseJson(json, Parse);
-        }
-
-        /// <summary>
-        /// Parses the specified <code>obj</code> into an instance of <code>InstagramUserSummary</code>.
-        /// </summary>
-        /// <param name="obj">The instance of <code>JsonObject</code> to be parsed.</param>
-        /// <returns>Returns an instance of <code>InstagramUserSummary</code>.</returns>
-        public static InstagramUserSummary Parse(JsonObject obj) {
-            if (obj == null) return null;
-            string fullname = obj.GetString("full_name");
-            return new InstagramUserSummary(obj) {
-                Id = obj.GetInt64("id"),
-                Username = obj.GetString("username"),
-                FullName = String.IsNullOrEmpty(fullname) ? null : fullname,
-                ProfilePicture = obj.GetString("profile_picture")
-            };
+        /// <param name="obj">The instance of <see cref="JObject"/> to parse.</param>
+        /// <returns>Returns an instance of <see cref="InstagramUserSummary"/>.</returns>
+        public static InstagramUserSummary Parse(JObject obj) {
+            return obj == null ? null : new InstagramUserSummary(obj);
         }
 
         #endregion

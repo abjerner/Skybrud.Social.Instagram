@@ -1,8 +1,9 @@
 using System;
+using Newtonsoft.Json.Linq;
 using Skybrud.Social.Http;
-using Skybrud.Social.Json;
 using Skybrud.Social.Instagram.Objects;
 using Skybrud.Social.Instagram.Objects.Pagination;
+using Skybrud.Social.Json.Extensions.JObject;
 
 namespace Skybrud.Social.Instagram.Responses {
 
@@ -16,33 +17,32 @@ namespace Skybrud.Social.Instagram.Responses {
 
         #region Constructors
 
-        private InstagramLikedMediaResponse(SocialHttpResponse response) : base(response) { }
+        private InstagramLikedMediaResponse(SocialHttpResponse response) : base(response) {
+
+            // Validate the response
+            ValidateResponse(response);
+
+            // Parse the response body
+            Body = ParseJsonObject(response.Body, InstagramLikedMediaResponseBody.Parse);
+
+        }
 
         #endregion
 
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <code>response</code> into an instance of <code>InstagramLikedMediaResponse</code>.
+        /// Parses the specified <code>response</code> into an instance of <see cref="InstagramLikedMediaResponse"/>.
         /// </summary>
         /// <param name="response">The response to be parsed.</param>
-        /// <returns>Returns an instance of <code>InstagramLikedMediaResponse</code>.</returns>
+        /// <returns>Returns an instance of <see cref="InstagramLikedMediaResponse"/>.</returns>
         public static InstagramLikedMediaResponse ParseResponse(SocialHttpResponse response) {
 
             // Some input validation
             if (response == null) throw new ArgumentNullException("response");
 
-            // Parse the raw JSON response
-            JsonObject obj = response.GetBodyAsJsonObject();
-            if (obj == null) return null;
-
-            // Validate the response
-            ValidateResponse(response, obj);
-
             // Initialize the response object
-            return new InstagramLikedMediaResponse(response) {
-                Body = InstagramLikedMediaResponseBody.Parse(obj)
-            };
+            return new InstagramLikedMediaResponse(response);
 
         }
 
@@ -72,23 +72,23 @@ namespace Skybrud.Social.Instagram.Responses {
         /// <summary>
         /// Initializes a new instance based on the specified <code>obj</code>.
         /// </summary>
-        /// <param name="obj">The instance of <code>JsonObject</code> representing the response body.</param>
-        protected InstagramLikedMediaResponseBody(JsonObject obj) : base(obj) { }
+        /// <param name="obj">The instance of <see cref="JObject"/> representing the response body.</param>
+        protected InstagramLikedMediaResponseBody(JObject obj) : base(obj) {
+            Pagination = obj.GetObject("pagination", InstagramLikedMediaPagination.Parse);
+            Data = obj.GetArray("data", InstagramMedia.Parse);
+        }
 
         #endregion
 
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <code>obj</code> into an instance of <code>InstagramLikedMediaResponseBody</code>.
+        /// Parses the specified <code>obj</code> into an instance of <see cref="InstagramLikedMediaResponseBody"/>.
         /// </summary>
-        /// <param name="obj">The instance of <code>JsonObject</code> to be parsed.</param>
-        /// <returns>Returns an instance of <code>InstagramLikedMediaResponseBody</code>.</returns>
-        public static InstagramLikedMediaResponseBody Parse(JsonObject obj) {
-            return new InstagramLikedMediaResponseBody(obj) {
-                Pagination = obj.GetObject("pagination", InstagramLikedMediaPagination.Parse),
-                Data = obj.GetArray("data", InstagramMedia.Parse)
-            };
+        /// <param name="obj">The instance of <see cref="JObject"/> to be parsed.</param>
+        /// <returns>Returns an instance of <see cref="InstagramLikedMediaResponseBody"/>.</returns>
+        public static InstagramLikedMediaResponseBody Parse(JObject obj) {
+            return obj == null ? null : new InstagramLikedMediaResponseBody(obj);
         }
 
         #endregion

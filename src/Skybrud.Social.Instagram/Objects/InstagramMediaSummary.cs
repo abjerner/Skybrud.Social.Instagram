@@ -1,11 +1,12 @@
-using Skybrud.Social.Json;
+using Newtonsoft.Json.Linq;
+using Skybrud.Social.Json.Extensions.JObject;
 
 namespace Skybrud.Social.Instagram.Objects {
     
     /// <summary>
     /// Class representing a summary of a image or video format available for an Instagram media.
     /// </summary>
-    public class InstagramMediaSummary : SocialJsonObject {
+    public class InstagramMediaSummary : InstagramObject {
 
         #region Properties
 
@@ -28,24 +29,23 @@ namespace Skybrud.Social.Instagram.Objects {
 
         #region Constructors
 
-        internal InstagramMediaSummary(JsonObject obj) : base(obj) { }
+        internal InstagramMediaSummary(JObject obj) : base(obj) {
+            Url = obj.GetString("url");
+            Width = obj.GetInt32("width");
+            Height = obj.GetInt32("height");
+        }
 
         #endregion
 
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <code>obj</code> into an instance of <code>InstagramMediaSummary</code>.
+        /// Parses the specified <code>obj</code> into an instance of <see cref="InstagramMediaSummary"/>.
         /// </summary>
-        /// <param name="obj">The instance of <code>JsonObject</code> to be parsed.</param>
-        /// <returns>Returns an instance of <code>InstagramMediaSummary</code>.</returns>
-        public static InstagramMediaSummary Parse(JsonObject obj) {
-            if (obj == null) return new InstagramMediaSummary(null);
-            return new InstagramMediaSummary(obj) {
-                Url = obj.GetString("url"),
-                Width = obj.GetInt32("width"),
-                Height = obj.GetInt32("height")
-            };
+        /// <param name="obj">The instance of <see cref="JObject"/> to be parsed.</param>
+        /// <returns>Returns an instance of <see cref="InstagramMediaSummary"/>.</returns>
+        public static InstagramMediaSummary Parse(JObject obj) {
+            return obj == null ? null : new InstagramMediaSummary(obj);
         }
 
         #endregion

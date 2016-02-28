@@ -1,12 +1,13 @@
 using System;
-using Skybrud.Social.Json;
+using Newtonsoft.Json.Linq;
+using Skybrud.Social.Json.Extensions.JObject;
 
 namespace Skybrud.Social.Instagram.Objects {
 
     /// <summary>
     /// Class representing a comment of a media.
     /// </summary>
-    public class InstagramComment : SocialJsonObject {
+    public class InstagramComment : InstagramObject {
 
         #region Properties
         
@@ -34,40 +35,24 @@ namespace Skybrud.Social.Instagram.Objects {
 
         #region Constructors
 
-        private InstagramComment(JsonObject obj) : base(obj) { }
+        private InstagramComment(JObject obj) : base(obj) {
+            Id = obj.GetInt64("id");
+            Created = obj.GetInt64("created_time", SocialUtils.GetDateTimeFromUnixTime);
+            Text = obj.GetString("text");
+            User = obj.GetObject("from", InstagramUserSummary.Parse);
+        }
 
         #endregion
 
         #region Static methods
 
         /// <summary>
-        /// Loads a comment from the JSON file at the specified <code>path</code>.
+        /// Gets an instance of <see cref="InstagramComment"/> from the specified <code>obj</code>.
         /// </summary>
-        /// <param name="path">The path to the file.</param>
-        public static InstagramComment LoadJson(string path) {
-            return JsonObject.LoadJson(path, Parse);
-        }
-
-        /// <summary>
-        /// Gets a comment from the specified JSON string.
-        /// </summary>
-        /// <param name="json">The JSON string representation of the object.</param>
-        public static InstagramComment ParseJson(string json) {
-            return JsonObject.ParseJson(json, Parse);
-        }
-
-        /// <summary>
-        /// Gets a comment from the specified <code>JsonObject</code>.
-        /// </summary>
-        /// <param name="obj">The instance of <code>JsonObject</code> to parse.</param>
-        public static InstagramComment Parse(JsonObject obj) {
-            if (obj == null) return null;
-            return new InstagramComment(obj) {
-                Id = obj.GetInt64("id"),
-                Created = SocialUtils.GetDateTimeFromUnixTime(obj.GetInt64("created_time")),
-                Text = obj.GetString("text"),
-                User = InstagramUserSummary.Parse(obj.GetObject("from"))
-            };
+        /// <param name="obj">The instance of <see cref="JObject"/> to parse.</param>
+        /// <returns>Returns an instance of <see cref="InstagramComment"/>.</returns>
+        public static InstagramComment Parse(JObject obj) {
+            return obj == null ? null : new InstagramComment(obj);
         }
 
         #endregion

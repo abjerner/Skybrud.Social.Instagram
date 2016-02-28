@@ -1,12 +1,13 @@
 using System;
-using Skybrud.Social.Json;
+using Newtonsoft.Json.Linq;
+using Skybrud.Social.Json.Extensions.JObject;
 
 namespace Skybrud.Social.Instagram.Objects {
 
     /// <summary>
     /// Class representing an Instagram user.
     /// </summary>
-    public class InstagramUser : SocialJsonObject {
+    public class InstagramUser : InstagramObject {
 
         #region Properties
 
@@ -45,52 +46,59 @@ namespace Skybrud.Social.Instagram.Objects {
         /// </summary>
         public InstagramUserCounts Counts { get; private set; }
 
+        /// <summary>
+        /// Gets whether the user has specified a full name.
+        /// </summary>
+        public bool HasFullName {
+            get { return !String.IsNullOrWhiteSpace(FullName); }
+        }
+
+        /// <summary>
+        /// Gets whether the user has uploaded a profile picture.
+        /// </summary>
+        public bool HasProfilePicture {
+            get { return !String.IsNullOrWhiteSpace(ProfilePicture); }
+        }
+
+        /// <summary>
+        /// Gets whether the user has specified a website.
+        /// </summary>
+        public bool HasWebsite {
+            get { return !String.IsNullOrWhiteSpace(Website); }
+        }
+
+        /// <summary>
+        /// Gets whether the user has specified a bio.
+        /// </summary>
+        public bool HasBio {
+            get { return !String.IsNullOrWhiteSpace(Bio); }
+        }
+
         #endregion
 
         #region Constructors
 
-        private InstagramUser(JsonObject obj) : base(obj) { }
+        private InstagramUser(JObject obj) : base(obj) {
+            Id = obj.GetInt64("id");
+            Username = obj.GetString("username");
+            FullName = obj.GetString("full_name");
+            ProfilePicture = obj.GetString("profile_picture");
+            Website = obj.GetString("website");
+            Bio = obj.GetString("bio");
+            Counts = obj.GetObject("counts", InstagramUserCounts.Parse);
+        }
 
         #endregion
 
         #region Static methods
 
         /// <summary>
-        /// Loads a user from the JSON file at the specified <code>path</code>.
+        /// Gets an instance of <see cref="InstagramUser"/> from the specified <code>obj</code>.
         /// </summary>
-        /// <param name="path">The path to the file.</param>
-        public static InstagramUser LoadJson(string path) {
-            return JsonObject.LoadJson(path, Parse);
-        }
-
-        /// <summary>
-        /// Gets a user from the specified JSON string.
-        /// </summary>
-        /// <param name="json">The JSON string representation of the object.</param>
-        public static InstagramUser ParseJson(string json) {
-            return JsonObject.ParseJson(json, Parse);
-        }
-
-        /// <summary>
-        /// Parses the specified <code>obj</code> into an instance of <code>InstagramUser</code>.
-        /// </summary>
-        /// <param name="obj">The instance of <code>JsonObject</code> to be parsed.</param>
-        /// <returns>Returns an instance of <code>InstagramUser</code>.</returns>
-        public static InstagramUser Parse(JsonObject obj) {
-            if (obj == null) return null;
-            string fullname = obj.GetString("full_name");
-            string picture = obj.GetString("profile_picture");
-            string website = obj.GetString("website");
-            string bio = obj.GetString("bio");
-            return new InstagramUser(obj) {
-                Id = obj.GetInt64("id"),
-                Username = obj.GetString("username"),
-                FullName = String.IsNullOrEmpty(fullname) ? null : fullname,
-                ProfilePicture = String.IsNullOrEmpty(picture) ? null : picture,
-                Website = String.IsNullOrEmpty(website) ? null : website,
-                Bio = String.IsNullOrEmpty(bio) ? null : bio,
-                Counts = obj.GetObject("counts", InstagramUserCounts.Parse)
-            };
+        /// <param name="obj">The instance of <see cref="JObject"/> to parse.</param>
+        /// <returns>Returns an instance of <see cref="InstagramUser"/>.</returns>
+        public static InstagramUser Parse(JObject obj) {
+            return obj == null ? null : new InstagramUser(obj);
         }
 
         #endregion

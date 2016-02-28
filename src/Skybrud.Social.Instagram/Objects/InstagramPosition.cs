@@ -1,12 +1,13 @@
 ﻿using Newtonsoft.Json;
-using Skybrud.Social.Json;
+using Newtonsoft.Json.Linq;
+using Skybrud.Social.Json.Extensions.JObject;
 
 namespace Skybrud.Social.Instagram.Objects {
     
     /// <summary>
     /// Class describing the position of a tagged user in a photo.
     /// </summary>
-    public class InstagramPosition : SocialJsonObject {
+    public class InstagramPosition : InstagramObject {
 
         #region Properties
 
@@ -26,23 +27,22 @@ namespace Skybrud.Social.Instagram.Objects {
 
         #region Constructors
 
-        private InstagramPosition(JsonObject obj) : base(obj) { }
+        private InstagramPosition(JObject obj) : base(obj) {
+            X = obj.GetDouble("x");
+            Y = obj.GetDouble("y");
+        }
 
         #endregion
 
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <code>obj</code> into an instance of <code>InstagramPosition</code>.
+        /// Parses the specified <code>obj</code> into an instance of <see cref="InstagramPosition"/>.
         /// </summary>
-        /// <param name="obj">The instance of <code>JsonObject</code> to be parsed.</param>
-        /// <returns>Returns an instance of <code>InstagramPosition</code>.</returns>
-        public static InstagramPosition Parse(JsonObject obj) {
-            if (obj == null) return null;
-            return new InstagramPosition(obj) {
-                X = obj.GetDouble("x"),
-                Y = obj.GetDouble("y")
-            };
+        /// <param name="obj">The instance of <see cref="JObject"/> to be parsed.</param>
+        /// <returns>Returns an instance of <see cref="InstagramPosition"/>.</returns>
+        public static InstagramPosition Parse(JObject obj) {
+            return obj == null ? null : new InstagramPosition(obj);
         }
 
         #endregion

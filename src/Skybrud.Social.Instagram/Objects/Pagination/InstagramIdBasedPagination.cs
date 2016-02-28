@@ -1,11 +1,12 @@
-﻿using Skybrud.Social.Json;
+﻿using Newtonsoft.Json.Linq;
+using Skybrud.Social.Json.Extensions.JObject;
 
 namespace Skybrud.Social.Instagram.Objects.Pagination {
 
     /// <summary>
     /// Class representing pagination information for an ID based pagination.
     /// </summary>
-    public class InstagramIdBasedPagination : SocialJsonObject {
+    public class InstagramIdBasedPagination : InstagramObject {
 
         #region Properties
 
@@ -23,23 +24,22 @@ namespace Skybrud.Social.Instagram.Objects.Pagination {
 
         #region Constructors
 
-        private InstagramIdBasedPagination(JsonObject obj) : base(obj) { }
+        private InstagramIdBasedPagination(JObject obj) : base(obj) {
+            NextUrl = obj.GetString("next_url");
+            NextMaxId = obj.GetString("next_max_id");
+        }
 
         #endregion
 
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <code>obj</code> into an instance of <code>InstagramIdBasedPagination</code>.
+        /// Parses the specified <code>obj</code> into an instance of <see cref="InstagramIdBasedPagination"/>.
         /// </summary>
-        /// <param name="obj">The instance of <code>JsonObject</code> to be parsed.</param>
-        /// <returns>Returns an instance of <code>InstagramIdBasedPagination</code>.</returns>
-        public static InstagramIdBasedPagination Parse(JsonObject obj) {
-            if (obj == null) return null;
-            return new InstagramIdBasedPagination(obj) {
-                NextUrl = obj.GetString("next_url"),
-                NextMaxId = obj.GetString("next_max_id")
-            };
+        /// <param name="obj">The instance of <see cref="JObject"/> to be parsed.</param>
+        /// <returns>Returns an instance of <see cref="InstagramIdBasedPagination"/>.</returns>
+        public static InstagramIdBasedPagination Parse(JObject obj) {
+            return obj == null ? null : new InstagramIdBasedPagination(obj);
         }
 
         #endregion

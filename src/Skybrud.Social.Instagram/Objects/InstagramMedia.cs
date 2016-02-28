@@ -1,13 +1,15 @@
 using System;
+using Newtonsoft.Json.Linq;
+using Skybrud.Social.Instagram.Exceptions;
 using Skybrud.Social.Interfaces;
-using Skybrud.Social.Json;
+using Skybrud.Social.Json.Extensions.JObject;
 
 namespace Skybrud.Social.Instagram.Objects {
     
     /// <summary>
-    /// Abstract class representing an Instagram media. Concrete classes are <code>InstagramImage</code> and <code>InstagramVideo</code>.
+    /// Abstract class representing an Instagram media. Concrete classes are <see cref="InstagramImage"/> and <see cref="InstagramVideo"/>.
     /// </summary>
-    public abstract class InstagramMedia : SocialJsonObject, ISocialTimelineEntry {
+    public abstract class InstagramMedia : InstagramObject, ISocialTimelineEntry {
 
         #region Properties
 
@@ -145,76 +147,46 @@ namespace Skybrud.Social.Instagram.Objects {
 
         #region Constructors
 
-        internal InstagramMedia(JsonObject obj) : base(obj) { }
+        internal InstagramMedia(JObject obj) : base(obj) {
+
+            JObject comments = obj.GetObject("comments");
+            JObject likes = obj.GetObject("likes");
+
+            Id = obj.GetString("id");
+            Type = obj.GetString("type");
+            Tags = obj.GetStringArray("tags");
+            Created = obj.GetInt64("created_time", SocialUtils.GetDateTimeFromUnixTime);
+            Link = obj.GetString("link");
+            Filter = obj.GetString("filter");
+            CommentCount = comments.GetInt32("count");
+            Comments = comments.GetArray("data", InstagramComment.Parse);
+            LikeCount = likes.GetInt32("count");
+            Likes = likes.GetArray("data", InstagramUserSummary.Parse);
+            Images = obj.GetObject("images", InstagramImageSummary.Parse);
+            Caption = obj.GetObject("caption", InstagramComment.Parse);
+            User = obj.GetObject("user", InstagramUser.Parse);
+            Location = obj.GetObject("location", InstagramLocation.Parse);
+            UsersInPhoto = obj.GetArray("users_in_photo", InstagramTaggedUser.Parse);
+        
+        }
 
         #endregion
 
         #region Static methods
-
+        
         /// <summary>
-        /// Loads a media from the JSON file at the specified <code>path</code>.
+        /// Parses the specified <code>obj</code> into an instance of <see cref="InstagramMedia"/>.
         /// </summary>
-        /// <param name="path">The path to the file.</param>
-        [Obsolete]
-        public static InstagramMedia LoadJson(string path) {
-            // TODO: Remove for v1.0
-            return JsonObject.LoadJson(path, Parse);
-        }
-
-        /// <summary>
-        /// Gets a media from the specified JSON string.
-        /// </summary>
-        /// <param name="json">The JSON string representation of the object.</param>
-        [Obsolete]
-        public static InstagramMedia ParseJson(string json) {
-            // TODO: Remove for v1.0
-            return JsonObject.ParseJson(json, Parse);
-        }
-
-        /// <summary>
-        /// Parses the specified <code>obj</code> into an instance of <code>InstagramMedia</code>.
-        /// </summary>
-        /// <param name="obj">The instance of <code>JsonObject</code> to be parsed.</param>
-        /// <returns>Returns an instance of <code>InstagramMedia</code>.</returns>
-        public static InstagramMedia Parse(JsonObject obj) {
-
+        /// <param name="obj">The instance of <see cref="JObject"/> to be parsed.</param>
+        /// <returns>Returns an instance of <see cref="InstagramMedia"/>.</returns>
+        public static InstagramMedia Parse(JObject obj) {
             if (obj == null) return null;
-
-            JsonObject comments = obj.GetObject("comments");
-            JsonObject likes = obj.GetObject("likes");
-
             string type = obj.GetString("type");
-
-            InstagramMedia media = null;
-
-            if (type == "image") {
-                media = new InstagramImage(obj);
-            } else if (type == "video") {
-                media = new InstagramVideo(obj) {
-                    Videos = obj.GetObject("videos", InstagramVideoSummary.Parse)
-                };
+            switch (type) {
+                case "image": return new InstagramImage(obj);
+                case "video": return new InstagramVideo(obj);
+                default: throw new InstagramParseException("Unknown media type: " + type);
             }
-
-            if (media != null) {
-                media.Id = obj.GetString("id");
-                media.Type = type;
-                media.Tags = obj.GetArray("tags").Cast<string>();
-                media.Created = obj.GetInt64("created_time", SocialUtils.GetDateTimeFromUnixTime);
-                media.Link = obj.GetString("link");
-                media.Filter = obj.GetString("filter");
-                media.CommentCount = comments.GetInt32("count");
-                media.Comments = comments.GetArray("data", InstagramComment.Parse);
-                media.LikeCount = likes.GetInt32("count");
-                media.Likes = likes.GetArray("data", InstagramUserSummary.Parse);
-                media.Images = obj.GetObject("images", InstagramImageSummary.Parse);
-                media.Caption = obj.GetObject("caption", InstagramComment.Parse);
-                media.User = obj.GetObject("user", InstagramUser.Parse);
-                media.Location = obj.GetObject("location", InstagramLocation.Parse);
-                media.UsersInPhoto = obj.GetArray("users_in_photo", InstagramTaggedUser.Parse);
-            }
-
-            return media;
-
         }
 
         #endregion

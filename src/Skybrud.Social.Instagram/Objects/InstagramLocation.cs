@@ -1,12 +1,13 @@
+using Newtonsoft.Json.Linq;
 using Skybrud.Social.Interfaces;
-using Skybrud.Social.Json;
+using Skybrud.Social.Json.Extensions.JObject;
 
 namespace Skybrud.Social.Instagram.Objects {
     
     /// <summary>
     /// Class representing the location of where a media (image or video) was taken. Some media may not have a location.
     /// </summary>
-    public class InstagramLocation : SocialJsonObject, ILocation {
+    public class InstagramLocation : InstagramObject, ILocation {
 
         #region Properties
 
@@ -36,41 +37,24 @@ namespace Skybrud.Social.Instagram.Objects {
 
         #region Constructors
 
-        private InstagramLocation(JsonObject obj) : base(obj) { }
+        private InstagramLocation(JObject obj) : base(obj) {
+            Id = obj.GetInt32("id");
+            Name = obj.GetString("name");
+            Latitude = obj.GetDouble("latitude");
+            Longitude = obj.GetDouble("longitude");
+        }
 
         #endregion
 
         #region Static methods
-
+        
         /// <summary>
-        /// Loads a location from the JSON file at the specified <code>path</code>.
+        /// Parses the specified <code>obj</code> into an instance of <see cref="InstagramLocation"/>.
         /// </summary>
-        /// <param name="path">The path to the file.</param>
-        public static InstagramLocation LoadJson(string path) {
-            return JsonObject.LoadJson(path, Parse);
-        }
-
-        /// <summary>
-        /// Gets a location from the specified JSON string.
-        /// </summary>
-        /// <param name="json">The JSON string representation of the object.</param>
-        public static InstagramLocation ParseJson(string json) {
-            return JsonObject.ParseJson(json, Parse);
-        }
-
-        /// <summary>
-        /// Parses the specified <code>obj</code> into an instance of <code>InstagramLocation</code>.
-        /// </summary>
-        /// <param name="obj">The instance of <code>JsonObject</code> to be parsed.</param>
-        /// <returns>Returns an instance of <code>InstagramLocation</code>.</returns>
-        public static InstagramLocation Parse(JsonObject obj) {
-            if (obj == null) return null;
-            return new InstagramLocation(obj) {
-                Id = obj.GetInt32("id"),
-                Name = obj.GetString("name"),
-                Latitude = obj.GetDouble("latitude"),
-                Longitude = obj.GetDouble("longitude")
-            };
+        /// <param name="obj">The instance of <see cref="JObject"/> to be parsed.</param>
+        /// <returns>Returns an instance of <see cref="InstagramLocation"/>.</returns>
+        public static InstagramLocation Parse(JObject obj) {
+            return obj == null ? null : new InstagramLocation(obj);
         }
 
         #endregion

@@ -1,11 +1,12 @@
-﻿using Skybrud.Social.Json;
+﻿using Newtonsoft.Json.Linq;
+using Skybrud.Social.Json.Extensions.JObject;
 
 namespace Skybrud.Social.Instagram.Objects.Pagination {
 
     /// <summary>
     /// Class representing pagination information.
     /// </summary>
-    public class InstagramLikedMediaPagination : SocialJsonObject {
+    public class InstagramLikedMediaPagination : InstagramObject {
 
         #region Properties
 
@@ -23,23 +24,22 @@ namespace Skybrud.Social.Instagram.Objects.Pagination {
 
         #region Constructors
 
-        private InstagramLikedMediaPagination(JsonObject obj) : base(obj) { }
+        private InstagramLikedMediaPagination(JObject obj) : base(obj) {
+            NextUrl = obj.GetString("next_url");
+            NextMaxLikeId = obj.GetString("next_max_like_id");
+        }
 
         #endregion
 
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <code>obj</code> into an instance of <code>InstagramLikedMediaPagination</code>.
+        /// Parses the specified <code>obj</code> into an instance of <see cref="InstagramLikedMediaPagination"/>.
         /// </summary>
-        /// <param name="obj">The instance of <code>JsonObject</code> to be parsed.</param>
-        /// <returns>Returns an instance of <code>InstagramLikedMediaPagination</code>.</returns>
-        public static InstagramLikedMediaPagination Parse(JsonObject obj) {
-            if (obj == null) return null;
-            return new InstagramLikedMediaPagination(obj) {
-                NextUrl = obj.GetString("next_url"),
-                NextMaxLikeId = obj.GetString("next_max_like_id")
-            };
+        /// <param name="obj">The instance of <see cref="JObject"/> to be parsed.</param>
+        /// <returns>Returns an instance of <see cref="InstagramLikedMediaPagination"/>.</returns>
+        public static InstagramLikedMediaPagination Parse(JObject obj) {
+            return obj == null ? null : new InstagramLikedMediaPagination(obj);
         }
 
         #endregion

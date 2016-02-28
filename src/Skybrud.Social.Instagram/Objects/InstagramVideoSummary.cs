@@ -1,11 +1,12 @@
-using Skybrud.Social.Json;
+using Newtonsoft.Json.Linq;
+using Skybrud.Social.Json.Extensions.JObject;
 
 namespace Skybrud.Social.Instagram.Objects {
 
     /// <summary>
     /// Class representing a summary of the video formats available for an Instagram media.
     /// </summary>
-    public class InstagramVideoSummary : SocialJsonObject {
+    public class InstagramVideoSummary : InstagramObject {
 
         #region Properties
 
@@ -28,24 +29,23 @@ namespace Skybrud.Social.Instagram.Objects {
 
         #region Constructors
 
-        private InstagramVideoSummary(JsonObject obj) : base(obj) { }
+        private InstagramVideoSummary(JObject obj) : base(obj) {
+            LowBandwidth = obj.GetObject("low_bandwidth", InstagramMediaSummary.Parse);
+            LowResolution = obj.GetObject("low_resolution", InstagramMediaSummary.Parse);
+            StandardResolution = obj.GetObject("standard_resolution", InstagramMediaSummary.Parse);
+        }
 
         #endregion
 
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <code>obj</code> into an instance of <code>InstagramVideoSummary</code>.
+        /// Parses the specified <code>obj</code> into an instance of <see cref="InstagramVideoSummary"/>.
         /// </summary>
-        /// <param name="obj">The instance of <code>JsonObject</code> to be parsed.</param>
-        /// <returns>Returns an instance of <code>InstagramVideoSummary</code>.</returns>
-        public static InstagramVideoSummary Parse(JsonObject obj) {
-            if (obj == null) return null;
-            return new InstagramVideoSummary(obj) {
-                LowBandwidth = obj.GetObject("low_bandwidth", InstagramMediaSummary.Parse),
-                LowResolution = obj.GetObject("low_resolution", InstagramMediaSummary.Parse),
-                StandardResolution = obj.GetObject("standard_resolution", InstagramMediaSummary.Parse)
-            };
+        /// <param name="obj">The instance of <see cref="JObject"/> to be parsed.</param>
+        /// <returns>Returns an instance of <see cref="InstagramVideoSummary"/>.</returns>
+        public static InstagramVideoSummary Parse(JObject obj) {
+            return obj == null ? null : new InstagramVideoSummary(obj);
         }
 
         #endregion

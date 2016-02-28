@@ -1,9 +1,10 @@
 ﻿using System.Net;
+using Newtonsoft.Json.Linq;
 using Skybrud.Social.Http;
 using Skybrud.Social.Instagram.Exceptions;
 using Skybrud.Social.Instagram.Objects;
 using Skybrud.Social.Instagram.Objects.Common;
-using Skybrud.Social.Json;
+using Skybrud.Social.Json.Extensions.JObject;
 
 namespace Skybrud.Social.Instagram.Responses {
 
@@ -39,11 +40,13 @@ namespace Skybrud.Social.Instagram.Responses {
         /// Validates the specified <code>response</code>.
         /// </summary>
         /// <param name="response">The response to be validated.</param>
-        /// <param name="obj">The object representing the response object.</param>
-        public static void ValidateResponse(SocialHttpResponse response, JsonObject obj) {
+        public static void ValidateResponse(SocialHttpResponse response) {
 
             // Skip error checking if the server responds with an OK status code
             if (response.StatusCode == HttpStatusCode.OK) return;
+
+            // Parse the response body
+            JObject obj = ParseJsonObject(response.Body);
 
             // Get the "meta" object (may be the root object for some errors)
             InstagramMetaData meta = obj.HasValue("code") ? InstagramMetaData.Parse(obj) : obj.GetObject("meta", InstagramMetaData.Parse);
@@ -91,7 +94,7 @@ namespace Skybrud.Social.Instagram.Responses {
     /// Class representing the response body of a response from the Instagram API.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class InstagramResponseBody<T> : SocialJsonObject {
+    public class InstagramResponseBody<T> : InstagramObject {
 
         #region Properties
 
@@ -112,8 +115,8 @@ namespace Skybrud.Social.Instagram.Responses {
         /// <summary>
         /// Initializes a new instance based on the specified <code>obj</code>.
         /// </summary>
-        /// <param name="obj">The instance of <code>JsonObject</code> representing the response body.</param>
-        protected InstagramResponseBody(JsonObject obj) : base(obj) {
+        /// <param name="obj">The instance of <see cref="JObject"/> representing the response body.</param>
+        protected InstagramResponseBody(JObject obj) : base(obj) {
             Meta = obj.GetObject("meta", InstagramMetaData.Parse);
         }
 

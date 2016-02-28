@@ -1,11 +1,12 @@
-using Skybrud.Social.Json;
+using Newtonsoft.Json.Linq;
+using Skybrud.Social.Json.Extensions.JObject;
 
 namespace Skybrud.Social.Instagram.Objects {
 
     /// <summary>
     /// Class representing a tag in the Instagram API.
     /// </summary>
-    public class InstagramTag : SocialJsonObject {
+    public class InstagramTag : InstagramObject {
 
         #region Properties
 
@@ -23,22 +24,22 @@ namespace Skybrud.Social.Instagram.Objects {
 
         #region Constructors
 
-        private InstagramTag(JsonObject obj) : base(obj) { }
+        private InstagramTag(JObject obj) : base(obj) {
+            MediaCount = obj.GetInt64("media_count");
+            Name = obj.GetString("name");
+        }
 
         #endregion
 
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <code>obj</code> into an instance of <code>InstagramTag</code>.
+        /// Parses the specified <code>obj</code> into an instance of <see cref="InstagramTag"/>.
         /// </summary>
-        /// <param name="obj">The instance of <code>JsonObject</code> to be parsed.</param>
-        /// <returns>Returns an instance of <code>InstagramTag</code>.</returns>
-        public static InstagramTag Parse(JsonObject obj) {
-            return new InstagramTag(obj) {
-                MediaCount = obj.GetInt64("media_count"),
-                Name = obj.GetString("name")
-            };
+        /// <param name="obj">The instance of <see cref="JObject"/> to be parsed.</param>
+        /// <returns>Returns an instance of <see cref="InstagramTag"/>.</returns>
+        public static InstagramTag Parse(JObject obj) {
+            return obj == null ? null : new InstagramTag(obj);
         }
 
         #endregion

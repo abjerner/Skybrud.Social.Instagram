@@ -13,7 +13,7 @@ namespace Skybrud.Social.Instagram.OAuth {
     /// Class for handling the raw communication with the Instagram API as well as any OAuth 2.0
     /// communication/authentication.
     /// </summary>
-    public class InstagramOAuthClient {
+    public class InstagramOAuthClient : SocialHttpClient {
 
         #region Private fields
 
@@ -175,17 +175,6 @@ namespace Skybrud.Social.Instagram.OAuth {
         /// </summary>
         /// <param name="state">A unique state for the request.</param>
         /// <param name="scope">The scope of your application.</param>
-        [Obsolete("Use method overloads instead.")]
-        public string GetAuthorizationUrl(string state, InstagramScope scope) {
-            // TODO: Remove in v1.0
-            return GetAuthorizationUrl(state, scope.ToString().Replace(", ", " ").ToLower());
-        }
-
-        /// <summary>
-        /// Gets an authorization URL using the specified <var>state</var> and request the specified <code>scope</code>.
-        /// </summary>
-        /// <param name="state">A unique state for the request.</param>
-        /// <param name="scope">The scope of your application.</param>
         public string GetAuthorizationUrl(string state, InstagramScopeCollection scope) {
             return GetAuthorizationUrl(state, scope.ToString());
         }
@@ -237,13 +226,10 @@ namespace Skybrud.Social.Instagram.OAuth {
             };
 
             // Make the call to the API
-            HttpWebResponse response = SocialUtils.DoHttpPostRequest("https://api.instagram.com/oauth/access_token", null, parameters);
-
-            // Wrap the native response class
-            SocialHttpResponse social = SocialHttpResponse.GetFromWebResponse(response);
+            SocialHttpResponse response = SocialUtils.DoHttpPostRequest("https://api.instagram.com/oauth/access_token", null, parameters);
 
             // Parse the response
-            return InstagramAccessTokenResponse.ParseResponse(social);
+            return InstagramAccessTokenResponse.ParseResponse(response);
 
         }
 

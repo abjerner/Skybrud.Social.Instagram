@@ -1,8 +1,9 @@
 using System;
+using Newtonsoft.Json.Linq;
 using Skybrud.Social.Http;
-using Skybrud.Social.Json;
 using Skybrud.Social.Instagram.Objects;
 using Skybrud.Social.Instagram.Objects.Pagination;
+using Skybrud.Social.Json.Extensions.JObject;
 
 namespace Skybrud.Social.Instagram.Responses {
     
@@ -16,33 +17,32 @@ namespace Skybrud.Social.Instagram.Responses {
 
         #region Constructors
 
-        private InstagramLocationRecentMediaResponse(SocialHttpResponse response) : base(response) { }
+        private InstagramLocationRecentMediaResponse(SocialHttpResponse response) : base(response) {
+
+            // Validate the response
+            ValidateResponse(response);
+
+            // Parse the response body
+            Body = ParseJsonObject(response.Body, InstagramLocationRecentMediaResponseBody.Parse);
+
+        }
 
         #endregion
 
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <code>response</code> into an instance of <code>ParseResponse</code>.
+        /// Parses the specified <code>response</code> into an instance of <see cref="InstagramLocationRecentMediaResponse"/>.
         /// </summary>
         /// <param name="response">The response to be parsed.</param>
-        /// <returns>Returns an instance of <code>ParseResponse</code>.</returns>
+        /// <returns>Returns an instance of <see cref="InstagramLocationRecentMediaResponse"/>.</returns>
         public static InstagramLocationRecentMediaResponse ParseResponse(SocialHttpResponse response) {
 
             // Some input validation
             if (response == null) throw new ArgumentNullException("response");
 
-            // Parse the raw JSON response
-            JsonObject obj = response.GetBodyAsJsonObject();
-            if (obj == null) return null;
-
-            // Validate the response
-            ValidateResponse(response, obj);
-
             // Initialize the response object
-            return new InstagramLocationRecentMediaResponse(response) {
-                Body = InstagramLocationRecentMediaResponseBody.Parse(obj)
-            };
+            return new InstagramLocationRecentMediaResponse(response);
 
         }
 
@@ -72,23 +72,23 @@ namespace Skybrud.Social.Instagram.Responses {
         /// <summary>
         /// Initializes a new instance based on the specified <code>obj</code>.
         /// </summary>
-        /// <param name="obj">The instance of <code>JsonObject</code> representing the response body.</param>
-        protected InstagramLocationRecentMediaResponseBody(JsonObject obj) : base(obj) { }
+        /// <param name="obj">The instance of <see cref="JObject"/> representing the response body.</param>
+        protected InstagramLocationRecentMediaResponseBody(JObject obj) : base(obj) {
+            Pagination = obj.GetObject("pagination", InstagramIdBasedPagination.Parse);
+            Data = obj.GetArray("data", InstagramMedia.Parse);
+        }
 
         #endregion
 
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <code>obj</code> into an instance of <code>InstagramLocationRecentMediaResponseBody</code>.
+        /// Parses the specified <code>obj</code> into an instance of <see cref="InstagramLocationRecentMediaResponseBody"/>.
         /// </summary>
-        /// <param name="obj">The instance of <code>JsonObject</code> to be parsed.</param>
-        /// <returns>Returns an instance of <code>InstagramLocationRecentMediaResponseBody</code>.</returns>
-        public static InstagramLocationRecentMediaResponseBody Parse(JsonObject obj) {
-            return new InstagramLocationRecentMediaResponseBody(obj) {
-                Pagination = obj.GetObject("pagination", InstagramIdBasedPagination.Parse),
-                Data = obj.GetArray("data", InstagramMedia.Parse)
-            };
+        /// <param name="obj">The instance of <see cref="JObject"/> to be parsed.</param>
+        /// <returns>Returns an instance of <see cref="InstagramLocationRecentMediaResponseBody"/>.</returns>
+        public static InstagramLocationRecentMediaResponseBody Parse(JObject obj) {
+            return obj == null ? null : new InstagramLocationRecentMediaResponseBody(obj);
         }
 
         #endregion

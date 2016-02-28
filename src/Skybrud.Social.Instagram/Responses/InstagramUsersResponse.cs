@@ -1,6 +1,6 @@
 using System;
+using Newtonsoft.Json.Linq;
 using Skybrud.Social.Http;
-using Skybrud.Social.Json;
 using Skybrud.Social.Instagram.Objects;
 
 namespace Skybrud.Social.Instagram.Responses {
@@ -17,33 +17,32 @@ namespace Skybrud.Social.Instagram.Responses {
 
         #region Constructors
 
-        private InstagramUsersResponse(SocialHttpResponse response) : base(response) { }
+        private InstagramUsersResponse(SocialHttpResponse response) : base(response) {
+
+            // Validate the response
+            ValidateResponse(response);
+
+            // Parse the response body
+            Body = ParseJsonObject(response.Body, InstagramUsersResponseBody.Parse);
+
+        }
 
         #endregion
 
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <code>response</code> into an instance of <code>InstagramUsersResponse</code>.
+        /// Parses the specified <code>response</code> into an instance of <see cref="InstagramUsersResponse"/>.
         /// </summary>
         /// <param name="response">The response to be parsed.</param>
-        /// <returns>Returns an instance of <code>InstagramUsersResponse</code>.</returns>
+        /// <returns>Returns an instance of <see cref="InstagramUsersResponse"/>.</returns>
         public static InstagramUsersResponse ParseResponse(SocialHttpResponse response) {
 
             // Some input validation
             if (response == null) throw new ArgumentNullException("response");
 
-            // Parse the raw JSON response
-            JsonObject obj = response.GetBodyAsJsonObject();
-            if (obj == null) return null;
-
-            // Validate the response
-            ValidateResponse(response, obj);
-
             // Initialize the response object
-            return new InstagramUsersResponse(response) {
-                Body = InstagramUsersResponseBody.Parse(obj)
-            };
+            return new InstagramUsersResponse(response);
 
         }
 
@@ -66,22 +65,20 @@ namespace Skybrud.Social.Instagram.Responses {
         /// <summary>
         /// Initializes a new instance based on the specified <code>obj</code>.
         /// </summary>
-        /// <param name="obj">The instance of <code>JsonObject</code> representing the response body.</param>
-        protected InstagramUsersResponseBody(JsonObject obj) : base(obj) { }
+        /// <param name="obj">The instance of <see cref="JObject"/> representing the response body.</param>
+        protected InstagramUsersResponseBody(JObject obj) : base(obj) { }
 
         #endregion
 
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <code>obj</code> into an instance of <code>InstagramUsersResponseBody</code>.
+        /// Parses the specified <code>obj</code> into an instance of <see cref="InstagramUsersResponseBody"/>.
         /// </summary>
-        /// <param name="obj">The instance of <code>JsonObject</code> to be parsed.</param>
-        /// <returns>Returns an instance of <code>InstagramUsersResponseBody</code>.</returns>
-        public static InstagramUsersResponseBody Parse(JsonObject obj) {
-            return new InstagramUsersResponseBody(obj) {
-                Data = obj.GetArray("data", InstagramUserSummary.Parse)
-            };
+        /// <param name="obj">The instance of <see cref="JObject"/> to be parsed.</param>
+        /// <returns>Returns an instance of <see cref="InstagramUsersResponseBody"/>.</returns>
+        public static InstagramUsersResponseBody Parse(JObject obj) {
+            return obj == null ? null : new InstagramUsersResponseBody(obj);
         }
 
         #endregion

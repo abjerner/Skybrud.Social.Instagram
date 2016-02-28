@@ -1,6 +1,5 @@
 using System;
 using Skybrud.Social.Http;
-using Skybrud.Social.Json;
 using Skybrud.Social.Instagram.Objects;
 
 namespace Skybrud.Social.Instagram.Responses {
@@ -12,33 +11,32 @@ namespace Skybrud.Social.Instagram.Responses {
 
         #region Constructors
 
-        private InstagramAccessTokenResponse(SocialHttpResponse response) : base(response) { }
+        private InstagramAccessTokenResponse(SocialHttpResponse response) : base(response) {
+
+            // Validate the response
+            ValidateResponse(response);
+
+            // Parse the response body
+            Body = ParseJsonObject(response.Body, InstagramAccessTokenSummary.Parse);
+
+        }
 
         #endregion
 
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <code>response</code> into an instance of <code>InstagramAccessTokenResponse</code>.
+        /// Parses the specified <code>response</code> into an instance of <see cref="InstagramAccessTokenResponse"/>.
         /// </summary>
         /// <param name="response">The response to be parsed.</param>
-        /// <returns>Returns an instance of <code>InstagramAccessTokenResponse</code> representing the response.</returns>
+        /// <returns>Returns an instance of <see cref="InstagramAccessTokenResponse"/> representing the response.</returns>
         public static InstagramAccessTokenResponse ParseResponse(SocialHttpResponse response) {
 
             // Some input validation
             if (response == null) throw new ArgumentNullException("response");
 
-            // Parse the raw JSON response
-            JsonObject obj = response.GetBodyAsJsonObject();
-            if (obj == null) return null;
-
-            // Validate the response
-            ValidateResponse(response, obj);
-
             // Initialize the response object
-            return new InstagramAccessTokenResponse(response) {
-                Body = InstagramAccessTokenSummary.Parse(obj)
-            };
+            return new InstagramAccessTokenResponse(response);
 
         }
 

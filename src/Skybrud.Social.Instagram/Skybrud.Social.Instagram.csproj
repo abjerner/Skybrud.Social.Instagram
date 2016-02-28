@@ -34,8 +34,9 @@
       <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Skybrud.Social">
-      <HintPath>..\..\..\Skybrud.Social\src\Skybrud.Social\bin\Release\Skybrud.Social.dll</HintPath>
+    <Reference Include="Skybrud.Social.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Skybrud.Social.Core.1.0.0-alpha4\lib\net45\Skybrud.Social.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -60,6 +61,7 @@
     <Compile Include="Exceptions\InstagramNotFoundException.cs" />
     <Compile Include="Exceptions\InstagramOAuthAccessTokenException.cs" />
     <Compile Include="Exceptions\InstagramOAuthException.cs" />
+    <Compile Include="Exceptions\InstagramParseException.cs" />
     <Compile Include="InstagramScope.cs" />
     <Compile Include="InstagramService.cs" />
     <Compile Include="OAuth\InstagramOAuthClient.cs" />
@@ -72,6 +74,7 @@
     <Compile Include="Objects\InstagramMedia.cs" />
     <Compile Include="Objects\InstagramMediaSummary.cs" />
     <Compile Include="Objects\InstagramMetaData.cs" />
+    <Compile Include="Objects\InstagramObject.cs" />
     <Compile Include="Objects\InstagramPosition.cs" />
     <Compile Include="Objects\InstagramTag.cs" />
     <Compile Include="Objects\InstagramTaggedUser.cs" />
