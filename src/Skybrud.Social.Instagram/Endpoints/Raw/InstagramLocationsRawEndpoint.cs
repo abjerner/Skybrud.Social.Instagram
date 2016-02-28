@@ -43,7 +43,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations</cref>
         /// </see>
         public SocialHttpResponse GetLocation(int locationId) {
-            return Client.DoAuthenticatedGetRequest("https://api.instagram.com/v1/locations/" + locationId);
+            return Client.DoHttpGetRequest("https://api.instagram.com/v1/locations/" + locationId);
         }
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         public SocialHttpResponse GetRecentMedia(InstagramLocationRecentMediaOptions options) {
             if (options == null) throw new ArgumentNullException("options");
             if (options.LocationId == 0) throw new PropertyNotSetException("options.LocationId");
-            return Client.DoAuthenticatedGetRequest("https://api.instagram.com/v1/locations/" + options.LocationId + "/media/recent", options);
+            return Client.DoHttpGetRequest("https://api.instagram.com/v1/locations/" + options.LocationId + "/media/recent", options);
         }
 
         /// <summary>
@@ -131,7 +131,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// </see>
         public SocialHttpResponse Search(InstagramLocationSearchOptions options) {
             if (options == null) throw new ArgumentNullException("options");
-            return Client.DoAuthenticatedGetRequest("https://api.instagram.com/v1/locations/search", options);
+            return Client.DoHttpGetRequest("https://api.instagram.com/v1/locations/search", options);
         }
 
         #endregion

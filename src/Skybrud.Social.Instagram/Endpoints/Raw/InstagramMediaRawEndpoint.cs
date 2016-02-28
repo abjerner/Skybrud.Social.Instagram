@@ -42,7 +42,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// </see>
         public SocialHttpResponse GetMedia(string mediaId) {
             if (String.IsNullOrWhiteSpace(mediaId)) throw new ArgumentNullException("mediaId");
-            return Client.DoAuthenticatedGetRequest("https://api.instagram.com/v1/media/" + mediaId);
+            return Client.DoHttpGetRequest("https://api.instagram.com/v1/media/" + mediaId);
         }
 
         // TODO: Implement http://instagram.com/developer/endpoints/media/#get_media_by_shortcode
@@ -94,7 +94,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// </see>
         public SocialHttpResponse Search(InstagramRecentMediaSearchOptions options) {
             if (options == null) throw new ArgumentNullException("options");
-            return Client.DoAuthenticatedGetRequest("https://api.instagram.com/v1/media/search", options);
+            return Client.DoHttpGetRequest("https://api.instagram.com/v1/media/search", options);
         }
 
         // TODO: Implement http://instagram.com/developer/endpoints/media/#get_media_popular

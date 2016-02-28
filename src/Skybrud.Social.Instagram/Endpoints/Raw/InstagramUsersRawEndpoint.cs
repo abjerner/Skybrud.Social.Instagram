@@ -41,7 +41,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         ///     <cref>https://instagram.com/developer/endpoints/users/#get_users</cref>
         /// </see>
         public SocialHttpResponse GetUser(string identifier) {
-            return Client.DoAuthenticatedGetRequest("https://api.instagram.com/v1/users/" + identifier + "/");
+            return Client.DoHttpGetRequest("https://api.instagram.com/v1/users/" + identifier + "/");
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         ///     <cref>https://instagram.com/developer/endpoints/users/#get_users_feed</cref>
         /// </see>
         public SocialHttpResponse GetUserFeed(InstagramUserFeedOptions options) {
-            return Client.DoAuthenticatedGetRequest("https://api.instagram.com/v1/users/self/feed", options);
+            return Client.DoHttpGetRequest("https://api.instagram.com/v1/users/self/feed", options);
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// </see>
         public SocialHttpResponse GetRecentMedia(string identifier, InstagramUserRecentMediaOptions options) {
             if (options == null) throw new ArgumentNullException("options");
-            return Client.DoAuthenticatedGetRequest("https://api.instagram.com/v1/users/" + identifier + "/media/recent/", options);
+            return Client.DoHttpGetRequest("https://api.instagram.com/v1/users/" + identifier + "/media/recent/", options);
         }
 
         /// <summary>
@@ -116,7 +116,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         ///     <cref>https://instagram.com/developer/endpoints/users/#get_users_feed_liked</cref>
         /// </see>
         public SocialHttpResponse GetLikedMedia() {
-            return Client.DoAuthenticatedGetRequest("https://api.instagram.com/v1/users/self/media/liked");
+            return Client.DoHttpGetRequest("https://api.instagram.com/v1/users/self/media/liked");
         }
 
         /// <summary>
@@ -142,7 +142,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         ///     <cref>https://instagram.com/developer/endpoints/users/#get_users_feed_liked</cref>
         /// </see>
         public SocialHttpResponse GetLikedMedia(InstagramUserLikedMediaOptions options) {
-            return Client.DoAuthenticatedGetRequest("https://api.instagram.com/v1/users/self/media/liked", options);
+            return Client.DoHttpGetRequest("https://api.instagram.com/v1/users/self/media/liked", options);
         }
 
         /// <summary>
@@ -181,7 +181,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         ///     <cref>https://instagram.com/developer/endpoints/users/#get_users_search</cref>
         /// </see>
         public SocialHttpResponse Search(InstagramUserSearchOptions options) {
-            return Client.DoAuthenticatedGetRequest("https://api.instagram.com/v1/users/search", options);
+            return Client.DoHttpGetRequest("https://api.instagram.com/v1/users/search", options);
         }
 
         #endregion
