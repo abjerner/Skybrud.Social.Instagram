@@ -4,6 +4,7 @@ using System.Net;
 using Skybrud.Social.Http;
 using Skybrud.Social.Instagram.Endpoints.Raw;
 using Skybrud.Social.Instagram.Responses;
+using Skybrud.Social.Instagram.Responses.Authentication;
 using Skybrud.Social.Instagram.Scopes;
 using Skybrud.Social.Interfaces;
 
@@ -213,8 +214,8 @@ namespace Skybrud.Social.Instagram.OAuth {
         /// Makes a call to the Instagram API to exchange the specified <code>authCode</code> for an access token.
         /// </summary>
         /// <param name="authCode">The authorization code obtained from an OAuth 2.0 login flow.</param>
-        /// <returns>Returns an instance of <code>InstagramAccessTokenResponse</code> representing the response from the server.</returns>
-        public InstagramAccessTokenResponse GetAccessTokenFromAuthCode(string authCode) {
+        /// <returns>Returns an instance of <code>InstagramTokenResponse</code> representing the response from the server.</returns>
+        public InstagramTokenResponse GetAccessTokenFromAuthCode(string authCode) {
         
             // Initialize collection with POST data
             NameValueCollection parameters = new NameValueCollection {
@@ -229,7 +230,7 @@ namespace Skybrud.Social.Instagram.OAuth {
             SocialHttpResponse response = SocialUtils.DoHttpPostRequest("https://api.instagram.com/oauth/access_token", null, parameters);
 
             // Parse the response
-            return InstagramAccessTokenResponse.ParseResponse(response);
+            return InstagramTokenResponse.ParseResponse(response);
 
         }
 

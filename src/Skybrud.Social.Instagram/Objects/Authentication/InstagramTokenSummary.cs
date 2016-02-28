@@ -1,12 +1,12 @@
 using Newtonsoft.Json.Linq;
 using Skybrud.Social.Json.Extensions.JObject;
 
-namespace Skybrud.Social.Instagram.Objects {
+namespace Skybrud.Social.Instagram.Objects.Authentication {
     
     /// <summary>
     /// Class representing the response body of a call to exchange an authorization code for an access token.
     /// </summary>
-    public class InstagramAccessTokenSummary : InstagramObject {
+    public class InstagramTokenSummary : InstagramObject {
 
         #region Properties
         
@@ -24,7 +24,7 @@ namespace Skybrud.Social.Instagram.Objects {
 
         #region Constructors
 
-        private InstagramAccessTokenSummary(JObject obj) : base(obj) {
+        private InstagramTokenSummary(JObject obj) : base(obj) {
             AccessToken = obj.GetString("access_token");
             User = obj.GetObject("user", InstagramUser.Parse);
         }
@@ -34,12 +34,12 @@ namespace Skybrud.Social.Instagram.Objects {
         #region Static methods
 
         /// <summary>
-        /// Gets an instance of <see cref="InstagramAccessTokenSummary"/> from the specified <code>obj</code>.
+        /// Gets an instance of <see cref="InstagramTokenSummary"/> from the specified <code>obj</code>.
         /// </summary>
         /// <param name="obj">The instance of <see cref="JObject"/> to parse.</param>
-        /// <returns>Returns an instance of <see cref="InstagramAccessTokenSummary"/>.</returns>
-        public static InstagramAccessTokenSummary Parse(JObject obj) {
-            return obj == null ? null : new InstagramAccessTokenSummary(obj);
+        /// <returns>Returns an instance of <see cref="InstagramTokenSummary"/>.</returns>
+        public static InstagramTokenSummary Parse(JObject obj) {
+            return obj == null ? null : new InstagramTokenSummary(obj);
         }
 
         #endregion
