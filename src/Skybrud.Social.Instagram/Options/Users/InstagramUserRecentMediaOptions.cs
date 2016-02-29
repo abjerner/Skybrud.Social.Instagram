@@ -15,6 +15,12 @@ namespace Skybrud.Social.Instagram.Options.Users {
         #region Properties
 
         /// <summary>
+        /// Gets or sets the ID of the user. If the ID is set to <code>0</code>, the recent media of the authenticated
+        /// user will be returned.
+        /// </summary>
+        public long UserId { get; set; }
+
+        /// <summary>
         /// Gets or sets the maximum amount of media to be returned.
         /// </summary>
         public int Count { get; set; }
@@ -41,10 +47,28 @@ namespace Skybrud.Social.Instagram.Options.Users {
 
         #endregion
 
+        #region Constructors
+
+        /// <summary>
+        /// Initializes a new instance with default options.
+        /// </summary>
+        public InstagramUserRecentMediaOptions() { }
+
+        public InstagramUserRecentMediaOptions(long userId) {
+            UserId = userId;
+        }
+
+        public InstagramUserRecentMediaOptions(long userId, int count) {
+            UserId = userId;
+            Count = count;
+        }
+
+        #endregion
+
         #region Member methods
 
         /// <summary>
-        /// Gets an instance of <code>SocialQueryString</code> representing the GET parameters.
+        /// Gets an instance of <see cref="SocialQueryString"/> representing the GET parameters.
         /// </summary>
         public SocialQueryString GetQueryString() {
             SocialQueryString qs = new SocialQueryString();

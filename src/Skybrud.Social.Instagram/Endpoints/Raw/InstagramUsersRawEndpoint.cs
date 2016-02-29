@@ -36,18 +36,19 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// Gets information about the user with the specified <code>identifier</code>.
         /// </summary>
         /// <param name="identifier">The identifier of the user.</param>
-        /// <returns>Returns an instance of <code>SocialHttpResponse</code> representing the response from the Instagram API.</returns>
+        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/users/#get_users</cref>
         /// </see>
         public SocialHttpResponse GetUser(string identifier) {
+            if (String.IsNullOrWhiteSpace(identifier)) throw new ArgumentNullException("identifier");
             return Client.DoHttpGetRequest("https://api.instagram.com/v1/users/" + identifier + "/");
         }
 
         /// <summary>
         /// Gets the feed of the authenticated user.
         /// </summary>
-        /// <returns>Returns an instance of <code>SocialHttpResponse</code> representing the response.</returns>
+        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/users/#get_users_feed</cref>
         /// </see>
@@ -59,59 +60,68 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// Gets the feed of the authenticated user.
         /// </summary>
         /// <param name="options">The options for the call to the API.</param>
-        /// <returns>Returns an instance of <code>SocialHttpResponse</code> representing the response.</returns>
+        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/users/#get_users_feed</cref>
         /// </see>
         public SocialHttpResponse GetUserFeed(InstagramUserFeedOptions options) {
+            if (options == null) throw new ArgumentNullException("options");
             return Client.DoHttpGetRequest("https://api.instagram.com/v1/users/self/feed", options);
         }
-
+        
         /// <summary>
-        /// Gets the most recent media published by the user with the specified <code>identifier</code>.
+        /// Gets the most recent media of the authenticated user.
         /// </summary>
-        /// <param name="identifier">The identifier of the user.</param>
-        /// <returns>Returns the raw JSON response from the API.</returns>
+        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/users/#get_users_media_recent</cref>
         /// </see>
-        public SocialHttpResponse GetRecentMedia(string identifier) {
-            return GetRecentMedia(identifier, new InstagramUserRecentMediaOptions());
+        public SocialHttpResponse GetRecentMedia() {
+            return GetRecentMedia(new InstagramUserRecentMediaOptions());
         }
 
         /// <summary>
-        /// Gets the most recent media published by the user with the specified <code>identifier</code>.
+        /// Gets the most recent media published by the user with the specified <code>userId</code>.
         /// </summary>
-        /// <param name="identifier">The identifier of the user.</param>
+        /// <param name="userId">The ID of the user.</param>
+        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
+        /// <see>
+        ///     <cref>https://instagram.com/developer/endpoints/users/#get_users_media_recent</cref>
+        /// </see>
+        public SocialHttpResponse GetRecentMedia(long userId) {
+            return GetRecentMedia(new InstagramUserRecentMediaOptions(userId));
+        }
+
+        /// <summary>
+        /// Gets the most recent media published by the user with the specified <code>userId</code>.
+        /// </summary>
+        /// <param name="userId">The ID of the user.</param>
         /// <param name="count">The maximum amount of media to be returned.</param>
-        /// <returns>Returns the raw JSON response from the API.</returns>
+        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/users/#get_users_media_recent</cref>
         /// </see>
-        public SocialHttpResponse GetRecentMedia(string identifier, int count) {
-            return GetRecentMedia(identifier, new InstagramUserRecentMediaOptions {
-                Count = count
-            });
+        public SocialHttpResponse GetRecentMedia(long userId, int count) {
+            return GetRecentMedia(new InstagramUserRecentMediaOptions(userId, count));
         }
 
         /// <summary>
-        /// Gets the most recent media published by the user with the specified <code>identifier</code>.
+        /// Gets the most recent media of the user mathcing the specified <code>options</code>.
         /// </summary>
-        /// <param name="identifier">The identifier of the user.</param>
-        /// <param name="options">The search options with any optional parameters.</param>
-        /// <returns>Returns the raw JSON response from the API.</returns>
+        /// <param name="options">The search options for the call to the API.</param>
+        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/users/#get_users_media_recent</cref>
         /// </see>
-        public SocialHttpResponse GetRecentMedia(string identifier, InstagramUserRecentMediaOptions options) {
+        public SocialHttpResponse GetRecentMedia(InstagramUserRecentMediaOptions options) {
             if (options == null) throw new ArgumentNullException("options");
-            return Client.DoHttpGetRequest("https://api.instagram.com/v1/users/" + identifier + "/media/recent/", options);
+            return Client.DoHttpGetRequest("https://api.instagram.com/v1/users/" + (options.UserId == 0 ? "self" : options.UserId + "") + "/media/recent/", options);
         }
 
         /// <summary>
         /// Gets a list of media liked by the authenticated user.
         /// </summary>
-        /// <returns>Returns the raw JSON response from the API.</returns>
+        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/users/#get_users_feed_liked</cref>
         /// </see>
@@ -123,7 +133,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// Gets a list of media liked by the authenticated user.
         /// </summary>
         /// <param name="count">The maximum amount of media to be returned.</param>
-        /// <returns>Returns the raw JSON response from the API.</returns>
+        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/users/#get_users_feed_liked</cref>
         /// </see>

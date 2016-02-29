@@ -2,7 +2,6 @@ using System;
 using System.Globalization;
 using Skybrud.Social.Instagram.Endpoints.Raw;
 using Skybrud.Social.Instagram.Options.Users;
-using Skybrud.Social.Instagram.Responses;
 using Skybrud.Social.Instagram.Responses.Media;
 using Skybrud.Social.Instagram.Responses.Users;
 
@@ -74,28 +73,10 @@ namespace Skybrud.Social.Instagram.Endpoints {
         }
 
         /// <summary>
-        /// Gets information about the user with the specified <code>id</code>.
-        /// </summary>
-        /// <param name="id">The ID of the user.</param>
-        [Obsolete("Use the GetInfo() instead.")]
-        public InstagramUserResponse GetInfo(long id) {
-            // TODO: Remove for v1.0
-            return InstagramUserResponse.ParseResponse(Raw.GetUser(id.ToString(CultureInfo.InvariantCulture)));
-        }
-
-        /// <summary>
         /// Gets the the most recent media of the authenticated user.
         /// </summary>
         public InstagramRecentMediaResponse GetRecentMedia() {
-            return InstagramRecentMediaResponse.ParseResponse(Raw.GetRecentMedia("self"));
-        }
-
-        /// <summary>
-        /// Gets the the most recent media of the authenticated user.
-        /// </summary>
-        /// <param name="options">The search options with any optional parameters.</param>
-        public InstagramRecentMediaResponse GetRecentMedia(InstagramUserRecentMediaOptions options) {
-            return InstagramRecentMediaResponse.ParseResponse(Raw.GetRecentMedia("self", options));
+            return InstagramRecentMediaResponse.ParseResponse(Raw.GetRecentMedia());
         }
 
         /// <summary>
@@ -103,7 +84,7 @@ namespace Skybrud.Social.Instagram.Endpoints {
         /// </summary>
         /// <param name="userId">The ID of the user.</param>
         public InstagramRecentMediaResponse GetRecentMedia(long userId) {
-            return InstagramRecentMediaResponse.ParseResponse(Raw.GetRecentMedia(userId.ToString(CultureInfo.InvariantCulture)));
+            return InstagramRecentMediaResponse.ParseResponse(Raw.GetRecentMedia(userId));
         }
 
         /// <summary>
@@ -112,16 +93,15 @@ namespace Skybrud.Social.Instagram.Endpoints {
         /// <param name="userId">The ID of the user.</param>
         /// <param name="count">The maximum amount of media to be returned.</param>
         public InstagramRecentMediaResponse GetRecentMedia(long userId, int count) {
-            return InstagramRecentMediaResponse.ParseResponse(Raw.GetRecentMedia(userId.ToString(CultureInfo.InvariantCulture), count));
+            return InstagramRecentMediaResponse.ParseResponse(Raw.GetRecentMedia(userId, count));
         }
 
         /// <summary>
-        /// Gets the most recent media of the user with the specified <code>userId</code>.
+        /// Gets the most recent media of the user matching the specified <code>options</code>.
         /// </summary>
-        /// <param name="userId">The ID of the user.</param>
-        /// <param name="options">The search options with any optional parameters.</param>
-        public InstagramRecentMediaResponse GetRecentMedia(long userId, InstagramUserRecentMediaOptions options) {
-            return InstagramRecentMediaResponse.ParseResponse(Raw.GetRecentMedia(userId.ToString(CultureInfo.InvariantCulture), options));
+        /// <param name="options">The search options for the call to the API.</param>
+        public InstagramRecentMediaResponse GetRecentMedia(InstagramUserRecentMediaOptions options) {
+            return InstagramRecentMediaResponse.ParseResponse(Raw.GetRecentMedia(options));
         }
 
         /// <summary>

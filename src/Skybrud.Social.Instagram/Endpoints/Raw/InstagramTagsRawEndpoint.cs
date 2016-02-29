@@ -35,7 +35,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// Gets the raw JSON response from the Instagram API with information about the specified <code>tag</code>.
         /// </summary>
         /// <param name="tag">The name of the tag.</param>
-        /// <returns>Returns an instance of <code>SocialHttpResponse</code> representing the response from the Instagram API.</returns>
+        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/tags/#get_tags</cref>
         /// </see>
@@ -49,7 +49,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// <param name="tag">The name of the tag.</param>
         /// <param name="minTagId">The minimum tag ID. Only media before this ID will be returned.</param>
         /// <param name="maxTagId">The maximum tag ID. Only media after this ID will be returned.</param>
-        /// <returns>Returns an instance of <code>SocialHttpResponse</code> representing the response from the Instagram API.</returns>
+        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/tags/#get_tags_media_recent</cref>
         /// </see>
@@ -67,7 +67,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// <param name="count">The maximum amount of media to be returned.</param>
         /// <param name="minTagId">The minimum tag ID. Only media before this ID will be returned.</param>
         /// <param name="maxTagId">The maximum tag ID. Only media after this ID will be returned.</param>
-        /// <returns>Returns an instance of <code>SocialHttpResponse</code> representing the response from the Instagram API.</returns>
+        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/tags/#get_tags_media_recent</cref>
         /// </see>
@@ -84,7 +84,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// </summary>
         /// <param name="tag">The name of the tag.</param>
         /// <param name="options">The options for the call to the API.</param>
-        /// <returns>Returns an instance of <code>SocialHttpResponse</code> representing the response from the Instagram API.</returns>
+        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/tags/#get_tags_media_recent</cref>
         /// </see>
@@ -96,7 +96,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// Search for tags by name. Results are ordered first as an exact match, then by popularity. Short tags will be treated as exact matches.
         /// </summary>
         /// <param name="tag">A valid tag name without a leading #. (eg. snowy, nofilter)</param>
-        /// <returns>Returns an instance of <code>SocialHttpResponse</code> representing the response from the Instagram API.</returns>
+        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/tags/#get_tags_search</cref>
         /// </see>
