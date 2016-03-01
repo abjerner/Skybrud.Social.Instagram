@@ -13,7 +13,7 @@ namespace Skybrud.Social.Instagram.Exceptions {
         #region Properties
 
         /// <summary>
-        /// Gets a reference to the underlying <code>SocialHttpResponse</code>.
+        /// Gets a reference to the underlying <see cref="SocialHttpResponse"/>.
         /// </summary>
         public SocialHttpResponse Response { get; private set; }
 

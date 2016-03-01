@@ -116,7 +116,7 @@ namespace Skybrud.Social.Instagram.OAuth {
         /// request a basic scope.
         /// </summary>
         /// <param name="state">A unique state for the request.</param>
-        public string GetAuthorizationUrl(string state) {
+        public virtual string GetAuthorizationUrl(string state) {
             return GetAuthorizationUrl(state, InstagramScopes.Basic);
         }
 
@@ -125,7 +125,7 @@ namespace Skybrud.Social.Instagram.OAuth {
         /// </summary>
         /// <param name="state">A unique state for the request.</param>
         /// <param name="scope">The scope of your application.</param>
-        public string GetAuthorizationUrl(string state, InstagramScopeCollection scope) {
+        public virtual string GetAuthorizationUrl(string state, InstagramScopeCollection scope) {
             return GetAuthorizationUrl(state, scope.ToString());
         }
 
@@ -134,7 +134,7 @@ namespace Skybrud.Social.Instagram.OAuth {
         /// </summary>
         /// <param name="state">A unique state for the request.</param>
         /// <param name="scope">The scope of your application.</param>
-        public string GetAuthorizationUrl(string state, params string[] scope) {
+        public virtual string GetAuthorizationUrl(string state, params string[] scope) {
 
             // Some validation
             if (String.IsNullOrWhiteSpace(ClientId)) throw new PropertyNotSetException("ClientId");
@@ -168,7 +168,7 @@ namespace Skybrud.Social.Instagram.OAuth {
         /// </summary>
         /// <param name="authCode">The authorization code obtained from an OAuth 2.0 login flow.</param>
         /// <returns>Returns an instance of <see cref="InstagramTokenResponse"/> representing the response from the server.</returns>
-        public InstagramTokenResponse GetAccessTokenFromAuthCode(string authCode) {
+        public virtual InstagramTokenResponse GetAccessTokenFromAuthCode(string authCode) {
 
             // Some validation
             if (String.IsNullOrWhiteSpace(ClientId)) throw new PropertyNotSetException("ClientId");
@@ -193,6 +193,10 @@ namespace Skybrud.Social.Instagram.OAuth {
 
         }
 
+        /// <summary>
+        /// Virtual method that can be used for configuring a request.
+        /// </summary>
+        /// <param name="request">The instance of <see cref="SocialHttpRequest"/> representing the request.</param>
         protected override void PrepareHttpRequest(SocialHttpRequest request) {
 
             // Append either the access token or the client ID to the query string

@@ -54,10 +54,19 @@ namespace Skybrud.Social.Instagram.Options.Users {
         /// </summary>
         public InstagramGetUserRecentMediaOptions() { }
 
+        /// <summary>
+        /// Initializes a new instance from the specified <code>userId</code>.
+        /// </summary>
+        /// <param name="userId">The ID of the user.</param>
         public InstagramGetUserRecentMediaOptions(long userId) {
             UserId = userId;
         }
 
+        /// <summary>
+        /// Initializes a new instance from the specified <code>userId</code> and <code>count</code>.
+        /// </summary>
+        /// <param name="userId">The ID of the user.</param>
+        /// <param name="count">The maximum amount of media to be returned.</param>
         public InstagramGetUserRecentMediaOptions(long userId, int count) {
             UserId = userId;
             Count = count;
