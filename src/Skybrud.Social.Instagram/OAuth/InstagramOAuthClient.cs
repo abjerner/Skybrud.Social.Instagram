@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Specialized;
+using Skybrud.Social.Exceptions;
 using Skybrud.Social.Http;
 using Skybrud.Social.Instagram.Endpoints.Raw;
 using Skybrud.Social.Instagram.Responses.Authentication;
@@ -135,6 +136,10 @@ namespace Skybrud.Social.Instagram.OAuth {
         /// <param name="scope">The scope of your application.</param>
         public string GetAuthorizationUrl(string state, params string[] scope) {
 
+            // Some validation
+            if (String.IsNullOrWhiteSpace(ClientId)) throw new PropertyNotSetException("ClientId");
+            if (String.IsNullOrWhiteSpace(RedirectUri)) throw new PropertyNotSetException("RedirectUri");
+
             // Do we have a valid "state" ?
             if (String.IsNullOrWhiteSpace(state)) {
                 throw new ArgumentNullException("state", "A valid state should be specified as it is part of the security of OAuth 2.0.");
@@ -164,6 +169,12 @@ namespace Skybrud.Social.Instagram.OAuth {
         /// <param name="authCode">The authorization code obtained from an OAuth 2.0 login flow.</param>
         /// <returns>Returns an instance of <see cref="InstagramTokenResponse"/> representing the response from the server.</returns>
         public InstagramTokenResponse GetAccessTokenFromAuthCode(string authCode) {
+
+            // Some validation
+            if (String.IsNullOrWhiteSpace(ClientId)) throw new PropertyNotSetException("ClientId");
+            if (String.IsNullOrWhiteSpace(ClientSecret)) throw new PropertyNotSetException("ClientSecret");
+            if (String.IsNullOrWhiteSpace(RedirectUri)) throw new PropertyNotSetException("RedirectUri");
+            if (String.IsNullOrWhiteSpace(authCode)) throw new ArgumentNullException("authCode");
         
             // Initialize collection with POST data
             NameValueCollection parameters = new NameValueCollection {
