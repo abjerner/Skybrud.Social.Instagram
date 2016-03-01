@@ -63,7 +63,6 @@
     <Compile Include="Exceptions\InstagramOAuthAccessTokenException.cs" />
     <Compile Include="Exceptions\InstagramOAuthException.cs" />
     <Compile Include="Exceptions\InstagramParseException.cs" />
-    <Compile Include="InstagramScope.cs" />
     <Compile Include="InstagramService.cs" />
     <Compile Include="OAuth\InstagramOAuthClient.cs" />
     <Compile Include="Objects\Common\InstagramRateLimiting.cs" />

@@ -34,16 +34,7 @@ namespace Skybrud.Social.Instagram.OAuth {
         /// Gets or sets the secret of the app/client.
         /// </summary>
         public string ClientSecret { get; set; }
-
-        /// <summary>
-        /// Gets or sets the redirect URI of your application.
-        /// </summary>
-        [Obsolete("Use \"RedirectUri\" instead to follow Instagram lingo.")]
-        public string ReturnUri {
-            get { return RedirectUri; }
-            set { RedirectUri = value; }
-        }
-
+        
         /// <summary>
         /// Gets or sets the redirect URI of your application.
         /// </summary>
@@ -57,37 +48,27 @@ namespace Skybrud.Social.Instagram.OAuth {
         /// <summary>
         /// Gets a reference to the locations endpoint.
         /// </summary>
-        public InstagramLocationsRawEndpoint Locations {
-            get { return _locations ?? (_locations = new InstagramLocationsRawEndpoint(this)); }
-        }
+        public InstagramLocationsRawEndpoint Locations { get; private set; }
 
         /// <summary>
         /// Gets a reference to the media endpoint.
         /// </summary>
-        public InstagramMediaRawEndpoint Media {
-            get { return _media ?? (_media = new InstagramMediaRawEndpoint(this)); }
-        }
+        public InstagramMediaRawEndpoint Media { get; private set; }
 
         /// <summary>
         /// Gets a reference to the relationships endpoint.
         /// </summary>
-        public InstagramRelationshipsRawEndpoint Relationships {
-            get { return _relationships ?? (_relationships = new InstagramRelationshipsRawEndpoint(this)); }
-        }
+        public InstagramRelationshipsRawEndpoint Relationships { get; private set; }
 
         /// <summary>
         /// Gets a reference to the tags endpoint.
         /// </summary>
-        public InstagramTagsRawEndpoint Tags {
-            get { return _tags ?? (_tags = new InstagramTagsRawEndpoint(this)); }
-        }
+        public InstagramTagsRawEndpoint Tags { get; private set; }
 
         /// <summary>
         /// Gets a reference to the users endpoint.
         /// </summary>
-        public InstagramUsersRawEndpoint Users {
-            get { return _users ?? (_users = new InstagramUsersRawEndpoint(this)); }
-        }
+        public InstagramUsersRawEndpoint Users { get; private set; }
 
         #endregion
 
@@ -97,7 +78,11 @@ namespace Skybrud.Social.Instagram.OAuth {
         /// Initializes an OAuth client with empty information.
         /// </summary>
         public InstagramOAuthClient() {
-            // default constructor
+            Locations = new InstagramLocationsRawEndpoint(this);
+            Media = new InstagramMediaRawEndpoint(this);
+            Relationships = new InstagramRelationshipsRawEndpoint(this);
+            Tags = new InstagramTagsRawEndpoint(this);
+            Users = new InstagramUsersRawEndpoint(this);
         }
 
         /// <summary>
@@ -108,31 +93,7 @@ namespace Skybrud.Social.Instagram.OAuth {
         public InstagramOAuthClient(string accessToken) {
             AccessToken = accessToken;
         }
-
-        /// <summary>
-        /// Initializes an OAuth client with the specified <code>clientId</code> and <code>clientSecret</code>.
-        /// </summary>
-        /// <param name="clientId">The ID of the client/app.</param>
-        /// <param name="clientSecret">The secret of the client/app.</param>
-        public InstagramOAuthClient(long clientId, string clientSecret) {
-            // TODO: Remove for v1.0 (user constructor overload with string parameters instead)
-            ClientId = clientId + "";
-            ClientSecret = clientSecret;
-        }
-
-        /// <summary>
-        /// Initializes an OAuth client with the specified <code>clientId</code>, <code>clientSecret</code> and <code>redirectUri</code>.
-        /// </summary>
-        /// <param name="clientId">The ID of the client/app.</param>
-        /// <param name="clientSecret">The secret of the client/app.</param>
-        /// <param name="redirectUri">The return URI of the client/app.</param>
-        public InstagramOAuthClient(long clientId, string clientSecret, string redirectUri) {
-            // TODO: Remove for v1.0 (user constructor overload with string parameters instead)
-            ClientId = clientId + "";
-            ClientSecret = clientSecret;
-            RedirectUri = redirectUri;
-        }
-
+        
         /// <summary>
         /// Initializes an OAuth client with the specified <code>clientId</code> and <code>clientSecret</code>.
         /// </summary>
@@ -169,7 +130,7 @@ namespace Skybrud.Social.Instagram.OAuth {
         }
 
         /// <summary>
-        /// Gets an authorization URL using the specified <var>state</var> and request the specified <code>scope</code>.
+        /// Gets an authorization URL using the specified <code>state</code> and request the specified <code>scope</code>.
         /// </summary>
         /// <param name="state">A unique state for the request.</param>
         /// <param name="scope">The scope of your application.</param>
@@ -178,7 +139,7 @@ namespace Skybrud.Social.Instagram.OAuth {
         }
 
         /// <summary>
-        /// Gets an authorization URL using the specified <var>state</var> and request the specified <code>scope</code>.
+        /// Gets an authorization URL using the specified <code>state</code> and request the specified <code>scope</code>.
         /// </summary>
         /// <param name="state">A unique state for the request.</param>
         /// <param name="scope">The scope of your application.</param>
@@ -211,7 +172,7 @@ namespace Skybrud.Social.Instagram.OAuth {
         /// Makes a call to the Instagram API to exchange the specified <code>authCode</code> for an access token.
         /// </summary>
         /// <param name="authCode">The authorization code obtained from an OAuth 2.0 login flow.</param>
-        /// <returns>Returns an instance of <code>InstagramTokenResponse</code> representing the response from the server.</returns>
+        /// <returns>Returns an instance of <see cref="InstagramTokenResponse"/> representing the response from the server.</returns>
         public InstagramTokenResponse GetAccessTokenFromAuthCode(string authCode) {
         
             // Initialize collection with POST data

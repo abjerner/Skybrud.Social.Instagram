@@ -81,8 +81,7 @@ namespace Skybrud.Social.Instagram.Scopes {
         /// Gets whether the scope is a known scope.
         /// </summary>
         /// <param name="name">The name of the scope.</param>
-        /// <returns>Returns <code>true</code> if the specified <code>name</code> matches a known
-        /// scope, otherwise <code>false</code>.</returns>
+        /// <returns>Returns <code>true</code> if the specified <code>name</code> matches a known scope, otherwise <code>false</code>.</returns>
         public static bool ScopeExists(string name) {
             return Scopes.ContainsKey(name);
         }
@@ -92,8 +91,7 @@ namespace Skybrud.Social.Instagram.Scopes {
         #region Operators
 
         /// <summary>
-        /// Adding two instances of <code>FacebookScope</code> will result in a
-        /// <code>FacebookScopeCollection</code> containing both scopes.
+        /// Adding two instances of <see cref="InstagramScope"/> will result in a <see cref="InstagramScopeCollection"/> containing both scopes.
         /// </summary>
         /// <param name="left">The left scope.</param>
         /// <param name="right">The right scope.</param>
