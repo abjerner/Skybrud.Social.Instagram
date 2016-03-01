@@ -1,7 +1,6 @@
 using System;
 using Newtonsoft.Json.Linq;
 using Skybrud.Social.Http;
-using Skybrud.Social.Instagram.Objects;
 using Skybrud.Social.Instagram.Objects.Media;
 using Skybrud.Social.Json.Extensions.JObject;
 
@@ -13,11 +12,11 @@ namespace Skybrud.Social.Instagram.Responses.Media {
     /// <see>
     ///     <cref>https://instagram.com/developer/endpoints/users/#get_users_feed</cref>
     /// </see>
-    public class InstagramUserFeedResponse : InstagramResponse<InstagramUserFeedResponseBody> {
+    public class InstagramGetUserFeedResponse : InstagramResponse<InstagramUserFeedResponseBody> {
 
         #region Constructors
 
-        private InstagramUserFeedResponse(SocialHttpResponse response) : base(response) {
+        private InstagramGetUserFeedResponse(SocialHttpResponse response) : base(response) {
 
             // Validate the response
             ValidateResponse(response);
@@ -32,17 +31,17 @@ namespace Skybrud.Social.Instagram.Responses.Media {
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <code>response</code> into an instance of <see cref="InstagramUserFeedResponse"/>.
+        /// Parses the specified <code>response</code> into an instance of <see cref="InstagramGetUserFeedResponse"/>.
         /// </summary>
         /// <param name="response">The response to be parsed.</param>
-        /// <returns>Returns an instance of <see cref="InstagramUserFeedResponse"/>.</returns>
-        public static InstagramUserFeedResponse ParseResponse(SocialHttpResponse response) {
+        /// <returns>Returns an instance of <see cref="InstagramGetUserFeedResponse"/>.</returns>
+        public static InstagramGetUserFeedResponse ParseResponse(SocialHttpResponse response) {
 
             // Some input validation
             if (response == null) throw new ArgumentNullException("response");
 
             // Initialize the response object
-            return new InstagramUserFeedResponse(response);
+            return new InstagramGetUserFeedResponse(response);
 
         }
 

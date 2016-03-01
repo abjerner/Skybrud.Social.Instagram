@@ -1,7 +1,6 @@
 using System;
 using Newtonsoft.Json.Linq;
 using Skybrud.Social.Http;
-using Skybrud.Social.Instagram.Objects;
 using Skybrud.Social.Instagram.Objects.Media;
 using Skybrud.Social.Instagram.Objects.Pagination;
 using Skybrud.Social.Json.Extensions.JObject;
@@ -11,11 +10,11 @@ namespace Skybrud.Social.Instagram.Responses.Media {
     /// <summary>
     /// Class representing the response of a call for getting a list of recent media.
     /// </summary>
-    public class InstagramRecentMediaResponse : InstagramResponse<InstagramMediasResponseBody> {
+    public class InstagramGetRecentMediaResponse : InstagramResponse<InstagramMediasResponseBody> {
 
         #region Constructors
 
-        private InstagramRecentMediaResponse(SocialHttpResponse response) : base(response) {
+        private InstagramGetRecentMediaResponse(SocialHttpResponse response) : base(response) {
 
             // Validate the response
             ValidateResponse(response);
@@ -30,17 +29,17 @@ namespace Skybrud.Social.Instagram.Responses.Media {
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <code>response</code> into an instance of <see cref="InstagramRecentMediaResponse"/>.
+        /// Parses the specified <code>response</code> into an instance of <see cref="InstagramGetRecentMediaResponse"/>.
         /// </summary>
         /// <param name="response">The response to be parsed.</param>
-        /// <returns>Returns an instance of <see cref="InstagramRecentMediaResponse"/>.</returns>
-        public static InstagramRecentMediaResponse ParseResponse(SocialHttpResponse response) {
+        /// <returns>Returns an instance of <see cref="InstagramGetRecentMediaResponse"/>.</returns>
+        public static InstagramGetRecentMediaResponse ParseResponse(SocialHttpResponse response) {
 
             // Some input validation
             if (response == null) throw new ArgumentNullException("response");
 
             // Initialize the response object
-            return new InstagramRecentMediaResponse(response);
+            return new InstagramGetRecentMediaResponse(response);
 
         }
 

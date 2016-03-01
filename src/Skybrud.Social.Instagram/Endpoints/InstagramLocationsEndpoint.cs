@@ -47,8 +47,8 @@ namespace Skybrud.Social.Instagram.Endpoints {
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations</cref>
         /// </see>
-        public InstagramLocationResponse GetLocation(int locationId) {
-            return InstagramLocationResponse.ParseResponse(Raw.GetLocation(locationId));
+        public InstagramGetLocationResponse GetLocation(int locationId) {
+            return InstagramGetLocationResponse.ParseResponse(Raw.GetLocation(locationId));
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace Skybrud.Social.Instagram.Endpoints {
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations_media_recent</cref>
         /// </see>
-        public InstagramLocationRecentMediaResponse GetRecentMedia(InstagramLocation location) {
+        public InstagramGetLocationRecentMediaResponse GetRecentMedia(InstagramLocation location) {
             if (location == null) throw new ArgumentNullException("location");
             return GetRecentMedia(location.Id);
         }
@@ -70,8 +70,8 @@ namespace Skybrud.Social.Instagram.Endpoints {
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations_media_recent</cref>
         /// </see>
-        public InstagramLocationRecentMediaResponse GetRecentMedia(int locationId) {
-            return InstagramLocationRecentMediaResponse.ParseResponse(Raw.GetRecentMedia(locationId));
+        public InstagramGetLocationRecentMediaResponse GetRecentMedia(int locationId) {
+            return InstagramGetLocationRecentMediaResponse.ParseResponse(Raw.GetRecentMedia(locationId));
         }
 
         /// <summary>
@@ -81,8 +81,8 @@ namespace Skybrud.Social.Instagram.Endpoints {
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations_media_recent</cref>
         /// </see>
-        public InstagramLocationRecentMediaResponse GetRecentMedia(InstagramGetLocationRecentMediaOptions options) {
-            return InstagramLocationRecentMediaResponse.ParseResponse(Raw.GetRecentMedia(options));
+        public InstagramGetLocationRecentMediaResponse GetRecentMedia(InstagramGetLocationRecentMediaOptions options) {
+            return InstagramGetLocationRecentMediaResponse.ParseResponse(Raw.GetRecentMedia(options));
         }
 
         /// <summary>
@@ -93,8 +93,8 @@ namespace Skybrud.Social.Instagram.Endpoints {
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations_search</cref>
         /// </see>
-        public InstagramLocationsResponse Search(double latitude, double longitude) {
-            return InstagramLocationsResponse.ParseResponse(Raw.Search(latitude, longitude));
+        public InstagramGetLocationsResponse Search(double latitude, double longitude) {
+            return InstagramGetLocationsResponse.ParseResponse(Raw.Search(latitude, longitude));
         }
 
         /// <summary>
@@ -106,8 +106,8 @@ namespace Skybrud.Social.Instagram.Endpoints {
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations_search</cref>
         /// </see>
-        public InstagramLocationsResponse Search(double latitude, double longitude, int distance) {
-            return InstagramLocationsResponse.ParseResponse(Raw.Search(latitude, longitude, distance));
+        public InstagramGetLocationsResponse Search(double latitude, double longitude, int distance) {
+            return InstagramGetLocationsResponse.ParseResponse(Raw.Search(latitude, longitude, distance));
         }
 
         /// <summary>
@@ -117,8 +117,8 @@ namespace Skybrud.Social.Instagram.Endpoints {
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations_search</cref>
         /// </see>
-        public InstagramLocationsResponse Search(InstagramGetLocationSearchOptions options) {
-            return InstagramLocationsResponse.ParseResponse(Raw.Search(options));
+        public InstagramGetLocationsResponse Search(InstagramGetLocationSearchOptions options) {
+            return InstagramGetLocationsResponse.ParseResponse(Raw.Search(options));
         }
 
         #endregion

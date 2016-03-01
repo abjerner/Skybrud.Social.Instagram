@@ -1,7 +1,6 @@
 using System;
 using Newtonsoft.Json.Linq;
 using Skybrud.Social.Http;
-using Skybrud.Social.Instagram.Objects;
 using Skybrud.Social.Instagram.Objects.Media;
 using Skybrud.Social.Instagram.Objects.Pagination;
 using Skybrud.Social.Json.Extensions.JObject;
@@ -14,11 +13,11 @@ namespace Skybrud.Social.Instagram.Responses.Locations {
     /// <see>
     ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations_media_recent</cref>
     /// </see>
-    public class InstagramLocationRecentMediaResponse : InstagramResponse<InstagramLocationRecentMediaResponseBody> {
+    public class InstagramGetLocationRecentMediaResponse : InstagramResponse<InstagramLocationRecentMediaResponseBody> {
 
         #region Constructors
 
-        private InstagramLocationRecentMediaResponse(SocialHttpResponse response) : base(response) {
+        private InstagramGetLocationRecentMediaResponse(SocialHttpResponse response) : base(response) {
 
             // Validate the response
             ValidateResponse(response);
@@ -33,17 +32,17 @@ namespace Skybrud.Social.Instagram.Responses.Locations {
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <code>response</code> into an instance of <see cref="InstagramLocationRecentMediaResponse"/>.
+        /// Parses the specified <code>response</code> into an instance of <see cref="InstagramGetLocationRecentMediaResponse"/>.
         /// </summary>
         /// <param name="response">The response to be parsed.</param>
-        /// <returns>Returns an instance of <see cref="InstagramLocationRecentMediaResponse"/>.</returns>
-        public static InstagramLocationRecentMediaResponse ParseResponse(SocialHttpResponse response) {
+        /// <returns>Returns an instance of <see cref="InstagramGetLocationRecentMediaResponse"/>.</returns>
+        public static InstagramGetLocationRecentMediaResponse ParseResponse(SocialHttpResponse response) {
 
             // Some input validation
             if (response == null) throw new ArgumentNullException("response");
 
             // Initialize the response object
-            return new InstagramLocationRecentMediaResponse(response);
+            return new InstagramGetLocationRecentMediaResponse(response);
 
         }
 

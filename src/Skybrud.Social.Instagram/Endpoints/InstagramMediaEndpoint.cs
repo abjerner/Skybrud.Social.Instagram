@@ -46,8 +46,8 @@ namespace Skybrud.Social.Instagram.Endpoints {
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/media/#get_media</cref>
         /// </see>
-        public InstagramMediaResponse GetMedia(string mediaId) {
-            return InstagramMediaResponse.ParseResponse(Raw.GetMedia(mediaId));
+        public InstagramGetMediaResponse GetMedia(string mediaId) {
+            return InstagramGetMediaResponse.ParseResponse(Raw.GetMedia(mediaId));
         }
 
         /// <summary>
@@ -59,8 +59,8 @@ namespace Skybrud.Social.Instagram.Endpoints {
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/media/#get_media_search</cref>
         /// </see>
-        public InstagramRecentMediaResponse Search(double latitude, double longitude) {
-            return InstagramRecentMediaResponse.ParseResponse(Raw.Search(latitude, longitude));
+        public InstagramGetRecentMediaResponse Search(double latitude, double longitude) {
+            return InstagramGetRecentMediaResponse.ParseResponse(Raw.Search(latitude, longitude));
         }
 
         /// <summary>
@@ -73,8 +73,8 @@ namespace Skybrud.Social.Instagram.Endpoints {
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/media/#get_media_search</cref>
         /// </see>
-        public InstagramRecentMediaResponse Search(double latitude, double longitude, int distance) {
-            return InstagramRecentMediaResponse.ParseResponse(Raw.Search(latitude, longitude, distance));
+        public InstagramGetRecentMediaResponse Search(double latitude, double longitude, int distance) {
+            return InstagramGetRecentMediaResponse.ParseResponse(Raw.Search(latitude, longitude, distance));
         }
 
         /// <summary>
@@ -85,8 +85,8 @@ namespace Skybrud.Social.Instagram.Endpoints {
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/media/#get_media_search</cref>
         /// </see>
-        public InstagramRecentMediaResponse Search(InstagramGetRecentMediaOptions options) {
-            return InstagramRecentMediaResponse.ParseResponse(Raw.Search(options));
+        public InstagramGetRecentMediaResponse Search(InstagramGetRecentMediaOptions options) {
+            return InstagramGetRecentMediaResponse.ParseResponse(Raw.Search(options));
         }
 
         #endregion

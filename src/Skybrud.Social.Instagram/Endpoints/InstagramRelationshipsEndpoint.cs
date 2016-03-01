@@ -44,7 +44,7 @@ namespace Skybrud.Social.Instagram.Endpoints {
         /// Required scope: <code>relationships</code>.
         /// </summary>
         /// <param name="userId">The ID of the user.</param>
-        public InstagramUsersResponse Follows(long userId) {
+        public InstagramGetUsersResponse Follows(long userId) {
             return Follows(new InstagramGetFollowsOptions(userId));
         }
 
@@ -55,7 +55,7 @@ namespace Skybrud.Social.Instagram.Endpoints {
         /// </summary>
         /// <param name="userId">The ID of the user.</param>
         /// <param name="count">The maximum amount of users to return.</param>
-        public InstagramUsersResponse Follows(long userId, int count) {
+        public InstagramGetUsersResponse Follows(long userId, int count) {
             return Follows(new InstagramGetFollowsOptions(userId, count));
         }
 
@@ -65,8 +65,8 @@ namespace Skybrud.Social.Instagram.Endpoints {
         /// Required scope: <code>relationships</code>.
         /// </summary>
         /// <param name="options">The options for the call to the API.</param>
-        public InstagramUsersResponse Follows(InstagramGetFollowsOptions options) {
-            return InstagramUsersResponse.ParseResponse(Raw.Follows(options));
+        public InstagramGetUsersResponse Follows(InstagramGetFollowsOptions options) {
+            return InstagramGetUsersResponse.ParseResponse(Raw.Follows(options));
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace Skybrud.Social.Instagram.Endpoints {
         /// Required scope: <code>relationships</code>.
         /// </summary>
         /// <param name="userId">The ID of the user.</param>
-        public InstagramUsersResponse FollowedBy(long userId) {
+        public InstagramGetUsersResponse FollowedBy(long userId) {
             return FollowedBy(new InstagramGetFollowedByOptions(userId));
         }
 
@@ -86,7 +86,7 @@ namespace Skybrud.Social.Instagram.Endpoints {
         /// </summary>
         /// <param name="userId">The ID of the user.</param>
         /// <param name="count">The maximum amount of users to return.</param>
-        public InstagramUsersResponse FollowedBy(long userId, int count) {
+        public InstagramGetUsersResponse FollowedBy(long userId, int count) {
             return FollowedBy(new InstagramGetFollowedByOptions(userId, count));
         }
 
@@ -96,8 +96,8 @@ namespace Skybrud.Social.Instagram.Endpoints {
         /// Required scope: <code>relationships</code>.
         /// </summary>
         /// <param name="options">The options for the call to the API.</param>
-        public InstagramUsersResponse FollowedBy(InstagramGetFollowedByOptions options) {
-            return InstagramUsersResponse.ParseResponse(Raw.FollowedBy(options));
+        public InstagramGetUsersResponse FollowedBy(InstagramGetFollowedByOptions options) {
+            return InstagramGetUsersResponse.ParseResponse(Raw.FollowedBy(options));
         }
 
         #endregion

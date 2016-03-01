@@ -1,7 +1,6 @@
 using System;
 using Newtonsoft.Json.Linq;
 using Skybrud.Social.Http;
-using Skybrud.Social.Instagram.Objects;
 using Skybrud.Social.Instagram.Objects.Tags;
 using Skybrud.Social.Json.Extensions.JObject;
 
@@ -13,11 +12,11 @@ namespace Skybrud.Social.Instagram.Responses.Tags {
     /// <see>
     ///     <cref>https://instagram.com/developer/endpoints/tags/#get_tags_search</cref>
     /// </see>
-    public class InstagramSearchTagsResponse : InstagramResponse<InstagramSearchTagsResponseBody> {
+    public class InstagramGetTagsResponse : InstagramResponse<InstagramSearchTagsResponseBody> {
 
         #region Constructors
 
-        private InstagramSearchTagsResponse(SocialHttpResponse response) : base(response) {
+        private InstagramGetTagsResponse(SocialHttpResponse response) : base(response) {
 
             // Validate the response
             ValidateResponse(response);
@@ -32,17 +31,17 @@ namespace Skybrud.Social.Instagram.Responses.Tags {
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <code>response</code> into an instance of <see cref="InstagramSearchTagsResponse"/>.
+        /// Parses the specified <code>response</code> into an instance of <see cref="InstagramGetTagsResponse"/>.
         /// </summary>
         /// <param name="response">The response to be parsed.</param>
-        /// <returns>Returns an instance of <see cref="InstagramSearchTagsResponse"/>.</returns>
-        public static InstagramSearchTagsResponse ParseResponse(SocialHttpResponse response) {
+        /// <returns>Returns an instance of <see cref="InstagramGetTagsResponse"/>.</returns>
+        public static InstagramGetTagsResponse ParseResponse(SocialHttpResponse response) {
 
             // Some input validation
             if (response == null) throw new ArgumentNullException("response");
 
             // Initialize the response object
-            return new InstagramSearchTagsResponse(response);
+            return new InstagramGetTagsResponse(response);
 
         }
 

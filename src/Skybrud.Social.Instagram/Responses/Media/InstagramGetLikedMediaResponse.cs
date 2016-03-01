@@ -1,7 +1,6 @@
 using System;
 using Newtonsoft.Json.Linq;
 using Skybrud.Social.Http;
-using Skybrud.Social.Instagram.Objects;
 using Skybrud.Social.Instagram.Objects.Media;
 using Skybrud.Social.Instagram.Objects.Pagination;
 using Skybrud.Social.Json.Extensions.JObject;
@@ -14,11 +13,11 @@ namespace Skybrud.Social.Instagram.Responses.Media {
     /// <see>
     ///     <cref>https://instagram.com/developer/endpoints/users/#get_users_feed_liked</cref>
     /// </see>
-    public class InstagramLikedMediaResponse : InstagramResponse<InstagramLikedMediaResponseBody> {
+    public class InstagramGetLikedMediaResponse : InstagramResponse<InstagramLikedMediaResponseBody> {
 
         #region Constructors
 
-        private InstagramLikedMediaResponse(SocialHttpResponse response) : base(response) {
+        private InstagramGetLikedMediaResponse(SocialHttpResponse response) : base(response) {
 
             // Validate the response
             ValidateResponse(response);
@@ -33,17 +32,17 @@ namespace Skybrud.Social.Instagram.Responses.Media {
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <code>response</code> into an instance of <see cref="InstagramLikedMediaResponse"/>.
+        /// Parses the specified <code>response</code> into an instance of <see cref="InstagramGetLikedMediaResponse"/>.
         /// </summary>
         /// <param name="response">The response to be parsed.</param>
-        /// <returns>Returns an instance of <see cref="InstagramLikedMediaResponse"/>.</returns>
-        public static InstagramLikedMediaResponse ParseResponse(SocialHttpResponse response) {
+        /// <returns>Returns an instance of <see cref="InstagramGetLikedMediaResponse"/>.</returns>
+        public static InstagramGetLikedMediaResponse ParseResponse(SocialHttpResponse response) {
 
             // Some input validation
             if (response == null) throw new ArgumentNullException("response");
 
             // Initialize the response object
-            return new InstagramLikedMediaResponse(response);
+            return new InstagramGetLikedMediaResponse(response);
 
         }
 

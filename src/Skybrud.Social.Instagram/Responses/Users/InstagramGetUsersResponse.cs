@@ -1,7 +1,6 @@
 using System;
 using Newtonsoft.Json.Linq;
 using Skybrud.Social.Http;
-using Skybrud.Social.Instagram.Objects;
 using Skybrud.Social.Instagram.Objects.Users;
 
 namespace Skybrud.Social.Instagram.Responses.Users {
@@ -14,11 +13,11 @@ namespace Skybrud.Social.Instagram.Responses.Users {
     ///     <cref>https://instagram.com/developer/endpoints/relationships/#get_users_follows</cref>
     ///     <cref>https://instagram.com/developer/endpoints/relationships/#get_users_followed_by</cref>
     /// </see>
-    public class InstagramUsersResponse : InstagramResponse<InstagramUsersResponseBody> {
+    public class InstagramGetUsersResponse : InstagramResponse<InstagramUsersResponseBody> {
 
         #region Constructors
 
-        private InstagramUsersResponse(SocialHttpResponse response) : base(response) {
+        private InstagramGetUsersResponse(SocialHttpResponse response) : base(response) {
 
             // Validate the response
             ValidateResponse(response);
@@ -33,17 +32,17 @@ namespace Skybrud.Social.Instagram.Responses.Users {
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <code>response</code> into an instance of <see cref="InstagramUsersResponse"/>.
+        /// Parses the specified <code>response</code> into an instance of <see cref="InstagramGetUsersResponse"/>.
         /// </summary>
         /// <param name="response">The response to be parsed.</param>
-        /// <returns>Returns an instance of <see cref="InstagramUsersResponse"/>.</returns>
-        public static InstagramUsersResponse ParseResponse(SocialHttpResponse response) {
+        /// <returns>Returns an instance of <see cref="InstagramGetUsersResponse"/>.</returns>
+        public static InstagramGetUsersResponse ParseResponse(SocialHttpResponse response) {
 
             // Some input validation
             if (response == null) throw new ArgumentNullException("response");
 
             // Initialize the response object
-            return new InstagramUsersResponse(response);
+            return new InstagramGetUsersResponse(response);
 
         }
 

@@ -1,7 +1,6 @@
 using System;
 using Newtonsoft.Json.Linq;
 using Skybrud.Social.Http;
-using Skybrud.Social.Instagram.Objects;
 using Skybrud.Social.Instagram.Objects.Tags;
 using Skybrud.Social.Json.Extensions.JObject;
 
@@ -13,11 +12,11 @@ namespace Skybrud.Social.Instagram.Responses.Tags {
     /// <see>
     ///     <cref>https://instagram.com/developer/endpoints/tags/#get_tags</cref>
     /// </see>
-    public class InstagramTagResponse : InstagramResponse<InstagramTagResponseBody> {
+    public class InstagramGetTagResponse : InstagramResponse<InstagramTagResponseBody> {
 
         #region Constructors
 
-        private InstagramTagResponse(SocialHttpResponse response) : base(response) {
+        private InstagramGetTagResponse(SocialHttpResponse response) : base(response) {
 
             // Validate the response
             ValidateResponse(response);
@@ -32,17 +31,17 @@ namespace Skybrud.Social.Instagram.Responses.Tags {
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <code>response</code> into an instance of <see cref="InstagramTagResponse"/>.
+        /// Parses the specified <code>response</code> into an instance of <see cref="InstagramGetTagResponse"/>.
         /// </summary>
         /// <param name="response">The response to be parsed.</param>
-        /// <returns>Returns an instance of <see cref="InstagramTagResponse"/>.</returns>
-        public static InstagramTagResponse ParseResponse(SocialHttpResponse response) {
+        /// <returns>Returns an instance of <see cref="InstagramGetTagResponse"/>.</returns>
+        public static InstagramGetTagResponse ParseResponse(SocialHttpResponse response) {
 
             // Some input validation
             if (response == null) throw new ArgumentNullException("response");
 
             // Initialize the response object
-            return new InstagramTagResponse(response);
+            return new InstagramGetTagResponse(response);
 
         }
 

@@ -1,7 +1,6 @@
 using System;
 using Newtonsoft.Json.Linq;
 using Skybrud.Social.Http;
-using Skybrud.Social.Instagram.Objects;
 using Skybrud.Social.Instagram.Objects.Locations;
 using Skybrud.Social.Json.Extensions.JObject;
 
@@ -13,11 +12,11 @@ namespace Skybrud.Social.Instagram.Responses.Locations {
     /// <see>
     ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations_search</cref>
     /// </see>
-    public class InstagramLocationsResponse : InstagramResponse<InstagramLocationsResponseBody> {
+    public class InstagramGetLocationsResponse : InstagramResponse<InstagramLocationsResponseBody> {
 
         #region Constructors
 
-        private InstagramLocationsResponse(SocialHttpResponse response) : base(response) {
+        private InstagramGetLocationsResponse(SocialHttpResponse response) : base(response) {
 
             // Validate the response
             ValidateResponse(response);
@@ -32,17 +31,17 @@ namespace Skybrud.Social.Instagram.Responses.Locations {
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <code>response</code> into an instance of <see cref="InstagramLocationsResponse"/>.
+        /// Parses the specified <code>response</code> into an instance of <see cref="InstagramGetLocationsResponse"/>.
         /// </summary>
         /// <param name="response">The response to be parsed.</param>
-        /// <returns>Returns an instance of <see cref="InstagramLocationsResponse"/>.</returns>
-        public static InstagramLocationsResponse ParseResponse(SocialHttpResponse response) {
+        /// <returns>Returns an instance of <see cref="InstagramGetLocationsResponse"/>.</returns>
+        public static InstagramGetLocationsResponse ParseResponse(SocialHttpResponse response) {
 
             // Some input validation
             if (response == null) throw new ArgumentNullException("response");
 
             // Initialize the response object
-            return new InstagramLocationsResponse(response);
+            return new InstagramGetLocationsResponse(response);
 
         }
 

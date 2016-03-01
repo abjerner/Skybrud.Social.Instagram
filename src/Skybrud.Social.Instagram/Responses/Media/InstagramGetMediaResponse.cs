@@ -1,7 +1,6 @@
 using System;
 using Newtonsoft.Json.Linq;
 using Skybrud.Social.Http;
-using Skybrud.Social.Instagram.Objects;
 using Skybrud.Social.Instagram.Objects.Media;
 using Skybrud.Social.Json.Extensions.JObject;
 
@@ -13,11 +12,11 @@ namespace Skybrud.Social.Instagram.Responses.Media {
     /// <see>
     ///     <cref>https://instagram.com/developer/endpoints/media/#get_media</cref>
     /// </see>
-    public class InstagramMediaResponse : InstagramResponse<InstagramMediaResponseBody> {
+    public class InstagramGetMediaResponse : InstagramResponse<InstagramMediaResponseBody> {
 
         #region Constructors
 
-        private InstagramMediaResponse(SocialHttpResponse response) : base(response) {
+        private InstagramGetMediaResponse(SocialHttpResponse response) : base(response) {
 
             // Validate the response
             ValidateResponse(response);
@@ -32,17 +31,17 @@ namespace Skybrud.Social.Instagram.Responses.Media {
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <code>response</code> into an instance of <see cref="InstagramMediaResponse"/>.
+        /// Parses the specified <code>response</code> into an instance of <see cref="InstagramGetMediaResponse"/>.
         /// </summary>
         /// <param name="response">The response to be parsed.</param>
-        /// <returns>Returns an instance of <see cref="InstagramMediaResponse"/>.</returns>
-        public static InstagramMediaResponse ParseResponse(SocialHttpResponse response) {
+        /// <returns>Returns an instance of <see cref="InstagramGetMediaResponse"/>.</returns>
+        public static InstagramGetMediaResponse ParseResponse(SocialHttpResponse response) {
 
             // Some input validation
             if (response == null) throw new ArgumentNullException("response");
 
             // Initialize the response object
-            return new InstagramMediaResponse(response);
+            return new InstagramGetMediaResponse(response);
 
         }
 
