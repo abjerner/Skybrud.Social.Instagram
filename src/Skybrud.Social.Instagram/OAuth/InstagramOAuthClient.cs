@@ -13,16 +13,6 @@ namespace Skybrud.Social.Instagram.OAuth {
     /// </summary>
     public class InstagramOAuthClient : SocialHttpClient {
 
-        #region Private fields
-
-        private InstagramLocationsRawEndpoint _locations;
-        private InstagramMediaRawEndpoint _media;
-        private InstagramRelationshipsRawEndpoint _relationships;
-        private InstagramTagsRawEndpoint _tags;
-        private InstagramUsersRawEndpoint _users;
-
-        #endregion
-
         #region Properties
 
         /// <summary>
