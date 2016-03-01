@@ -10,7 +10,7 @@ namespace Skybrud.Social.Instagram.Options.Users {
     /// <see>
     ///     <cref>https://instagram.com/developer/endpoints/users/#get_users_media_recent</cref>
     /// </see>
-    public class InstagramUserRecentMediaOptions : IGetOptions {
+    public class InstagramGetUserRecentMediaOptions : IGetOptions {
 
         #region Properties
 
@@ -52,13 +52,13 @@ namespace Skybrud.Social.Instagram.Options.Users {
         /// <summary>
         /// Initializes a new instance with default options.
         /// </summary>
-        public InstagramUserRecentMediaOptions() { }
+        public InstagramGetUserRecentMediaOptions() { }
 
-        public InstagramUserRecentMediaOptions(long userId) {
+        public InstagramGetUserRecentMediaOptions(long userId) {
             UserId = userId;
         }
 
-        public InstagramUserRecentMediaOptions(long userId, int count) {
+        public InstagramGetUserRecentMediaOptions(long userId, int count) {
             UserId = userId;
             Count = count;
         }

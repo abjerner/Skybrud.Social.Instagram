@@ -93,10 +93,10 @@
     <Compile Include="Options\Relationships\InstagramFollowedByOptions.cs" />
     <Compile Include="Options\Relationships\InstagramFollowsOptions.cs" />
     <Compile Include="Options\Tags\InstagramTagRecentMediaOptions.cs" />
-    <Compile Include="Options\Users\InstagramUserFeedOptions.cs" />
-    <Compile Include="Options\Users\InstagramUserLikedMediaOptions.cs" />
-    <Compile Include="Options\Users\InstagramUserRecentMediaOptions.cs" />
-    <Compile Include="Options\Users\InstagramUserSearchOptions.cs" />
+    <Compile Include="Options\Users\InstagramGetUserFeedOptions.cs" />
+    <Compile Include="Options\Users\InstagramGetUserLikedMediaOptions.cs" />
+    <Compile Include="Options\Users\InstagramGetUserRecentMediaOptions.cs" />
+    <Compile Include="Options\Users\InstagramGetUserSearchOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\AssemblyInfoGenerated.cs" />
     <Compile Include="Responses\Authentication\InstagramTokenResponse.cs" />

@@ -9,7 +9,7 @@ namespace Skybrud.Social.Instagram.Options.Users {
     /// <see>
     ///     <cref>https://instagram.com/developer/endpoints/users/#get_users_search</cref>
     /// </see>
-    public class InstagramUserSearchOptions : IGetOptions {
+    public class InstagramGetUserSearchOptions : IGetOptions {
 
         #region Properties
 

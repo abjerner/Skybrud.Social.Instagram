@@ -52,14 +52,14 @@ namespace Skybrud.Social.Instagram.Endpoints {
         /// Gets the feed of the authenticated user.
         /// </summary>
         public InstagramUserFeedResponse GetUserFeed() {
-            return GetUserFeed(new InstagramUserFeedOptions());
+            return GetUserFeed(new InstagramGetUserFeedOptions());
         }
 
         /// <summary>
         /// Gets the feed of the authenticated user.
         /// </summary>
         /// <param name="options">The options for the call to the API.</param>
-        public InstagramUserFeedResponse GetUserFeed(InstagramUserFeedOptions options) {
+        public InstagramUserFeedResponse GetUserFeed(InstagramGetUserFeedOptions options) {
             if (options == null) throw new ArgumentNullException("options");
             return InstagramUserFeedResponse.ParseResponse(Raw.GetUserFeed(options));
         }
@@ -100,7 +100,7 @@ namespace Skybrud.Social.Instagram.Endpoints {
         /// Gets the most recent media of the user matching the specified <code>options</code>.
         /// </summary>
         /// <param name="options">The search options for the call to the API.</param>
-        public InstagramRecentMediaResponse GetRecentMedia(InstagramUserRecentMediaOptions options) {
+        public InstagramRecentMediaResponse GetRecentMedia(InstagramGetUserRecentMediaOptions options) {
             return InstagramRecentMediaResponse.ParseResponse(Raw.GetRecentMedia(options));
         }
 
@@ -123,7 +123,7 @@ namespace Skybrud.Social.Instagram.Endpoints {
         /// Gets a list of media liked by the authenticated user.
         /// </summary>
         /// <param name="options">The search options with any optional parameters.</param>
-        public InstagramLikedMediaResponse GetLikedMedia(InstagramUserLikedMediaOptions options) {
+        public InstagramLikedMediaResponse GetLikedMedia(InstagramGetUserLikedMediaOptions options) {
             return InstagramLikedMediaResponse.ParseResponse(Raw.GetLikedMedia(options));
         }
 
@@ -148,7 +148,7 @@ namespace Skybrud.Social.Instagram.Endpoints {
         /// Search for a user by name.
         /// </summary>
         /// <param name="options">The options for the call to the API.</param>
-        public InstagramUsersResponse Search(InstagramUserSearchOptions options) {
+        public InstagramUsersResponse Search(InstagramGetUserSearchOptions options) {
             return InstagramUsersResponse.ParseResponse(Raw.Search(options));
         }
 

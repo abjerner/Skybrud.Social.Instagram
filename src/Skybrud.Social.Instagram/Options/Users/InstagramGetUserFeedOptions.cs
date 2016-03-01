@@ -4,12 +4,12 @@ using Skybrud.Social.Interfaces;
 namespace Skybrud.Social.Instagram.Options.Users {
     
     /// <summary>
-    /// Class representing the options for getting a list of media liked by the authenticated user.
+    /// Class representing the options for getting the feed of the authenticated user.
     /// </summary>
     /// <see>
-    ///     <cref>https://instagram.com/developer/endpoints/users/#get_users_feed_liked</cref>
+    ///     <cref>https://instagram.com/developer/endpoints/users/#get_users_feed</cref>
     /// </see>
-    public class InstagramUserLikedMediaOptions : IGetOptions {
+    public class InstagramGetUserFeedOptions : IGetOptions {
 
         #region Properties
 
@@ -19,9 +19,14 @@ namespace Skybrud.Social.Instagram.Options.Users {
         public int Count { get; set; }
 
         /// <summary>
-        /// Only media before this ID is returned.
+        /// Gets or sets the minimum media ID for the search. Only media after this ID is returned.
         /// </summary>
-        public string MaxLikeId { get; set; }
+        public string MinId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the maximum media ID for the search. Only media before this ID is returned.
+        /// </summary>
+        public string MaxId { get; set; }
 
         #endregion
 
@@ -33,7 +38,8 @@ namespace Skybrud.Social.Instagram.Options.Users {
         public SocialQueryString GetQueryString() {
             SocialQueryString qs = new SocialQueryString();
             if (Count > 0) qs.Add("count", Count);
-            if (MaxLikeId != null) qs.Add("max_like_id", MaxLikeId);
+            if (MinId != null) qs.Add("min_id", MinId);
+            if (MaxId != null) qs.Add("max_id", MaxId);
             return qs;
         }
 
