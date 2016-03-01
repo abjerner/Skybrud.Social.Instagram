@@ -1,19 +1,21 @@
 ﻿using System;
 using Skybrud.Social.Http;
+using Skybrud.Social.Instagram.Objects.Locations;
 using Skybrud.Social.Interfaces;
 
-namespace Skybrud.Social.Instagram.Options.Common {
+namespace Skybrud.Social.Instagram.Options.Locations {
 
     /// <summary>
-    /// Class representing the options for getting a list of recent media.
+    /// Class representing the options for getting recent media of a location.
     /// </summary>
-    /// <see>
-    ///     <cref>http://instagram.com/developer/endpoints/users/#get_users_media_recent</cref>
-    ///     <cref>http://instagram.com/developer/endpoints/locations/#get_locations_media_recent</cref>
-    /// </see>
-    public class InstagramRecentMediaOptions : IGetOptions {
+    public class InstagramGetLocationRecentMediaOptions : IGetOptions {
 
         #region Properties
+
+        /// <summary>
+        /// Gets or sets the ID of the location.
+        /// </summary>
+        public int LocationId { get; set; }
 
         /// <summary>
         /// Gets or sets the maximum amount of media to be returned.
@@ -46,10 +48,36 @@ namespace Skybrud.Social.Instagram.Options.Common {
 
         #endregion
 
-        #region Member methods
+        #region Constructors
 
         /// <summary>
-        /// Gets an instance of <code>SocialQueryString</code> representing the GET parameters.
+        /// Initialize a new instance with default options.
+        /// </summary>
+        public InstagramGetLocationRecentMediaOptions() { }
+
+        /// <summary>
+        /// Initializes a new instance with the specified <code>locationId</code>.
+        /// </summary>
+        /// <param name="locationId">The ID of the location.</param>
+        public InstagramGetLocationRecentMediaOptions(int locationId) {
+            LocationId = locationId;
+        }
+
+        /// <summary>
+        /// Initializes a new instance with the specified <code>location</code>.
+        /// </summary>
+        /// <param name="location">The location.</param>
+        public InstagramGetLocationRecentMediaOptions(InstagramLocation location) {
+            if (location == null) throw new ArgumentNullException("location");
+            LocationId = location.Id;
+        }
+
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// Gets an instance of <see cref="SocialQueryString"/> representing the GET parameters.
         /// </summary>
         public SocialQueryString GetQueryString() {
             SocialQueryString qs = new SocialQueryString();

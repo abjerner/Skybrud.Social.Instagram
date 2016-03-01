@@ -54,7 +54,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         ///     <cref>https://instagram.com/developer/endpoints/tags/#get_tags_media_recent</cref>
         /// </see>
         public SocialHttpResponse GetRecentMedia(string tag, string minTagId = null, string maxTagId = null) {
-            return GetRecentMedia(tag, new InstagramTagRecentMediaOptions {
+            return GetRecentMedia(tag, new InstagramGetTagRecentMediaOptions {
                 MinTagId = minTagId,
                 MaxTagId = maxTagId
             });
@@ -72,7 +72,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         ///     <cref>https://instagram.com/developer/endpoints/tags/#get_tags_media_recent</cref>
         /// </see>
         public SocialHttpResponse GetRecentMedia(string tag, int count, string minTagId = null, string maxTagId = null) {
-            return GetRecentMedia(tag, new InstagramTagRecentMediaOptions {
+            return GetRecentMedia(tag, new InstagramGetTagRecentMediaOptions {
                 Count = count,
                 MinTagId = minTagId,
                 MaxTagId = maxTagId
@@ -88,7 +88,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/tags/#get_tags_media_recent</cref>
         /// </see>
-        public SocialHttpResponse GetRecentMedia(string tag, InstagramTagRecentMediaOptions options) {
+        public SocialHttpResponse GetRecentMedia(string tag, InstagramGetTagRecentMediaOptions options) {
             return Client.DoHttpGetRequest("https://api.instagram.com/v1/tags/" + tag + "/media/recent/", options);
         }
 

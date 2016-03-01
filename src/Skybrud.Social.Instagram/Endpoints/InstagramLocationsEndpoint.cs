@@ -81,7 +81,7 @@ namespace Skybrud.Social.Instagram.Endpoints {
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations_media_recent</cref>
         /// </see>
-        public InstagramLocationRecentMediaResponse GetRecentMedia(InstagramLocationRecentMediaOptions options) {
+        public InstagramLocationRecentMediaResponse GetRecentMedia(InstagramGetLocationRecentMediaOptions options) {
             return InstagramLocationRecentMediaResponse.ParseResponse(Raw.GetRecentMedia(options));
         }
 
@@ -117,7 +117,7 @@ namespace Skybrud.Social.Instagram.Endpoints {
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations_search</cref>
         /// </see>
-        public InstagramLocationsResponse Search(InstagramLocationSearchOptions options) {
+        public InstagramLocationsResponse Search(InstagramGetLocationSearchOptions options) {
             return InstagramLocationsResponse.ParseResponse(Raw.Search(options));
         }
 

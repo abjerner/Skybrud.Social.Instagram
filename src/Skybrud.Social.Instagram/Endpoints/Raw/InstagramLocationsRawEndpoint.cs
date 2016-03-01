@@ -56,7 +56,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// </see>
         public SocialHttpResponse GetRecentMedia(InstagramLocation location) {
             if (location == null) throw new ArgumentNullException("location");
-            return GetRecentMedia(new InstagramLocationRecentMediaOptions(location.Id));
+            return GetRecentMedia(new InstagramGetLocationRecentMediaOptions(location.Id));
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations_media_recent</cref>
         /// </see>
         public SocialHttpResponse GetRecentMedia(int locationId) {
-            return GetRecentMedia(new InstagramLocationRecentMediaOptions(locationId));
+            return GetRecentMedia(new InstagramGetLocationRecentMediaOptions(locationId));
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations_media_recent</cref>
         /// </see>
-        public SocialHttpResponse GetRecentMedia(InstagramLocationRecentMediaOptions options) {
+        public SocialHttpResponse GetRecentMedia(InstagramGetLocationRecentMediaOptions options) {
             if (options == null) throw new ArgumentNullException("options");
             if (options.LocationId == 0) throw new PropertyNotSetException("options.LocationId");
             return Client.DoHttpGetRequest("https://api.instagram.com/v1/locations/" + options.LocationId + "/media/recent", options);
@@ -96,7 +96,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations_search</cref>
         /// </see>
         public SocialHttpResponse Search(double latitude, double longitude) {
-            return Search(new InstagramLocationSearchOptions {
+            return Search(new InstagramGetLocationSearchOptions {
                 Latitude = latitude,
                 Longitude = longitude
             });
@@ -114,7 +114,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations_search</cref>
         /// </see>
         public SocialHttpResponse Search(double latitude, double longitude, int distance) {
-            return Search(new InstagramLocationSearchOptions {
+            return Search(new InstagramGetLocationSearchOptions {
                 Latitude = latitude,
                 Longitude = longitude,
                 Distance = distance
@@ -129,7 +129,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations_search</cref>
         /// </see>
-        public SocialHttpResponse Search(InstagramLocationSearchOptions options) {
+        public SocialHttpResponse Search(InstagramGetLocationSearchOptions options) {
             if (options == null) throw new ArgumentNullException("options");
             return Client.DoHttpGetRequest("https://api.instagram.com/v1/locations/search", options);
         }

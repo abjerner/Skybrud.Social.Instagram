@@ -43,7 +43,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/relationships/#get_users_follows</cref>
         /// </see>
-        public SocialHttpResponse Follows(InstagramFollowsOptions options) {
+        public SocialHttpResponse Follows(InstagramGetFollowsOptions options) {
             if (options == null) throw new ArgumentNullException("options");
             if (options.UserId == 0) throw new PropertyNotSetException("options.UserId");
             return Client.DoHttpGetRequest("https://api.instagram.com/v1/users/" + options.UserId + "/follows", options);
@@ -59,7 +59,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/relationships/#get_users_followed_by</cref>
         /// </see>
-        public SocialHttpResponse FollowedBy(InstagramFollowedByOptions options) {
+        public SocialHttpResponse FollowedBy(InstagramGetFollowedByOptions options) {
             if (options == null) throw new ArgumentNullException("options");
             if (options.UserId == 0) throw new PropertyNotSetException("options.UserId");
             return Client.DoHttpGetRequest("https://api.instagram.com/v1/users/" + options.UserId + "/followed-by", options);

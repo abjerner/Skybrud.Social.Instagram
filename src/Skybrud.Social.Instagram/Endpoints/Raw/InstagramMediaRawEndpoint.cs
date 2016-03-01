@@ -2,6 +2,7 @@ using System;
 using Skybrud.Social.Http;
 using Skybrud.Social.Instagram.OAuth;
 using Skybrud.Social.Instagram.Options;
+using Skybrud.Social.Instagram.Options.Media;
 
 namespace Skybrud.Social.Instagram.Endpoints.Raw {
 
@@ -58,7 +59,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         ///     <cref>https://instagram.com/developer/endpoints/media/#get_media_search</cref>
         /// </see>
         public SocialHttpResponse Search(double latitude, double longitude) {
-            return Search(new InstagramRecentMediaSearchOptions {
+            return Search(new InstagramGetRecentMediaOptions {
                 Latitude = latitude,
                 Longitude = longitude
             });
@@ -76,7 +77,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         ///     <cref>https://instagram.com/developer/endpoints/media/#get_media_search</cref>
         /// </see>
         public SocialHttpResponse Search(double latitude, double longitude, int distance) {
-            return Search(new InstagramRecentMediaSearchOptions {
+            return Search(new InstagramGetRecentMediaOptions {
                 Latitude = latitude,
                 Longitude = longitude,
                 Distance = distance
@@ -92,7 +93,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/media/#get_media_search</cref>
         /// </see>
-        public SocialHttpResponse Search(InstagramRecentMediaSearchOptions options) {
+        public SocialHttpResponse Search(InstagramGetRecentMediaOptions options) {
             if (options == null) throw new ArgumentNullException("options");
             return Client.DoHttpGetRequest("https://api.instagram.com/v1/media/search", options);
         }

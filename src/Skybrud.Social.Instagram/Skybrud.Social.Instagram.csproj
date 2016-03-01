@@ -86,14 +86,12 @@
     <Compile Include="Objects\Media\InstagramVideoSummary.cs" />
     <Compile Include="Objects\Pagination\InstagramIdBasedPagination.cs" />
     <Compile Include="Objects\Pagination\InstagramLikedMediaPagination.cs" />
-    <Compile Include="Options\Common\InstagramRecentMediaOptions.cs" />
-    <Compile Include="Options\InstagramMediaSearchOptions.cs" />
-    <Compile Include="Options\InstagramRecentMediaSearchOptions.cs" />
-    <Compile Include="Options\Locations\InstagramLocationRecentMediaOptions.cs" />
-    <Compile Include="Options\Locations\InstagramLocationSearchOptions.cs" />
-    <Compile Include="Options\Relationships\InstagramFollowedByOptions.cs" />
-    <Compile Include="Options\Relationships\InstagramFollowsOptions.cs" />
-    <Compile Include="Options\Tags\InstagramTagRecentMediaOptions.cs" />
+    <Compile Include="Options\Media\InstagramGetRecentMediaOptions.cs" />
+    <Compile Include="Options\Locations\InstagramGetLocationRecentMediaOptions.cs" />
+    <Compile Include="Options\Locations\InstagramGetLocationSearchOptions.cs" />
+    <Compile Include="Options\Relationships\InstagramGetFollowedByOptions.cs" />
+    <Compile Include="Options\Relationships\InstagramGetFollowsOptions.cs" />
+    <Compile Include="Options\Tags\InstagramGetTagRecentMediaOptions.cs" />
     <Compile Include="Options\Users\InstagramGetUserFeedOptions.cs" />
     <Compile Include="Options\Users\InstagramGetUserLikedMediaOptions.cs" />
     <Compile Include="Options\Users\InstagramGetUserRecentMediaOptions.cs" />
@@ -119,9 +117,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Options\Media\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

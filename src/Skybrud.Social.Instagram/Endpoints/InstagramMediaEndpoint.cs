@@ -1,5 +1,6 @@
 using Skybrud.Social.Instagram.Endpoints.Raw;
 using Skybrud.Social.Instagram.Options;
+using Skybrud.Social.Instagram.Options.Media;
 using Skybrud.Social.Instagram.Responses.Media;
 
 namespace Skybrud.Social.Instagram.Endpoints {
@@ -84,7 +85,7 @@ namespace Skybrud.Social.Instagram.Endpoints {
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/media/#get_media_search</cref>
         /// </see>
-        public InstagramRecentMediaResponse Search(InstagramRecentMediaSearchOptions options) {
+        public InstagramRecentMediaResponse Search(InstagramGetRecentMediaOptions options) {
             return InstagramRecentMediaResponse.ParseResponse(Raw.Search(options));
         }
 

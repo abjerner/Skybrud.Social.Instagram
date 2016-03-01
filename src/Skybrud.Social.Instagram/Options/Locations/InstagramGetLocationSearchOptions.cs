@@ -9,7 +9,7 @@ namespace Skybrud.Social.Instagram.Options.Locations {
     /// <see>
     ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations_search</cref>
     /// </see>
-    public class InstagramLocationSearchOptions : IGetOptions {
+    public class InstagramGetLocationSearchOptions : IGetOptions {
 
         #region Properties
 
@@ -37,14 +37,14 @@ namespace Skybrud.Social.Instagram.Options.Locations {
         /// <summary>
         /// Initialize a new instance with default options.
         /// </summary>
-        public InstagramLocationSearchOptions() { }
+        public InstagramGetLocationSearchOptions() { }
 
         /// <summary>
         /// Initializes a new instance from the specified <code>latitude</code> and <code>longitude</code>.
         /// </summary>
         /// <param name="latitude">The latitude.</param>
         /// <param name="longitude">The longitude.</param>
-        public InstagramLocationSearchOptions(double latitude, double longitude) {
+        public InstagramGetLocationSearchOptions(double latitude, double longitude) {
             Latitude = latitude;
             Longitude = longitude;
         }
@@ -55,7 +55,7 @@ namespace Skybrud.Social.Instagram.Options.Locations {
         /// <param name="latitude">The latitude.</param>
         /// <param name="longitude">The longitude.</param>
         /// <param name="distance">The search distance (radius) in meters.</param>
-        public InstagramLocationSearchOptions(double latitude, double longitude, int distance) {
+        public InstagramGetLocationSearchOptions(double latitude, double longitude, int distance) {
             Latitude = latitude;
             Longitude = longitude;
             Distance = distance;

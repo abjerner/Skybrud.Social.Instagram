@@ -2,14 +2,14 @@
 using Skybrud.Social.Interfaces;
 
 namespace Skybrud.Social.Instagram.Options.Relationships {
-
+    
     /// <summary>
-    /// Class representing the options for getting a list of other users a given user is following.
+    /// Class representing the options for getting a list of followers of a given user.
     /// </summary>
     /// <see>
-    ///     <cref>https://instagram.com/developer/endpoints/relationships/#get_users_follows</cref>
+    ///     <cref>https://instagram.com/developer/endpoints/relationships/#get_users_followed_by</cref>
     /// </see>
-    public class InstagramFollowsOptions : IGetOptions {
+    public class InstagramGetFollowedByOptions : IGetOptions {
 
         #region Properties
 
@@ -26,17 +26,17 @@ namespace Skybrud.Social.Instagram.Options.Relationships {
         #endregion
 
         #region Constructors
-        
+
         /// <summary>
         /// Initializes a new instance with default options.
         /// </summary>
-        public InstagramFollowsOptions() { }
+        public InstagramGetFollowedByOptions() { }
 
         /// <summary>
         /// Initializes a new instance with specified <code>userId</code>.
         /// </summary>
         /// <param name="userId">The ID of the user.</param>
-        public InstagramFollowsOptions(long userId) {
+        public InstagramGetFollowedByOptions(long userId) {
             UserId = userId;
         }
 
@@ -45,7 +45,7 @@ namespace Skybrud.Social.Instagram.Options.Relationships {
         /// </summary>
         /// <param name="userId">The ID of the user.</param>
         /// <param name="count">The maximum amount of users to be returned.</param>
-        public InstagramFollowsOptions(long userId, int count) {
+        public InstagramGetFollowedByOptions(long userId, int count) {
             UserId = userId;
             Count = count;
         }

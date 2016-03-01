@@ -10,7 +10,7 @@ namespace Skybrud.Social.Instagram.Options.Tags {
     /// <see>
     ///     <cref>https://instagram.com/developer/endpoints/tags/#get_tags_media_recent</cref>
     /// </see>
-    public class InstagramTagRecentMediaOptions : IGetOptions {
+    public class InstagramGetTagRecentMediaOptions : IGetOptions {
 
         #region Properties
 
@@ -36,13 +36,13 @@ namespace Skybrud.Social.Instagram.Options.Tags {
         /// <summary>
         /// Initializes an instance with default options.
         /// </summary>
-        public InstagramTagRecentMediaOptions() { }
+        public InstagramGetTagRecentMediaOptions() { }
 
         /// <summary>
         /// Initializes an instance with the specified <code>count</code>.
         /// </summary>
         /// <param name="count">The maximum amount of users to be returned.</param>
-        public InstagramTagRecentMediaOptions(int count) {
+        public InstagramGetTagRecentMediaOptions(int count) {
             Count = count;
         }
 
@@ -51,7 +51,7 @@ namespace Skybrud.Social.Instagram.Options.Tags {
         /// </summary>
         /// <param name="minTagId">The minimum tag ID. Only media before this ID will be returned.</param>
         /// <param name="maxTagId">The maximum tag ID. Only media after this ID will be returned.</param>
-        public InstagramTagRecentMediaOptions(string minTagId, string maxTagId) {
+        public InstagramGetTagRecentMediaOptions(string minTagId, string maxTagId) {
             MinTagId = minTagId;
             MaxTagId = maxTagId;
         }
@@ -62,7 +62,7 @@ namespace Skybrud.Social.Instagram.Options.Tags {
         /// <param name="count">The maximum amount of users to be returned.</param>
         /// <param name="minTagId">The minimum tag ID. Only media before this ID will be returned.</param>
         /// <param name="maxTagId">The maximum tag ID. Only media after this ID will be returned.</param>
-        public InstagramTagRecentMediaOptions(int count, string minTagId, string maxTagId) {
+        public InstagramGetTagRecentMediaOptions(int count, string minTagId, string maxTagId) {
             Count = count;
             MinTagId = minTagId;
             MaxTagId = maxTagId;
