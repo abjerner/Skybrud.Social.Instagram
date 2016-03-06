@@ -127,7 +127,7 @@ namespace Skybrud.Social.Instagram.Objects.Media {
         public InstagramTaggedUser[] UsersInPhoto { get; private set; }
 
         /// <summary>
-        /// Gets the creation date of the media. This property is just an alias of the <code>Created</code> property.
+        /// Gets the creation date of the media. This property is just an alias of the <see cref="Created"/> property.
         /// </summary>
         public DateTime Date {
             get { return Created; }
@@ -140,7 +140,7 @@ namespace Skybrud.Social.Instagram.Objects.Media {
         public InstagramUserSummary[] Likes { get; internal set; }
 
         /// <summary>
-        /// Gets the creation date of the media. This property is just an alias of the <code>Created</code> property.
+        /// Gets the creation date of the media. This property is just an alias of the <see cref="Created"/> property.
         /// </summary>
         public DateTime SortDate {
             get { return Date; }

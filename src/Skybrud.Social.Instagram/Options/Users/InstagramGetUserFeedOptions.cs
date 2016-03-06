@@ -33,7 +33,7 @@ namespace Skybrud.Social.Instagram.Options.Users {
         #region Member methods
 
         /// <summary>
-        /// Gets an instance of <code>SocialQueryString</code> representing the GET parameters.
+        /// Gets an instance of <see cref="SocialQueryString"/> representing the GET parameters.
         /// </summary>
         public SocialQueryString GetQueryString() {
             SocialQueryString qs = new SocialQueryString();

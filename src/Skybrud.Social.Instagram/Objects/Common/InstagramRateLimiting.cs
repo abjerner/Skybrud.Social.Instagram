@@ -40,7 +40,7 @@ namespace Skybrud.Social.Instagram.Objects.Common {
         /// Parses rate-limiting information from the specified <code>response</code>.
         /// </summary>
         /// <param name="response">The response that holds the rate-limiting information.</param>
-        /// <returns>Returns an instance of <code>InstagramRateLimiting</code>.</returns>
+        /// <returns>Returns an instance of <see cref="InstagramRateLimiting"/>.</returns>
         public static InstagramRateLimiting GetFromResponse(SocialHttpResponse response) {
 
             int limit;
