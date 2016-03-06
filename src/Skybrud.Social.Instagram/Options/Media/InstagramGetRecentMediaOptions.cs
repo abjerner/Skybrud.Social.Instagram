@@ -51,8 +51,8 @@ namespace Skybrud.Social.Instagram.Options.Media {
 
             // Optinal options
             if (Distance > 0) qs.Add("distance", Distance);
-            if (MinTimestamp != null) qs.Add("min_timestamp", MinTimestamp.GetUnixTimestamp());
-            if (MaxTimestamp != null) qs.Add("max_timestamp", MaxTimestamp.GetUnixTimestamp());
+            if (MinTimestamp != null) qs.Add("min_timestamp", MinTimestamp.UnixTimestamp);
+            if (MaxTimestamp != null) qs.Add("max_timestamp", MaxTimestamp.UnixTimestamp);
 
             return qs;
 

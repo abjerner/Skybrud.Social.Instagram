@@ -36,7 +36,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Skybrud.Social.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Skybrud.Social.Core.1.0.0-alpha5\lib\net45\Skybrud.Social.Core.dll</HintPath>
+      <HintPath>..\packages\Skybrud.Social.Core.1.0.0-beta1\lib\net45\Skybrud.Social.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
