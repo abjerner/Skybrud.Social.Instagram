@@ -81,7 +81,7 @@ namespace Skybrud.Social.Instagram.OAuth {
         /// will have no information about your app.
         /// </summary>
         /// <param name="accessToken">A valid access token.</param>
-        public InstagramOAuthClient(string accessToken) {
+        public InstagramOAuthClient(string accessToken) : this() {
             AccessToken = accessToken;
         }
         
@@ -90,7 +90,7 @@ namespace Skybrud.Social.Instagram.OAuth {
         /// </summary>
         /// <param name="clientId">The ID of the client/app.</param>
         /// <param name="clientSecret">The secret of the client/app.</param>
-        public InstagramOAuthClient(string clientId, string clientSecret) {
+        public InstagramOAuthClient(string clientId, string clientSecret) : this() {
             ClientId = clientId;
             ClientSecret = clientSecret;
         }
@@ -101,7 +101,7 @@ namespace Skybrud.Social.Instagram.OAuth {
         /// <param name="clientId">The ID of the client/app.</param>
         /// <param name="clientSecret">The secret of the client/app.</param>
         /// <param name="redirectUri">The return URI of the client/app.</param>
-        public InstagramOAuthClient(string clientId, string clientSecret, string redirectUri) {
+        public InstagramOAuthClient(string clientId, string clientSecret, string redirectUri) : this() {
             ClientId = clientId;
             ClientSecret = clientSecret;
             RedirectUri = redirectUri;
