@@ -82,7 +82,12 @@ namespace Skybrud.Social.Instagram.OAuth {
         /// </summary>
         /// <param name="accessToken">A valid access token.</param>
         public InstagramOAuthClient(string accessToken) : this() {
+
+            // Some input validation
+            if (String.IsNullOrWhiteSpace(accessToken)) throw new ArgumentNullException("accessToken");
+
             AccessToken = accessToken;
+        
         }
         
         /// <summary>
@@ -91,8 +96,14 @@ namespace Skybrud.Social.Instagram.OAuth {
         /// <param name="clientId">The ID of the client/app.</param>
         /// <param name="clientSecret">The secret of the client/app.</param>
         public InstagramOAuthClient(string clientId, string clientSecret) : this() {
+
+            // Some input validation
+            if (String.IsNullOrWhiteSpace(clientId)) throw new ArgumentNullException("clientId");
+            if (String.IsNullOrWhiteSpace(clientSecret)) throw new ArgumentNullException("clientSecret");
+            
             ClientId = clientId;
             ClientSecret = clientSecret;
+        
         }
 
         /// <summary>
@@ -102,9 +113,16 @@ namespace Skybrud.Social.Instagram.OAuth {
         /// <param name="clientSecret">The secret of the client/app.</param>
         /// <param name="redirectUri">The return URI of the client/app.</param>
         public InstagramOAuthClient(string clientId, string clientSecret, string redirectUri) : this() {
+
+            // Some input validation
+            if (String.IsNullOrWhiteSpace(clientId)) throw new ArgumentNullException("clientId");
+            if (String.IsNullOrWhiteSpace(clientSecret)) throw new ArgumentNullException("clientSecret");
+            if (String.IsNullOrWhiteSpace(redirectUri)) throw new ArgumentNullException("redirectUri");
+            
             ClientId = clientId;
             ClientSecret = clientSecret;
             RedirectUri = redirectUri;
+        
         }
 
         #endregion
