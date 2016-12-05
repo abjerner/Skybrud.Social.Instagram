@@ -1,8 +1,8 @@
 using System;
 using Newtonsoft.Json.Linq;
+using Skybrud.Essentials.Json.Extensions;
 using Skybrud.Social.Http;
 using Skybrud.Social.Instagram.Objects.Users;
-using Skybrud.Social.Json.Extensions.JObject;
 
 namespace Skybrud.Social.Instagram.Responses.Users {
     

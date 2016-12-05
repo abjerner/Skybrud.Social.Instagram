@@ -1,6 +1,6 @@
 using Newtonsoft.Json.Linq;
-using Skybrud.Social.Interfaces;
-using Skybrud.Social.Json.Extensions.JObject;
+using Skybrud.Essentials.Locations;
+using Skybrud.Essentials.Json.Extensions;
 
 namespace Skybrud.Social.Instagram.Objects.Locations {
     

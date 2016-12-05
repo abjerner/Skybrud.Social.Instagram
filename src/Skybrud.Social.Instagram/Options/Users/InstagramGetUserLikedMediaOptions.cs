@@ -1,5 +1,5 @@
 ﻿using Skybrud.Social.Http;
-using Skybrud.Social.Interfaces;
+using Skybrud.Social.Interfaces.Http;
 
 namespace Skybrud.Social.Instagram.Options.Users {
     
@@ -9,7 +9,7 @@ namespace Skybrud.Social.Instagram.Options.Users {
     /// <see>
     ///     <cref>https://instagram.com/developer/endpoints/users/#get_users_feed_liked</cref>
     /// </see>
-    public class InstagramGetUserLikedMediaOptions : IGetOptions {
+    public class InstagramGetUserLikedMediaOptions : IHttpGetOptions {
 
         #region Properties
 
@@ -28,10 +28,10 @@ namespace Skybrud.Social.Instagram.Options.Users {
         #region Member methods
 
         /// <summary>
-        /// Gets an instance of <see cref="SocialQueryString"/> representing the GET parameters.
+        /// Gets an instance of <see cref="IHttpQueryString"/> representing the GET parameters.
         /// </summary>
-        public SocialQueryString GetQueryString() {
-            SocialQueryString qs = new SocialQueryString();
+        public IHttpQueryString GetQueryString() {
+            SocialHttpQueryString qs = new SocialHttpQueryString();
             if (Count > 0) qs.Add("count", Count);
             if (MaxLikeId != null) qs.Add("max_like_id", MaxLikeId);
             return qs;

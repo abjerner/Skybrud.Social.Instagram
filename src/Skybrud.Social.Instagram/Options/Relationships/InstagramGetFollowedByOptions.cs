@@ -1,5 +1,5 @@
 ﻿using Skybrud.Social.Http;
-using Skybrud.Social.Interfaces;
+using Skybrud.Social.Interfaces.Http;
 
 namespace Skybrud.Social.Instagram.Options.Relationships {
     
@@ -9,7 +9,7 @@ namespace Skybrud.Social.Instagram.Options.Relationships {
     /// <see>
     ///     <cref>https://instagram.com/developer/endpoints/relationships/#get_users_followed_by</cref>
     /// </see>
-    public class InstagramGetFollowedByOptions : IGetOptions {
+    public class InstagramGetFollowedByOptions : IHttpGetOptions {
 
         #region Properties
 
@@ -55,10 +55,10 @@ namespace Skybrud.Social.Instagram.Options.Relationships {
         #region Member methods
 
         /// <summary>
-        /// Gets an instance of <see cref="SocialQueryString"/> representing the GET parameters.
+        /// Gets an instance of <see cref="IHttpQueryString"/> representing the GET parameters.
         /// </summary>
-        public SocialQueryString GetQueryString() {
-            SocialQueryString qs = new SocialQueryString();
+        public IHttpQueryString GetQueryString() {
+            SocialHttpQueryString qs = new SocialHttpQueryString();
             if (Count > 0) qs.Add("count", Count);
             return qs;
         }

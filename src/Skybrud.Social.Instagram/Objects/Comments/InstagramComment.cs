@@ -1,7 +1,7 @@
-using System;
 using Newtonsoft.Json.Linq;
+using Skybrud.Essentials.Time;
 using Skybrud.Social.Instagram.Objects.Users;
-using Skybrud.Social.Json.Extensions.JObject;
+using Skybrud.Essentials.Json.Extensions;
 
 namespace Skybrud.Social.Instagram.Objects.Comments {
 
@@ -20,7 +20,7 @@ namespace Skybrud.Social.Instagram.Objects.Comments {
         /// <summary>
         /// Gets the timestamp for when the comment was created.
         /// </summary>
-        public DateTime Created { get; internal set; }
+        public EssentialsDateTime Created { get; internal set; }
 
         /// <summary>
         /// Gets the text/message of the comment.
@@ -38,7 +38,7 @@ namespace Skybrud.Social.Instagram.Objects.Comments {
 
         private InstagramComment(JObject obj) : base(obj) {
             Id = obj.GetInt64("id");
-            Created = obj.GetInt64("created_time", SocialUtils.GetDateTimeFromUnixTime);
+            Created = obj.GetInt64("created_time", EssentialsDateTime.FromUnixTimestamp);
             Text = obj.GetString("text");
             User = obj.GetObject("from", InstagramUserSummary.Parse);
         }

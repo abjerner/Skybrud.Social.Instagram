@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Specialized;
-using Skybrud.Social.Exceptions;
+using Skybrud.Essentials.Common;
 using Skybrud.Social.Http;
 using Skybrud.Social.Instagram.Endpoints.Raw;
 using Skybrud.Social.Instagram.Responses.Authentication;
@@ -177,7 +177,7 @@ namespace Skybrud.Social.Instagram.OAuth {
             }
 
             // Construct thr authorization URL
-            return "https://api.instagram.com/oauth/authorize/?" + SocialUtils.NameValueCollectionToQueryString(query);
+            return "https://api.instagram.com/oauth/authorize/?" + SocialUtils.Misc.NameValueCollectionToQueryString(query);
 
         }
 
@@ -204,7 +204,7 @@ namespace Skybrud.Social.Instagram.OAuth {
             };
 
             // Make the call to the API
-            SocialHttpResponse response = SocialUtils.DoHttpPostRequest("https://api.instagram.com/oauth/access_token", null, parameters);
+            SocialHttpResponse response = SocialUtils.Http.DoHttpPostRequest("https://api.instagram.com/oauth/access_token", null, parameters);
 
             // Parse the response
             return InstagramTokenResponse.ParseResponse(response);

@@ -1,6 +1,6 @@
 ﻿using System;
 using Skybrud.Social.Http;
-using Skybrud.Social.Interfaces;
+using Skybrud.Social.Interfaces.Http;
 
 namespace Skybrud.Social.Instagram.Options.Tags {
     
@@ -10,7 +10,7 @@ namespace Skybrud.Social.Instagram.Options.Tags {
     /// <see>
     ///     <cref>https://instagram.com/developer/endpoints/tags/#get_tags_media_recent</cref>
     /// </see>
-    public class InstagramGetTagRecentMediaOptions : IGetOptions {
+    public class InstagramGetTagRecentMediaOptions : IHttpGetOptions {
 
         #region Properties
 
@@ -73,10 +73,10 @@ namespace Skybrud.Social.Instagram.Options.Tags {
         #region Member methods
 
         /// <summary>
-        /// Gets an instance of <see cref="SocialQueryString"/> representing the GET parameters.
+        /// Gets an instance of <see cref="IHttpQueryString"/> representing the GET parameters.
         /// </summary>
-        public SocialQueryString GetQueryString() {
-            SocialQueryString qs = new SocialQueryString();
+        public IHttpQueryString GetQueryString() {
+            SocialHttpQueryString qs = new SocialHttpQueryString();
             if (Count > 0) qs.Add("count", Count);
             if (!String.IsNullOrWhiteSpace(MinTagId)) qs.Add("min_tag_id", MinTagId);
             if (!String.IsNullOrWhiteSpace(MaxTagId)) qs.Add("max_tag_id", MaxTagId);

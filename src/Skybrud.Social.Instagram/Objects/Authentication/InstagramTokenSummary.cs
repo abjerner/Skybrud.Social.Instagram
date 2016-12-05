@@ -1,6 +1,6 @@
 using Newtonsoft.Json.Linq;
 using Skybrud.Social.Instagram.Objects.Users;
-using Skybrud.Social.Json.Extensions.JObject;
+using Skybrud.Essentials.Json.Extensions;
 
 namespace Skybrud.Social.Instagram.Objects.Authentication {
     

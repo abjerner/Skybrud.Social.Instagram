@@ -103,7 +103,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         public SocialHttpResponse Search(string tag) {
 
             // Declare the query string
-            SocialQueryString qs = new SocialQueryString();
+            SocialHttpQueryString qs = new SocialHttpQueryString();
             qs.Add("q", tag);
 
             // Perform the call to the API

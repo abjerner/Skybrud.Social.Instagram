@@ -1,14 +1,15 @@
 ﻿using System;
+using Skybrud.Essentials.Time;
 using Skybrud.Social.Http;
 using Skybrud.Social.Instagram.Objects.Locations;
-using Skybrud.Social.Interfaces;
+using Skybrud.Social.Interfaces.Http;
 
 namespace Skybrud.Social.Instagram.Options.Locations {
 
     /// <summary>
     /// Class representing the options for getting recent media of a location.
     /// </summary>
-    public class InstagramGetLocationRecentMediaOptions : IGetOptions {
+    public class InstagramGetLocationRecentMediaOptions : IHttpGetOptions {
 
         #region Properties
 
@@ -26,13 +27,13 @@ namespace Skybrud.Social.Instagram.Options.Locations {
         /// Only media before this timestamp is returned.
         /// </summary>
         // TODO: Not sure whether this is inclusive or exclusive.
-        public DateTime? MaxTimestamp { get; set; }
+        public EssentialsDateTime MaxTimestamp { get; set; }
 
         /// <summary>
         /// Only media after this timestamp is returned.
         /// </summary>
         // TODO: Not sure whether this is inclusive or exclusive.
-        public DateTime? MinTimestamp { get; set; }
+        public EssentialsDateTime MinTimestamp { get; set; }
 
         /// <summary>
         /// Only media after this ID is returned.
@@ -77,13 +78,13 @@ namespace Skybrud.Social.Instagram.Options.Locations {
         #region Methods
 
         /// <summary>
-        /// Gets an instance of <see cref="SocialQueryString"/> representing the GET parameters.
+        /// Gets an instance of <see cref="IHttpQueryString"/> representing the GET parameters.
         /// </summary>
-        public SocialQueryString GetQueryString() {
-            SocialQueryString qs = new SocialQueryString();
+        public IHttpQueryString GetQueryString() {
+            SocialHttpQueryString qs = new SocialHttpQueryString();
             if (Count > 0) qs.Add("count", Count);
-            if (MaxTimestamp != null) qs.Add("max_timestamp", SocialUtils.GetUnixTimeFromDateTime(MaxTimestamp.Value));
-            if (MinTimestamp != null) qs.Add("min_timestamp", SocialUtils.GetUnixTimeFromDateTime(MinTimestamp.Value));
+            if (MaxTimestamp != null) qs.Add("max_timestamp", MaxTimestamp.UnixTimestamp);
+            if (MinTimestamp != null) qs.Add("min_timestamp", MinTimestamp.UnixTimestamp);
             if (MinId != null) qs.Add("min_id", MinId);
             if (MaxId != null) qs.Add("max_id", MaxId);
             return qs;

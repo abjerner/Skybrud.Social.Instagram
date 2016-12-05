@@ -1,6 +1,6 @@
+using Skybrud.Essentials.Time;
 using Skybrud.Social.Http;
-using Skybrud.Social.Interfaces;
-using Skybrud.Social.Time;
+using Skybrud.Social.Interfaces.Http;
 
 namespace Skybrud.Social.Instagram.Options.Media {
     
@@ -11,7 +11,7 @@ namespace Skybrud.Social.Instagram.Options.Media {
     /// <see>
     ///     <cref>https://www.instagram.com/developer/endpoints/media/#get_media_search</cref>
     /// </see>
-    public class InstagramGetRecentMediaOptions : IGetOptions {
+    public class InstagramGetRecentMediaOptions : IHttpGetOptions {
         
         /// <summary>
         /// Gets or sets the latitude of the center search coordinate.
@@ -32,20 +32,20 @@ namespace Skybrud.Social.Instagram.Options.Media {
         /// <summary>
         /// Gets or sets the minimum timestamp. All media returned will be taken later than this timestamp.
         /// </summary>
-        public SocialDateTime MinTimestamp { get; set; }
+        public EssentialsDateTime MinTimestamp { get; set; }
 
         /// <summary>
         /// Gets or sets the maximum timestamp. All media returned will be taken earlier than this timestamp.
         /// </summary>
-        public SocialDateTime MaxTimestamp { get; set; }
+        public EssentialsDateTime MaxTimestamp { get; set; }
 
         /// <summary>
-        /// Gets an instance of <see cref="SocialQueryString"/> representing the GET parameters.
+        /// Gets an instance of <see cref="IHttpQueryString"/> representing the GET parameters.
         /// </summary>
-        public SocialQueryString GetQueryString() {
+        public IHttpQueryString GetQueryString() {
             
             // Declare the query string
-            SocialQueryString qs = new SocialQueryString();
+            SocialHttpQueryString qs = new SocialHttpQueryString();
             qs.Add("lat", Latitude);
             qs.Add("lng", Longitude);
 

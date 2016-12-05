@@ -1,10 +1,10 @@
 ﻿using System.Net;
 using Newtonsoft.Json.Linq;
+using Skybrud.Essentials.Json.Extensions;
 using Skybrud.Social.Http;
 using Skybrud.Social.Instagram.Exceptions;
 using Skybrud.Social.Instagram.Objects;
 using Skybrud.Social.Instagram.Objects.Common;
-using Skybrud.Social.Json.Extensions.JObject;
 
 namespace Skybrud.Social.Instagram.Responses {
 

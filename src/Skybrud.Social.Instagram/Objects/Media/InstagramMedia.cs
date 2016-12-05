@@ -1,11 +1,12 @@
 using System;
 using Newtonsoft.Json.Linq;
+using Skybrud.Essentials.Time;
 using Skybrud.Social.Instagram.Exceptions;
 using Skybrud.Social.Instagram.Objects.Comments;
 using Skybrud.Social.Instagram.Objects.Locations;
 using Skybrud.Social.Instagram.Objects.Users;
 using Skybrud.Social.Interfaces;
-using Skybrud.Social.Json.Extensions.JObject;
+using Skybrud.Essentials.Json.Extensions;
 
 namespace Skybrud.Social.Instagram.Objects.Media {
     
@@ -49,7 +50,7 @@ namespace Skybrud.Social.Instagram.Objects.Media {
         /// <summary>
         /// Specifies the time of creation in UTC/GMT 0.
         /// </summary>
-        public DateTime Created { get; internal set; }
+        public EssentialsDateTime Created { get; internal set; }
 
         /// <summary>
         /// Gets the link (URL) of the page on instagram.com for the media.
@@ -129,7 +130,7 @@ namespace Skybrud.Social.Instagram.Objects.Media {
         /// <summary>
         /// Gets the creation date of the media. This property is just an alias of the <see cref="Created"/> property.
         /// </summary>
-        public DateTime Date {
+        public EssentialsDateTime Date {
             get { return Created; }
         }
 
@@ -143,7 +144,7 @@ namespace Skybrud.Social.Instagram.Objects.Media {
         /// Gets the creation date of the media. This property is just an alias of the <see cref="Created"/> property.
         /// </summary>
         public DateTime SortDate {
-            get { return Date; }
+            get { return Date.DateTime; }
         }
 
         #endregion
@@ -158,7 +159,7 @@ namespace Skybrud.Social.Instagram.Objects.Media {
             Id = obj.GetString("id");
             Type = obj.GetString("type");
             Tags = obj.GetStringArray("tags");
-            Created = obj.GetInt64("created_time", SocialUtils.GetDateTimeFromUnixTime);
+            Created = obj.GetInt64("created_time", EssentialsDateTime.FromUnixTimestamp);
             Link = obj.GetString("link");
             Filter = obj.GetString("filter");
             CommentCount = comments.GetInt32("count");
