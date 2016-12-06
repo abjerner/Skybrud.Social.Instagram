@@ -89,7 +89,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         ///     <cref>https://instagram.com/developer/endpoints/tags/#get_tags_media_recent</cref>
         /// </see>
         public SocialHttpResponse GetRecentMedia(string tag, InstagramGetTagRecentMediaOptions options) {
-            return Client.DoHttpGetRequest("https://api.instagram.com/v1/tags/" + tag + "/media/recent/", options);
+            return Client.DoHttpGetRequest("https://api.instagram.com/v1/tags/" + tag + "/media/recent", options);
         }
 
         /// <summary>
@@ -107,7 +107,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
             qs.Add("q", tag);
 
             // Perform the call to the API
-            return Client.DoHttpGetRequest("https://api.instagram.com/v1/tags/search/", qs);
+            return Client.DoHttpGetRequest("https://api.instagram.com/v1/tags/search", qs);
 
         }
 

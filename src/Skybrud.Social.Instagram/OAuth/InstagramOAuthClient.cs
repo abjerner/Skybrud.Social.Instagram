@@ -1,10 +1,14 @@
 using System;
 using System.Collections.Specialized;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using Skybrud.Essentials.Common;
 using Skybrud.Social.Http;
 using Skybrud.Social.Instagram.Endpoints.Raw;
 using Skybrud.Social.Instagram.Responses.Authentication;
 using Skybrud.Social.Instagram.Scopes;
+using Skybrud.Social.Interfaces.Http;
 
 namespace Skybrud.Social.Instagram.OAuth {
 
@@ -60,6 +64,14 @@ namespace Skybrud.Social.Instagram.OAuth {
         /// Gets a reference to the users endpoint.
         /// </summary>
         public InstagramUsersRawEndpoint Users { get; private set; }
+
+        /// <summary>
+        /// Gets or sets whether signed requests should be enabled.
+        /// </summary>
+        /// <see>
+        ///     <cref>https://www.instagram.com/developer/secure-api-requests/#enforce-signed-requests</cref>
+        /// </see>
+        public bool SignedRequests { get; set; }
 
         #endregion
 
@@ -223,6 +235,140 @@ namespace Skybrud.Social.Instagram.OAuth {
             } else if (!String.IsNullOrWhiteSpace(ClientId)) {
                 request.QueryString.Add("client_id", ClientId);
             }
+
+            if (SignedRequests) {
+
+                // Get the endpoint from the URL
+                string endpoint = request.Url.Replace("https://api.instagram.com/v1/", "/");
+
+                // Append the signature to the request
+                request.QueryString.Add("sig", GenerateSignature(endpoint, request.QueryString));
+            
+            }
+
+        }
+
+        /// <summary>
+        /// Generates the signature value based on the specified <code>endpoint</code> and <code>parameters</code>.
+        /// </summary>
+        /// <param name="endpoint">The endpoint.</param>
+        /// <param name="parameters">The parameters.</param>
+        /// <returns>Returns the signature value.</returns>
+        /// <see>
+        ///     <cref>https://www.instagram.com/developer/secure-api-requests/#enforce-signed-requests</cref>
+        /// </see>
+        public string GenerateSignatureValue(string endpoint, NameValueCollection parameters) {
+
+            // Some validation
+            if (String.IsNullOrWhiteSpace(endpoint)) throw new ArgumentNullException("endpoint");
+            if (parameters == null) throw new ArgumentNullException("parameters");
+            if (String.IsNullOrWhiteSpace(ClientSecret)) throw new PropertyNotSetException("ClientSecret");
+
+            // Initialize the signature value
+            string signatureValue = endpoint;
+
+            // Append the parameters (sorted by the key in alphabetic order)
+            foreach (string key in parameters.AllKeys.OrderBy(x => x)) {
+                signatureValue += "|" + key + "=" + parameters[key];
+            }
+
+            return signatureValue;
+
+        }
+
+        /// <summary>
+        /// Generates a HMAC signature using the SHA256 hasing algorithm.
+        /// </summary>
+        /// <param name="endpoint">The endpoint.</param>
+        /// <param name="parameters">The parameters.</param>
+        /// <returns>Returns the HMAC signature.</returns>
+        /// <see>
+        ///     <cref>https://www.instagram.com/developer/secure-api-requests/#enforce-signed-requests</cref>
+        /// </see>
+        public string GenerateSignature(string endpoint, NameValueCollection parameters) {
+            
+            // Some validation
+            if (String.IsNullOrWhiteSpace(endpoint)) throw new ArgumentNullException("endpoint");
+            if (parameters == null) throw new ArgumentNullException("parameters");
+            if (String.IsNullOrWhiteSpace(ClientSecret)) throw new PropertyNotSetException("ClientSecret");
+            
+            // Initialize the signature value
+            string signatureValue = GenerateSignatureValue(endpoint, parameters);
+
+            // The Instagram documentation doesn't explicitly mentain any
+            // encoding, but the Python examples uses UTF-8
+            Encoding encoding = Encoding.UTF8;
+
+            // Initialize the HMAC SHA256 hasher
+            HMACSHA256 hasher = new HMACSHA256(encoding.GetBytes(ClientSecret));
+
+            // Generate the HMAC SHA256 hash
+            byte[] hash = hasher.ComputeHash(encoding.GetBytes(signatureValue));
+            
+            // Convert the hash back to a string
+            return BitConverter.ToString(hash).Replace("-", "").ToLower();
+
+        }
+
+        /// <summary>
+        /// Generates the signature value based on the specified <code>endpoint</code> and <code>parameters</code>.
+        /// </summary>
+        /// <param name="endpoint">The endpoint.</param>
+        /// <param name="parameters">The parameters.</param>
+        /// <returns>Returns the signature value.</returns>
+        /// <see>
+        ///     <cref>https://www.instagram.com/developer/secure-api-requests/#enforce-signed-requests</cref>
+        /// </see>
+        public string GenerateSignatureValue(string endpoint, IHttpQueryString parameters) {
+
+            // Some validation
+            if (String.IsNullOrWhiteSpace(endpoint)) throw new ArgumentNullException("endpoint");
+            if (parameters == null) throw new ArgumentNullException("parameters");
+            if (String.IsNullOrWhiteSpace(ClientSecret)) throw new PropertyNotSetException("ClientSecret");
+
+            // Initialize the signature value
+            string signatureValue = endpoint;
+
+            // Append the parameters (sorted by the key in alphabetic order)
+            foreach (string key in parameters.Keys.OrderBy(x => x)) {
+                signatureValue += "|" + key + "=" + parameters[key];
+            }
+
+            return signatureValue;
+
+        }
+
+        /// <summary>
+        /// Generates a HMAC signature using the SHA256 hasing algorithm.
+        /// </summary>
+        /// <param name="endpoint">The endpoint.</param>
+        /// <param name="parameters">The parameters.</param>
+        /// <returns>Returns the HMAC signature.</returns>
+        /// <see>
+        ///     <cref>https://www.instagram.com/developer/secure-api-requests/#enforce-signed-requests</cref>
+        /// </see>
+        public string GenerateSignature(string endpoint, IHttpQueryString parameters) {
+
+            // Some validation
+            if (String.IsNullOrWhiteSpace(endpoint)) throw new ArgumentNullException("endpoint");
+            if (parameters == null) throw new ArgumentNullException("parameters");
+            if (String.IsNullOrWhiteSpace(ClientSecret)) throw new PropertyNotSetException("ClientSecret");
+
+            // Initialize the signature value
+            string signatureValue = GenerateSignatureValue(endpoint, parameters);
+
+            // The Instagram documentation doesn't explicitly mentain any
+            // encoding, but the Python examples uses UTF-8
+            Encoding encoding = Encoding.UTF8;
+
+            // Initialize the HMAC SHA256 hasher
+            HMACSHA256 hasher = new HMACSHA256(encoding.GetBytes(ClientSecret));
+
+            // Generate the HMAC SHA256 hash
+            byte[] hash = hasher.ComputeHash(encoding.GetBytes(signatureValue));
+
+            // Convert the hash back to a string
+            return BitConverter.ToString(hash).Replace("-", "").ToLower();
 
         }
 

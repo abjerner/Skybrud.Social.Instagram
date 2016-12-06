@@ -42,7 +42,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// </see>
         public SocialHttpResponse GetUser(string identifier) {
             if (String.IsNullOrWhiteSpace(identifier)) throw new ArgumentNullException("identifier");
-            return Client.DoHttpGetRequest("https://api.instagram.com/v1/users/" + identifier + "/");
+            return Client.DoHttpGetRequest("https://api.instagram.com/v1/users/" + identifier);
         }
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// </see>
         public SocialHttpResponse GetRecentMedia(InstagramGetUserRecentMediaOptions options) {
             if (options == null) throw new ArgumentNullException("options");
-            return Client.DoHttpGetRequest("https://api.instagram.com/v1/users/" + (options.UserId == 0 ? "self" : options.UserId + "") + "/media/recent/", options);
+            return Client.DoHttpGetRequest("https://api.instagram.com/v1/users/" + (options.UserId == 0 ? "self" : options.UserId + "") + "/media/recent", options);
         }
 
         /// <summary>
