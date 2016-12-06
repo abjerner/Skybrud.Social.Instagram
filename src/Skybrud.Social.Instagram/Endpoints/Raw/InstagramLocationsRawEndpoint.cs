@@ -86,7 +86,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         }
 
         /// <summary>
-        /// Gets a list of locations with a geographic coordinate within a 1000 meters of the
+        /// Gets a list of locations with a geographic coordinate within a 1000 metres of the
         /// specified <code>latitude</code> and <code>longitude</code>.
         /// </summary>
         /// <param name="latitude">The latitude.</param>
@@ -108,7 +108,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// </summary>
         /// <param name="latitude">The latitude.</param>
         /// <param name="longitude">The longitude.</param>
-        /// <param name="distance">The distance is meters (max: 5000m)</param>
+        /// <param name="distance">The distance is metres (max: 5000m)</param>
         /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations_search</cref>

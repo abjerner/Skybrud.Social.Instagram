@@ -95,7 +95,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// <summary>
         /// Search for tags by name. Results are ordered first as an exact match, then by popularity. Short tags will be treated as exact matches.
         /// </summary>
-        /// <param name="tag">A valid tag name without a leading #. (eg. snowy, nofilter)</param>
+        /// <param name="tag">A valid tag name without a leading #. (eg. <code>snowy</code>, <code>nofilter</code>)</param>
         /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/tags/#get_tags_search</cref>
