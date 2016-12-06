@@ -6,7 +6,7 @@ namespace Skybrud.Social.Instagram.Exceptions {
     /// <summary>
     /// Class representing an exception/error returned by the Instagram API.
     /// </summary>
-    public class InstagramOAuthException : InstagramException {
+    public class InstagramOAuthException : InstagramHttpException {
 
         /// <summary>
         /// Initializes a new exception based on the specified <code>response</code> and <code>meta</code> data.

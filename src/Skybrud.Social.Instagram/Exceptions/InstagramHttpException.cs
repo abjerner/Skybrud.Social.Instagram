@@ -8,7 +8,7 @@ namespace Skybrud.Social.Instagram.Exceptions {
     /// <summary>
     /// Class representing an exception/error returned by the Instagram API.
     /// </summary>
-    public class InstagramException : Exception {
+    public class InstagramHttpException : Exception {
 
         #region Properties
 
@@ -31,7 +31,7 @@ namespace Skybrud.Social.Instagram.Exceptions {
 
         #region Constructors
 
-        internal InstagramException(SocialHttpResponse response, InstagramMetaData meta) : base(meta.ErrorMessage) {
+        internal InstagramHttpException(SocialHttpResponse response, InstagramMetaData meta) : base(meta.ErrorMessage) {
             Response = response;
             RateLimiting = InstagramRateLimiting.GetFromResponse(response);
             Meta = meta;

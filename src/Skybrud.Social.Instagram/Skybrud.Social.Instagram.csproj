@@ -62,8 +62,8 @@
     <Compile Include="Endpoints\Raw\InstagramRelationshipsRawEndpoint.cs" />
     <Compile Include="Endpoints\Raw\InstagramTagsRawEndpoint.cs" />
     <Compile Include="Endpoints\Raw\InstagramUsersRawEndpoint.cs" />
-    <Compile Include="Exceptions\InstagramException.cs" />
-    <Compile Include="Exceptions\InstagramNotFoundException.cs" />
+    <Compile Include="Exceptions\InstagramHttpException.cs" />
+    <Compile Include="Exceptions\InstagramHttpNotFoundException.cs" />
     <Compile Include="Exceptions\InstagramOAuthAccessTokenException.cs" />
     <Compile Include="Exceptions\InstagramOAuthException.cs" />
     <Compile Include="Exceptions\InstagramParseException.cs" />

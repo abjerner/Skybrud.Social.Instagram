@@ -54,9 +54,9 @@ namespace Skybrud.Social.Instagram.Responses {
             // Now throw some exceptions
             if (meta.ErrorType == "OAuthException") throw new InstagramOAuthException(response, meta);
             if (meta.ErrorType == "OAuthAccessTokenException") throw new InstagramOAuthAccessTokenException(response, meta);
-            if (meta.ErrorType == "APINotFoundError") throw new InstagramNotFoundException(response, meta);
+            if (meta.ErrorType == "APINotFoundError") throw new InstagramHttpNotFoundException(response, meta);
 
-            throw new InstagramException(response, meta);
+            throw new InstagramHttpException(response, meta);
 
         }
 
