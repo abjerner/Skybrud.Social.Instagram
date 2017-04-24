@@ -45,7 +45,8 @@ namespace Skybrud.Social.Instagram {
 
         #region Constructors
 
-        private InstagramService() {
+        private InstagramService(InstagramOAuthClient client) {
+            Client = client;
             Locations = new InstagramLocationsEndpoint(this);
             Media = new InstagramMediaEndpoint(this);
             Relationships = new InstagramRelationshipsEndpoint(this);
@@ -58,30 +59,22 @@ namespace Skybrud.Social.Instagram {
         #region Static methods
 
         /// <summary>
-        /// Initializes a new service instance from the specified access token. Internally a new OAuth client will be
-        /// initialized from the access token.
+        /// Initializes a new service instance from the specified <paramref name="accessToken"/>. Internally a new
+        /// OAuth client will be initialized from the access token.
         /// </summary>
         /// <param name="accessToken">The access token.</param>
         public static InstagramService CreateFromAccessToken(string accessToken) {
-            return new InstagramService {
-                Client = new InstagramOAuthClient(accessToken)
-            };
+            if (String.IsNullOrWhiteSpace(accessToken)) throw new ArgumentNullException("accessToken");
+            return new InstagramService(new InstagramOAuthClient(accessToken));
         }
 
         /// <summary>
-        /// Initializes a new service instance from the specified OAuth client.
+        /// Initializes a new service instance from the specified OAuth <paramref name="client"/>.
         /// </summary>
         /// <param name="client">The OAuth client.</param>
         public static InstagramService CreateFromOAuthClient(InstagramOAuthClient client) {
-
-            // This should never be null
             if (client == null) throw new ArgumentNullException("client");
-
-            // Initialize the service
-            return new InstagramService {
-                Client = client
-            };
-
+            return new InstagramService(client);
         }
 
         #endregion
