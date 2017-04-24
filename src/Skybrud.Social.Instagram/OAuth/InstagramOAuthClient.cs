@@ -89,8 +89,8 @@ namespace Skybrud.Social.Instagram.OAuth {
         }
 
         /// <summary>
-        /// Initializes an OAuth client with the specified <code>accessToken</code>. Using this initializer, the client
-        /// will have no information about your app.
+        /// Initializes an OAuth client with the specified <paramref name="accessToken"/>. Using this initializer, the
+        /// client will have no information about your app.
         /// </summary>
         /// <param name="accessToken">A valid access token.</param>
         public InstagramOAuthClient(string accessToken) : this() {
@@ -103,7 +103,8 @@ namespace Skybrud.Social.Instagram.OAuth {
         }
         
         /// <summary>
-        /// Initializes an OAuth client with the specified <code>clientId</code> and <code>clientSecret</code>.
+        /// Initializes an OAuth client with the specified <paramref name="clientId"/> and
+        /// <paramref name="clientSecret"/>.
         /// </summary>
         /// <param name="clientId">The ID of the client/app.</param>
         /// <param name="clientSecret">The secret of the client/app.</param>
@@ -119,7 +120,8 @@ namespace Skybrud.Social.Instagram.OAuth {
         }
 
         /// <summary>
-        /// Initializes an OAuth client with the specified <code>clientId</code>, <code>clientSecret</code> and <code>redirectUri</code>.
+        /// Initializes an OAuth client with the specified <paramref name="clientId"/>, <paramref name="clientSecret"/>
+        /// and <paramref name="redirectUri"/>.
         /// </summary>
         /// <param name="clientId">The ID of the client/app.</param>
         /// <param name="clientSecret">The secret of the client/app.</param>
@@ -142,28 +144,33 @@ namespace Skybrud.Social.Instagram.OAuth {
         #region Methods
 
         /// <summary>
-        /// Gets an authorization URL using the specified <code>state</code>. This URL will only make your application
-        /// request a basic scope.
+        /// Gets an authorization URL using the specified <paramref name="state"/>. This URL will only make your
+        /// application request a basic scope.
         /// </summary>
         /// <param name="state">A unique state for the request.</param>
+        /// <returns>The authorization URL.</returns>
         public virtual string GetAuthorizationUrl(string state) {
             return GetAuthorizationUrl(state, InstagramScopes.Basic);
         }
 
         /// <summary>
-        /// Gets an authorization URL using the specified <code>state</code> and request the specified <code>scope</code>.
+        /// Gets an authorization URL using the specified <paramref name="state"/> and request the specified
+        /// <paramref name="scope"/>.
         /// </summary>
         /// <param name="state">A unique state for the request.</param>
         /// <param name="scope">The scope of your application.</param>
+        /// <returns>The authorization URL.</returns>
         public virtual string GetAuthorizationUrl(string state, InstagramScopeCollection scope) {
             return GetAuthorizationUrl(state, scope.ToString());
         }
 
         /// <summary>
-        /// Gets an authorization URL using the specified <code>state</code> and request the specified <code>scope</code>.
+        /// Gets an authorization URL using the specified <paramref name="state"/> and request the specified
+        /// <paramref name="scope"/>.
         /// </summary>
         /// <param name="state">A unique state for the request.</param>
         /// <param name="scope">The scope of your application.</param>
+        /// <returns>The authorization URL.</returns>
         public virtual string GetAuthorizationUrl(string state, params string[] scope) {
 
             // Some validation
@@ -194,10 +201,10 @@ namespace Skybrud.Social.Instagram.OAuth {
         }
 
         /// <summary>
-        /// Makes a call to the Instagram API to exchange the specified <code>authCode</code> for an access token.
+        /// Makes a call to the Instagram API to exchange the specified <paramref name="authCode"/> for an access token.
         /// </summary>
         /// <param name="authCode">The authorization code obtained from an OAuth 2.0 login flow.</param>
-        /// <returns>Returns an instance of <see cref="InstagramTokenResponse"/> representing the response from the server.</returns>
+        /// <returns>An instance of <see cref="InstagramTokenResponse"/> representing the response from the server.</returns>
         public virtual InstagramTokenResponse GetAccessTokenFromAuthCode(string authCode) {
 
             // Some validation
@@ -249,11 +256,11 @@ namespace Skybrud.Social.Instagram.OAuth {
         }
 
         /// <summary>
-        /// Generates the signature value based on the specified <code>endpoint</code> and <code>parameters</code>.
+        /// Generates the signature value based on the specified <paramref name="endpoint"/> and <paramref name="parameters"/>.
         /// </summary>
         /// <param name="endpoint">The endpoint.</param>
         /// <param name="parameters">The parameters.</param>
-        /// <returns>Returns the signature value.</returns>
+        /// <returns>The signature value.</returns>
         /// <see>
         ///     <cref>https://www.instagram.com/developer/secure-api-requests/#enforce-signed-requests</cref>
         /// </see>
@@ -281,7 +288,7 @@ namespace Skybrud.Social.Instagram.OAuth {
         /// </summary>
         /// <param name="endpoint">The endpoint.</param>
         /// <param name="parameters">The parameters.</param>
-        /// <returns>Returns the HMAC signature.</returns>
+        /// <returns>The HMAC signature.</returns>
         /// <see>
         ///     <cref>https://www.instagram.com/developer/secure-api-requests/#enforce-signed-requests</cref>
         /// </see>
@@ -311,11 +318,12 @@ namespace Skybrud.Social.Instagram.OAuth {
         }
 
         /// <summary>
-        /// Generates the signature value based on the specified <code>endpoint</code> and <code>parameters</code>.
+        /// Generates the signature value based on the specified <paramref name="endpoint"/> and
+        /// <paramref name="parameters"/>.
         /// </summary>
         /// <param name="endpoint">The endpoint.</param>
         /// <param name="parameters">The parameters.</param>
-        /// <returns>Returns the signature value.</returns>
+        /// <returns>The signature value.</returns>
         /// <see>
         ///     <cref>https://www.instagram.com/developer/secure-api-requests/#enforce-signed-requests</cref>
         /// </see>
@@ -343,7 +351,7 @@ namespace Skybrud.Social.Instagram.OAuth {
         /// </summary>
         /// <param name="endpoint">The endpoint.</param>
         /// <param name="parameters">The parameters.</param>
-        /// <returns>Returns the HMAC signature.</returns>
+        /// <returns>The HMAC signature.</returns>
         /// <see>
         ///     <cref>https://www.instagram.com/developer/secure-api-requests/#enforce-signed-requests</cref>
         /// </see>
