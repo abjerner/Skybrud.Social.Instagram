@@ -108,8 +108,6 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
             return Client.DoHttpGetRequest("https://api.instagram.com/v1/media/search", options);
         }
 
-        // TODO: Implement http://instagram.com/developer/endpoints/media/#get_media_popular
-
         #endregion
 
     }
