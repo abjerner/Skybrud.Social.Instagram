@@ -72,6 +72,10 @@
     <Compile Include="Objects\Common\InstagramRateLimiting.cs" />
     <Compile Include="Objects\Authentication\InstagramTokenSummary.cs" />
     <Compile Include="Objects\Comments\InstagramComment.cs" />
+    <Compile Include="Objects\Media\Carousels\InstagramCarouselImage.cs" />
+    <Compile Include="Objects\Media\Carousels\InstagramCarouselVideo.cs" />
+    <Compile Include="Objects\Media\Carousels\InstagramCarouselMedia.cs" />
+    <Compile Include="Objects\Media\InstagramCarousel.cs" />
     <Compile Include="Objects\Media\InstagramImage.cs" />
     <Compile Include="Objects\Media\InstagramImageSummary.cs" />
     <Compile Include="Objects\Locations\InstagramLocation.cs" />

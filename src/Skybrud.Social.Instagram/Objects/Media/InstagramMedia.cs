@@ -248,6 +248,24 @@ namespace Skybrud.Social.Instagram.Objects.Media {
             return video != null;
         }
 
+        /// <summary>
+        /// Gets whether the media is a carousel - AKA an instance of <see cref="InstagramCarousel"/>.
+        /// </summary>
+        /// <returns><code>true</code> if this media is an instance of <see cref="InstagramCarousel"/>, otherwise <code>false</code>.</returns>
+        public bool IsCarousel() {
+            return this is InstagramCarousel;
+        }
+
+        /// <summary>
+        /// Gets whether the media is a carousel - AKA an instance of <see cref="InstagramCarousel"/>.
+        /// </summary>
+        /// <param name="carousel">The instance of <see cref="InstagramCarousel"/> if a video, otherwise <code>null</code>.</param>
+        /// <returns><code>true</code> if this media is an instance of <see cref="InstagramCarousel"/>, otherwise <code>false</code>.</returns>
+        public bool IsCarousel(out InstagramCarousel carousel) {
+            carousel = this as InstagramCarousel;
+            return carousel != null;
+        }
+
         #endregion
 
         #region Static methods
@@ -263,6 +281,7 @@ namespace Skybrud.Social.Instagram.Objects.Media {
             switch (type) {
                 case "image": return new InstagramImage(obj);
                 case "video": return new InstagramVideo(obj);
+                case "carousel": return new InstagramCarousel(obj);
                 default: throw new InstagramParseException("Unknown media type: " + type);
             }
         }
