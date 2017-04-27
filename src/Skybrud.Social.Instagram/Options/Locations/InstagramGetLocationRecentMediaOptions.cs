@@ -16,7 +16,7 @@ namespace Skybrud.Social.Instagram.Options.Locations {
         /// <summary>
         /// Gets or sets the ID of the location.
         /// </summary>
-        public int LocationId { get; set; }
+        public long LocationId { get; set; }
 
         /// <summary>
         /// Gets or sets the maximum amount of media to be returned.
@@ -60,7 +60,7 @@ namespace Skybrud.Social.Instagram.Options.Locations {
         /// Initializes a new instance with the specified <code>locationId</code>.
         /// </summary>
         /// <param name="locationId">The ID of the location.</param>
-        public InstagramGetLocationRecentMediaOptions(int locationId) {
+        public InstagramGetLocationRecentMediaOptions(long locationId) {
             LocationId = locationId;
         }
 

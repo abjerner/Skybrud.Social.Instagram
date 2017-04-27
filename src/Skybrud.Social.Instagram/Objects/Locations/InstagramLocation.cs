@@ -14,7 +14,7 @@ namespace Skybrud.Social.Instagram.Objects.Locations {
         /// <summary>
         /// Gets the ID of the location.
         /// </summary>
-        public int Id { get; private set; }
+        public long Id { get; private set; }
 
         /// <summary>
         /// The name of the location.
@@ -38,7 +38,7 @@ namespace Skybrud.Social.Instagram.Objects.Locations {
         #region Constructors
 
         private InstagramLocation(JObject obj) : base(obj) {
-            Id = obj.GetInt32("id");
+            Id = obj.GetInt64("id");
             Name = obj.GetString("name");
             Latitude = obj.GetDouble("latitude");
             Longitude = obj.GetDouble("longitude");
@@ -49,10 +49,10 @@ namespace Skybrud.Social.Instagram.Objects.Locations {
         #region Static methods
         
         /// <summary>
-        /// Parses the specified <code>obj</code> into an instance of <see cref="InstagramLocation"/>.
+        /// Parses the specified <paramref name="obj"/> into an instance of <see cref="InstagramLocation"/>.
         /// </summary>
         /// <param name="obj">The instance of <see cref="JObject"/> to be parsed.</param>
-        /// <returns>Returns an instance of <see cref="InstagramLocation"/>.</returns>
+        /// <returns>An instance of <see cref="InstagramLocation"/>.</returns>
         public static InstagramLocation Parse(JObject obj) {
             return obj == null ? null : new InstagramLocation(obj);
         }

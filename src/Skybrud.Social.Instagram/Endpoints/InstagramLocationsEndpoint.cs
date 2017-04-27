@@ -70,7 +70,7 @@ namespace Skybrud.Social.Instagram.Endpoints {
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations_media_recent</cref>
         /// </see>
-        public InstagramGetLocationRecentMediaResponse GetRecentMedia(int locationId) {
+        public InstagramGetLocationRecentMediaResponse GetRecentMedia(long locationId) {
             return InstagramGetLocationRecentMediaResponse.ParseResponse(Raw.GetRecentMedia(locationId));
         }
 

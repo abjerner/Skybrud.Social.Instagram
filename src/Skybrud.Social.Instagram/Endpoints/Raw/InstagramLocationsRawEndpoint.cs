@@ -67,7 +67,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations_media_recent</cref>
         /// </see>
-        public SocialHttpResponse GetRecentMedia(int locationId) {
+        public SocialHttpResponse GetRecentMedia(long locationId) {
             return GetRecentMedia(new InstagramGetLocationRecentMediaOptions(locationId));
         }
 
