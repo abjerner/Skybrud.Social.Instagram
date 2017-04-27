@@ -43,6 +43,13 @@ namespace Skybrud.Social.Instagram.Objects.Media {
         public string[] Tags { get; internal set; }
 
         /// <summary>
+        /// Gets whether any tags has been specified for the media.
+        /// </summary>
+        public bool HasTags {
+            get { return Tags.Length > 0; }
+        }
+
+        /// <summary>
         /// Gets the filter used for this media.
         /// </summary>
         public string Filter { get; internal set; }
@@ -50,7 +57,7 @@ namespace Skybrud.Social.Instagram.Objects.Media {
         /// <summary>
         /// Specifies the time of creation in UTC/GMT 0.
         /// </summary>
-        public EssentialsDateTime Created { get; internal set; }
+        public EssentialsDateTime CreatedTime { get; internal set; }
 
         /// <summary>
         /// Gets the link (URL) of the page on instagram.com for the media.
@@ -63,15 +70,33 @@ namespace Skybrud.Social.Instagram.Objects.Media {
         public int LikeCount { get; internal set; }
 
         /// <summary>
+        /// Gets a summary about the likes the media has received.
+        /// </summary>
+        public InstagramMediaLikes Likes { get; private set; }
+
+        /// <summary>
+        /// Gets whether the media has received any likes.
+        /// </summary>
+        public bool HasLikes {
+            get { return LikeCount > 0; }
+        }
+
+        /// <summary>
         /// Gets the amount of comments the media has received. This equals calling <code>Comments.Count</code>.
         /// </summary>
         public int CommentCount { get; internal set; }
 
         /// <summary>
-        /// Gets an array of comments of the media. If the media has received many comments, this array may just be a
-        /// subset of all the comments.
+        /// Gets a summary about the comments the media has received.
         /// </summary>
-        public InstagramComment[] Comments { get; internal set; }
+        public InstagramMediaComments Comments { get; internal set; }
+
+        /// <summary>
+        /// Gets whether the media has received any comments.
+        /// </summary>
+        public bool HasComments {
+            get { return CommentCount > 0; }
+        }
 
         /// <summary>
         /// Gets a summary of the image formats available for this Instagram media. The image formats are available
@@ -106,10 +131,17 @@ namespace Skybrud.Social.Instagram.Objects.Media {
         public InstagramComment Caption { get; set; }
 
         /// <summary>
-        /// Gets the caption text of the media, or <code>null</code> if not specified.
+        /// Gets the caption text of the media, or <see cref="String.Empty"/> if not specified.
         /// </summary>
         public string CaptionText {
-            get { return Caption == null ? null : Caption.Text; }
+            get { return Caption == null ? String.Empty : Caption.Text; }
+        }
+
+        /// <summary>
+        /// Gets whether a caption has been specified for the media.
+        /// </summary>
+        public bool HasCaption {
+            get { return Caption != null; }
         }
 
         /// <summary>
@@ -123,28 +155,34 @@ namespace Skybrud.Social.Instagram.Objects.Media {
         public InstagramLocation Location { get; private set; }
 
         /// <summary>
+        /// Gets whether a location has been specified for the media.
+        /// </summary>
+        public bool HasLocation {
+            get { return Location != null; }
+        }
+
+        /// <summary>
         /// Gets an array of users tagged in the photo.
         /// </summary>
         public InstagramTaggedUser[] UsersInPhoto { get; private set; }
 
         /// <summary>
-        /// Gets the creation date of the media. This property is just an alias of the <see cref="Created"/> property.
+        /// Gets whether the authenticated user has liked the media.
         /// </summary>
-        public EssentialsDateTime Date {
-            get { return Created; }
+        public bool UserHasLiked { get; private set; }
+
+        /// <summary>
+        /// Gets whether the authenticated user has liked the media. Alias of <see cref="UserHasLiked"/>.
+        /// </summary>
+        public bool HasUserLiked {
+            get { return UserHasLiked; }
         }
 
         /// <summary>
-        /// Gets an array of likes of the media. If the media has received many likes, this array may just be a subset
-        /// of all the likes.
-        /// </summary>
-        public InstagramUserSummary[] Likes { get; internal set; }
-
-        /// <summary>
-        /// Gets the creation date of the media. This property is just an alias of the <see cref="Created"/> property.
+        /// Gets the creation date of the media. This property is just an alias of the <see cref="CreatedTime"/> property.
         /// </summary>
         public DateTime SortDate {
-            get { return Date.DateTime; }
+            get { return CreatedTime.DateTime; }
         }
 
         #endregion
@@ -152,26 +190,62 @@ namespace Skybrud.Social.Instagram.Objects.Media {
         #region Constructors
 
         internal InstagramMedia(JObject obj) : base(obj) {
-
-            JObject comments = obj.GetObject("comments");
-            JObject likes = obj.GetObject("likes");
-
             Id = obj.GetString("id");
             Type = obj.GetString("type");
             Tags = obj.GetStringArray("tags");
-            Created = obj.GetInt64("created_time", EssentialsDateTime.FromUnixTimestamp);
+            CreatedTime = obj.GetInt64("created_time", EssentialsDateTime.FromUnixTimestamp);
             Link = obj.GetString("link");
             Filter = obj.GetString("filter");
-            CommentCount = comments.GetInt32("count");
-            Comments = comments.GetArray("data", InstagramComment.Parse);
-            LikeCount = likes.GetInt32("count");
-            Likes = likes.GetArray("data", InstagramUserSummary.Parse);
+            CommentCount = obj.GetInt32("comments.count");
+            Comments = obj.GetObject("comments", InstagramMediaComments.Parse);
+            LikeCount = obj.GetInt32("likes.count");
+            Likes = obj.GetObject("likes", InstagramMediaLikes.Parse);
             Images = obj.GetObject("images", InstagramImageSummary.Parse);
             Caption = obj.GetObject("caption", InstagramComment.Parse);
             User = obj.GetObject("user", InstagramUser.Parse);
             Location = obj.GetObject("location", InstagramLocation.Parse);
             UsersInPhoto = obj.GetArray("users_in_photo", InstagramTaggedUser.Parse);
-        
+            UserHasLiked = obj.GetBoolean("user_has_liked");
+        }
+
+        #endregion
+
+        #region Member methods
+
+        /// <summary>
+        /// Gets whether the media is an image - AKA an instance of <see cref="InstagramImage"/>.
+        /// </summary>
+        /// <returns><code>true</code> if this media is an instance of <see cref="InstagramImage"/>, otherwise <code>false</code>.</returns>
+        public bool IsImage() {
+            return this is InstagramImage;
+        }
+
+        /// <summary>
+        /// Gets whether the media is an image - AKA an instance of <see cref="InstagramImage"/>.
+        /// </summary>
+        /// <param name="image">The instance of <see cref="InstagramImage"/> if an image, otherwise <code>null</code>.</param>
+        /// <returns><code>true</code> if this media is an instance of <see cref="InstagramImage"/>, otherwise <code>false</code>.</returns>
+        public bool IsImage(out InstagramImage image) {
+            image = this as InstagramImage;
+            return image != null;
+        }
+
+        /// <summary>
+        /// Gets whether the media is a video - AKA an instance of <see cref="InstagramVideo"/>.
+        /// </summary>
+        /// <returns><code>true</code> if this media is an instance of <see cref="InstagramVideo"/>, otherwise <code>false</code>.</returns>
+        public bool IsVideo() {
+            return this is InstagramVideo;
+        }
+
+        /// <summary>
+        /// Gets whether the media is a video - AKA an instance of <see cref="InstagramVideo"/>.
+        /// </summary>
+        /// <param name="video">The instance of <see cref="InstagramVideo"/> if a video, otherwise <code>null</code>.</param>
+        /// <returns><code>true</code> if this media is an instance of <see cref="InstagramVideo"/>, otherwise <code>false</code>.</returns>
+        public bool IsVideo(out InstagramVideo video) {
+            video = this as InstagramVideo;
+            return video != null;
         }
 
         #endregion

@@ -75,6 +75,8 @@
     <Compile Include="Objects\Media\InstagramImage.cs" />
     <Compile Include="Objects\Media\InstagramImageSummary.cs" />
     <Compile Include="Objects\Locations\InstagramLocation.cs" />
+    <Compile Include="Objects\Media\InstagramMediaComments.cs" />
+    <Compile Include="Objects\Media\InstagramMediaLikes.cs" />
     <Compile Include="Objects\Media\InstagramMedia.cs" />
     <Compile Include="Objects\Media\InstagramMediaSummary.cs" />
     <Compile Include="Objects\InstagramMetaData.cs" />
