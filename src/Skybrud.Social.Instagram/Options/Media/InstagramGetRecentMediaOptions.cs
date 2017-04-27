@@ -1,3 +1,5 @@
+using System;
+using Skybrud.Essentials.Locations;
 using Skybrud.Essentials.Time;
 using Skybrud.Social.Http;
 using Skybrud.Social.Interfaces.Http;
@@ -12,7 +14,9 @@ namespace Skybrud.Social.Instagram.Options.Media {
     ///     <cref>https://www.instagram.com/developer/endpoints/media/#get_media_search</cref>
     /// </see>
     public class InstagramGetRecentMediaOptions : IHttpGetOptions {
-        
+
+        #region Properties
+
         /// <summary>
         /// Gets or sets the latitude of the center search coordinate.
         /// </summary>
@@ -39,6 +43,64 @@ namespace Skybrud.Social.Instagram.Options.Media {
         /// </summary>
         public EssentialsDateTime MaxTimestamp { get; set; }
 
+        #endregion
+
+        #region Constructors
+
+        /// <summary>
+        /// Initializes a new instance with default options.
+        /// </summary>
+        public InstagramGetRecentMediaOptions() { }
+
+        /// <summary>
+        /// Initializes a new instance from the specified <paramref name="latitude"/> and <paramref name="longitude"/>.
+        /// </summary>
+        /// <param name="latitude">The latitude of the point.</param>
+        /// <param name="longitude">The longitude of the point.</param>
+        public InstagramGetRecentMediaOptions(double latitude, double longitude) {
+            Latitude = latitude;
+            Longitude = longitude;
+        }
+
+        /// <summary>
+        /// Initializes a new instance from the specified <paramref name="latitude"/>, <paramref name="longitude"/> and
+        /// <paramref name="distance"/>.
+        /// </summary>
+        /// <param name="latitude">The latitude of the point.</param>
+        /// <param name="longitude">The longitude of the point.</param>
+        /// <param name="distance">The distance/radius in meters. The API allows a maximum radius of 5000 meters.</param>
+        public InstagramGetRecentMediaOptions(double latitude, double longitude, int distance) {
+            Latitude = latitude;
+            Longitude = longitude;
+            Distance = distance;
+        }
+
+        /// <summary>
+        /// Initializes a new instance from the specified <paramref name="location"/>.
+        /// </summary>
+        /// <param name="location">An instance of <see cref="ILocation"/> representing the point.</param>
+        public InstagramGetRecentMediaOptions(ILocation location) {
+            if (location == null) throw new ArgumentNullException("location");
+            Latitude = location.Latitude;
+            Longitude = location.Longitude;
+        }
+
+        /// <summary>
+        /// Initializes a new instance from the specified <paramref name="location"/> and <paramref name="distance"/>.
+        /// </summary>
+        /// <param name="location">An instance of <see cref="ILocation"/> representing the point.</param>
+        /// <param name="distance">The distance/radius in meters. The API allows a maximum radius of 5000 meters.</param>
+        public InstagramGetRecentMediaOptions(ILocation location, int distance) {
+            if (location == null) throw new ArgumentNullException("location");
+            Latitude = location.Latitude;
+            Longitude = location.Longitude;
+            Distance = distance;
+        }
+
+        #endregion
+
+        #region Member methods
+
         /// <summary>
         /// Gets an instance of <see cref="IHttpQueryString"/> representing the GET parameters.
         /// </summary>
@@ -57,6 +119,8 @@ namespace Skybrud.Social.Instagram.Options.Media {
             return qs;
 
         }
+
+        #endregion
     
     }
 

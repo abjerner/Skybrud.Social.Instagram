@@ -1,3 +1,4 @@
+using Skybrud.Essentials.Locations;
 using Skybrud.Social.Instagram.Endpoints.Raw;
 using Skybrud.Social.Instagram.Options.Media;
 using Skybrud.Social.Instagram.Responses.Media;
@@ -60,40 +61,54 @@ namespace Skybrud.Social.Instagram.Endpoints {
         }
 
         /// <summary>
-        /// Search for media in a given area. The default time span is set to 5 days. Can return mix of image
+        /// Search for media in a given area. Can return mix of image
         /// and video types.
         /// </summary>
         /// <param name="latitude">The latitude of the point.</param>
         /// <param name="longitude">The longitude of the point.</param>
-        /// <see>
-        ///     <cref>https://instagram.com/developer/endpoints/media/#get_media_search</cref>
-        /// </see>
+        /// <returns>An instance of <see cref="InstagramGetRecentMediaResponse"/> representing the response from the Instagram API.</returns>
         public InstagramGetRecentMediaResponse Search(double latitude, double longitude) {
             return InstagramGetRecentMediaResponse.ParseResponse(Raw.Search(latitude, longitude));
         }
 
         /// <summary>
-        /// Search for media in a given area. The default time span is set to 5 days. Can return mix of image
+        /// Search for media in a given area. Can return mix of image
         /// and video types.
         /// </summary>
         /// <param name="latitude">The latitude of the point.</param>
         /// <param name="longitude">The longitude of the point.</param>
         /// <param name="distance">The distance/radius in meters. The API allows a maximum radius of 5000 meters.</param>
-        /// <see>
-        ///     <cref>https://instagram.com/developer/endpoints/media/#get_media_search</cref>
-        /// </see>
+        /// <returns>An instance of <see cref="InstagramGetRecentMediaResponse"/> representing the response from the Instagram API.</returns>
         public InstagramGetRecentMediaResponse Search(double latitude, double longitude, int distance) {
             return InstagramGetRecentMediaResponse.ParseResponse(Raw.Search(latitude, longitude, distance));
         }
 
         /// <summary>
-        /// Search for media in a given area. The default time span is set to 5 days. The time span must not
-        /// exceed 7 days. Defaults time stamps cover the last 5 days. Can return mix of image and video types.
+        /// Search for media in a given area. Can return mix of image
+        /// and video types.
+        /// </summary>
+        /// <param name="location">An instance of <see cref="ILocation"/> representing the point.</param>
+        /// <returns>An instance of <see cref="InstagramGetRecentMediaResponse"/> representing the response from the Instagram API.</returns>
+        public InstagramGetRecentMediaResponse Search(ILocation location) {
+            return InstagramGetRecentMediaResponse.ParseResponse(Raw.Search(location));
+        }
+
+        /// <summary>
+        /// Search for media in a given area. Can return mix of image
+        /// and video types.
+        /// </summary>
+        /// <param name="location">An instance of <see cref="ILocation"/> representing the point.</param>
+        /// <param name="distance">The distance/radius in meters. The API allows a maximum radius of 5000 meters.</param>
+        /// <returns>An instance of <see cref="InstagramGetRecentMediaResponse"/> representing the response from the Instagram API.</returns>
+        public InstagramGetRecentMediaResponse Search(ILocation location, int distance) {
+            return InstagramGetRecentMediaResponse.ParseResponse(Raw.Search(location, distance));
+        }
+
+        /// <summary>
+        /// Search for media in a given area. Can return mix of image and video types.
         /// </summary>
         /// <param name="options">The search options.</param>
-        /// <see>
-        ///     <cref>https://instagram.com/developer/endpoints/media/#get_media_search</cref>
-        /// </see>
+        /// <returns>An instance of <see cref="InstagramGetRecentMediaResponse"/> representing the response from the Instagram API.</returns>
         public InstagramGetRecentMediaResponse Search(InstagramGetRecentMediaOptions options) {
             return InstagramGetRecentMediaResponse.ParseResponse(Raw.Search(options));
         }

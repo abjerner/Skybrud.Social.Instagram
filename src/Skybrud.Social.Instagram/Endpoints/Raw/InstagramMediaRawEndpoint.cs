@@ -1,4 +1,5 @@
 using System;
+using Skybrud.Essentials.Locations;
 using Skybrud.Social.Http;
 using Skybrud.Social.Instagram.OAuth;
 using Skybrud.Social.Instagram.Options.Media;
@@ -59,20 +60,16 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         }
 
         /// <summary>
-        /// Search for media in a given area. The default time span is set to 5 days. Can return mix of image
-        /// and video types.
+        /// Search for media in a given area. Can return mix of image and video types.
         /// </summary>
         /// <param name="latitude">The latitude of the point.</param>
         /// <param name="longitude">The longitude of the point.</param>
-        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
+        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/media/#get_media_search</cref>
         /// </see>
         public SocialHttpResponse Search(double latitude, double longitude) {
-            return Search(new InstagramGetRecentMediaOptions {
-                Latitude = latitude,
-                Longitude = longitude
-            });
+            return Search(new InstagramGetRecentMediaOptions(latitude, longitude));
         }
 
         /// <summary>
@@ -82,24 +79,46 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// <param name="latitude">The latitude of the point.</param>
         /// <param name="longitude">The longitude of the point.</param>
         /// <param name="distance">The distance/radius in meters. The API allows a maximum radius of 5000 meters.</param>
-        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
+        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/media/#get_media_search</cref>
         /// </see>
         public SocialHttpResponse Search(double latitude, double longitude, int distance) {
-            return Search(new InstagramGetRecentMediaOptions {
-                Latitude = latitude,
-                Longitude = longitude,
-                Distance = distance
-            });
+            return Search(new InstagramGetRecentMediaOptions(latitude, longitude, distance));
         }
 
         /// <summary>
-        /// Search for media in a given area. The default time span is set to 5 days. The time span must not
-        /// exceed 7 days. Defaults time stamps cover the last 5 days. Can return mix of image and video types.
+        /// Search for media in a given area. Can return mix of image and video types.
+        /// </summary>
+        /// <param name="location">An instance of <see cref="ILocation"/> representing the point.</param>
+        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
+        /// <see>
+        ///     <cref>https://instagram.com/developer/endpoints/media/#get_media_search</cref>
+        /// </see>
+        public SocialHttpResponse Search(ILocation location) {
+            if (location == null) throw new ArgumentNullException("location");
+            return Search(new InstagramGetRecentMediaOptions(location));
+        }
+
+        /// <summary>
+        /// Search for media in a given area. Can return mix of image and video types.
+        /// </summary>
+        /// <param name="location">An instance of <see cref="ILocation"/> representing the point.</param>
+        /// <param name="distance">The distance/radius in meters. The API allows a maximum radius of 5000 meters.</param>
+        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
+        /// <see>
+        ///     <cref>https://instagram.com/developer/endpoints/media/#get_media_search</cref>
+        /// </see>
+        public SocialHttpResponse Search(ILocation location, int distance) {
+            if (location == null) throw new ArgumentNullException("location");
+            return Search(new InstagramGetRecentMediaOptions(location));
+        }
+
+        /// <summary>
+        /// Search for media in a given area. Can return mix of image and video types.
         /// </summary>
         /// <param name="options">The search options.</param>
-        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
+        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/media/#get_media_search</cref>
         /// </see>
