@@ -40,7 +40,7 @@ namespace Skybrud.Social.Instagram.Objects.Media {
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <code>obj</code> into an instance of <see cref="InstagramVideoSummary"/>.
+        /// Parses the specified <paramref name="obj"/> into an instance of <see cref="InstagramVideoSummary"/>.
         /// </summary>
         /// <param name="obj">The instance of <see cref="JObject"/> to be parsed.</param>
         /// <returns>Returns an instance of <see cref="InstagramVideoSummary"/>.</returns>

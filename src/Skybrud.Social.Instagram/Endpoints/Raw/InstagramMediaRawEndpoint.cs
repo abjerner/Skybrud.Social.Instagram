@@ -33,10 +33,10 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         #region Methods
 
         /// <summary>
-        /// Gets information about a media object.
+        /// Gets information about the Instagram media with the specified <paramref name="mediaId"/>.
         /// </summary>
         /// <param name="mediaId">The ID of the media.</param>
-        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
+        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/media/#get_media</cref>
         /// </see>

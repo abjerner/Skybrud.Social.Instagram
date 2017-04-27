@@ -177,12 +177,12 @@ namespace Skybrud.Social.Instagram.Objects.Media {
         #endregion
 
         #region Static methods
-        
+
         /// <summary>
-        /// Parses the specified <code>obj</code> into an instance of <see cref="InstagramMedia"/>.
+        /// Parses the specified <paramref name="obj"/> into an instance of <see cref="InstagramMedia"/>.
         /// </summary>
         /// <param name="obj">The instance of <see cref="JObject"/> to be parsed.</param>
-        /// <returns>Returns an instance of <see cref="InstagramMedia"/>.</returns>
+        /// <returns>An instance of <see cref="InstagramMedia"/>.</returns>
         public static InstagramMedia Parse(JObject obj) {
             if (obj == null) return null;
             string type = obj.GetString("type");
