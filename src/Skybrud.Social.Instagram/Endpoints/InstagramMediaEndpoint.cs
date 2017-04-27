@@ -50,6 +50,15 @@ namespace Skybrud.Social.Instagram.Endpoints {
         }
 
         /// <summary>
+        /// Gets information about the Instagram media with the specified <paramref name="shortcode"/>.
+        /// </summary>
+        /// <param name="shortcode">The shortcode of the media (eg. <code>BSTdNc3Bk2B</code>).</param>
+        /// <returns>An instance of <see cref="InstagramGetMediaResponse"/> representing the response from the Instagram API.</returns>
+        public InstagramGetMediaResponse GetMediaFromShortcode(string shortcode) {
+            return InstagramGetMediaResponse.ParseResponse(Raw.GetMediaFromShortcode(shortcode));
+        }
+
+        /// <summary>
         /// Search for media in a given area. The default time span is set to 5 days. Can return mix of image
         /// and video types.
         /// </summary>

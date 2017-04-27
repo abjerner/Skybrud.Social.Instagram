@@ -45,7 +45,18 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
             return Client.DoHttpGetRequest("https://api.instagram.com/v1/media/" + mediaId);
         }
 
-        // TODO: Implement http://instagram.com/developer/endpoints/media/#get_media_by_shortcode
+        /// <summary>
+        /// Gets information about the Instagram media with the specified <paramref name="shortcode"/>.
+        /// </summary>
+        /// <param name="shortcode">The shortcode of the media (eg. <code>BSTdNc3Bk2B</code>).</param>
+        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
+        /// <see>
+        ///     <cref>https://www.instagram.com/developer/endpoints/media/#get_media_by_shortcode</cref>
+        /// </see>
+        public SocialHttpResponse GetMediaFromShortcode(string shortcode) {
+            if (String.IsNullOrWhiteSpace(shortcode)) throw new ArgumentNullException("shortcode");
+            return Client.DoHttpGetRequest("https://api.instagram.com/v1/media/shortcode/" + shortcode);
+        }
 
         /// <summary>
         /// Search for media in a given area. The default time span is set to 5 days. Can return mix of image
