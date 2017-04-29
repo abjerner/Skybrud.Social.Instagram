@@ -26,25 +26,21 @@ namespace Skybrud.Social.Instagram.Options.Locations {
         /// <summary>
         /// Only media before this timestamp is returned.
         /// </summary>
-        // TODO: Not sure whether this is inclusive or exclusive.
         public EssentialsDateTime MaxTimestamp { get; set; }
 
         /// <summary>
         /// Only media after this timestamp is returned.
         /// </summary>
-        // TODO: Not sure whether this is inclusive or exclusive.
         public EssentialsDateTime MinTimestamp { get; set; }
 
         /// <summary>
         /// Only media after this ID is returned.
         /// </summary>
-        // TODO: Not sure whether this is inclusive or exclusive.
         public string MinId { get; set; }
 
         /// <summary>
         /// Only media before this ID is returned.
         /// </summary>
-        // TODO: Not sure whether this is inclusive or exclusive.
         public string MaxId { get; set; }
 
         #endregion
@@ -57,7 +53,7 @@ namespace Skybrud.Social.Instagram.Options.Locations {
         public InstagramGetLocationRecentMediaOptions() { }
 
         /// <summary>
-        /// Initializes a new instance with the specified <code>locationId</code>.
+        /// Initializes a new instance with the specified <paramref name="locationId"/>.
         /// </summary>
         /// <param name="locationId">The ID of the location.</param>
         public InstagramGetLocationRecentMediaOptions(long locationId) {
@@ -65,12 +61,33 @@ namespace Skybrud.Social.Instagram.Options.Locations {
         }
 
         /// <summary>
-        /// Initializes a new instance with the specified <code>location</code>.
+        /// Initializes a new instance with the specified <paramref name="locationId"/>.
+        /// </summary>
+        /// <param name="locationId">The ID of the location.</param>
+        /// <param name="count">The maximum amount of media to be returned.</param>
+        public InstagramGetLocationRecentMediaOptions(long locationId, int count) {
+            LocationId = locationId;
+            Count = count;
+        }
+
+        /// <summary>
+        /// Initializes a new instance with the specified <paramref name="location"/>.
         /// </summary>
         /// <param name="location">The location.</param>
         public InstagramGetLocationRecentMediaOptions(InstagramLocation location) {
             if (location == null) throw new ArgumentNullException("location");
             LocationId = location.Id;
+        }
+
+        /// <summary>
+        /// Initializes a new instance with the specified <paramref name="location"/>.
+        /// </summary>
+        /// <param name="location">The location.</param>
+        /// <param name="count">The maximum amount of media to be returned.</param>
+        public InstagramGetLocationRecentMediaOptions(InstagramLocation location, int count) {
+            if (location == null) throw new ArgumentNullException("location");
+            LocationId = location.Id;
+            Count = count;
         }
 
         #endregion

@@ -47,10 +47,10 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         }
 
         /// <summary>
-        /// Gets a list of recent media from the specified <code>location</code>.
+        /// Gets a list of recent media from the specified <paramref name="location"/>.
         /// </summary>
         /// <param name="location">The location.</param>
-        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
+        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response from the Instagram API.</returns>
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations_media_recent</cref>
         /// </see>
@@ -60,10 +60,24 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         }
 
         /// <summary>
-        /// Gets a list of recent media from a location with the specified <code>locationId</code>.
+        /// Gets a list of recent media from the specified <paramref name="location"/>.
+        /// </summary>
+        /// <param name="location">The location.</param>
+        /// <param name="count">The maximum amount of media to be returned.</param>
+        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response from the Instagram API.</returns>
+        /// <see>
+        ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations_media_recent</cref>
+        /// </see>
+        public SocialHttpResponse GetRecentMedia(InstagramLocation location, int count) {
+            if (location == null) throw new ArgumentNullException("location");
+            return GetRecentMedia(new InstagramGetLocationRecentMediaOptions(location.Id, count));
+        }
+
+        /// <summary>
+        /// Gets a list of recent media from a location with the specified <paramref name="locationId"/>.
         /// </summary>
         /// <param name="locationId">The ID of the location.</param>
-        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
+        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response from the Instagram API.</returns>
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations_media_recent</cref>
         /// </see>
@@ -72,10 +86,23 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         }
 
         /// <summary>
-        /// Gets a list of recent media from a location with the specified <code>locationId</code>.
+        /// Gets a list of recent media from a location with the specified <paramref name="locationId"/>.
+        /// </summary>
+        /// <param name="locationId">The ID of the location.</param>
+        /// <param name="count">The maximum amount of media to be returned.</param>
+        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response from the Instagram API.</returns>
+        /// <see>
+        ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations_media_recent</cref>
+        /// </see>
+        public SocialHttpResponse GetRecentMedia(long locationId, int count) {
+            return GetRecentMedia(new InstagramGetLocationRecentMediaOptions(locationId, count));
+        }
+
+        /// <summary>
+        /// Gets a list of recent media from a location matching the specified <paramref name="options"/>.
         /// </summary>
         /// <param name="options">The options for the search.</param>
-        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
+        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response from the Instagram API.</returns>
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations_media_recent</cref>
         /// </see>

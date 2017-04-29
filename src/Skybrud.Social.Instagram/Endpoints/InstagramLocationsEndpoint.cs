@@ -1,4 +1,3 @@
-using System;
 using Skybrud.Social.Instagram.Endpoints.Raw;
 using Skybrud.Social.Instagram.Objects.Locations;
 using Skybrud.Social.Instagram.Options.Locations;
@@ -52,35 +51,48 @@ namespace Skybrud.Social.Instagram.Endpoints {
         }
 
         /// <summary>
-        /// Get a list of recent media objects from a given location.
+        /// Gets a list of recent media from the specified <paramref name="location"/>.
         /// </summary>
         /// <param name="location">The location.</param>
-        /// <see>
-        ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations_media_recent</cref>
-        /// </see>
+        /// <returns>An instance of <see cref="InstagramGetLocationRecentMediaResponse"/> representing the response from the Instagram API.</returns>
         public InstagramGetLocationRecentMediaResponse GetRecentMedia(InstagramLocation location) {
-            if (location == null) throw new ArgumentNullException("location");
-            return GetRecentMedia(location.Id);
+            return InstagramGetLocationRecentMediaResponse.ParseResponse(Raw.GetRecentMedia(location));
         }
 
         /// <summary>
-        /// Get a list of recent media objects from a given location.
+        /// Gets a list of recent media from the specified <paramref name="location"/>.
+        /// </summary>
+        /// <param name="location">The location.</param>
+        /// <param name="count">The maximum amount of media to be returned.</param>
+        /// <returns>An instance of <see cref="InstagramGetLocationRecentMediaResponse"/> representing the response from the Instagram API.</returns>
+        public InstagramGetLocationRecentMediaResponse GetRecentMedia(InstagramLocation location, int count) {
+            return InstagramGetLocationRecentMediaResponse.ParseResponse(Raw.GetRecentMedia(location, count));
+        }
+
+        /// <summary>
+        /// Gets a list of recent media from a location with the specified <paramref name="locationId"/>.
         /// </summary>
         /// <param name="locationId">The ID of the location.</param>
-        /// <see>
-        ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations_media_recent</cref>
-        /// </see>
+        /// <returns>An instance of <see cref="InstagramGetLocationRecentMediaResponse"/> representing the response from the Instagram API.</returns>
         public InstagramGetLocationRecentMediaResponse GetRecentMedia(long locationId) {
             return InstagramGetLocationRecentMediaResponse.ParseResponse(Raw.GetRecentMedia(locationId));
         }
 
         /// <summary>
-        /// Get a list of recent media objects from a given location.
+        /// Gets a list of recent media from a location with the specified <paramref name="locationId"/>.
+        /// </summary>
+        /// <param name="locationId">The ID of the location.</param>
+        /// <param name="count">The maximum amount of media to be returned.</param>
+        /// <returns>An instance of <see cref="InstagramGetLocationRecentMediaResponse"/> representing the response from the Instagram API.</returns>
+        public InstagramGetLocationRecentMediaResponse GetRecentMedia(long locationId, int count) {
+            return InstagramGetLocationRecentMediaResponse.ParseResponse(Raw.GetRecentMedia(locationId));
+        }
+
+        /// <summary>
+        /// Gets a list of recent media from a location matching the specified <paramref name="options"/>.
         /// </summary>
         /// <param name="options">The options for the search.</param>
-        /// <see>
-        ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations_media_recent</cref>
-        /// </see>
+        /// <returns>An instance of <see cref="InstagramGetLocationRecentMediaResponse"/> representing the response from the Instagram API.</returns>
         public InstagramGetLocationRecentMediaResponse GetRecentMedia(InstagramGetLocationRecentMediaOptions options) {
             return InstagramGetLocationRecentMediaResponse.ParseResponse(Raw.GetRecentMedia(options));
         }
