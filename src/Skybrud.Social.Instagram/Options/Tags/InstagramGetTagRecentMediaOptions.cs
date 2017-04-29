@@ -15,6 +15,11 @@ namespace Skybrud.Social.Instagram.Options.Tags {
         #region Properties
 
         /// <summary>
+        /// Gets or sets the name of the tag.
+        /// </summary>
+        public string Tag { get; set; }
+
+        /// <summary>
         /// Gets or sets the maximum amount of media to return.
         /// </summary>
         public int Count { get; set; }
@@ -39,32 +44,33 @@ namespace Skybrud.Social.Instagram.Options.Tags {
         public InstagramGetTagRecentMediaOptions() { }
 
         /// <summary>
-        /// Initializes an instance with the specified <code>count</code>.
+        /// Initializes an instance with the specified <paramref name="tag"/>.
         /// </summary>
+        /// <param name="tag">The name of the tag.</param>
+        public InstagramGetTagRecentMediaOptions(string tag) {
+            Tag = tag;
+        }
+
+        /// <summary>
+        /// Initializes an instance with the specified <paramref name="tag"/> and <paramref name="count"/>.
+        /// </summary>
+        /// <param name="tag">The name of the tag.</param>
         /// <param name="count">The maximum amount of users to be returned.</param>
-        public InstagramGetTagRecentMediaOptions(int count) {
+        public InstagramGetTagRecentMediaOptions(string tag, int count) {
+            Tag = tag;
             Count = count;
         }
 
         /// <summary>
-        /// Initializes a new instance based on the specified <code>minTagId</code> and <code>maxTagId</code>.
+        /// Initializes a new instance based on the specified <paramref name="tag"/>, <paramref name="count"/> and
+        /// <see cref="maxTagId"/>.
         /// </summary>
-        /// <param name="minTagId">The minimum tag ID. Only media before this ID will be returned.</param>
-        /// <param name="maxTagId">The maximum tag ID. Only media after this ID will be returned.</param>
-        public InstagramGetTagRecentMediaOptions(string minTagId, string maxTagId) {
-            MinTagId = minTagId;
-            MaxTagId = maxTagId;
-        }
-
-        /// <summary>
-        /// Initializes a new instance based on the specified <code>minTagId</code> and <code>maxTagId</code>.
-        /// </summary>
+        /// <param name="tag">The name of the tag.</param>
         /// <param name="count">The maximum amount of users to be returned.</param>
-        /// <param name="minTagId">The minimum tag ID. Only media before this ID will be returned.</param>
         /// <param name="maxTagId">The maximum tag ID. Only media after this ID will be returned.</param>
-        public InstagramGetTagRecentMediaOptions(int count, string minTagId, string maxTagId) {
+        public InstagramGetTagRecentMediaOptions(string tag, int count, string maxTagId) {
+            Tag = tag;
             Count = count;
-            MinTagId = minTagId;
             MaxTagId = maxTagId;
         }
 

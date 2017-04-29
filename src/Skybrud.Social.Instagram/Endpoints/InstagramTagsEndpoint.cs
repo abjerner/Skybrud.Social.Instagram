@@ -1,4 +1,5 @@
 using Skybrud.Social.Instagram.Endpoints.Raw;
+using Skybrud.Social.Instagram.Options.Tags;
 using Skybrud.Social.Instagram.Responses.Media;
 using Skybrud.Social.Instagram.Responses.Tags;
 
@@ -39,38 +40,57 @@ namespace Skybrud.Social.Instagram.Endpoints {
         #region Methods
 
         /// <summary>
-        /// Gets information about the specified <code>tag</code>.
+        /// Gets information about the specified <paramref name="tag"/>.
         /// </summary>
         /// <param name="tag">The name of the tag.</param>
-        public InstagramGetTagResponse GetTagInfo(string tag) {
-            return InstagramGetTagResponse.ParseResponse(Raw.GetTagInfo(tag));
+        public InstagramGetTagResponse GetTag(string tag) {
+            return InstagramGetTagResponse.ParseResponse(Raw.GetTag(tag));
         }
 
         /// <summary>
-        /// Gets a list of media from the specified <code>tag</code>.
+        /// Gets a list of recent media from the specified <paramref name="tag"/>.
         /// </summary>
         /// <param name="tag">The name of the tag.</param>
-        /// <param name="minTagId"></param>
-        /// <param name="maxTagId"></param>
-        public InstagramGetRecentMediaResponse GetRecentMedia(string tag, string minTagId = null, string maxTagId = null) {
-            return InstagramGetRecentMediaResponse.ParseResponse(Raw.GetRecentMedia(tag, minTagId, maxTagId));
+        /// <returns>An instance of <see cref="InstagramGetRecentMediaResponse"/> representing the response from the Instagram API.</returns>
+        public InstagramGetRecentMediaResponse GetRecentMedia(string tag) {
+            return InstagramGetRecentMediaResponse.ParseResponse(Raw.GetRecentMedia(tag));
         }
 
         /// <summary>
-        /// Gets a list of media from the specified <code>tag</code>.
+        /// Gets a list of recent media from the specified <paramref name="tag"/>.
         /// </summary>
         /// <param name="tag">The name of the tag.</param>
-        /// <param name="count">Count of tagged media to return.</param>
-        /// <param name="minTagId">Return media before this min_tag_id</param>
-        /// <param name="maxTagId">Return media after this max_tag_id</param>
-        public InstagramGetRecentMediaResponse GetRecentMedia(string tag, int count, string minTagId = null, string maxTagId = null) {
-            return InstagramGetRecentMediaResponse.ParseResponse(Raw.GetRecentMedia(tag, count, minTagId, maxTagId));
+        /// <param name="count">The maximum amount of media to be returned.</param>
+        /// <returns>An instance of <see cref="InstagramGetRecentMediaResponse"/> representing the response from the Instagram API.</returns>
+        public InstagramGetRecentMediaResponse GetRecentMedia(string tag, int count) {
+            return InstagramGetRecentMediaResponse.ParseResponse(Raw.GetRecentMedia(tag, count));
+        }
+
+        /// <summary>
+        /// Gets a list of recent media from the specified <paramref name="tag"/>.
+        /// </summary>
+        /// <param name="tag">The name of the tag.</param>
+        /// <param name="count">The maximum amount of media to be returned.</param>
+        /// <param name="maxTagId">The maximum tag ID. Only media after this ID will be returned.</param>
+        /// <returns>An instance of <see cref="InstagramGetRecentMediaResponse"/> representing the response from the Instagram API.</returns>
+        public InstagramGetRecentMediaResponse GetRecentMedia(string tag, int count, string maxTagId) {
+            return InstagramGetRecentMediaResponse.ParseResponse(Raw.GetRecentMedia(tag, count, maxTagId));
+        }
+
+        /// <summary>
+        /// Gets a list of recent media from the tag matching the specified <paramref name="options"/>.
+        /// </summary>
+        /// <param name="options">The options for the call to the API.</param>
+        /// <returns>An instance of <see cref="InstagramGetRecentMediaResponse"/> representing the response from the Instagram API.</returns>
+        public InstagramGetRecentMediaResponse GetRecentMedia(InstagramGetTagRecentMediaOptions options) {
+            return InstagramGetRecentMediaResponse.ParseResponse(Raw.GetRecentMedia(options));
         }
 
         /// <summary>
         /// Search for tags by name. Results are ordered first as an exact match, then by popularity. Short tags will be treated as exact matches.
         /// </summary>
-        /// <param name="tag">A valid tag name without a leading #. (eg. snowy, nofilter)</param>
+        /// <param name="tag">A valid tag name without a leading <code>#</code> (eg. <code>snowy</code>, <code>nofilter</code>).</param>
+        /// <returns>An instance of <see cref="InstagramGetTagsResponse"/> representing the response from the Instagram API.</returns>
         public InstagramGetTagsResponse Search(string tag) {
             return InstagramGetTagsResponse.ParseResponse(Raw.Search(tag));
         }
