@@ -42,7 +42,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations</cref>
         /// </see>
-        public SocialHttpResponse GetLocation(int locationId) {
+        public SocialHttpResponse GetLocation(long locationId) {
             return Client.DoHttpGetRequest("https://api.instagram.com/v1/locations/" + locationId);
         }
 
