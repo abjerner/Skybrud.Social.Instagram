@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 using Skybrud.Social.Http;
@@ -25,7 +26,7 @@ namespace Skybrud.Social.Instagram.Responses {
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance based on the specified <code>response</code>.
+        /// Initializes a new instance based on the specified <paramref name="response"/>.
         /// </summary>
         /// <param name="response">The underlying raw response the instance should be based on.</param>
         protected InstagramResponse(SocialHttpResponse response) : base(response) {
@@ -37,7 +38,7 @@ namespace Skybrud.Social.Instagram.Responses {
         #region Static methods
 
         /// <summary>
-        /// Validates the specified <code>response</code>.
+        /// Validates the specified <paramref name="response"/>.
         /// </summary>
         /// <param name="response">The response to be validated.</param>
         public static void ValidateResponse(SocialHttpResponse response) {
@@ -51,12 +52,48 @@ namespace Skybrud.Social.Instagram.Responses {
             // Get the "meta" object (may be the root object for some errors)
             InstagramMetaData meta = obj.HasValue("code") ? InstagramMetaData.Parse(obj) : obj.GetObject("meta", InstagramMetaData.Parse);
 
-            // Now throw some exceptions
-            if (meta.ErrorType == "OAuthException") throw new InstagramOAuthException(response, meta);
-            if (meta.ErrorType == "OAuthAccessTokenException") throw new InstagramOAuthAccessTokenException(response, meta);
-            if (meta.ErrorType == "APINotFoundError") throw new InstagramHttpNotFoundException(response, meta);
+            // If the type isn't provided (it really should), we just throw an exception of the base type
+            if (String.IsNullOrWhiteSpace(meta.ErrorType)) {
+                throw new InstagramHttpException(response, meta);
+            }
+            
+            // Handle OAuth exception types
+            if (meta.ErrorType.StartsWith("OAuth")) {
+                
+                switch (meta.ErrorType) {
 
-            throw new InstagramHttpException(response, meta);
+                    case "OAuthAccessTokenException":
+                        throw new InstagramOAuthAccessTokenException(response, meta);
+
+                    case "OAuthForbiddenException":
+                        throw new InstagramOAuthForbiddenException(response, meta);
+
+                    case "OAuthParameterException":
+                        throw new InstagramOAuthParameterException(response, meta);
+
+                    case "OAuthPermissionsException":
+                        throw new InstagramOAuthPermissionsException(response, meta);
+
+                    case "OAuthRateLimitException":
+                        throw new InstagramOAuthRateLimitException(response, meta);
+
+                    default:
+                        throw new InstagramOAuthException(response, meta);
+
+                }
+            
+            }
+
+            // Handle other error types
+            switch (meta.ErrorType) {
+                
+                case "APINotFoundError":
+                    throw new InstagramNotFoundException(response, meta);
+                
+                default:
+                    throw new InstagramHttpException(response, meta);
+            
+            }
 
         }
 
@@ -81,7 +118,7 @@ namespace Skybrud.Social.Instagram.Responses {
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance based on the specified <code>response</code>.
+        /// Initializes a new instance based on the specified <paramref name="response"/>.
         /// </summary>
         /// <param name="response">The underlying raw response the instance should be based on.</param>
         protected InstagramResponse(SocialHttpResponse response) : base(response) { }
@@ -113,9 +150,10 @@ namespace Skybrud.Social.Instagram.Responses {
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance based on the specified <code>obj</code>.
+        /// Initializes a new instance based on the specified <paramref name="obj"/>.
         /// </summary>
         /// <param name="obj">The instance of <see cref="JObject"/> representing the response body.</param>
+        /// <returns>An instance of <see cref="InstagramMetaData"/>.</returns>
         protected InstagramResponseBody(JObject obj) : base(obj) {
             Meta = obj.GetObject("meta", InstagramMetaData.Parse);
         }
