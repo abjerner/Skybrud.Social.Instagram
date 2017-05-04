@@ -23,6 +23,14 @@ namespace Skybrud.Social.Instagram.Options.Relationships {
         /// </summary>
         public int Count { get; set; }
 
+        /// <summary>
+        /// Gets the identifier of the user. The identifier will be a textual representing of <see cref="UserId"/>, or
+        /// <code>self</code> if <see cref="UserId"/> has not been specified.
+        /// </summary>
+        public string Identifier {
+            get { return (UserId == 0 ? "self" : UserId + ""); }
+        }
+
         #endregion
 
         #region Constructors
@@ -33,7 +41,7 @@ namespace Skybrud.Social.Instagram.Options.Relationships {
         public InstagramGetFollowedByOptions() { }
 
         /// <summary>
-        /// Initializes a new instance with specified <code>userId</code>.
+        /// Initializes a new instance with specified <paramref name="userId"/>.
         /// </summary>
         /// <param name="userId">The ID of the user.</param>
         public InstagramGetFollowedByOptions(long userId) {
@@ -41,7 +49,7 @@ namespace Skybrud.Social.Instagram.Options.Relationships {
         }
 
         /// <summary>
-        /// Initializes an instance with the specified <code>userId</code> and <code>count</code>.
+        /// Initializes an instance with the specified <paramref name="userId"/> and <paramref name="count"/>.
         /// </summary>
         /// <param name="userId">The ID of the user.</param>
         /// <param name="count">The maximum amount of users to be returned.</param>
