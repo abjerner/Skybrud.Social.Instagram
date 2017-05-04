@@ -93,10 +93,10 @@ namespace Skybrud.Social.Instagram.Objects.Users {
         #region Static methods
 
         /// <summary>
-        /// Gets an instance of <see cref="InstagramUser"/> from the specified <code>obj</code>.
+        /// Gets an instance of <see cref="InstagramUser"/> from the specified <paramref name="obj"/>.
         /// </summary>
         /// <param name="obj">The instance of <see cref="JObject"/> to parse.</param>
-        /// <returns>Returns an instance of <see cref="InstagramUser"/>.</returns>
+        /// <returns>An instance of <see cref="InstagramUser"/>.</returns>
         public static InstagramUser Parse(JObject obj) {
             return obj == null ? null : new InstagramUser(obj);
         }
