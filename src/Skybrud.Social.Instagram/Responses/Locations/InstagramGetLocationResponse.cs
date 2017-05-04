@@ -2,6 +2,7 @@ using System;
 using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 using Skybrud.Social.Http;
+using Skybrud.Social.Instagram.Objects.Common;
 using Skybrud.Social.Instagram.Objects.Locations;
 
 namespace Skybrud.Social.Instagram.Responses.Locations {
@@ -55,7 +56,7 @@ namespace Skybrud.Social.Instagram.Responses.Locations {
     /// <see>
     ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations</cref>
     /// </see>
-    public class InstagramLocationResponseBody : InstagramResponseBody<InstagramLocation> {
+    public class InstagramLocationResponseBody : InstagramEnvelope<InstagramLocation> {
 
         #region Constructors
 

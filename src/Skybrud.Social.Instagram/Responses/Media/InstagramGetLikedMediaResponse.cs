@@ -2,6 +2,7 @@ using System;
 using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 using Skybrud.Social.Http;
+using Skybrud.Social.Instagram.Objects.Common;
 using Skybrud.Social.Instagram.Objects.Media;
 using Skybrud.Social.Instagram.Objects.Pagination;
 
@@ -56,7 +57,7 @@ namespace Skybrud.Social.Instagram.Responses.Media {
     /// <see>
     ///     <cref>https://instagram.com/developer/endpoints/users/#get_users_feed_liked</cref>
     /// </see>
-    public class InstagramLikedMediaResponseBody : InstagramResponseBody<InstagramMedia[]> {
+    public class InstagramLikedMediaResponseBody : InstagramEnvelope<InstagramMedia[]> {
 
         #region Properties
 

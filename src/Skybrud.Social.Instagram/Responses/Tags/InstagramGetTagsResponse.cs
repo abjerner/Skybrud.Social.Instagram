@@ -2,6 +2,7 @@ using System;
 using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 using Skybrud.Social.Http;
+using Skybrud.Social.Instagram.Objects.Common;
 using Skybrud.Social.Instagram.Objects.Tags;
 
 namespace Skybrud.Social.Instagram.Responses.Tags {
@@ -55,7 +56,7 @@ namespace Skybrud.Social.Instagram.Responses.Tags {
     /// <see>
     ///     <cref>https://instagram.com/developer/endpoints/tags/#get_tags_search</cref>
     /// </see>
-    public class InstagramSearchTagsResponseBody : InstagramResponseBody<InstagramTag[]> {
+    public class InstagramSearchTagsResponseBody : InstagramEnvelope<InstagramTag[]> {
 
         #region Constructors
 

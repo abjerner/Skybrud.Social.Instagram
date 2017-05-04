@@ -2,6 +2,7 @@ using System;
 using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 using Skybrud.Social.Http;
+using Skybrud.Social.Instagram.Objects.Common;
 using Skybrud.Social.Instagram.Objects.Media;
 using Skybrud.Social.Instagram.Objects.Pagination;
 
@@ -56,7 +57,7 @@ namespace Skybrud.Social.Instagram.Responses.Locations {
     /// <see>
     ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations_media_recent</cref>
     /// </see>
-    public class InstagramLocationRecentMediaResponseBody : InstagramResponseBody<InstagramMedia[]> {
+    public class InstagramLocationRecentMediaResponseBody : InstagramEnvelope<InstagramMedia[]> {
 
         #region Properties
 

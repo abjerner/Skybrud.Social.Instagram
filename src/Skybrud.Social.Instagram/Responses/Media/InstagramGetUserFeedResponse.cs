@@ -2,6 +2,7 @@ using System;
 using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 using Skybrud.Social.Http;
+using Skybrud.Social.Instagram.Objects.Common;
 using Skybrud.Social.Instagram.Objects.Media;
 
 namespace Skybrud.Social.Instagram.Responses.Media {
@@ -55,7 +56,7 @@ namespace Skybrud.Social.Instagram.Responses.Media {
     /// <see>
     ///     <cref>https://instagram.com/developer/endpoints/users/#get_users_feed</cref>
     /// </see>
-    public class InstagramUserFeedResponseBody : InstagramResponseBody<InstagramMedia[]> {
+    public class InstagramUserFeedResponseBody : InstagramEnvelope<InstagramMedia[]> {
 
         #region Constructors
 

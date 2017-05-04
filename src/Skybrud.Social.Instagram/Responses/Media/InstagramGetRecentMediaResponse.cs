@@ -2,6 +2,7 @@ using System;
 using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 using Skybrud.Social.Http;
+using Skybrud.Social.Instagram.Objects.Common;
 using Skybrud.Social.Instagram.Objects.Media;
 using Skybrud.Social.Instagram.Objects.Pagination;
 
@@ -50,7 +51,7 @@ namespace Skybrud.Social.Instagram.Responses.Media {
     /// <summary>
     /// Class representing the response body of a call for getting a list of recent media.
     /// </summary>
-    public class InstagramMediasResponseBody : InstagramResponseBody<InstagramMedia[]> {
+    public class InstagramMediasResponseBody : InstagramEnvelope<InstagramMedia[]> {
 
         #region Properties
 
