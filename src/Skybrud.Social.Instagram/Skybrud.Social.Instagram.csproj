@@ -125,6 +125,8 @@
     <Compile Include="Responses\Media\InstagramGetUserFeedResponse.cs" />
     <Compile Include="Responses\Users\InstagramGetUserResponse.cs" />
     <Compile Include="Responses\Users\InstagramGetUsersResponse.cs" />
+    <Compile Include="Objects\Users\InstagramUsersResponseBody.cs" />
+    <Compile Include="Objects\Users\InstagramUserResponseBody.cs" />
     <Compile Include="Scopes\InstagramScope.cs" />
     <Compile Include="Scopes\InstagramScopeCollection.cs" />
     <Compile Include="Scopes\InstagramScopes.cs" />
