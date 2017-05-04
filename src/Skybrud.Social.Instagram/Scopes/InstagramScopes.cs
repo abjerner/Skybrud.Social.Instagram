@@ -16,6 +16,11 @@
         public static readonly InstagramScope PublicContent = new InstagramScope("public_content");
 
         /// <summary>
+        /// Grants your app read access to the list of followers and followed-by users.
+        /// </summary>
+        public static readonly InstagramScope FollowerList = new InstagramScope("follower_list");
+
+        /// <summary>
         /// To create or delete comments on a user’s behalf.
         /// </summary>
         public static readonly InstagramScope Comments = new InstagramScope("comments");
