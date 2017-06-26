@@ -2,7 +2,7 @@
 using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 
-namespace Skybrud.Social.Instagram.Objects.Users {
+namespace Skybrud.Social.Instagram.Models.Users {
     
     /// <summary>
     /// Class describing the position of a tagged user in a photo.

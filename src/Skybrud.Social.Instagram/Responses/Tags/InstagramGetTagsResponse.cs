@@ -2,8 +2,8 @@ using System;
 using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 using Skybrud.Social.Http;
-using Skybrud.Social.Instagram.Objects.Common;
-using Skybrud.Social.Instagram.Objects.Tags;
+using Skybrud.Social.Instagram.Models.Common;
+using Skybrud.Social.Instagram.Models.Tags;
 
 namespace Skybrud.Social.Instagram.Responses.Tags {
     

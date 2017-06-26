@@ -1,7 +1,7 @@
 ﻿using System;
 using Skybrud.Essentials.Time;
 using Skybrud.Social.Http;
-using Skybrud.Social.Instagram.Objects.Locations;
+using Skybrud.Social.Instagram.Models.Locations;
 using Skybrud.Social.Interfaces.Http;
 
 namespace Skybrud.Social.Instagram.Options.Locations {

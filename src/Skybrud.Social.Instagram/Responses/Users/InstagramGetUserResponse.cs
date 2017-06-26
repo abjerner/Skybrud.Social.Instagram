@@ -1,6 +1,6 @@
 using System;
 using Skybrud.Social.Http;
-using Skybrud.Social.Instagram.Objects.Users;
+using Skybrud.Social.Instagram.Models.Users;
 
 namespace Skybrud.Social.Instagram.Responses.Users {
     

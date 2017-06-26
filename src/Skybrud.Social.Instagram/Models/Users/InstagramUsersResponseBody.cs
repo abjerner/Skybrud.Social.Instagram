@@ -1,8 +1,8 @@
 using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
-using Skybrud.Social.Instagram.Objects.Common;
+using Skybrud.Social.Instagram.Models.Common;
 
-namespace Skybrud.Social.Instagram.Objects.Users {
+namespace Skybrud.Social.Instagram.Models.Users {
     
     /// <summary>
     /// Class representing the response body of a request for getting a list of users.

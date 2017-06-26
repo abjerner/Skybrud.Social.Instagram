@@ -1,5 +1,5 @@
 using Skybrud.Social.Instagram.Endpoints.Raw;
-using Skybrud.Social.Instagram.Objects.Locations;
+using Skybrud.Social.Instagram.Models.Locations;
 using Skybrud.Social.Instagram.Options.Locations;
 using Skybrud.Social.Instagram.Responses.Locations;
 

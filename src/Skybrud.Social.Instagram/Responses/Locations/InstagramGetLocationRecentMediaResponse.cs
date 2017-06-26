@@ -2,9 +2,9 @@ using System;
 using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 using Skybrud.Social.Http;
-using Skybrud.Social.Instagram.Objects.Common;
-using Skybrud.Social.Instagram.Objects.Media;
-using Skybrud.Social.Instagram.Objects.Pagination;
+using Skybrud.Social.Instagram.Models.Common;
+using Skybrud.Social.Instagram.Models.Media;
+using Skybrud.Social.Instagram.Models.Pagination;
 
 namespace Skybrud.Social.Instagram.Responses.Locations {
     

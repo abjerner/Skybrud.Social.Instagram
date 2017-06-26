@@ -1,7 +1,7 @@
 using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 
-namespace Skybrud.Social.Instagram.Objects.Common {
+namespace Skybrud.Social.Instagram.Models.Common {
    
     /// <summary>
     /// Class representing the response body of a response from the Instagram API.
