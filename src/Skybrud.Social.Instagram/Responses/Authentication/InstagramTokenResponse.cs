@@ -1,6 +1,6 @@
 using System;
 using Skybrud.Social.Http;
-using Skybrud.Social.Instagram.Objects.Authentication;
+using Skybrud.Social.Instagram.Models.Authentication;
 
 namespace Skybrud.Social.Instagram.Responses.Authentication {
 

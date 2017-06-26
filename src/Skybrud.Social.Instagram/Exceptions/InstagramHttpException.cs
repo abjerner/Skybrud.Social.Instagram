@@ -1,7 +1,7 @@
 using System;
 using Skybrud.Social.Http;
-using Skybrud.Social.Instagram.Objects;
-using Skybrud.Social.Instagram.Objects.Common;
+using Skybrud.Social.Instagram.Models;
+using Skybrud.Social.Instagram.Models.Common;
 
 namespace Skybrud.Social.Instagram.Exceptions {
 
