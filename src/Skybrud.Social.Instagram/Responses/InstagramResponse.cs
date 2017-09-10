@@ -46,6 +46,16 @@ namespace Skybrud.Social.Instagram.Responses {
             // Skip error checking if the server responds with an OK status code
             if (response.StatusCode == HttpStatusCode.OK) return;
 
+            // Handle errors when the response body isn't JSON
+            if (!response.Body.StartsWith("{")) {
+                switch (response.StatusCode) {
+                    case HttpStatusCode.NotFound:
+                        throw new InstagramNotFoundException(response);
+                    default:
+                        throw new InstagramHttpException(response);
+                }
+            }
+
             // Parse the response body
             JObject obj = ParseJsonObject(response.Body);
 

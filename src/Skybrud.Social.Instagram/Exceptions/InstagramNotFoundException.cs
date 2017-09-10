@@ -8,6 +8,8 @@ namespace Skybrud.Social.Instagram.Exceptions {
     /// </summary>
     public class InstagramNotFoundException : InstagramHttpException {
 
+        internal InstagramNotFoundException(SocialHttpResponse response) : base(response) { }
+
         internal InstagramNotFoundException(SocialHttpResponse response, InstagramMetaData meta) : base(response, meta) { }
 
     }

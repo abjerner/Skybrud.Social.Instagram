@@ -23,13 +23,32 @@ namespace Skybrud.Social.Instagram.Exceptions {
         public InstagramRateLimiting RateLimiting { get; private set; }
 
         /// <summary>
+        /// Gets whether rate limiting information was included in the response.
+        /// </summary>
+        public bool HasRateLimiting {
+            get { return RateLimiting.Limit > 0; }
+        }
+
+        /// <summary>
         /// Gets the meta data of the response.
         /// </summary>
         public InstagramMetaData Meta { get; private set; }
 
+        /// <summary>
+        /// Gets whether meta data was included in the response.
+        /// </summary>
+        public bool HasMeta {
+            get { return Meta != null; }
+        }
+
         #endregion
 
         #region Constructors
+
+        internal InstagramHttpException(SocialHttpResponse response) : base("Invalid response received from the Instagram API (Status: " + ((int) response.StatusCode) + ")") {
+            Response = response;
+            RateLimiting = InstagramRateLimiting.GetFromResponse(response);
+        }
 
         internal InstagramHttpException(SocialHttpResponse response, InstagramMetaData meta) : base(meta.ErrorMessage) {
             Response = response;
