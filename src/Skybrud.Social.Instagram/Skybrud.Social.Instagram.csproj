@@ -125,7 +125,6 @@
     <Compile Include="Responses\Tags\InstagramGetRecentMediaResponse.cs" />
     <Compile Include="Responses\Tags\InstagramGetTagsResponse.cs" />
     <Compile Include="Responses\Tags\InstagramGetTagResponse.cs" />
-    <Compile Include="Responses\Media\InstagramGetUserFeedResponse.cs" />
     <Compile Include="Models\Tags\InstagramTagEnvelope.cs" />
     <Compile Include="Models\Tags\InstagramSearchTagsEnvelope.cs" />
     <Compile Include="Responses\Users\InstagramGetUserResponse.cs" />

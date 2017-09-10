@@ -44,30 +44,6 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
             if (String.IsNullOrWhiteSpace(identifier)) throw new ArgumentNullException("identifier");
             return Client.DoHttpGetRequest("https://api.instagram.com/v1/users/" + identifier);
         }
-
-        /// <summary>
-        /// Gets the feed of the authenticated user.
-        /// </summary>
-        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
-        /// <see>
-        ///     <cref>https://instagram.com/developer/endpoints/users/#get_users_feed</cref>
-        /// </see>
-        public SocialHttpResponse GetUserFeed() {
-            return GetUserFeed(new InstagramGetUserFeedOptions());
-        }
-
-        /// <summary>
-        /// Gets the feed of the authenticated user.
-        /// </summary>
-        /// <param name="options">The options for the call to the API.</param>
-        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
-        /// <see>
-        ///     <cref>https://instagram.com/developer/endpoints/users/#get_users_feed</cref>
-        /// </see>
-        public SocialHttpResponse GetUserFeed(InstagramGetUserFeedOptions options) {
-            if (options == null) throw new ArgumentNullException("options");
-            return Client.DoHttpGetRequest("https://api.instagram.com/v1/users/self/feed", options);
-        }
         
         /// <summary>
         /// Gets the most recent media of the authenticated user.
