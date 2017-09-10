@@ -72,6 +72,7 @@
     <Compile Include="Exceptions\InstagramOAuthException.cs" />
     <Compile Include="Exceptions\InstagramParseException.cs" />
     <Compile Include="InstagramService.cs" />
+    <Compile Include="Models\Pagination\InstagramTagIdBasedPagination.cs" />
     <Compile Include="OAuth\InstagramOAuthClient.cs" />
     <Compile Include="Models\Common\InstagramRateLimiting.cs" />
     <Compile Include="Models\Authentication\InstagramTokenSummary.cs" />
@@ -120,9 +121,13 @@
     <Compile Include="Responses\Media\InstagramGetMediaResponse.cs" />
     <Compile Include="Responses\Media\InstagramGetRecentMediaResponse.cs" />
     <Compile Include="Responses\InstagramResponse.cs" />
+    <Compile Include="Models\Tags\InstagramRecentMediaEnvelope.cs" />
+    <Compile Include="Responses\Tags\InstagramGetRecentMediaResponse.cs" />
     <Compile Include="Responses\Tags\InstagramGetTagsResponse.cs" />
     <Compile Include="Responses\Tags\InstagramGetTagResponse.cs" />
     <Compile Include="Responses\Media\InstagramGetUserFeedResponse.cs" />
+    <Compile Include="Models\Tags\InstagramTagEnvelope.cs" />
+    <Compile Include="Models\Tags\InstagramSearchTagsEnvelope.cs" />
     <Compile Include="Responses\Users\InstagramGetUserResponse.cs" />
     <Compile Include="Responses\Users\InstagramGetUsersResponse.cs" />
     <Compile Include="Models\Users\InstagramUsersResponseBody.cs" />

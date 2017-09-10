@@ -1,8 +1,5 @@
 using System;
-using Newtonsoft.Json.Linq;
-using Skybrud.Essentials.Json.Extensions;
 using Skybrud.Social.Http;
-using Skybrud.Social.Instagram.Models.Common;
 using Skybrud.Social.Instagram.Models.Tags;
 
 namespace Skybrud.Social.Instagram.Responses.Tags {
@@ -13,7 +10,7 @@ namespace Skybrud.Social.Instagram.Responses.Tags {
     /// <see>
     ///     <cref>https://instagram.com/developer/endpoints/tags/#get_tags</cref>
     /// </see>
-    public class InstagramGetTagResponse : InstagramResponse<InstagramTagResponseBody> {
+    public class InstagramGetTagResponse : InstagramResponse<InstagramTagEnvelope> {
 
         #region Constructors
 
@@ -23,7 +20,7 @@ namespace Skybrud.Social.Instagram.Responses.Tags {
             ValidateResponse(response);
 
             // Parse the response body
-            Body = ParseJsonObject(response.Body, InstagramTagResponseBody.Parse);
+            Body = ParseJsonObject(response.Body, InstagramTagEnvelope.Parse);
 
         }
 
@@ -49,40 +46,4 @@ namespace Skybrud.Social.Instagram.Responses.Tags {
         #endregion
 
     }
-
-    /// <summary>
-    /// Class representing the response body of a call for getting information about a given tag.
-    /// </summary>
-    /// <see>
-    ///     <cref>https://instagram.com/developer/endpoints/tags/#get_tags</cref>
-    /// </see>
-    public class InstagramTagResponseBody : InstagramEnvelope<InstagramTag> {
-
-        #region Constructors
-
-        /// <summary>
-        /// Initializes a new instance based on the specified <code>obj</code>.
-        /// </summary>
-        /// <param name="obj">The instance of <see cref="JObject"/> representing the response body.</param>
-        protected InstagramTagResponseBody(JObject obj) : base(obj) {
-            Data = obj.GetObject("data", InstagramTag.Parse);
-        }
-
-        #endregion
-
-        #region Static methods
-
-        /// <summary>
-        /// Parses the specified <code>obj</code> into an instance of <see cref="InstagramTagResponseBody"/>.
-        /// </summary>
-        /// <param name="obj">The instance of <see cref="JObject"/> to be parsed.</param>
-        /// <returns>Returns an instance of <see cref="InstagramTagResponseBody"/>.</returns>
-        public static InstagramTagResponseBody Parse(JObject obj) {
-            return obj == null ? null : new InstagramTagResponseBody(obj);
-        }
-
-        #endregion
-
-    }
-
 }
