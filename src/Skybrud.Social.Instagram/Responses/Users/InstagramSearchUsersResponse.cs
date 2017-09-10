@@ -12,17 +12,17 @@ namespace Skybrud.Social.Instagram.Responses.Users {
     ///     <cref>https://instagram.com/developer/endpoints/relationships/#get_users_follows</cref>
     ///     <cref>https://instagram.com/developer/endpoints/relationships/#get_users_followed_by</cref>
     /// </see>
-    public class InstagramGetUsersResponse : InstagramResponse<InstagramUsersResponseBody> {
+    public class InstagramSearchUsersResponse : InstagramResponse<InstagramSearchUsersEnvelope> {
 
         #region Constructors
 
-        private InstagramGetUsersResponse(SocialHttpResponse response) : base(response) {
+        private InstagramSearchUsersResponse(SocialHttpResponse response) : base(response) {
 
             // Validate the response
             ValidateResponse(response);
 
             // Parse the response body
-            Body = ParseJsonObject(response.Body, InstagramUsersResponseBody.Parse);
+            Body = ParseJsonObject(response.Body, InstagramSearchUsersEnvelope.Parse);
 
         }
 
@@ -31,13 +31,13 @@ namespace Skybrud.Social.Instagram.Responses.Users {
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <paramref name="response"/> into an instance of <see cref="InstagramGetUsersResponse"/>.
+        /// Parses the specified <paramref name="response"/> into an instance of <see cref="InstagramSearchUsersResponse"/>.
         /// </summary>
         /// <param name="response">The response to be parsed.</param>
-        /// <returns>An instance of <see cref="InstagramGetUsersResponse"/>.</returns>
-        public static InstagramGetUsersResponse ParseResponse(SocialHttpResponse response) {
+        /// <returns>An instance of <see cref="InstagramSearchUsersResponse"/>.</returns>
+        public static InstagramSearchUsersResponse ParseResponse(SocialHttpResponse response) {
             if (response == null) throw new ArgumentNullException("response");
-            return new InstagramGetUsersResponse(response);
+            return new InstagramSearchUsersResponse(response);
         }
 
         #endregion

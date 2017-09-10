@@ -41,17 +41,17 @@ namespace Skybrud.Social.Instagram.Endpoints {
         /// <summary>
         /// Get a list of users the authenticated user follows. Requires the <code>follower_list</code> scope.
         /// </summary>
-        /// <returns>An instance of <see cref="InstagramGetUsersResponse"/> representing the response.</returns>
-        public InstagramGetUsersResponse Follows() {
-            return InstagramGetUsersResponse.ParseResponse(Raw.Follows());
+        /// <returns>An instance of <see cref="InstagramSearchUsersResponse"/> representing the response.</returns>
+        public InstagramSearchUsersResponse Follows() {
+            return InstagramSearchUsersResponse.ParseResponse(Raw.Follows());
         }
 
         /// <summary>
         /// Get a list of users the user with the specified <paramref name="userId"/> follows. Requires the <code>follower_list</code> scope.
         /// </summary>
         /// <param name="userId">The ID of the user.</param>
-        /// <returns>An instance of <see cref="InstagramGetUsersResponse"/> representing the response.</returns>
-        public InstagramGetUsersResponse Follows(long userId) {
+        /// <returns>An instance of <see cref="InstagramSearchUsersResponse"/> representing the response.</returns>
+        public InstagramSearchUsersResponse Follows(long userId) {
             return Follows(new InstagramGetFollowsOptions(userId));
         }
 
@@ -60,35 +60,35 @@ namespace Skybrud.Social.Instagram.Endpoints {
         /// </summary>
         /// <param name="userId">The ID of the user.</param>
         /// <param name="count">The maximum amount of users to be returned.</param>
-        /// <returns>An instance of <see cref="InstagramGetUsersResponse"/> representing the response.</returns>
-        public InstagramGetUsersResponse Follows(long userId, int count) {
-            return InstagramGetUsersResponse.ParseResponse(Raw.Follows(userId, count));
+        /// <returns>An instance of <see cref="InstagramSearchUsersResponse"/> representing the response.</returns>
+        public InstagramSearchUsersResponse Follows(long userId, int count) {
+            return InstagramSearchUsersResponse.ParseResponse(Raw.Follows(userId, count));
         }
 
         /// <summary>
         /// Get a list of users the user matching the specified <paramref name="options"/> follows. Requires the <code>follower_list</code> scope.
         /// </summary>
         /// <param name="options">The options for the call to the API.</param>
-        /// <returns>An instance of <see cref="InstagramGetUsersResponse"/> representing the response.</returns>
-        public InstagramGetUsersResponse Follows(InstagramGetFollowsOptions options) {
-            return InstagramGetUsersResponse.ParseResponse(Raw.Follows(options));
+        /// <returns>An instance of <see cref="InstagramSearchUsersResponse"/> representing the response.</returns>
+        public InstagramSearchUsersResponse Follows(InstagramGetFollowsOptions options) {
+            return InstagramSearchUsersResponse.ParseResponse(Raw.Follows(options));
         }
 
         /// <summary>
         /// Get the list of users following the authenticated user. Requires the <code>follower_list</code> scope.
         /// </summary>
-        /// <returns>An instance of <see cref="InstagramGetUsersResponse"/> representing the response.</returns>
-        public InstagramGetUsersResponse FollowedBy() {
-            return InstagramGetUsersResponse.ParseResponse(Raw.FollowedBy());
+        /// <returns>An instance of <see cref="InstagramSearchUsersResponse"/> representing the response.</returns>
+        public InstagramSearchUsersResponse FollowedBy() {
+            return InstagramSearchUsersResponse.ParseResponse(Raw.FollowedBy());
         }
 
         /// <summary>
         /// Get the list of users following the user with the specified <paramref name="userId"/>. Requires the <code>follower_list</code> scope.
         /// </summary>
         /// <param name="userId">The ID of the user.</param>
-        /// <returns>An instance of <see cref="InstagramGetUsersResponse"/> representing the response.</returns>
-        public InstagramGetUsersResponse FollowedBy(long userId) {
-            return InstagramGetUsersResponse.ParseResponse(Raw.FollowedBy(userId));
+        /// <returns>An instance of <see cref="InstagramSearchUsersResponse"/> representing the response.</returns>
+        public InstagramSearchUsersResponse FollowedBy(long userId) {
+            return InstagramSearchUsersResponse.ParseResponse(Raw.FollowedBy(userId));
         }
 
         /// <summary>
@@ -96,18 +96,18 @@ namespace Skybrud.Social.Instagram.Endpoints {
         /// </summary>
         /// <param name="userId">The ID of the user.</param>
         /// <param name="count">The maximum amount of users to be returned.</param>
-        /// <returns>An instance of <see cref="InstagramGetUsersResponse"/> representing the response.</returns>
-        public InstagramGetUsersResponse FollowedBy(long userId, int count) {
-            return InstagramGetUsersResponse.ParseResponse(Raw.FollowedBy(userId, count));
+        /// <returns>An instance of <see cref="InstagramSearchUsersResponse"/> representing the response.</returns>
+        public InstagramSearchUsersResponse FollowedBy(long userId, int count) {
+            return InstagramSearchUsersResponse.ParseResponse(Raw.FollowedBy(userId, count));
         }
 
         /// <summary>
         /// Get a list of users following the user matching the specified <paramref name="options"/>. Requires the <code>follower_list</code> scope.
         /// </summary>
         /// <param name="options">The options for the call to the API.</param>
-        /// <returns>An instance of <see cref="InstagramGetUsersResponse"/> representing the response.</returns>
-        public InstagramGetUsersResponse FollowedBy(InstagramGetFollowedByOptions options) {
-            return InstagramGetUsersResponse.ParseResponse(Raw.FollowedBy(options));
+        /// <returns>An instance of <see cref="InstagramSearchUsersResponse"/> representing the response.</returns>
+        public InstagramSearchUsersResponse FollowedBy(InstagramGetFollowedByOptions options) {
+            return InstagramSearchUsersResponse.ParseResponse(Raw.FollowedBy(options));
         }
 
         #endregion

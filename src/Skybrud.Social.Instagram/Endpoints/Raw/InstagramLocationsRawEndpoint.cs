@@ -1,6 +1,7 @@
 using System;
 using Skybrud.Essentials.Common;
 using Skybrud.Social.Http;
+using Skybrud.Social.Instagram.Exceptions;
 using Skybrud.Social.Instagram.Models.Locations;
 using Skybrud.Social.Instagram.OAuth;
 using Skybrud.Social.Instagram.Options.Locations;
@@ -35,10 +36,11 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         #region Methods
 
         /// <summary>
-        /// Gets information about a location with the specified <code>locationId</code>.
+        /// Gets information about a location with the specified <paramref name="locationId"/>. If a location isn't
+        /// found, an exception of the type <see cref="InstagramNotFoundException"/> will be thrown.
         /// </summary>
         /// <param name="locationId">The ID of the location.</param>
-        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
+        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations</cref>
         /// </see>
@@ -118,7 +120,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// </summary>
         /// <param name="latitude">The latitude.</param>
         /// <param name="longitude">The longitude.</param>
-        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
+        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations_search</cref>
         /// </see>
@@ -136,7 +138,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// <param name="latitude">The latitude.</param>
         /// <param name="longitude">The longitude.</param>
         /// <param name="distance">The distance is metres (max: 5000m)</param>
-        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
+        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations_search</cref>
         /// </see>
@@ -152,7 +154,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// Gets a list of locations with a geographic coordinate within the radius as described in the specified <code>options</code>.
         /// </summary>
         /// <param name="options">The options for the call to the API.</param>
-        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
+        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations_search</cref>
         /// </see>

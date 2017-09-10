@@ -1,4 +1,5 @@
 using Skybrud.Social.Instagram.Endpoints.Raw;
+using Skybrud.Social.Instagram.Exceptions;
 using Skybrud.Social.Instagram.Models.Locations;
 using Skybrud.Social.Instagram.Options.Locations;
 using Skybrud.Social.Instagram.Responses.Locations;
@@ -40,9 +41,11 @@ namespace Skybrud.Social.Instagram.Endpoints {
         #region Methods
 
         /// <summary>
-        /// Gets information about a location with the specified ID. If a location isn't found, an exception will be thrown.
+        /// Gets information about a location with the specified <paramref name="locationId"/>. If a location isn't
+        /// found, an exception of the type <see cref="InstagramNotFoundException"/> will be thrown.
         /// </summary>
         /// <param name="locationId">The ID of the location.</param>
+        /// <returns>An instance of <see cref="InstagramGetLocationResponse"/> representing the response from the Instagram API.</returns>
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations</cref>
         /// </see>
@@ -102,11 +105,12 @@ namespace Skybrud.Social.Instagram.Endpoints {
         /// </summary>
         /// <param name="latitude">The latitude.</param>
         /// <param name="longitude">The longitude.</param>
+        /// <returns>An instance of <see cref="InstagramSearchLocationsResponse"/> representing the response from the Instagram API.</returns>
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations_search</cref>
         /// </see>
-        public InstagramGetLocationsResponse Search(double latitude, double longitude) {
-            return InstagramGetLocationsResponse.ParseResponse(Raw.Search(latitude, longitude));
+        public InstagramSearchLocationsResponse Search(double latitude, double longitude) {
+            return InstagramSearchLocationsResponse.ParseResponse(Raw.Search(latitude, longitude));
         }
 
         /// <summary>
@@ -115,22 +119,24 @@ namespace Skybrud.Social.Instagram.Endpoints {
         /// <param name="latitude">The latitude.</param>
         /// <param name="longitude">The longitude.</param>
         /// <param name="distance">The distance is meters (max: 5000m)</param>
+        /// <returns>An instance of <see cref="InstagramSearchLocationsResponse"/> representing the response from the Instagram API.</returns>
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations_search</cref>
         /// </see>
-        public InstagramGetLocationsResponse Search(double latitude, double longitude, int distance) {
-            return InstagramGetLocationsResponse.ParseResponse(Raw.Search(latitude, longitude, distance));
+        public InstagramSearchLocationsResponse Search(double latitude, double longitude, int distance) {
+            return InstagramSearchLocationsResponse.ParseResponse(Raw.Search(latitude, longitude, distance));
         }
 
         /// <summary>
         /// Search for a location by geographic coordinate.
         /// </summary>
         /// <param name="options">The options for the call to the API.</param>
+        /// <returns>An instance of <see cref="InstagramSearchLocationsResponse"/> representing the response from the Instagram API.</returns>
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations_search</cref>
         /// </see>
-        public InstagramGetLocationsResponse Search(InstagramGetLocationSearchOptions options) {
-            return InstagramGetLocationsResponse.ParseResponse(Raw.Search(options));
+        public InstagramSearchLocationsResponse Search(InstagramGetLocationSearchOptions options) {
+            return InstagramSearchLocationsResponse.ParseResponse(Raw.Search(options));
         }
 
         #endregion

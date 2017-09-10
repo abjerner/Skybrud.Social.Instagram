@@ -12,7 +12,7 @@ namespace Skybrud.Social.Instagram.Models.Users {
     ///     <cref>https://instagram.com/developer/endpoints/relationships/#get_users_follows</cref>
     ///     <cref>https://instagram.com/developer/endpoints/relationships/#get_users_followed_by</cref>
     /// </see>
-    public class InstagramUsersResponseBody : InstagramEnvelope<InstagramUserSummary[]> {
+    public class InstagramSearchUsersEnvelope : InstagramEnvelope<InstagramUserSummary[]> {
 
         #region Constructors
 
@@ -20,7 +20,7 @@ namespace Skybrud.Social.Instagram.Models.Users {
         /// Initializes a new instance based on the specified <paramref name="obj"/>.
         /// </summary>
         /// <param name="obj">The instance of <see cref="JObject"/> representing the response body.</param>
-        protected InstagramUsersResponseBody(JObject obj) : base(obj) {
+        protected InstagramSearchUsersEnvelope(JObject obj) : base(obj) {
             Data = obj.GetArray("data", InstagramUserSummary.Parse);
         }
 
@@ -29,12 +29,12 @@ namespace Skybrud.Social.Instagram.Models.Users {
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <paramref name="obj"/> into an instance of <see cref="InstagramUsersResponseBody"/>.
+        /// Parses the specified <paramref name="obj"/> into an instance of <see cref="InstagramSearchUsersEnvelope"/>.
         /// </summary>
         /// <param name="obj">The instance of <see cref="JObject"/> to be parsed.</param>
-        /// <returns>Returns an instance of <see cref="InstagramUsersResponseBody"/>.</returns>
-        public static InstagramUsersResponseBody Parse(JObject obj) {
-            return obj == null ? null : new InstagramUsersResponseBody(obj);
+        /// <returns>Returns an instance of <see cref="InstagramSearchUsersEnvelope"/>.</returns>
+        public static InstagramSearchUsersEnvelope Parse(JObject obj) {
+            return obj == null ? null : new InstagramSearchUsersEnvelope(obj);
         }
 
         #endregion

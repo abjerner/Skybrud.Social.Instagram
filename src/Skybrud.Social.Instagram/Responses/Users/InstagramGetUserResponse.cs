@@ -10,7 +10,7 @@ namespace Skybrud.Social.Instagram.Responses.Users {
     /// <see>
     ///     <cref>https://instagram.com/developer/endpoints/users/#get_users</cref>
     /// </see>
-    public class InstagramGetUserResponse : InstagramResponse<InstagramUserResponseBody> {
+    public class InstagramGetUserResponse : InstagramResponse<InstagramGetUserEnvelope> {
 
         #region Constructors
 
@@ -20,7 +20,7 @@ namespace Skybrud.Social.Instagram.Responses.Users {
             ValidateResponse(response);
 
             // Parse the response body
-            Body = ParseJsonObject(response.Body, InstagramUserResponseBody.Parse);
+            Body = ParseJsonObject(response.Body, InstagramGetUserEnvelope.Parse);
 
         }
 

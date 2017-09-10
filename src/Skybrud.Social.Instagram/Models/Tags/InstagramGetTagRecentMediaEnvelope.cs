@@ -9,7 +9,7 @@ namespace Skybrud.Social.Instagram.Models.Tags {
     /// <summary>
     /// Class representing the response body of a call for getting a list of recent media.
     /// </summary>
-    public class InstagramRecentMediaEnvelope : InstagramEnvelope<InstagramMedia[]> {
+    public class InstagramGetTagRecentMediaEnvelope : InstagramEnvelope<InstagramMedia[]> {
 
         #region Properties
 
@@ -26,7 +26,7 @@ namespace Skybrud.Social.Instagram.Models.Tags {
         /// Initializes a new instance based on the specified <paramref name="obj"/>.
         /// </summary>
         /// <param name="obj">The instance of <see cref="JObject"/> representing the response body.</param>
-        protected InstagramRecentMediaEnvelope(JObject obj) : base(obj) {
+        protected InstagramGetTagRecentMediaEnvelope(JObject obj) : base(obj) {
             Pagination = obj.GetObject("pagination", InstagramTagIdBasedPagination.Parse);
             Data = obj.GetArray("data", InstagramMedia.Parse);
         }
@@ -36,12 +36,12 @@ namespace Skybrud.Social.Instagram.Models.Tags {
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <paramref name="obj"/> into an instance of <see cref="InstagramRecentMediaEnvelope"/>.
+        /// Parses the specified <paramref name="obj"/> into an instance of <see cref="InstagramGetTagRecentMediaEnvelope"/>.
         /// </summary>
         /// <param name="obj">The instance of <see cref="JObject"/> to be parsed.</param>
-        /// <returns>An instance of <see cref="InstagramRecentMediaEnvelope"/>.</returns>
-        public static InstagramRecentMediaEnvelope Parse(JObject obj) {
-            return obj == null ? null : new InstagramRecentMediaEnvelope(obj);
+        /// <returns>An instance of <see cref="InstagramGetTagRecentMediaEnvelope"/>.</returns>
+        public static InstagramGetTagRecentMediaEnvelope Parse(JObject obj) {
+            return obj == null ? null : new InstagramGetTagRecentMediaEnvelope(obj);
         }
 
         #endregion
