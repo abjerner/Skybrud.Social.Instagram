@@ -13,33 +13,28 @@ module.exports = function (grunt) {
 
 	grunt.initConfig({
 	    pkg: pkg,
-	    nugetpack: {
-	        release: {
-	            src: 'src/' + pkg.name + '/' + pkg.name + '.csproj',
-	            dest: 'releases/nuget/'
-	        }
-	    },
 		zip: {
 		    release: {
 		        router: function (filepath) {
-		            return path.basename(filepath);
+					if (filepath.indexOf('/bin/Release/') >= 0) {
+						return filepath.split('/bin/Release/')[1];
+					} else {
+						return path.basename(filepath);
+					}
 		        },
-		        src: [
-					'src/' + pkg.name + '/bin/Release/Skybrud.Social.Core.dll',
-					'src/' + pkg.name + '/bin/Release/Skybrud.Social.Core.xml',
-					'src/' + pkg.name + '/bin/Release/' + pkg.name + '.dll',
-					'src/' + pkg.name + '/bin/Release/' + pkg.name + '.xml',
-					'src/' + pkg.name + '/LICENSE.txt'
+			    src: [
+					'src/' + pkg.name + '/bin/Release/*/*.dll',
+					'src/' + pkg.name + '/bin/Release/*/*.xml',
+					'src/LICENSE.html'
 				],
 		        dest: 'releases/github/' + pkg.name + '.v' + version + '.zip'
 			}
 		}
 	});
 
-	grunt.loadNpmTasks('grunt-nuget');
 	grunt.loadNpmTasks('grunt-zip');
 
-	grunt.registerTask('release', ['nugetpack', 'zip']);
+	grunt.registerTask('release', ['zip']);
 
 	grunt.registerTask('default', ['release']);
 
