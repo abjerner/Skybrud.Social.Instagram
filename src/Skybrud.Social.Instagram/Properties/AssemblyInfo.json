@@ -1,10 +1,10 @@
 {
   "title": "Skybrud.Social.Instagram",
   "description": "Authentication and service implementation for the Instagram API.",
-  "company": "Skybrud.dk",
-  "product": "Skybrud.Social.Instagram",
-  "copyright": "Copyright © 2017",
+  "company": "Skybrud.dk a/s",
+  "product": "Skybrud.Social",
+  "copyright": "Copyright © 2018",
   "version": "1.0.0.0",
-  "informationalVersion": "1.0.0-beta2",
-  "fileVersion": "0.0.1732.12"
+  "informationalVersion": "1.0.0-beta3",
+  "fileVersion": "0.0.2009.1"
 }

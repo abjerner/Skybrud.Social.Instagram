@@ -10,11 +10,11 @@
 
   <PropertyGroup>
     <RootNamespace>Skybrud.Social.Instagram</RootNamespace>
-    <Version>1.0.0-beta2</Version>
+    <Version>1.0.0-beta3</Version>
     <Company>Skybrud.dk a/s</Company>
     <Product>Skybrud.Social</Product>
     <Authors>Anders Bjerner</Authors>
-    <Copyright>Copyright © 2017</Copyright>
+    <Copyright>Copyright © 2018</Copyright>
     <Description>Authentication and service implementation for the Instagram API.</Description>
     <RepositoryUrl>https://github.com/abjerner/Skybrud.Social.Instagram</RepositoryUrl>
   </PropertyGroup>
