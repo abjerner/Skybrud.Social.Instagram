@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Specialized;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -252,69 +251,7 @@ namespace Skybrud.Social.Instagram.OAuth {
             }
 
         }
-
-        /// <summary>
-        /// Generates the signature value based on the specified <paramref name="endpoint"/> and <paramref name="parameters"/>.
-        /// </summary>
-        /// <param name="endpoint">The endpoint.</param>
-        /// <param name="parameters">The parameters.</param>
-        /// <returns>The signature value.</returns>
-        /// <see>
-        ///     <cref>https://www.instagram.com/developer/secure-api-requests/#enforce-signed-requests</cref>
-        /// </see>
-        public string GenerateSignatureValue(string endpoint, NameValueCollection parameters) {
-
-            // Some validation
-            if (String.IsNullOrWhiteSpace(endpoint)) throw new ArgumentNullException("endpoint");
-            if (parameters == null) throw new ArgumentNullException("parameters");
-            if (String.IsNullOrWhiteSpace(ClientSecret)) throw new PropertyNotSetException("ClientSecret");
-
-            // Initialize the signature value
-            string signatureValue = endpoint;
-
-            // Append the parameters (sorted by the key in alphabetic order)
-            foreach (string key in parameters.AllKeys.OrderBy(x => x)) {
-                signatureValue += "|" + key + "=" + parameters[key];
-            }
-
-            return signatureValue;
-
-        }
-
-        /// <summary>
-        /// Generates a HMAC signature using the SHA256 hasing algorithm.
-        /// </summary>
-        /// <param name="endpoint">The endpoint.</param>
-        /// <param name="parameters">The parameters.</param>
-        /// <returns>The HMAC signature.</returns>
-        /// <see>
-        ///     <cref>https://www.instagram.com/developer/secure-api-requests/#enforce-signed-requests</cref>
-        /// </see>
-        public string GenerateSignature(string endpoint, NameValueCollection parameters) {
-            
-            // Some validation
-            if (String.IsNullOrWhiteSpace(endpoint)) throw new ArgumentNullException("endpoint");
-            if (parameters == null) throw new ArgumentNullException("parameters");
-            if (String.IsNullOrWhiteSpace(ClientSecret)) throw new PropertyNotSetException("ClientSecret");
-            
-            // Initialize the signature value
-            string signatureValue = GenerateSignatureValue(endpoint, parameters);
-
-            // The Instagram documentation doesn't explicitly mentain any
-            // encoding, but the Python examples uses UTF-8
-            Encoding encoding = Encoding.UTF8;
-
-            // Initialize the HMAC SHA256 hasher
-            HMACSHA256 hasher = new HMACSHA256(encoding.GetBytes(ClientSecret));
-
-            // Generate the HMAC SHA256 hash
-            byte[] hash = hasher.ComputeHash(encoding.GetBytes(signatureValue));
-            
-            // Convert the hash back to a string
-            return BitConverter.ToString(hash).Replace("-", "").ToLower();
-
-        }
-
+        
         /// <summary>
         /// Generates the signature value based on the specified <paramref name="endpoint"/> and
         /// <paramref name="parameters"/>.
