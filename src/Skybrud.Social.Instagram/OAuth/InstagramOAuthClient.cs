@@ -183,20 +183,19 @@ namespace Skybrud.Social.Instagram.OAuth {
             }
 
             // Construct the query string
-            NameValueCollection query = new NameValueCollection {
-                {"client_id", ClientId},
-                {"redirect_uri", RedirectUri},
-                {"response_type", "code"},
-                {"state", state}
-            };
-
+            IHttpQueryString query = new SocialHttpQueryString();
+            query.Add("client_id", ClientId);
+            query.Add("redirect_uri", RedirectUri);
+            query.Add("response_type", "code");
+            query.Add("state", state);
+            
             // Append the scope (if specified)
             if (scope != null && scope.Length > 0) {
                 query.Add("scope", String.Join(" ", scope));
             }
 
-            // Construct thr authorization URL
-            return "https://api.instagram.com/oauth/authorize/?" + SocialUtils.Misc.NameValueCollectionToQueryString(query);
+            // Construct the authorization URL
+            return "https://api.instagram.com/oauth/authorize/?" + query.ToString();
 
         }
 
@@ -214,13 +213,12 @@ namespace Skybrud.Social.Instagram.OAuth {
             if (String.IsNullOrWhiteSpace(authCode)) throw new ArgumentNullException("authCode");
         
             // Initialize collection with POST data
-            NameValueCollection parameters = new NameValueCollection {
-                {"client_id", ClientId},
-                {"client_secret", ClientSecret},
-                {"grant_type", "authorization_code"},
-                {"redirect_uri", RedirectUri},
-                {"code", authCode }
-            };
+            IHttpPostData parameters = new SocialHttpPostData();
+            parameters.Add("client_id", ClientId);
+            parameters.Add("client_secret", ClientSecret);
+            parameters.Add("grant_type", "authorization_code");
+            parameters.Add("redirect_uri", RedirectUri);
+            parameters.Add("code", authCode);
 
             // Make the call to the API
             SocialHttpResponse response = SocialUtils.Http.DoHttpPostRequest("https://api.instagram.com/oauth/access_token", null, parameters);

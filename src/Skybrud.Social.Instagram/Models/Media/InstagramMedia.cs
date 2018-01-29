@@ -181,8 +181,8 @@ namespace Skybrud.Social.Instagram.Models.Media {
         /// <summary>
         /// Gets the creation date of the media. This property is just an alias of the <see cref="CreatedTime"/> property.
         /// </summary>
-        public DateTime SortDate {
-            get { return CreatedTime.DateTime; }
+        public EssentialsDateTime SortDate {
+            get { return CreatedTime; }
         }
 
         #endregion
