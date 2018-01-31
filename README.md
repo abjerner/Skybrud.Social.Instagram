@@ -23,9 +23,7 @@ The [**releases page**][Releases] lists all releases, and each there will be som
 
 ### Documentation
 
-You can find documentation and examples on how to use this package at the [**Skybrud.Social website**][Website]. However since this package is still in beta, most of the examples are for `v0.9.x` of Skybrud.Social.
-
-To get started, you can also find some updated examples below:
+You can find documentation and examples on how to use this package at the [**Skybrud.Social website**][Website].
 
 
 
