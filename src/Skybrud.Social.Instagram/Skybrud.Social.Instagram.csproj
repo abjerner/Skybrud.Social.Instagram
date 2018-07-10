@@ -10,7 +10,7 @@
 
   <PropertyGroup>
     <RootNamespace>Skybrud.Social.Instagram</RootNamespace>
-    <Version>1.0.0-beta3</Version>
+    <Version>1.0.0-beta4</Version>
     <Company>Skybrud.dk a/s</Company>
     <Product>Skybrud.Social</Product>
     <Authors>Anders Bjerner</Authors>
