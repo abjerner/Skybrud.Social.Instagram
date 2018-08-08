@@ -14,65 +14,57 @@ namespace Skybrud.Social.Instagram.Models.Users {
         /// <summary>
         /// Gets the ID of the user.
         /// </summary>
-        public long Id { get; private set; }
+        public long Id { get; }
 
         /// <summary>
         /// Gets the username of the user.
         /// </summary>
-        public string Username { get; private set; }
+        public string Username { get; }
 
         /// <summary>
         /// Gets the full name of the user. A user may not have specified a full name.
         /// </summary>
-        public string FullName { get; private set; }
+        public string FullName { get; }
 
         /// <summary>
         /// Gets the profile picture of the user.
         /// </summary>
-        public string ProfilePicture { get; private set; }
+        public string ProfilePicture { get; }
 
         /// <summary>
         /// Gets the website of the user. A user may not have specified a website.
         /// </summary>
-        public string Website { get; private set; }
+        public string Website { get; }
 
         /// <summary>
         /// Gets the bio of the user. A user may not have specified a bio.
         /// </summary>
-        public string Bio { get; private set; }
+        public string Bio { get; }
 
         /// <summary>
         /// Gets a reference to various statistics about the user.
         /// </summary>
-        public InstagramUserCounts Counts { get; private set; }
+        public InstagramUserCounts Counts { get; }
 
         /// <summary>
         /// Gets whether the user has specified a full name.
         /// </summary>
-        public bool HasFullName {
-            get { return !String.IsNullOrWhiteSpace(FullName); }
-        }
+        public bool HasFullName => !String.IsNullOrWhiteSpace(FullName);
 
         /// <summary>
         /// Gets whether the user has uploaded a profile picture.
         /// </summary>
-        public bool HasProfilePicture {
-            get { return !String.IsNullOrWhiteSpace(ProfilePicture); }
-        }
+        public bool HasProfilePicture => !String.IsNullOrWhiteSpace(ProfilePicture);
 
         /// <summary>
         /// Gets whether the user has specified a website.
         /// </summary>
-        public bool HasWebsite {
-            get { return !String.IsNullOrWhiteSpace(Website); }
-        }
+        public bool HasWebsite => !String.IsNullOrWhiteSpace(Website);
 
         /// <summary>
         /// Gets whether the user has specified a bio.
         /// </summary>
-        public bool HasBio {
-            get { return !String.IsNullOrWhiteSpace(Bio); }
-        }
+        public bool HasBio => !String.IsNullOrWhiteSpace(Bio);
 
         #endregion
 
