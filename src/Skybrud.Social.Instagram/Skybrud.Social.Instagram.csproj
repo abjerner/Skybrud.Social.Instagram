@@ -3,7 +3,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.3;net45;net46</TargetFrameworks>
+    <TargetFrameworks>netstandard1.3;net45;net46;net47</TargetFrameworks>
     <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
     <RunBuildTargets>true</RunBuildTargets>
   </PropertyGroup>
@@ -30,7 +30,7 @@
     <DefineConstants>NET_STANDARD</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(TargetFramework)'=='net45' OR '$(TargetFramework)'=='net46'">
+  <PropertyGroup Condition="'$(TargetFramework)'=='net45' OR '$(TargetFramework)'=='net46' OR '$(TargetFramework)'=='net47'">
     <DefineConstants>NET_FRAMEWORK</DefineConstants>
   </PropertyGroup>
 
@@ -38,23 +38,15 @@
     <PackageReference Include="Skybrud.Social.Core" Version="1.0.9" />
   </ItemGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard1.3|AnyCPU'">
-    <DocumentationFile>bin\Release\netstandard1.3\Skybrud.Social.Instagram.xml</DocumentationFile>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net45|AnyCPU'">
-    <DocumentationFile>bin\Release\net45\Skybrud.Social.Instagram.xml</DocumentationFile>
-  </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net46|AnyCPU'">
-    <DocumentationFile>bin\Release\net46\Skybrud.Social.Instagram.xml</DocumentationFile>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\Skybrud.Social.Instagram.xml</DocumentationFile>
   </PropertyGroup>
 
-  <Target Name="PreBuild" BeforeTargets="PreBuildEvent" Condition="'$(TargetFramework)|$(RunBuildTargets)'=='netstandard1.3|true'">
-    <Exec Command="&quot;$(SolutionDir)build/Skybrud.Social.PreBuildTool.exe&quot; /date=2012-07-30 /projectPath=&quot;$(ProjectPath)&quot;" />
+  <Target Name="PreBuildEvent" BeforeTargets="DispatchToInnerBuilds" Condition="'$(RunBuildTargets)'=='true'">
+    <Exec Command="&quot;$(SolutionDir)build/Skybrud.Social.PreBuildTool.exe&quot; /date=2012-07-30 /projectPath=&quot;$(SolutionDir)Skybrud.Social.Instagram\Skybrud.Social.Instagram.csproj&quot;" />
   </Target>
 
-  <Target Name="PostBuild" BeforeTargets="PostBuildEvent" Condition="'$(TargetFramework)|$(RunBuildTargets)'=='net46|true'">
+  <Target Name="PostBuild" BeforeTargets="PostBuildEvent" Condition="'$(TargetFramework)|$(RunBuildTargets)'=='netstandard1.3|true'">
     <Exec Command="&quot;$(SolutionDir)build\UpdateAssemblyInfoJson.exe&quot; &quot;$(ProjectPath)&quot; &quot;$(TargetPath)&quot;" />
   </Target>
 
