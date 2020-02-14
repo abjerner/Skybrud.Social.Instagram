@@ -5,6 +5,7 @@ using Skybrud.Essentials.Json.Extensions;
 using Skybrud.Social.Instagram.Exceptions;
 using Skybrud.Social.Instagram.Models;
 using Skybrud.Social.Instagram.Models.Common;
+using Skybrud.Social.Instagram.Models.Errors;
 
 namespace Skybrud.Social.Instagram.Responses {
 
@@ -57,6 +58,11 @@ namespace Skybrud.Social.Instagram.Responses {
 
             // Parse the response body
             JObject obj = ParseJsonObject(response.Body);
+
+            if (response.ResponseUri.Host == "graph.facebook.com") {
+                InstagramHttpError error = obj.GetObject("error", InstagramHttpError.Parse);
+                throw new InstagramHttpException(response, error);
+            }
 
             // Get the "meta" object (may be the root object for some errors)
             InstagramMetaData meta = obj.HasValue("code") ? InstagramMetaData.Parse(obj) : obj.GetObject("meta", InstagramMetaData.Parse);

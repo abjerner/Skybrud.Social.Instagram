@@ -6,9 +6,11 @@ using Skybrud.Essentials.Common;
 using Skybrud.Essentials.Http;
 using Skybrud.Essentials.Http.Client;
 using Skybrud.Essentials.Http.Collections;
+using Skybrud.Social.Instagram.Endpoints.Graph;
 using Skybrud.Social.Instagram.Endpoints.Raw;
 using Skybrud.Social.Instagram.Responses.Authentication;
 using Skybrud.Social.Instagram.Scopes;
+using InstagramUsersRawEndpoint = Skybrud.Social.Instagram.Endpoints.Raw.InstagramUsersRawEndpoint;
 
 namespace Skybrud.Social.Instagram.OAuth {
 
@@ -66,6 +68,11 @@ namespace Skybrud.Social.Instagram.OAuth {
         public InstagramUsersRawEndpoint Users { get; }
 
         /// <summary>
+        /// Gets a reference to the raw <strong>Instagram Graph API</strong> endpoint.
+        /// </summary>
+        public InstagramGraphRawEndpoint Graph { get; }
+
+        /// <summary>
         /// Gets or sets whether signed requests should be enabled.
         /// </summary>
         /// <see>
@@ -86,6 +93,7 @@ namespace Skybrud.Social.Instagram.OAuth {
             Relationships = new InstagramRelationshipsRawEndpoint(this);
             Tags = new InstagramTagsRawEndpoint(this);
             Users = new InstagramUsersRawEndpoint(this);
+            Graph = new InstagramGraphRawEndpoint(this);
         }
 
         /// <summary>
@@ -241,6 +249,14 @@ namespace Skybrud.Social.Instagram.OAuth {
                 request.QueryString.Add("client_id", ClientId);
             }
 
+            // If the URL starts with a forward slash, it must be an relative URL for the Instagram Graph API
+            if (request.Url.StartsWith("/")) {
+                // TODO: Add support for API versioning
+                request.Url = "https://graph.facebook.com" + request.Url;
+                return;
+            }
+
+            // Signed requests is only part of the Instagram Platform API
             if (SignedRequests) {
 
                 // Get the endpoint from the URL

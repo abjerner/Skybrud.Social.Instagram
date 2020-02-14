@@ -2,6 +2,7 @@ using System;
 using Skybrud.Essentials.Http;
 using Skybrud.Social.Instagram.Models;
 using Skybrud.Social.Instagram.Models.Common;
+using Skybrud.Social.Instagram.Models.Errors;
 
 namespace Skybrud.Social.Instagram.Exceptions {
 
@@ -28,7 +29,7 @@ namespace Skybrud.Social.Instagram.Exceptions {
         public bool HasRateLimiting => RateLimiting.Limit > 0;
 
         /// <summary>
-        /// Gets the meta data of the response.
+        /// Gets the meta data of the response as returned by the <strong>Instagram Platform API</strong>.
         /// </summary>
         public InstagramMetaData Meta { get; }
 
@@ -36,6 +37,16 @@ namespace Skybrud.Social.Instagram.Exceptions {
         /// Gets whether meta data was included in the response.
         /// </summary>
         public bool HasMeta => Meta != null;
+
+        /// <summary>
+        /// Gets the error returned by the <strong>Instagram Graph API</strong>.
+        /// </summary>
+        public InstagramHttpError Error { get; }
+
+        /// <summary>
+        /// Gets whether the error was included in the response.
+        /// </summary>
+        public bool HasError => Error != null;
 
         #endregion
 
@@ -50,6 +61,12 @@ namespace Skybrud.Social.Instagram.Exceptions {
             Response = response;
             RateLimiting = InstagramRateLimiting.GetFromResponse(response);
             Meta = meta;
+        }
+
+        internal InstagramHttpException(IHttpResponse response, InstagramHttpError error) : base(error.Message) {
+            Response = response;
+            RateLimiting = InstagramRateLimiting.GetFromResponse(response);
+            Error = error;
         }
 
         #endregion

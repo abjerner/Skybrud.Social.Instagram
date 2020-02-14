@@ -1,6 +1,8 @@
 using System;
 using Skybrud.Social.Instagram.Endpoints;
+using Skybrud.Social.Instagram.Endpoints.Graph;
 using Skybrud.Social.Instagram.OAuth;
+using InstagramUsersEndpoint = Skybrud.Social.Instagram.Endpoints.InstagramUsersEndpoint;
 
 namespace Skybrud.Social.Instagram {
     
@@ -41,6 +43,11 @@ namespace Skybrud.Social.Instagram {
         /// </summary>
         public InstagramUsersEndpoint Users { get; }
 
+        /// <summary>
+        /// Gets a reference to the <strong>Instagram Graph API</strong> endpoint.
+        /// </summary>
+        public InstagramGraphEndpoint Graph { get; }
+
         #endregion
 
         #region Constructors
@@ -52,6 +59,7 @@ namespace Skybrud.Social.Instagram {
             Relationships = new InstagramRelationshipsEndpoint(this);
             Tags = new InstagramTagsEndpoint(this);
             Users = new InstagramUsersEndpoint(this);
+            Graph = new InstagramGraphEndpoint(this);
         }
 
         #endregion
