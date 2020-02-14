@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Skybrud.Social.Instagram.Scopes {
     
@@ -73,8 +72,7 @@ namespace Skybrud.Social.Instagram.Scopes {
         /// <param name="name">The name of the scope.</param>
         /// <returns>Gets a scope matching the specified <code>name</code>, or <code>null</code> if not found-</returns>
         public static InstagramScope GetScope(string name) {
-            InstagramScope scope;
-            return Scopes.TryGetValue(name, out scope) ? scope : null;
+            return Scopes.TryGetValue(name, out InstagramScope scope) ? scope : null;
         }
 
         /// <summary>

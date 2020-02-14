@@ -4,6 +4,8 @@ using Skybrud.Essentials.Enums;
 using Skybrud.Essentials.Json.Extensions;
 using Skybrud.Essentials.Time;
 
+// ReSharper disable InconsistentNaming
+
 namespace Skybrud.Social.Instagram.Models.Graph.Media {
 
     /// <summary>
