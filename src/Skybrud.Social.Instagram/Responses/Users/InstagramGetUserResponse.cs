@@ -1,5 +1,5 @@
 using System;
-using Skybrud.Social.Http;
+using Skybrud.Essentials.Http;
 using Skybrud.Social.Instagram.Models.Users;
 
 namespace Skybrud.Social.Instagram.Responses.Users {
@@ -14,7 +14,7 @@ namespace Skybrud.Social.Instagram.Responses.Users {
 
         #region Constructors
 
-        private InstagramGetUserResponse(SocialHttpResponse response) : base(response) {
+        private InstagramGetUserResponse(IHttpResponse response) : base(response) {
 
             // Validate the response
             ValidateResponse(response);
@@ -33,7 +33,7 @@ namespace Skybrud.Social.Instagram.Responses.Users {
         /// </summary>
         /// <param name="response">The response to be parsed.</param>
         /// <returns>An instance of <see cref="InstagramGetUserResponse"/>.</returns>
-        public static InstagramGetUserResponse ParseResponse(SocialHttpResponse response) {
+        public static InstagramGetUserResponse ParseResponse(IHttpResponse response) {
             if (response == null) throw new ArgumentNullException("response");
             return new InstagramGetUserResponse(response);
         }

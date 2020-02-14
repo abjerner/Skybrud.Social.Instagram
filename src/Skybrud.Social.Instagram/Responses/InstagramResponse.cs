@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Net;
 using Newtonsoft.Json.Linq;
+using Skybrud.Essentials.Http;
 using Skybrud.Essentials.Json.Extensions;
-using Skybrud.Social.Http;
 using Skybrud.Social.Instagram.Exceptions;
 using Skybrud.Social.Instagram.Models;
 using Skybrud.Social.Instagram.Models.Common;
@@ -12,7 +12,7 @@ namespace Skybrud.Social.Instagram.Responses {
     /// <summary>
     /// Class representing a response from the Instagram API.
     /// </summary>
-    public class InstagramResponse : SocialResponse {
+    public class InstagramResponse : HttpResponseBase {
 
         #region Properties
         
@@ -29,7 +29,7 @@ namespace Skybrud.Social.Instagram.Responses {
         /// Initializes a new instance based on the specified <paramref name="response"/>.
         /// </summary>
         /// <param name="response">The underlying raw response the instance should be based on.</param>
-        protected InstagramResponse(SocialHttpResponse response) : base(response) {
+        protected InstagramResponse(IHttpResponse response) : base(response) {
             RateLimiting = InstagramRateLimiting.GetFromResponse(response);
         }
 
@@ -41,7 +41,7 @@ namespace Skybrud.Social.Instagram.Responses {
         /// Validates the specified <paramref name="response"/>.
         /// </summary>
         /// <param name="response">The response to be validated.</param>
-        public static void ValidateResponse(SocialHttpResponse response) {
+        public static void ValidateResponse(IHttpResponse response) {
 
             // Skip error checking if the server responds with an OK status code
             if (response.StatusCode == HttpStatusCode.OK) return;
@@ -131,7 +131,7 @@ namespace Skybrud.Social.Instagram.Responses {
         /// Initializes a new instance based on the specified <paramref name="response"/>.
         /// </summary>
         /// <param name="response">The underlying raw response the instance should be based on.</param>
-        protected InstagramResponse(SocialHttpResponse response) : base(response) { }
+        protected InstagramResponse(IHttpResponse response) : base(response) { }
 
         #endregion
 

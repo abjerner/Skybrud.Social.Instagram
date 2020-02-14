@@ -1,13 +1,13 @@
 using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
-using Skybrud.Essentials.Locations;
+using Skybrud.Essentials.Maps.Geometry;
 
 namespace Skybrud.Social.Instagram.Models.Locations {
     
     /// <summary>
     /// Class representing the location of where a media (image or video) was taken. Some media may not have a location.
     /// </summary>
-    public class InstagramLocation : InstagramObject, ILocation {
+    public class InstagramLocation : InstagramObject, IPoint {
 
         #region Properties
 

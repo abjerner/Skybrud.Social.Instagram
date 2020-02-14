@@ -1,5 +1,5 @@
 using System;
-using Skybrud.Social.Http;
+using Skybrud.Essentials.Http;
 using Skybrud.Social.Instagram.Models;
 using Skybrud.Social.Instagram.Models.Common;
 
@@ -13,9 +13,9 @@ namespace Skybrud.Social.Instagram.Exceptions {
         #region Properties
 
         /// <summary>
-        /// Gets a reference to the underlying <see cref="SocialHttpResponse"/>.
+        /// Gets a reference to the underlying <see cref="IHttpResponse"/>.
         /// </summary>
-        public SocialHttpResponse Response { get; private set; }
+        public IHttpResponse Response { get; private set; }
 
         /// <summary>
         /// Gets information about rate limiting.
@@ -45,12 +45,12 @@ namespace Skybrud.Social.Instagram.Exceptions {
 
         #region Constructors
 
-        internal InstagramHttpException(SocialHttpResponse response) : base("Invalid response received from the Instagram API (Status: " + ((int) response.StatusCode) + ")") {
+        internal InstagramHttpException(IHttpResponse response) : base("Invalid response received from the Instagram API (Status: " + ((int) response.StatusCode) + ")") {
             Response = response;
             RateLimiting = InstagramRateLimiting.GetFromResponse(response);
         }
 
-        internal InstagramHttpException(SocialHttpResponse response, InstagramMetaData meta) : base(meta.ErrorMessage) {
+        internal InstagramHttpException(IHttpResponse response, InstagramMetaData meta) : base(meta.ErrorMessage) {
             Response = response;
             RateLimiting = InstagramRateLimiting.GetFromResponse(response);
             Meta = meta;

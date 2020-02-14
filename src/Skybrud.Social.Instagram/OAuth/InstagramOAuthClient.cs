@@ -3,11 +3,12 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using Skybrud.Essentials.Common;
-using Skybrud.Social.Http;
+using Skybrud.Essentials.Http;
+using Skybrud.Essentials.Http.Client;
+using Skybrud.Essentials.Http.Collections;
 using Skybrud.Social.Instagram.Endpoints.Raw;
 using Skybrud.Social.Instagram.Responses.Authentication;
 using Skybrud.Social.Instagram.Scopes;
-using Skybrud.Social.Interfaces.Http;
 
 namespace Skybrud.Social.Instagram.OAuth {
 
@@ -15,7 +16,7 @@ namespace Skybrud.Social.Instagram.OAuth {
     /// Class for handling the raw communication with the Instagram API as well as any OAuth 2.0
     /// communication/authentication.
     /// </summary>
-    public class InstagramOAuthClient : SocialHttpClient {
+    public class InstagramOAuthClient : HttpClient {
 
         #region Properties
 
@@ -182,7 +183,7 @@ namespace Skybrud.Social.Instagram.OAuth {
             }
 
             // Construct the query string
-            IHttpQueryString query = new SocialHttpQueryString();
+            IHttpQueryString query = new HttpQueryString();
             query.Add("client_id", ClientId);
             query.Add("redirect_uri", RedirectUri);
             query.Add("response_type", "code");
@@ -212,7 +213,7 @@ namespace Skybrud.Social.Instagram.OAuth {
             if (String.IsNullOrWhiteSpace(authCode)) throw new ArgumentNullException("authCode");
         
             // Initialize collection with POST data
-            IHttpPostData parameters = new SocialHttpPostData();
+            IHttpPostData parameters = new HttpPostData();
             parameters.Add("client_id", ClientId);
             parameters.Add("client_secret", ClientSecret);
             parameters.Add("grant_type", "authorization_code");
@@ -220,7 +221,7 @@ namespace Skybrud.Social.Instagram.OAuth {
             parameters.Add("code", authCode);
 
             // Make the call to the API
-            SocialHttpResponse response = SocialUtils.Http.DoHttpPostRequest("https://api.instagram.com/oauth/access_token", null, parameters);
+            IHttpResponse response = HttpUtils.Requests.Post("https://api.instagram.com/oauth/access_token", null, parameters);
 
             // Parse the response
             return InstagramTokenResponse.ParseResponse(response);
@@ -230,8 +231,8 @@ namespace Skybrud.Social.Instagram.OAuth {
         /// <summary>
         /// Virtual method that can be used for configuring a request.
         /// </summary>
-        /// <param name="request">The instance of <see cref="SocialHttpRequest"/> representing the request.</param>
-        protected override void PrepareHttpRequest(SocialHttpRequest request) {
+        /// <param name="request">The instance of <see cref="IHttpRequest"/> representing the request.</param>
+        protected override void PrepareHttpRequest(IHttpRequest request) {
 
             // Append either the access token or the client ID to the query string
             if (!String.IsNullOrWhiteSpace(AccessToken)) {

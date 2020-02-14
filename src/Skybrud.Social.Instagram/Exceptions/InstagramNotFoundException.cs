@@ -1,4 +1,4 @@
-using Skybrud.Social.Http;
+using Skybrud.Essentials.Http;
 using Skybrud.Social.Instagram.Models;
 
 namespace Skybrud.Social.Instagram.Exceptions {
@@ -8,9 +8,9 @@ namespace Skybrud.Social.Instagram.Exceptions {
     /// </summary>
     public class InstagramNotFoundException : InstagramHttpException {
 
-        internal InstagramNotFoundException(SocialHttpResponse response) : base(response) { }
+        internal InstagramNotFoundException(IHttpResponse response) : base(response) { }
 
-        internal InstagramNotFoundException(SocialHttpResponse response, InstagramMetaData meta) : base(response, meta) { }
+        internal InstagramNotFoundException(IHttpResponse response, InstagramMetaData meta) : base(response, meta) { }
 
     }
 

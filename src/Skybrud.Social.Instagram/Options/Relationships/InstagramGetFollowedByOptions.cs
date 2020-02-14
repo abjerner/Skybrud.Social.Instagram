@@ -1,5 +1,5 @@
-﻿using Skybrud.Social.Http;
-using Skybrud.Social.Interfaces.Http;
+﻿using Skybrud.Essentials.Http.Collections;
+using Skybrud.Essentials.Http.Options;
 
 namespace Skybrud.Social.Instagram.Options.Relationships {
     
@@ -66,7 +66,7 @@ namespace Skybrud.Social.Instagram.Options.Relationships {
         /// Gets an instance of <see cref="IHttpQueryString"/> representing the GET parameters.
         /// </summary>
         public IHttpQueryString GetQueryString() {
-            SocialHttpQueryString qs = new SocialHttpQueryString();
+            HttpQueryString qs = new HttpQueryString();
             if (Count > 0) qs.Add("count", Count);
             return qs;
         }

@@ -1,4 +1,4 @@
-using Skybrud.Social.Http;
+using Skybrud.Essentials.Http;
 using Skybrud.Social.Instagram.Models;
 
 namespace Skybrud.Social.Instagram.Exceptions {
@@ -13,7 +13,7 @@ namespace Skybrud.Social.Instagram.Exceptions {
         /// </summary>
         /// <param name="response">The response the exception should be based on.</param>
         /// <param name="meta">The meta data with information about the exception.</param>
-        public InstagramOAuthParameterException(SocialHttpResponse response, InstagramMetaData meta) : base(response, meta) { }
+        public InstagramOAuthParameterException(IHttpResponse response, InstagramMetaData meta) : base(response, meta) { }
 
     }
 

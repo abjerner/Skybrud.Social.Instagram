@@ -1,5 +1,5 @@
 using System;
-using Skybrud.Social.Http;
+using Skybrud.Essentials.Http;
 using Skybrud.Social.Instagram.Models.Authentication;
 
 namespace Skybrud.Social.Instagram.Responses.Authentication {
@@ -11,7 +11,7 @@ namespace Skybrud.Social.Instagram.Responses.Authentication {
 
         #region Constructors
 
-        private InstagramTokenResponse(SocialHttpResponse response) : base(response) {
+        private InstagramTokenResponse(IHttpResponse response) : base(response) {
 
             // Validate the response
             ValidateResponse(response);
@@ -30,7 +30,7 @@ namespace Skybrud.Social.Instagram.Responses.Authentication {
         /// </summary>
         /// <param name="response">The response to be parsed.</param>
         /// <returns>Returns an instance of <see cref="InstagramTokenResponse"/> representing the response.</returns>
-        public static InstagramTokenResponse ParseResponse(SocialHttpResponse response) {
+        public static InstagramTokenResponse ParseResponse(IHttpResponse response) {
 
             // Some input validation
             if (response == null) throw new ArgumentNullException("response");

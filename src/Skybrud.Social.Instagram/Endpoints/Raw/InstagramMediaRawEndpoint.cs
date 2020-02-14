@@ -1,6 +1,7 @@
 using System;
+using Skybrud.Essentials.Http;
 using Skybrud.Essentials.Locations;
-using Skybrud.Social.Http;
+using Skybrud.Essentials.Maps.Geometry;
 using Skybrud.Social.Instagram.OAuth;
 using Skybrud.Social.Instagram.Options.Media;
 
@@ -37,26 +38,26 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// Gets information about the Instagram media with the specified <paramref name="mediaId"/>.
         /// </summary>
         /// <param name="mediaId">The ID of the media.</param>
-        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
+        /// <returns>An instance of <see cref="IHttpResponse"/> representing the response from the Instagram API.</returns>
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/media/#get_media</cref>
         /// </see>
-        public SocialHttpResponse GetMedia(string mediaId) {
+        public IHttpResponse GetMedia(string mediaId) {
             if (String.IsNullOrWhiteSpace(mediaId)) throw new ArgumentNullException("mediaId");
-            return Client.DoHttpGetRequest("https://api.instagram.com/v1/media/" + mediaId);
+            return Client.Get("https://api.instagram.com/v1/media/" + mediaId);
         }
 
         /// <summary>
         /// Gets information about the Instagram media with the specified <paramref name="shortcode"/>.
         /// </summary>
         /// <param name="shortcode">The shortcode of the media (eg. <code>BSTdNc3Bk2B</code>).</param>
-        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
+        /// <returns>An instance of <see cref="IHttpResponse"/> representing the response from the Instagram API.</returns>
         /// <see>
         ///     <cref>https://www.instagram.com/developer/endpoints/media/#get_media_by_shortcode</cref>
         /// </see>
-        public SocialHttpResponse GetMediaFromShortcode(string shortcode) {
+        public IHttpResponse GetMediaFromShortcode(string shortcode) {
             if (String.IsNullOrWhiteSpace(shortcode)) throw new ArgumentNullException("shortcode");
-            return Client.DoHttpGetRequest("https://api.instagram.com/v1/media/shortcode/" + shortcode);
+            return Client.Get("https://api.instagram.com/v1/media/shortcode/" + shortcode);
         }
 
         /// <summary>
@@ -64,11 +65,11 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// </summary>
         /// <param name="latitude">The latitude of the point.</param>
         /// <param name="longitude">The longitude of the point.</param>
-        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
+        /// <returns>An instance of <see cref="IHttpResponse"/> representing the response from the Instagram API.</returns>
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/media/#get_media_search</cref>
         /// </see>
-        public SocialHttpResponse Search(double latitude, double longitude) {
+        public IHttpResponse Search(double latitude, double longitude) {
             return Search(new InstagramGetRecentMediaOptions(latitude, longitude));
         }
 
@@ -79,23 +80,23 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// <param name="latitude">The latitude of the point.</param>
         /// <param name="longitude">The longitude of the point.</param>
         /// <param name="distance">The distance/radius in meters. The API allows a maximum radius of 5000 meters.</param>
-        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
+        /// <returns>An instance of <see cref="IHttpResponse"/> representing the response from the Instagram API.</returns>
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/media/#get_media_search</cref>
         /// </see>
-        public SocialHttpResponse Search(double latitude, double longitude, int distance) {
+        public IHttpResponse Search(double latitude, double longitude, int distance) {
             return Search(new InstagramGetRecentMediaOptions(latitude, longitude, distance));
         }
 
         /// <summary>
         /// Search for media in a given area. Can return mix of image and video types.
         /// </summary>
-        /// <param name="location">An instance of <see cref="ILocation"/> representing the point.</param>
-        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
+        /// <param name="location">An instance of <see cref="IPoint"/> representing the point.</param>
+        /// <returns>An instance of <see cref="IHttpResponse"/> representing the response from the Instagram API.</returns>
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/media/#get_media_search</cref>
         /// </see>
-        public SocialHttpResponse Search(ILocation location) {
+        public IHttpResponse Search(IPoint location) {
             if (location == null) throw new ArgumentNullException("location");
             return Search(new InstagramGetRecentMediaOptions(location));
         }
@@ -103,13 +104,13 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// <summary>
         /// Search for media in a given area. Can return mix of image and video types.
         /// </summary>
-        /// <param name="location">An instance of <see cref="ILocation"/> representing the point.</param>
+        /// <param name="location">An instance of <see cref="IPoint"/> representing the point.</param>
         /// <param name="distance">The distance/radius in meters. The API allows a maximum radius of 5000 meters.</param>
-        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
+        /// <returns>An instance of <see cref="IHttpResponse"/> representing the response from the Instagram API.</returns>
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/media/#get_media_search</cref>
         /// </see>
-        public SocialHttpResponse Search(ILocation location, int distance) {
+        public IHttpResponse Search(IPoint location, int distance) {
             if (location == null) throw new ArgumentNullException("location");
             return Search(new InstagramGetRecentMediaOptions(location));
         }
@@ -118,13 +119,13 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// Search for media in a given area. Can return mix of image and video types.
         /// </summary>
         /// <param name="options">The search options.</param>
-        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the response from the Instagram API.</returns>
+        /// <returns>An instance of <see cref="IHttpResponse"/> representing the response from the Instagram API.</returns>
         /// <see>
         ///     <cref>https://instagram.com/developer/endpoints/media/#get_media_search</cref>
         /// </see>
-        public SocialHttpResponse Search(InstagramGetRecentMediaOptions options) {
+        public IHttpResponse Search(InstagramGetRecentMediaOptions options) {
             if (options == null) throw new ArgumentNullException("options");
-            return Client.DoHttpGetRequest("https://api.instagram.com/v1/media/search", options);
+            return Client.Get("https://api.instagram.com/v1/media/search", options);
         }
 
         #endregion

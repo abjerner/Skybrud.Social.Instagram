@@ -1,8 +1,9 @@
 using System;
+using Skybrud.Essentials.Http.Collections;
+using Skybrud.Essentials.Http.Options;
 using Skybrud.Essentials.Locations;
+using Skybrud.Essentials.Maps.Geometry;
 using Skybrud.Essentials.Time;
-using Skybrud.Social.Http;
-using Skybrud.Social.Interfaces.Http;
 
 namespace Skybrud.Social.Instagram.Options.Media {
     
@@ -85,7 +86,7 @@ namespace Skybrud.Social.Instagram.Options.Media {
         /// Initializes a new instance from the specified <paramref name="location"/>.
         /// </summary>
         /// <param name="location">An instance of <see cref="ILocation"/> representing the point.</param>
-        public InstagramGetRecentMediaOptions(ILocation location) {
+        public InstagramGetRecentMediaOptions(IPoint location) {
             if (location == null) throw new ArgumentNullException("location");
             Latitude = location.Latitude;
             Longitude = location.Longitude;
@@ -96,7 +97,7 @@ namespace Skybrud.Social.Instagram.Options.Media {
         /// </summary>
         /// <param name="location">An instance of <see cref="ILocation"/> representing the point.</param>
         /// <param name="distance">The distance/radius in meters. The API allows a maximum radius of 5000 metres.</param>
-        public InstagramGetRecentMediaOptions(ILocation location, int distance) {
+        public InstagramGetRecentMediaOptions(IPoint location, int distance) {
             if (location == null) throw new ArgumentNullException("location");
             Latitude = location.Latitude;
             Longitude = location.Longitude;
@@ -109,7 +110,7 @@ namespace Skybrud.Social.Instagram.Options.Media {
         /// <param name="location">An instance of <see cref="ILocation"/> representing the point.</param>
         /// <param name="distance">The distance/radius in meters. The API allows a maximum radius of 5000 metres.</param>
         /// <param name="count">The maximum amount of media to be returned. Max is <code>100</code>.</param>
-        public InstagramGetRecentMediaOptions(ILocation location, int distance, int count) {
+        public InstagramGetRecentMediaOptions(IPoint location, int distance, int count) {
             if (location == null) throw new ArgumentNullException("location");
             Latitude = location.Latitude;
             Longitude = location.Longitude;
@@ -127,7 +128,7 @@ namespace Skybrud.Social.Instagram.Options.Media {
         public IHttpQueryString GetQueryString() {
             
             // Declare the query string
-            SocialHttpQueryString qs = new SocialHttpQueryString();
+            IHttpQueryString qs = new HttpQueryString();
             qs.Add("lat", Latitude);
             qs.Add("lng", Longitude);
 

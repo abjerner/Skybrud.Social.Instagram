@@ -1,6 +1,6 @@
-﻿using Skybrud.Essentials.Time;
-using Skybrud.Social.Http;
-using Skybrud.Social.Interfaces.Http;
+﻿using Skybrud.Essentials.Http.Collections;
+using Skybrud.Essentials.Http.Options;
+using Skybrud.Essentials.Time;
 
 namespace Skybrud.Social.Instagram.Options.Users {
     
@@ -80,7 +80,7 @@ namespace Skybrud.Social.Instagram.Options.Users {
         /// Gets an instance of <see cref="IHttpQueryString"/> representing the GET parameters.
         /// </summary>
         public IHttpQueryString GetQueryString() {
-            SocialHttpQueryString qs = new SocialHttpQueryString();
+            IHttpQueryString qs = new HttpQueryString();
             if (Count > 0) qs.Add("count", Count);
             if (MaxTimestamp != null) qs.Add("max_timestamp", MaxTimestamp.UnixTimestamp);
             if (MinTimestamp != null) qs.Add("min_timestamp", MinTimestamp.UnixTimestamp);

@@ -1,5 +1,5 @@
 ﻿using System;
-using Skybrud.Social.Http;
+using Skybrud.Essentials.Http;
 
 namespace Skybrud.Social.Instagram.Models.Common {
     
@@ -41,7 +41,7 @@ namespace Skybrud.Social.Instagram.Models.Common {
         /// </summary>
         /// <param name="response">The response that holds the rate-limiting information.</param>
         /// <returns>Returns an instance of <see cref="InstagramRateLimiting"/>.</returns>
-        public static InstagramRateLimiting GetFromResponse(SocialHttpResponse response) {
+        public static InstagramRateLimiting GetFromResponse(IHttpResponse response) {
 
             int limit;
             int remaining;

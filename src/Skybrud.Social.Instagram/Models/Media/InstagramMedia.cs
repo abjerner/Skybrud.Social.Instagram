@@ -6,14 +6,13 @@ using Skybrud.Social.Instagram.Exceptions;
 using Skybrud.Social.Instagram.Models.Comments;
 using Skybrud.Social.Instagram.Models.Locations;
 using Skybrud.Social.Instagram.Models.Users;
-using Skybrud.Social.Interfaces;
 
 namespace Skybrud.Social.Instagram.Models.Media {
     
     /// <summary>
     /// Abstract class representing an Instagram media. Concrete classes are <see cref="InstagramImage"/> and <see cref="InstagramVideo"/>.
     /// </summary>
-    public abstract class InstagramMedia : InstagramObject, ISocialTimelineEntry {
+    public abstract class InstagramMedia : InstagramObject {
 
         #region Properties
 
@@ -176,13 +175,6 @@ namespace Skybrud.Social.Instagram.Models.Media {
         /// </summary>
         public bool HasUserLiked {
             get { return UserHasLiked; }
-        }
-
-        /// <summary>
-        /// Gets the creation date of the media. This property is just an alias of the <see cref="CreatedTime"/> property.
-        /// </summary>
-        public EssentialsDateTime SortDate {
-            get { return CreatedTime; }
         }
 
         #endregion

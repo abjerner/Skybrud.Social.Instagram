@@ -1,7 +1,7 @@
 using System;
 using Newtonsoft.Json.Linq;
+using Skybrud.Essentials.Http;
 using Skybrud.Essentials.Json.Extensions;
-using Skybrud.Social.Http;
 using Skybrud.Social.Instagram.Models.Common;
 using Skybrud.Social.Instagram.Models.Media;
 using Skybrud.Social.Instagram.Models.Pagination;
@@ -18,7 +18,7 @@ namespace Skybrud.Social.Instagram.Responses.Users {
 
         #region Constructors
 
-        private InstagramGetUserLikedMediaResponse(SocialHttpResponse response) : base(response) {
+        private InstagramGetUserLikedMediaResponse(IHttpResponse response) : base(response) {
 
             // Validate the response
             ValidateResponse(response);
@@ -37,7 +37,7 @@ namespace Skybrud.Social.Instagram.Responses.Users {
         /// </summary>
         /// <param name="response">The response to be parsed.</param>
         /// <returns>Returns an instance of <see cref="InstagramGetUserLikedMediaResponse"/>.</returns>
-        public static InstagramGetUserLikedMediaResponse ParseResponse(SocialHttpResponse response) {
+        public static InstagramGetUserLikedMediaResponse ParseResponse(IHttpResponse response) {
 
             // Some input validation
             if (response == null) throw new ArgumentNullException("response");

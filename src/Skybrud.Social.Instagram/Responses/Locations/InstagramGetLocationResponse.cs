@@ -1,5 +1,5 @@
 using System;
-using Skybrud.Social.Http;
+using Skybrud.Essentials.Http;
 using Skybrud.Social.Instagram.Models.Locations;
 
 namespace Skybrud.Social.Instagram.Responses.Locations {
@@ -14,7 +14,7 @@ namespace Skybrud.Social.Instagram.Responses.Locations {
 
         #region Constructors
 
-        private InstagramGetLocationResponse(SocialHttpResponse response) : base(response) {
+        private InstagramGetLocationResponse(IHttpResponse response) : base(response) {
 
             // Validate the response
             ValidateResponse(response);
@@ -33,7 +33,7 @@ namespace Skybrud.Social.Instagram.Responses.Locations {
         /// </summary>
         /// <param name="response">The response to be parsed.</param>
         /// <returns>Returns an instance of <see cref="InstagramGetLocationResponse"/>.</returns>
-        public static InstagramGetLocationResponse ParseResponse(SocialHttpResponse response) {
+        public static InstagramGetLocationResponse ParseResponse(IHttpResponse response) {
 
             // Some input validation
             if (response == null) throw new ArgumentNullException("response");

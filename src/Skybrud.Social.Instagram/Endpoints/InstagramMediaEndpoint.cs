@@ -1,4 +1,5 @@
 using Skybrud.Essentials.Locations;
+using Skybrud.Essentials.Maps.Geometry;
 using Skybrud.Social.Instagram.Endpoints.Raw;
 using Skybrud.Social.Instagram.Options.Media;
 using Skybrud.Social.Instagram.Responses.Media;
@@ -87,9 +88,9 @@ namespace Skybrud.Social.Instagram.Endpoints {
         /// Search for media in a given area. Can return mix of image
         /// and video types.
         /// </summary>
-        /// <param name="location">An instance of <see cref="ILocation"/> representing the point.</param>
+        /// <param name="location">An instance of <see cref="IPoint"/> representing the point.</param>
         /// <returns>An instance of <see cref="InstagramSearchMediaResponse"/> representing the response from the Instagram API.</returns>
-        public InstagramSearchMediaResponse Search(ILocation location) {
+        public InstagramSearchMediaResponse Search(IPoint location) {
             return InstagramSearchMediaResponse.ParseResponse(Raw.Search(location));
         }
 
@@ -97,10 +98,10 @@ namespace Skybrud.Social.Instagram.Endpoints {
         /// Search for media in a given area. Can return mix of image
         /// and video types.
         /// </summary>
-        /// <param name="location">An instance of <see cref="ILocation"/> representing the point.</param>
+        /// <param name="location">An instance of <see cref="IPoint"/> representing the point.</param>
         /// <param name="distance">The distance/radius in meters. The API allows a maximum radius of 5000 meters.</param>
         /// <returns>An instance of <see cref="InstagramSearchMediaResponse"/> representing the response from the Instagram API.</returns>
-        public InstagramSearchMediaResponse Search(ILocation location, int distance) {
+        public InstagramSearchMediaResponse Search(IPoint location, int distance) {
             return InstagramSearchMediaResponse.ParseResponse(Raw.Search(location, distance));
         }
 

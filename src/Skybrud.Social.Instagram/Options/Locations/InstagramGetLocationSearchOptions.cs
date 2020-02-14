@@ -1,5 +1,5 @@
-using Skybrud.Social.Http;
-using Skybrud.Social.Interfaces.Http;
+using Skybrud.Essentials.Http.Collections;
+using Skybrud.Essentials.Http.Options;
 
 namespace Skybrud.Social.Instagram.Options.Locations {
     
@@ -69,7 +69,7 @@ namespace Skybrud.Social.Instagram.Options.Locations {
         /// Gets an instance of <see cref="IHttpQueryString"/> representing the GET parameters.
         /// </summary>
         public IHttpQueryString GetQueryString() {
-            SocialHttpQueryString qs = new SocialHttpQueryString();
+            IHttpQueryString qs = new HttpQueryString();
             qs.Add("lat", Latitude);
             qs.Add("lng", Longitude);
             if (Distance > 0) qs.Add("distance", Distance);
