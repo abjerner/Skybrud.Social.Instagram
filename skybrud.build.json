@@ -1,0 +1,26 @@
+{
+  "tasks": {
+    "postBuild": [
+      {
+        "alias": "zip",
+        "destination": "releases/github/{packageName}.v{version}.zip",
+        "files": [
+          {
+            "source": "src/{packageName}/bin/Release/",
+            "destination": "bin/",
+            "patterns": [
+              "**/*.dll",
+              "**/*.xml"
+            ]
+          },
+          {
+            "source": "src",
+            "patterns": [
+              "LICENSE.html"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

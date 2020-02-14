@@ -5,7 +5,7 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard1.3;net45;net46;net47</TargetFrameworks>
     <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
-    <RunBuildTargets>true</RunBuildTargets>
+    <BuildInParallel>false</BuildInParallel>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -26,32 +26,24 @@
     <PackageIconUrl>http://www.skybrud.dk/img/5431sk/icon/favicon.ico</PackageIconUrl>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(TargetFramework)'=='netstandard1.3'">
-    <DefineConstants>NET_STANDARD</DefineConstants>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(TargetFramework)'=='net45' OR '$(TargetFramework)'=='net46' OR '$(TargetFramework)'=='net47'">
-    <DefineConstants>NET_FRAMEWORK</DefineConstants>
-  </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Skybrud.Essentials.Http" Version="1.0.12" />
   </ItemGroup>
 
   <PropertyGroup>
-    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\Skybrud.Social.Instagram.xml</DocumentationFile>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
   </PropertyGroup>
 
-  <Target Name="PreBuildEvent" BeforeTargets="DispatchToInnerBuilds" Condition="'$(RunBuildTargets)'=='true'">
-    <Exec Command="&quot;$(SolutionDir)build/Skybrud.Social.PreBuildTool.exe&quot; /date=2012-07-30 /projectPath=&quot;$(SolutionDir)Skybrud.Social.Instagram\Skybrud.Social.Instagram.csproj&quot;" />
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent" Condition="'$(TargetFramework)'=='netstandard1.1'">
+    <Exec Command="&quot;$(ProjectDir)../build/Skybrud.PreBuildTool.exe&quot; /date=2012-07-30 /projectPath=&quot;$(ProjectPath)&quot;" />
   </Target>
 
-  <Target Name="PostBuild" BeforeTargets="PostBuildEvent" Condition="'$(TargetFramework)|$(RunBuildTargets)'=='netstandard1.3|true'">
-    <Exec Command="&quot;$(SolutionDir)build\UpdateAssemblyInfoJson.exe&quot; &quot;$(ProjectPath)&quot; &quot;$(TargetPath)&quot;" />
-  </Target>
-
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+  <!--<Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="mkdir $(ProjectDir)bin\Dev\$(TargetFramework)&#xD;&#xA;xcopy $(ProjectDir)bin\$(ConfigurationName)\$(TargetFramework)\$(TargetName).* $(ProjectDir)bin\Dev\$(TargetFramework)\ /y" />
+  </Target>-->
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(ConfigurationName)'=='Release' AND '$(BuildTools)'=='1'">
+    <Exec Command="&quot;$(ProjectDir)..\build\Skybrud.BuildTools.Tasks.exe&quot; &quot;postBuild&quot; &quot;$(ConfigurationName)&quot; &quot;$(ProjectPath)&quot; &quot;$(TargetPath)&quot;" />
   </Target>
 
 </Project>
