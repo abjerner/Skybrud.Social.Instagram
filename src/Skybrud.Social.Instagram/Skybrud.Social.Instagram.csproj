@@ -10,19 +10,19 @@
 
   <PropertyGroup>
     <RootNamespace>Skybrud.Social.Instagram</RootNamespace>
-    <Version>1.0.0-beta4</Version>
+    <Version>1.0.0-beta005</Version>
     <Company>Skybrud.dk a/s</Company>
     <Product>Skybrud.Social</Product>
     <Authors>Anders Bjerner</Authors>
-    <Copyright>Copyright © 2018</Copyright>
+    <Copyright>Copyright © 2020</Copyright>
     <Description>Authentication and service implementation for the Instagram API.</Description>
     <RepositoryUrl>https://github.com/abjerner/Skybrud.Social.Instagram</RepositoryUrl>
   </PropertyGroup>
   
   <PropertyGroup>
     <PackageTags>Instagram, API, Skybrud, Social, OAuth, JSON</PackageTags>
-    <PackageLicenseUrl>https://github.com/abjerner/Skybrud.Social.Instagram/blob/master/LICENSE.md</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/abjerner/Skybrud.Social.Instagram</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://social.skybrud.dk/instagram/</PackageProjectUrl>
     <PackageIconUrl>http://www.skybrud.dk/img/5431sk/icon/favicon.ico</PackageIconUrl>
   </PropertyGroup>
 
