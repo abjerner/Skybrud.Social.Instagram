@@ -2,6 +2,8 @@
 using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 
+#pragma warning disable 618
+
 namespace Skybrud.Social.Instagram.Models.Pagination {
 
     /// <summary>
@@ -33,9 +35,7 @@ namespace Skybrud.Social.Instagram.Models.Pagination {
 
         private InstagramTagIdBasedPagination(JObject obj) : base(obj) {
             NextUrl = obj.GetString("next_url");
-// ReSharper disable CSharpWarnings::CS0618
             NextMaxId = obj.GetString("next_max_id");
-// ReSharper restore CSharpWarnings::CS0618
             NextMaxTagId = obj.GetString("next_max_tag_id");
         }
 

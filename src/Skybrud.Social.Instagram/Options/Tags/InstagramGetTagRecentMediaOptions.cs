@@ -62,8 +62,7 @@ namespace Skybrud.Social.Instagram.Options.Tags {
         }
 
         /// <summary>
-        /// Initializes a new instance based on the specified <paramref name="tag"/>, <paramref name="count"/> and
-        /// <see cref="maxTagId"/>.
+        /// Initializes a new instance based on the specified <paramref name="tag"/>, <paramref name="count"/> and<paramref name="maxTagId"/>.
         /// </summary>
         /// <param name="tag">The name of the tag.</param>
         /// <param name="count">The maximum amount of users to be returned.</param>
