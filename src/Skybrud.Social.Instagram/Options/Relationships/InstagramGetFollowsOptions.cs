@@ -27,9 +27,7 @@ namespace Skybrud.Social.Instagram.Options.Relationships {
         /// Gets the identifier of the user. The identifier will be a textual representing of <see cref="UserId"/>, or
         /// <code>self</code> if <see cref="UserId"/> has not been specified.
         /// </summary>
-        public string Identifier {
-            get { return (UserId == 0 ? "self" : UserId + ""); }
-        }
+        public string Identifier => (UserId == 0 ? "self" : UserId + string.Empty);
 
         #endregion
 

@@ -15,13 +15,13 @@ namespace Skybrud.Social.Instagram.Models.Users {
         /// Gets the posision of the user in the media.
         /// </summary>
         [JsonProperty("position")]
-        public InstagramPosition Position { get; private set; }
+        public InstagramPosition Position { get; }
 
         /// <summary>
         /// Gets information about the tagged user.
         /// </summary>
         [JsonProperty("user")]
-        public InstagramUserSummary User { get; private set; }
+        public InstagramUserSummary User { get; }
 
         #endregion
 

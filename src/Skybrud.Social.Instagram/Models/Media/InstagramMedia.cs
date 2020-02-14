@@ -44,9 +44,7 @@ namespace Skybrud.Social.Instagram.Models.Media {
         /// <summary>
         /// Gets whether any tags has been specified for the media.
         /// </summary>
-        public bool HasTags {
-            get { return Tags.Length > 0; }
-        }
+        public bool HasTags => Tags.Length > 0;
 
         /// <summary>
         /// Gets the filter used for this media.
@@ -71,14 +69,12 @@ namespace Skybrud.Social.Instagram.Models.Media {
         /// <summary>
         /// Gets a summary about the likes the media has received.
         /// </summary>
-        public InstagramMediaLikes Likes { get; private set; }
+        public InstagramMediaLikes Likes { get; }
 
         /// <summary>
         /// Gets whether the media has received any likes.
         /// </summary>
-        public bool HasLikes {
-            get { return LikeCount > 0; }
-        }
+        public bool HasLikes => LikeCount > 0;
 
         /// <summary>
         /// Gets the amount of comments the media has received. This equals calling <code>Comments.Count</code>.
@@ -93,36 +89,28 @@ namespace Skybrud.Social.Instagram.Models.Media {
         /// <summary>
         /// Gets whether the media has received any comments.
         /// </summary>
-        public bool HasComments {
-            get { return CommentCount > 0; }
-        }
+        public bool HasComments => CommentCount > 0;
 
         /// <summary>
         /// Gets a summary of the image formats available for this Instagram media. The image formats are available
         /// for both images and videos.
         /// </summary>
-        public InstagramImageSummary Images { get; private set; }
+        public InstagramImageSummary Images { get; }
 
         /// <summary>
         /// Gets the URL of the low resolution format. This equals calling <code>Images.LowResolution.Url</code>.
         /// </summary>
-        public string LowRes {
-            get { return Images.LowResolution.Url; }
-        }
-        
+        public string LowRes => Images.LowResolution.Url;
+
         /// <summary>
         /// Gets the URL of the thumbnail format. This equals calling <code>Images.Thumbnail.Url</code>.
         /// </summary>
-        public string Thumbnail {
-            get { return Images.Thumbnail.Url; }
-        }
+        public string Thumbnail => Images.Thumbnail.Url;
 
         /// <summary>
         /// Gets the URL of the standard resolution format. This equals calling <code>Images.StandardResolution.Url</code>.
         /// </summary>
-        public string Standard {
-            get { return Images.StandardResolution.Url; }
-        }
+        public string Standard => Images.StandardResolution.Url;
 
         /// <summary>
         /// Gets the comment representing the caption of the media.
@@ -130,52 +118,44 @@ namespace Skybrud.Social.Instagram.Models.Media {
         public InstagramComment Caption { get; set; }
 
         /// <summary>
-        /// Gets the caption text of the media, or <see cref="String.Empty"/> if not specified.
+        /// Gets the caption text of the media, or <see cref="string.Empty"/> if not specified.
         /// </summary>
-        public string CaptionText {
-            get { return Caption == null ? String.Empty : Caption.Text; }
-        }
+        public string CaptionText => Caption == null ? string.Empty : Caption.Text;
 
         /// <summary>
         /// Gets whether a caption has been specified for the media.
         /// </summary>
-        public bool HasCaption {
-            get { return Caption != null; }
-        }
+        public bool HasCaption => Caption != null;
 
         /// <summary>
         /// Gets an object with information about the user who posted the media.
         /// </summary>
-        public InstagramUser User { get; private set; }
+        public InstagramUser User { get; }
 
         /// <summary>
         /// Gets the location of the media, or <code>null</code> if not specified.
         /// </summary>
-        public InstagramLocation Location { get; private set; }
+        public InstagramLocation Location { get; }
 
         /// <summary>
         /// Gets whether a location has been specified for the media.
         /// </summary>
-        public bool HasLocation {
-            get { return Location != null; }
-        }
+        public bool HasLocation => Location != null;
 
         /// <summary>
         /// Gets an array of users tagged in the photo.
         /// </summary>
-        public InstagramTaggedUser[] UsersInPhoto { get; private set; }
+        public InstagramTaggedUser[] UsersInPhoto { get; }
 
         /// <summary>
         /// Gets whether the authenticated user has liked the media.
         /// </summary>
-        public bool UserHasLiked { get; private set; }
+        public bool UserHasLiked { get; }
 
         /// <summary>
         /// Gets whether the authenticated user has liked the media. Alias of <see cref="UserHasLiked"/>.
         /// </summary>
-        public bool HasUserLiked {
-            get { return UserHasLiked; }
-        }
+        public bool HasUserLiked => UserHasLiked;
 
         #endregion
 

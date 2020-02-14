@@ -21,7 +21,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// <summary>
         /// Gets a reference to the Instagram OAuth client.
         /// </summary>
-        public InstagramOAuthClient Client { get; private set; }
+        public InstagramOAuthClient Client { get; }
 
         #endregion
 
@@ -57,7 +57,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations_media_recent</cref>
         /// </see>
         public IHttpResponse GetRecentMedia(InstagramLocation location) {
-            if (location == null) throw new ArgumentNullException("location");
+            if (location == null) throw new ArgumentNullException(nameof(location));
             return GetRecentMedia(new InstagramGetLocationRecentMediaOptions(location.Id));
         }
 
@@ -71,7 +71,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations_media_recent</cref>
         /// </see>
         public IHttpResponse GetRecentMedia(InstagramLocation location, int count) {
-            if (location == null) throw new ArgumentNullException("location");
+            if (location == null) throw new ArgumentNullException(nameof(location));
             return GetRecentMedia(new InstagramGetLocationRecentMediaOptions(location.Id, count));
         }
 
@@ -109,8 +109,8 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations_media_recent</cref>
         /// </see>
         public IHttpResponse GetRecentMedia(InstagramGetLocationRecentMediaOptions options) {
-            if (options == null) throw new ArgumentNullException("options");
-            if (options.LocationId == 0) throw new PropertyNotSetException("options.LocationId");
+            if (options == null) throw new ArgumentNullException(nameof(options));
+            if (options.LocationId == 0) throw new PropertyNotSetException(nameof(options.LocationId));
             return Client.Get("https://api.instagram.com/v1/locations/" + options.LocationId + "/media/recent", options);
         }
 
@@ -159,7 +159,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         ///     <cref>https://instagram.com/developer/endpoints/locations/#get_locations_search</cref>
         /// </see>
         public IHttpResponse Search(InstagramGetLocationSearchOptions options) {
-            if (options == null) throw new ArgumentNullException("options");
+            if (options == null) throw new ArgumentNullException(nameof(options));
             return Client.Get("https://api.instagram.com/v1/locations/search", options);
         }
 

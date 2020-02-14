@@ -1,4 +1,3 @@
-using Skybrud.Essentials.Locations;
 using Skybrud.Essentials.Maps.Geometry;
 using Skybrud.Social.Instagram.Endpoints.Raw;
 using Skybrud.Social.Instagram.Options.Media;
@@ -19,14 +18,12 @@ namespace Skybrud.Social.Instagram.Endpoints {
         /// <summary>
         /// Gets a reference to the Instagram service.
         /// </summary>
-        public InstagramService Service { get; private set; }
+        public InstagramService Service { get; }
 
         /// <summary>
         /// A reference to the raw endpoint.
         /// </summary>
-        public InstagramMediaRawEndpoint Raw {
-            get { return Service.Client.Media; }
-        }
+        public InstagramMediaRawEndpoint Raw => Service.Client.Media;
 
         #endregion
 

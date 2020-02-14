@@ -14,36 +14,32 @@ namespace Skybrud.Social.Instagram.Models.Users {
         /// <summary>
         /// Gets the ID of the user.
         /// </summary>
-        public long Id { get; private set; }
+        public long Id { get; }
 
         /// <summary>
         /// Gets the username of the user.
         /// </summary>
-        public string Username { get; private set; }
+        public string Username { get; }
 
         /// <summary>
         /// Gets the full name of the users.
         /// </summary>
-        public string FullName { get; private set; }
+        public string FullName { get; }
 
         /// <summary>
         /// Gets the profile picture of the user.
         /// </summary>
-        public string ProfilePicture { get; private set; }
+        public string ProfilePicture { get; }
 
         /// <summary>
         /// Gets whether the user has specified a full name.
         /// </summary>
-        public bool HasFullName {
-            get { return !String.IsNullOrWhiteSpace(FullName); }
-        }
+        public bool HasFullName => !string.IsNullOrWhiteSpace(FullName);
 
         /// <summary>
         /// Gets whether the user has uploaded a profile picture.
         /// </summary>
-        public bool HasProfilePicture {
-            get { return !String.IsNullOrWhiteSpace(ProfilePicture); }
-        }
+        public bool HasProfilePicture => !string.IsNullOrWhiteSpace(ProfilePicture);
 
         #endregion
 

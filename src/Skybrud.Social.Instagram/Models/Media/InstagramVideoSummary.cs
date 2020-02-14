@@ -13,17 +13,17 @@ namespace Skybrud.Social.Instagram.Models.Media {
         /// <summary>
         /// Gets information about the low bandwidth format.
         /// </summary>
-        public InstagramMediaSummary LowBandwidth { get; private set; }
+        public InstagramMediaSummary LowBandwidth { get; }
 
         /// <summary>
         /// Gets information about the low resolution format.
         /// </summary>
-        public InstagramMediaSummary LowResolution { get; private set; }
+        public InstagramMediaSummary LowResolution { get; }
 
         /// <summary>
         /// Gets information about the standard resolution format.
         /// </summary>
-        public InstagramMediaSummary StandardResolution { get; private set; }
+        public InstagramMediaSummary StandardResolution { get; }
 
         #endregion
 

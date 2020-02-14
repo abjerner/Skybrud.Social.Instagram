@@ -14,18 +14,18 @@ namespace Skybrud.Social.Instagram.Models.Pagination {
         /// <summary>
         /// Gets the URL of the next page.
         /// </summary>
-        public string NextUrl { get; private set; }
+        public string NextUrl { get; }
 
         /// <summary>
         /// Gets the ID of the first item og the next page.
         /// </summary>
         [Obsolete("Use NextMaxTagId instead.")]
-        public string NextMaxId { get; private set; }
+        public string NextMaxId { get; }
 
         /// <summary>
         /// Gets the tag ID of the first item og the next page.
         /// </summary>
-        public string NextMaxTagId { get; private set; }
+        public string NextMaxTagId { get; }
 
         #endregion
 

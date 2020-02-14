@@ -17,14 +17,12 @@ namespace Skybrud.Social.Instagram.Endpoints {
         /// <summary>
         /// Gets a reference to the Instagram service.
         /// </summary>
-        public InstagramService Service { get; private set; }
+        public InstagramService Service { get; }
 
         /// <summary>
         /// A reference to the raw endpoint.
         /// </summary>
-        public InstagramRelationshipsRawEndpoint Raw {
-            get { return Service.Client.Relationships; }
-        }
+        public InstagramRelationshipsRawEndpoint Raw => Service.Client.Relationships;
 
         #endregion
 

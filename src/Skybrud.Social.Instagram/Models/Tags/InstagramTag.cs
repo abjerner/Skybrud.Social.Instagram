@@ -13,12 +13,12 @@ namespace Skybrud.Social.Instagram.Models.Tags {
         /// <summary>
         /// The amount of media using this tag.
         /// </summary>
-        public long MediaCount { get; private set; }
+        public long MediaCount { get; }
 
         /// <summary>
         /// The name of the tag.
         /// </summary>
-        public string Name { get; private set; }
+        public string Name { get; }
 
         #endregion
 

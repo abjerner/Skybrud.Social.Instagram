@@ -33,7 +33,7 @@ namespace Skybrud.Social.Instagram.Responses.Media {
         public static InstagramSearchMediaResponse ParseResponse(IHttpResponse response) {
 
             // Some input validation
-            if (response == null) throw new ArgumentNullException("response");
+            if (response == null) throw new ArgumentNullException(nameof(response));
 
             // Initialize the response object
             return new InstagramSearchMediaResponse(response);

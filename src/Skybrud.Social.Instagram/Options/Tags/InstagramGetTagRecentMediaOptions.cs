@@ -84,8 +84,8 @@ namespace Skybrud.Social.Instagram.Options.Tags {
         public IHttpQueryString GetQueryString() {
             IHttpQueryString qs = new HttpQueryString();
             if (Count > 0) qs.Add("count", Count);
-            if (!String.IsNullOrWhiteSpace(MinTagId)) qs.Add("min_tag_id", MinTagId);
-            if (!String.IsNullOrWhiteSpace(MaxTagId)) qs.Add("max_tag_id", MaxTagId);
+            if (!string.IsNullOrWhiteSpace(MinTagId)) qs.Add("min_tag_id", MinTagId);
+            if (!string.IsNullOrWhiteSpace(MaxTagId)) qs.Add("max_tag_id", MaxTagId);
             return qs;
         }
 

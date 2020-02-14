@@ -14,7 +14,7 @@ namespace Skybrud.Social.Instagram.Models.Media {
         /// <summary>
         /// Gets an array of the media of the carousel.
         /// </summary>
-        public InstagramCarouselMedia[] CarouselMedia { get; private set; }
+        public InstagramCarouselMedia[] CarouselMedia { get; }
 
         #endregion
 

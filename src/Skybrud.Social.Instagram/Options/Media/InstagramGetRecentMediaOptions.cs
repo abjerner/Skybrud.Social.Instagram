@@ -87,7 +87,7 @@ namespace Skybrud.Social.Instagram.Options.Media {
         /// </summary>
         /// <param name="location">An instance of <see cref="ILocation"/> representing the point.</param>
         public InstagramGetRecentMediaOptions(IPoint location) {
-            if (location == null) throw new ArgumentNullException("location");
+            if (location == null) throw new ArgumentNullException(nameof(location));
             Latitude = location.Latitude;
             Longitude = location.Longitude;
         }
@@ -98,7 +98,7 @@ namespace Skybrud.Social.Instagram.Options.Media {
         /// <param name="location">An instance of <see cref="ILocation"/> representing the point.</param>
         /// <param name="distance">The distance/radius in meters. The API allows a maximum radius of 5000 metres.</param>
         public InstagramGetRecentMediaOptions(IPoint location, int distance) {
-            if (location == null) throw new ArgumentNullException("location");
+            if (location == null) throw new ArgumentNullException(nameof(location));
             Latitude = location.Latitude;
             Longitude = location.Longitude;
             Distance = distance;
@@ -111,7 +111,7 @@ namespace Skybrud.Social.Instagram.Options.Media {
         /// <param name="distance">The distance/radius in meters. The API allows a maximum radius of 5000 metres.</param>
         /// <param name="count">The maximum amount of media to be returned. Max is <code>100</code>.</param>
         public InstagramGetRecentMediaOptions(IPoint location, int distance, int count) {
-            if (location == null) throw new ArgumentNullException("location");
+            if (location == null) throw new ArgumentNullException(nameof(location));
             Latitude = location.Latitude;
             Longitude = location.Longitude;
             Distance = distance;

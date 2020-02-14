@@ -36,7 +36,7 @@ namespace Skybrud.Social.Instagram.Responses.Users {
         /// <param name="response">The response to be parsed.</param>
         /// <returns>An instance of <see cref="InstagramSearchUsersResponse"/>.</returns>
         public static InstagramSearchUsersResponse ParseResponse(IHttpResponse response) {
-            if (response == null) throw new ArgumentNullException("response");
+            if (response == null) throw new ArgumentNullException(nameof(response));
             return new InstagramSearchUsersResponse(response);
         }
 

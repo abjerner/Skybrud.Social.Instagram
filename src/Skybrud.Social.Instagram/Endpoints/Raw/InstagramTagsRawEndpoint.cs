@@ -1,4 +1,3 @@
-using System;
 using Skybrud.Essentials.Common;
 using Skybrud.Essentials.Http;
 using Skybrud.Essentials.Http.Collections;
@@ -23,7 +22,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// <summary>
         /// Gets a reference to the Instagram OAuth client.
         /// </summary>
-        public InstagramOAuthClient Client { get; private set; }
+        public InstagramOAuthClient Client { get; }
 
         #endregion
 
@@ -82,7 +81,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// <param name="options">The options for the call to the API.</param>
         /// <returns>An instance of <see cref="IHttpResponse"/> representing the raw response from the Instagram API.</returns>
         public IHttpResponse GetRecentMedia(InstagramGetTagRecentMediaOptions options) {
-            if (String.IsNullOrWhiteSpace(options.Tag)) throw new PropertyNotSetException("options.Tag");
+            if (string.IsNullOrWhiteSpace(options.Tag)) throw new PropertyNotSetException(nameof(options.Tag));
             return Client.Get("https://api.instagram.com/v1/tags/" + options.Tag + "/media/recent", options);
         }
 

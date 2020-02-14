@@ -14,32 +14,32 @@ namespace Skybrud.Social.Instagram {
         /// <summary>
         /// Gets a reference to the internal OAuth client for communication with the Instagram API.
         /// </summary>
-        public InstagramOAuthClient Client { get; private set; }
+        public InstagramOAuthClient Client { get; }
 
         /// <summary>
         /// Gets a reference to the locations endpoint.
         /// </summary>
-        public InstagramLocationsEndpoint Locations { get; private set; }
+        public InstagramLocationsEndpoint Locations { get; }
 
         /// <summary>
         /// Gets a reference to the media endpoint.
         /// </summary>
-        public InstagramMediaEndpoint Media { get; private set; }
+        public InstagramMediaEndpoint Media { get; }
 
         /// <summary>
         /// Gets a reference to the relationships endpoint.
         /// </summary>
-        public InstagramRelationshipsEndpoint Relationships { get; private set; }
+        public InstagramRelationshipsEndpoint Relationships { get; }
 
         /// <summary>
         /// Gets a reference to the tags endpoint.
         /// </summary>
-        public InstagramTagsEndpoint Tags { get; private set; }
+        public InstagramTagsEndpoint Tags { get; }
 
         /// <summary>
         /// Gets a reference to the users endpoint.
         /// </summary>
-        public InstagramUsersEndpoint Users { get; private set; }
+        public InstagramUsersEndpoint Users { get; }
 
         #endregion
 
@@ -64,7 +64,7 @@ namespace Skybrud.Social.Instagram {
         /// </summary>
         /// <param name="accessToken">The access token.</param>
         public static InstagramService CreateFromAccessToken(string accessToken) {
-            if (String.IsNullOrWhiteSpace(accessToken)) throw new ArgumentNullException("accessToken");
+            if (string.IsNullOrWhiteSpace(accessToken)) throw new ArgumentNullException(nameof(accessToken));
             return new InstagramService(new InstagramOAuthClient(accessToken));
         }
 
@@ -73,7 +73,7 @@ namespace Skybrud.Social.Instagram {
         /// </summary>
         /// <param name="client">The OAuth client.</param>
         public static InstagramService CreateFromOAuthClient(InstagramOAuthClient client) {
-            if (client == null) throw new ArgumentNullException("client");
+            if (client == null) throw new ArgumentNullException(nameof(client));
             return new InstagramService(client);
         }
 

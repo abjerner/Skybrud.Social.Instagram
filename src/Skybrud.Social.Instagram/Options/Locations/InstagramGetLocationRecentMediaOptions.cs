@@ -75,7 +75,7 @@ namespace Skybrud.Social.Instagram.Options.Locations {
         /// </summary>
         /// <param name="location">The location.</param>
         public InstagramGetLocationRecentMediaOptions(InstagramLocation location) {
-            if (location == null) throw new ArgumentNullException("location");
+            if (location == null) throw new ArgumentNullException(nameof(location));
             LocationId = location.Id;
         }
 
@@ -85,7 +85,7 @@ namespace Skybrud.Social.Instagram.Options.Locations {
         /// <param name="location">The location.</param>
         /// <param name="count">The maximum amount of media to be returned.</param>
         public InstagramGetLocationRecentMediaOptions(InstagramLocation location, int count) {
-            if (location == null) throw new ArgumentNullException("location");
+            if (location == null) throw new ArgumentNullException(nameof(location));
             LocationId = location.Id;
             Count = count;
         }

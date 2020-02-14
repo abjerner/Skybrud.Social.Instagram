@@ -13,17 +13,17 @@ namespace Skybrud.Social.Instagram.Models.Users {
         /// <summary>
         /// Gets the amount of media the user has uploaded.
         /// </summary>
-        public int Media { get; private set; }
+        public int Media { get; }
 
         /// <summary>
         /// Gets the amount of other users following the user.
         /// </summary>
-        public int FollowedBy { get; private set; }
+        public int FollowedBy { get; }
 
         /// <summary>
         /// Gets the amount of other users followed by the user.
         /// </summary>
-        public int Follows { get; private set; }
+        public int Follows { get; }
 
         #endregion
 

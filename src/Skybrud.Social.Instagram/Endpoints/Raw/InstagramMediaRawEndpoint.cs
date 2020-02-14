@@ -1,6 +1,5 @@
 using System;
 using Skybrud.Essentials.Http;
-using Skybrud.Essentials.Locations;
 using Skybrud.Essentials.Maps.Geometry;
 using Skybrud.Social.Instagram.OAuth;
 using Skybrud.Social.Instagram.Options.Media;
@@ -20,7 +19,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// <summary>
         /// Gets a reference to the Instagram OAuth client.
         /// </summary>
-        public InstagramOAuthClient Client { get; private set; }
+        public InstagramOAuthClient Client { get; }
 
         #endregion
 
@@ -43,7 +42,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         ///     <cref>https://instagram.com/developer/endpoints/media/#get_media</cref>
         /// </see>
         public IHttpResponse GetMedia(string mediaId) {
-            if (String.IsNullOrWhiteSpace(mediaId)) throw new ArgumentNullException("mediaId");
+            if (string.IsNullOrWhiteSpace(mediaId)) throw new ArgumentNullException(nameof(mediaId));
             return Client.Get("https://api.instagram.com/v1/media/" + mediaId);
         }
 
@@ -56,7 +55,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         ///     <cref>https://www.instagram.com/developer/endpoints/media/#get_media_by_shortcode</cref>
         /// </see>
         public IHttpResponse GetMediaFromShortcode(string shortcode) {
-            if (String.IsNullOrWhiteSpace(shortcode)) throw new ArgumentNullException("shortcode");
+            if (string.IsNullOrWhiteSpace(shortcode)) throw new ArgumentNullException(nameof(shortcode));
             return Client.Get("https://api.instagram.com/v1/media/shortcode/" + shortcode);
         }
 
@@ -97,7 +96,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         ///     <cref>https://instagram.com/developer/endpoints/media/#get_media_search</cref>
         /// </see>
         public IHttpResponse Search(IPoint location) {
-            if (location == null) throw new ArgumentNullException("location");
+            if (location == null) throw new ArgumentNullException(nameof(location));
             return Search(new InstagramGetRecentMediaOptions(location));
         }
 
@@ -111,7 +110,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         ///     <cref>https://instagram.com/developer/endpoints/media/#get_media_search</cref>
         /// </see>
         public IHttpResponse Search(IPoint location, int distance) {
-            if (location == null) throw new ArgumentNullException("location");
+            if (location == null) throw new ArgumentNullException(nameof(location));
             return Search(new InstagramGetRecentMediaOptions(location));
         }
 
@@ -124,7 +123,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         ///     <cref>https://instagram.com/developer/endpoints/media/#get_media_search</cref>
         /// </see>
         public IHttpResponse Search(InstagramGetRecentMediaOptions options) {
-            if (options == null) throw new ArgumentNullException("options");
+            if (options == null) throw new ArgumentNullException(nameof(options));
             return Client.Get("https://api.instagram.com/v1/media/search", options);
         }
 

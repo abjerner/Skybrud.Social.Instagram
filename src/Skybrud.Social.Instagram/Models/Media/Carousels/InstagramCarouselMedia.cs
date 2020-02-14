@@ -14,12 +14,12 @@ namespace Skybrud.Social.Instagram.Models.Media.Carousels {
         /// <summary>
         /// Gets the type of the carousel media - eg. <code>image</code> or <code>video</code>.
         /// </summary>
-        public string Type { get; private set; }
+        public string Type { get; }
 
         /// <summary>
         /// Gets an array of users tagged in the media.
         /// </summary>
-        public InstagramTaggedUser[] UsersInPhoto { get; private set; }
+        public InstagramTaggedUser[] UsersInPhoto { get; }
 
         #endregion
 

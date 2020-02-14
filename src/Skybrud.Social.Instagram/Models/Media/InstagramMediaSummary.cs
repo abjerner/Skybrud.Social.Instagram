@@ -13,17 +13,17 @@ namespace Skybrud.Social.Instagram.Models.Media {
         /// <summary>
         /// Gets the URL of the format.
         /// </summary>
-        public string Url { get; private set; }
+        public string Url { get; }
 
         /// <summary>
         /// Gets the width of the format.
         /// </summary>
-        public int Width { get; private set; }
+        public int Width { get; }
         
         /// <summary>
         /// Gets the height of the format.
         /// </summary>
-        public int Height { get; private set; }
+        public int Height { get; }
 
         #endregion
 

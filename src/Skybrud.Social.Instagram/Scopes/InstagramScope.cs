@@ -19,12 +19,12 @@ namespace Skybrud.Social.Instagram.Scopes {
         /// <summary>
         /// Gets the name of the scope.
         /// </summary>
-        public string Name { get; private set; }
+        public string Name { get; }
 
         /// <summary>
         /// Gets the description of the scope.
         /// </summary>
-        public string Description { get; private set; }
+        public string Description { get; }
 
         #endregion
 
@@ -37,7 +37,7 @@ namespace Skybrud.Social.Instagram.Scopes {
         /// <param name="description">The description of the scope.</param>
         public InstagramScope(string name, string description = null) {
             Name = name;
-            Description = String.IsNullOrWhiteSpace(description) ? null : description.Trim();
+            Description = string.IsNullOrWhiteSpace(description) ? null : description.Trim();
         }
 
         #endregion

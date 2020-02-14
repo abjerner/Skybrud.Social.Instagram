@@ -40,7 +40,7 @@ namespace Skybrud.Social.Instagram.Responses.Users {
         public static InstagramGetUserLikedMediaResponse ParseResponse(IHttpResponse response) {
 
             // Some input validation
-            if (response == null) throw new ArgumentNullException("response");
+            if (response == null) throw new ArgumentNullException(nameof(response));
 
             // Initialize the response object
             return new InstagramGetUserLikedMediaResponse(response);
@@ -64,7 +64,7 @@ namespace Skybrud.Social.Instagram.Responses.Users {
         /// <summary>
         /// Gets pagination information of the response.
         /// </summary>
-        public InstagramLikedMediaPagination Pagination { get; private set; }
+        public InstagramLikedMediaPagination Pagination { get; }
 
         #endregion
 

@@ -15,13 +15,13 @@ namespace Skybrud.Social.Instagram.Models.Users {
         /// The Y coordinate of the position.
         /// </summary>
         [JsonProperty("y")]
-        public double Y { get; private set; }
+        public double Y { get; }
 
         /// <summary>
         /// The X coordinate of the position.
         /// </summary>
         [JsonProperty("x")]
-        public double X { get; private set; }
+        public double X { get; }
 
         #endregion
 

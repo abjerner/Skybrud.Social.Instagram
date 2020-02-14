@@ -16,12 +16,12 @@ namespace Skybrud.Social.Instagram.Models.Common {
         /// <summary>
         /// Gets the total number of calls allowed within the current 1-hour window.
         /// </summary>
-        public int Limit { get; private set; }
+        public int Limit { get; }
 
         /// <summary>
         /// Gets the remaining number of calls available to your app within the current 1-hour window.
         /// </summary>
-        public int Remaining { get; private set; }
+        public int Remaining { get; }
 
         #endregion
 
@@ -43,14 +43,11 @@ namespace Skybrud.Social.Instagram.Models.Common {
         /// <returns>Returns an instance of <see cref="InstagramRateLimiting"/>.</returns>
         public static InstagramRateLimiting GetFromResponse(IHttpResponse response) {
 
-            int limit;
-            int remaining;
-
-            if (!Int32.TryParse(response.Headers["X-Ratelimit-Limit"] ?? "", out limit)) {
+            if (!int.TryParse(response.Headers["X-Ratelimit-Limit"] ?? string.Empty, out int limit)) {
                 limit = -1;
             }
 
-            if (!Int32.TryParse(response.Headers["X-Ratelimit-Remaining"] ?? "", out remaining)) {
+            if (!int.TryParse(response.Headers["X-Ratelimit-Remaining"] ?? string.Empty, out int remaining)) {
                 remaining = -1;
             }
 

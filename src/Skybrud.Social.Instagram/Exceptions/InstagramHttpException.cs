@@ -15,31 +15,27 @@ namespace Skybrud.Social.Instagram.Exceptions {
         /// <summary>
         /// Gets a reference to the underlying <see cref="IHttpResponse"/>.
         /// </summary>
-        public IHttpResponse Response { get; private set; }
+        public IHttpResponse Response { get; }
 
         /// <summary>
         /// Gets information about rate limiting.
         /// </summary>
-        public InstagramRateLimiting RateLimiting { get; private set; }
+        public InstagramRateLimiting RateLimiting { get; }
 
         /// <summary>
         /// Gets whether rate limiting information was included in the response.
         /// </summary>
-        public bool HasRateLimiting {
-            get { return RateLimiting.Limit > 0; }
-        }
+        public bool HasRateLimiting => RateLimiting.Limit > 0;
 
         /// <summary>
         /// Gets the meta data of the response.
         /// </summary>
-        public InstagramMetaData Meta { get; private set; }
+        public InstagramMetaData Meta { get; }
 
         /// <summary>
         /// Gets whether meta data was included in the response.
         /// </summary>
-        public bool HasMeta {
-            get { return Meta != null; }
-        }
+        public bool HasMeta => Meta != null;
 
         #endregion
 

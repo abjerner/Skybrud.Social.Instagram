@@ -1,5 +1,4 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
 using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Http;
 using Skybrud.Essentials.Json.Extensions;
@@ -19,7 +18,7 @@ namespace Skybrud.Social.Instagram.Responses {
         /// <summary>
         /// Gets information about rate limiting.
         /// </summary>
-        public InstagramRateLimiting RateLimiting { get; private set; }
+        public InstagramRateLimiting RateLimiting { get; }
 
         #endregion
 
@@ -63,7 +62,7 @@ namespace Skybrud.Social.Instagram.Responses {
             InstagramMetaData meta = obj.HasValue("code") ? InstagramMetaData.Parse(obj) : obj.GetObject("meta", InstagramMetaData.Parse);
 
             // If the type isn't provided (it really should), we just throw an exception of the base type
-            if (String.IsNullOrWhiteSpace(meta.ErrorType)) {
+            if (string.IsNullOrWhiteSpace(meta.ErrorType)) {
                 throw new InstagramHttpException(response, meta);
             }
             

@@ -14,12 +14,12 @@ namespace Skybrud.Social.Instagram.Models.Authentication {
         /// <summary>
         /// Gets the access token.
         /// </summary>
-        public string AccessToken { get; private set; }
+        public string AccessToken { get; }
         
         /// <summary>
         /// Gets information about the authenticated user.
         /// </summary>
-        public InstagramUser User { get; private set; }
+        public InstagramUser User { get; }
 
         #endregion
 

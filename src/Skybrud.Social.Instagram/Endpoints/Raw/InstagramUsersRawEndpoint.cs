@@ -18,7 +18,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// <summary>
         /// Gets a reference to the Instagram OAuth client.
         /// </summary>
-        public InstagramOAuthClient Client { get; private set; }
+        public InstagramOAuthClient Client { get; }
 
         #endregion
 
@@ -41,7 +41,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         ///     <cref>https://instagram.com/developer/endpoints/users/#get_users</cref>
         /// </see>
         public IHttpResponse GetUser(string identifier) {
-            if (String.IsNullOrWhiteSpace(identifier)) throw new ArgumentNullException("identifier");
+            if (string.IsNullOrWhiteSpace(identifier)) throw new ArgumentNullException(nameof(identifier));
             return Client.Get("https://api.instagram.com/v1/users/" + identifier);
         }
         
@@ -90,8 +90,8 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         ///     <cref>https://instagram.com/developer/endpoints/users/#get_users_media_recent</cref>
         /// </see>
         public IHttpResponse GetRecentMedia(InstagramGetUserRecentMediaOptions options) {
-            if (options == null) throw new ArgumentNullException("options");
-            return Client.Get("https://api.instagram.com/v1/users/" + (options.UserId == 0 ? "self" : options.UserId + "") + "/media/recent", options);
+            if (options == null) throw new ArgumentNullException(nameof(options));
+            return Client.Get("https://api.instagram.com/v1/users/" + (options.UserId == 0 ? "self" : options.UserId + string.Empty) + "/media/recent", options);
         }
 
         /// <summary>

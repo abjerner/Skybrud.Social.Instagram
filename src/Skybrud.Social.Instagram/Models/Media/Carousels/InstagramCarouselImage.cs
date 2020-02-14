@@ -13,7 +13,7 @@ namespace Skybrud.Social.Instagram.Models.Media.Carousels {
         /// <summary>
         /// Gets a summary of the image formats available for this Instagram image.
         /// </summary>
-        public InstagramImageSummary Images { get; private set; }
+        public InstagramImageSummary Images { get; }
 
         #endregion
 

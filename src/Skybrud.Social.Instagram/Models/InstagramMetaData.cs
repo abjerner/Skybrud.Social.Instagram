@@ -13,17 +13,17 @@ namespace Skybrud.Social.Instagram.Models {
         /// <summary>
         /// Gets the status code of the call.
         /// </summary>
-        public int Code { get; private set; }
+        public int Code { get; }
 
         /// <summary>
         /// Gets the type of the error or <code>null</code> if not specified.
         /// </summary>
-        public string ErrorType { get; private set; }
+        public string ErrorType { get; }
 
         /// <summary>
         /// Gets the message of the error or <code>null</code> if not specified.
         /// </summary>
-        public string ErrorMessage { get; private set; }
+        public string ErrorMessage { get; }
 
         #endregion
 

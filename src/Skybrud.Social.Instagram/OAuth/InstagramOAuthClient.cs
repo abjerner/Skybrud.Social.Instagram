@@ -43,27 +43,27 @@ namespace Skybrud.Social.Instagram.OAuth {
         /// <summary>
         /// Gets a reference to the locations endpoint.
         /// </summary>
-        public InstagramLocationsRawEndpoint Locations { get; private set; }
+        public InstagramLocationsRawEndpoint Locations { get; }
 
         /// <summary>
         /// Gets a reference to the media endpoint.
         /// </summary>
-        public InstagramMediaRawEndpoint Media { get; private set; }
+        public InstagramMediaRawEndpoint Media { get; }
 
         /// <summary>
         /// Gets a reference to the relationships endpoint.
         /// </summary>
-        public InstagramRelationshipsRawEndpoint Relationships { get; private set; }
+        public InstagramRelationshipsRawEndpoint Relationships { get; }
 
         /// <summary>
         /// Gets a reference to the tags endpoint.
         /// </summary>
-        public InstagramTagsRawEndpoint Tags { get; private set; }
+        public InstagramTagsRawEndpoint Tags { get; }
 
         /// <summary>
         /// Gets a reference to the users endpoint.
         /// </summary>
-        public InstagramUsersRawEndpoint Users { get; private set; }
+        public InstagramUsersRawEndpoint Users { get; }
 
         /// <summary>
         /// Gets or sets whether signed requests should be enabled.
@@ -96,7 +96,7 @@ namespace Skybrud.Social.Instagram.OAuth {
         public InstagramOAuthClient(string accessToken) : this() {
 
             // Some input validation
-            if (String.IsNullOrWhiteSpace(accessToken)) throw new ArgumentNullException("accessToken");
+            if (string.IsNullOrWhiteSpace(accessToken)) throw new ArgumentNullException(nameof(accessToken));
 
             AccessToken = accessToken;
         
@@ -111,8 +111,8 @@ namespace Skybrud.Social.Instagram.OAuth {
         public InstagramOAuthClient(string clientId, string clientSecret) : this() {
 
             // Some input validation
-            if (String.IsNullOrWhiteSpace(clientId)) throw new ArgumentNullException("clientId");
-            if (String.IsNullOrWhiteSpace(clientSecret)) throw new ArgumentNullException("clientSecret");
+            if (string.IsNullOrWhiteSpace(clientId)) throw new ArgumentNullException(nameof(clientId));
+            if (string.IsNullOrWhiteSpace(clientSecret)) throw new ArgumentNullException(nameof(clientSecret));
             
             ClientId = clientId;
             ClientSecret = clientSecret;
@@ -129,9 +129,9 @@ namespace Skybrud.Social.Instagram.OAuth {
         public InstagramOAuthClient(string clientId, string clientSecret, string redirectUri) : this() {
 
             // Some input validation
-            if (String.IsNullOrWhiteSpace(clientId)) throw new ArgumentNullException("clientId");
-            if (String.IsNullOrWhiteSpace(clientSecret)) throw new ArgumentNullException("clientSecret");
-            if (String.IsNullOrWhiteSpace(redirectUri)) throw new ArgumentNullException("redirectUri");
+            if (string.IsNullOrWhiteSpace(clientId)) throw new ArgumentNullException(nameof(clientId));
+            if (string.IsNullOrWhiteSpace(clientSecret)) throw new ArgumentNullException(nameof(clientSecret));
+            if (string.IsNullOrWhiteSpace(redirectUri)) throw new ArgumentNullException(nameof(redirectUri));
             
             ClientId = clientId;
             ClientSecret = clientSecret;
@@ -174,12 +174,12 @@ namespace Skybrud.Social.Instagram.OAuth {
         public virtual string GetAuthorizationUrl(string state, params string[] scope) {
 
             // Some validation
-            if (String.IsNullOrWhiteSpace(ClientId)) throw new PropertyNotSetException("ClientId");
-            if (String.IsNullOrWhiteSpace(RedirectUri)) throw new PropertyNotSetException("RedirectUri");
+            if (string.IsNullOrWhiteSpace(ClientId)) throw new PropertyNotSetException(nameof(ClientId));
+            if (string.IsNullOrWhiteSpace(RedirectUri)) throw new PropertyNotSetException(nameof(RedirectUri));
 
             // Do we have a valid "state" ?
-            if (String.IsNullOrWhiteSpace(state)) {
-                throw new ArgumentNullException("state", "A valid state should be specified as it is part of the security of OAuth 2.0.");
+            if (string.IsNullOrWhiteSpace(state)) {
+                throw new ArgumentNullException(nameof(state), "A valid state should be specified as it is part of the security of OAuth 2.0.");
             }
 
             // Construct the query string
@@ -191,7 +191,7 @@ namespace Skybrud.Social.Instagram.OAuth {
             
             // Append the scope (if specified)
             if (scope != null && scope.Length > 0) {
-                query.Add("scope", String.Join(" ", scope));
+                query.Add("scope", string.Join(" ", scope));
             }
 
             // Construct the authorization URL
@@ -207,10 +207,10 @@ namespace Skybrud.Social.Instagram.OAuth {
         public virtual InstagramTokenResponse GetAccessTokenFromAuthCode(string authCode) {
 
             // Some validation
-            if (String.IsNullOrWhiteSpace(ClientId)) throw new PropertyNotSetException("ClientId");
-            if (String.IsNullOrWhiteSpace(ClientSecret)) throw new PropertyNotSetException("ClientSecret");
-            if (String.IsNullOrWhiteSpace(RedirectUri)) throw new PropertyNotSetException("RedirectUri");
-            if (String.IsNullOrWhiteSpace(authCode)) throw new ArgumentNullException("authCode");
+            if (string.IsNullOrWhiteSpace(ClientId)) throw new PropertyNotSetException(nameof(ClientId));
+            if (string.IsNullOrWhiteSpace(ClientSecret)) throw new PropertyNotSetException(nameof(ClientSecret));
+            if (string.IsNullOrWhiteSpace(RedirectUri)) throw new PropertyNotSetException(nameof(RedirectUri));
+            if (string.IsNullOrWhiteSpace(authCode)) throw new ArgumentNullException(nameof(authCode));
         
             // Initialize collection with POST data
             IHttpPostData parameters = new HttpPostData();
@@ -235,9 +235,9 @@ namespace Skybrud.Social.Instagram.OAuth {
         protected override void PrepareHttpRequest(IHttpRequest request) {
 
             // Append either the access token or the client ID to the query string
-            if (!String.IsNullOrWhiteSpace(AccessToken)) {
+            if (!string.IsNullOrWhiteSpace(AccessToken)) {
                 request.QueryString.Add("access_token", AccessToken);
-            } else if (!String.IsNullOrWhiteSpace(ClientId)) {
+            } else if (!string.IsNullOrWhiteSpace(ClientId)) {
                 request.QueryString.Add("client_id", ClientId);
             }
 
@@ -266,9 +266,9 @@ namespace Skybrud.Social.Instagram.OAuth {
         public string GenerateSignatureValue(string endpoint, IHttpQueryString parameters) {
 
             // Some validation
-            if (String.IsNullOrWhiteSpace(endpoint)) throw new ArgumentNullException("endpoint");
-            if (parameters == null) throw new ArgumentNullException("parameters");
-            if (String.IsNullOrWhiteSpace(ClientSecret)) throw new PropertyNotSetException("ClientSecret");
+            if (string.IsNullOrWhiteSpace(endpoint)) throw new ArgumentNullException(nameof(endpoint));
+            if (parameters == null) throw new ArgumentNullException(nameof(parameters));
+            if (string.IsNullOrWhiteSpace(ClientSecret)) throw new PropertyNotSetException(nameof(ClientSecret));
 
             // Initialize the signature value
             string signatureValue = endpoint;
@@ -294,9 +294,9 @@ namespace Skybrud.Social.Instagram.OAuth {
         public string GenerateSignature(string endpoint, IHttpQueryString parameters) {
 
             // Some validation
-            if (String.IsNullOrWhiteSpace(endpoint)) throw new ArgumentNullException("endpoint");
-            if (parameters == null) throw new ArgumentNullException("parameters");
-            if (String.IsNullOrWhiteSpace(ClientSecret)) throw new PropertyNotSetException("ClientSecret");
+            if (string.IsNullOrWhiteSpace(endpoint)) throw new ArgumentNullException(nameof(endpoint));
+            if (parameters == null) throw new ArgumentNullException(nameof(parameters));
+            if (string.IsNullOrWhiteSpace(ClientSecret)) throw new PropertyNotSetException(nameof(ClientSecret));
 
             // Initialize the signature value
             string signatureValue = GenerateSignatureValue(endpoint, parameters);
@@ -312,7 +312,7 @@ namespace Skybrud.Social.Instagram.OAuth {
             byte[] hash = hasher.ComputeHash(encoding.GetBytes(signatureValue));
 
             // Convert the hash back to a string
-            return BitConverter.ToString(hash).Replace("-", "").ToLower();
+            return BitConverter.ToString(hash).Replace("-", string.Empty).ToLower();
 
         }
 

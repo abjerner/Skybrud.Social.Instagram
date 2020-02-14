@@ -49,22 +49,22 @@ namespace Skybrud.Social.Instagram.Models.Users {
         /// <summary>
         /// Gets whether the user has specified a full name.
         /// </summary>
-        public bool HasFullName => !String.IsNullOrWhiteSpace(FullName);
+        public bool HasFullName => !string.IsNullOrWhiteSpace(FullName);
 
         /// <summary>
         /// Gets whether the user has uploaded a profile picture.
         /// </summary>
-        public bool HasProfilePicture => !String.IsNullOrWhiteSpace(ProfilePicture);
+        public bool HasProfilePicture => !string.IsNullOrWhiteSpace(ProfilePicture);
 
         /// <summary>
         /// Gets whether the user has specified a website.
         /// </summary>
-        public bool HasWebsite => !String.IsNullOrWhiteSpace(Website);
+        public bool HasWebsite => !string.IsNullOrWhiteSpace(Website);
 
         /// <summary>
         /// Gets whether the user has specified a bio.
         /// </summary>
-        public bool HasBio => !String.IsNullOrWhiteSpace(Bio);
+        public bool HasBio => !string.IsNullOrWhiteSpace(Bio);
 
         #endregion
 

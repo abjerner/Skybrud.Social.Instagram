@@ -36,7 +36,7 @@ namespace Skybrud.Social.Instagram.Responses.Tags {
         public static InstagramGetTagResponse ParseResponse(IHttpResponse response) {
 
             // Some input validation
-            if (response == null) throw new ArgumentNullException("response");
+            if (response == null) throw new ArgumentNullException(nameof(response));
 
             // Initialize the response object
             return new InstagramGetTagResponse(response);

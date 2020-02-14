@@ -20,9 +20,7 @@ namespace Skybrud.Social.Instagram.Scopes {
         /// <summary>
         /// Gets an array of all the scopes added to the collection.
         /// </summary>
-        public InstagramScope[] Items {
-            get { return _list.ToArray(); }
-        }
+        public InstagramScope[] Items => _list.ToArray();
 
         #endregion
 
@@ -69,7 +67,7 @@ namespace Skybrud.Social.Instagram.Scopes {
         /// </summary>
         /// <returns>String of scopes separated by a comma.</returns>
         public override string ToString() {
-            return String.Join(" ", from scope in _list select scope.Name);
+            return string.Join(" ", from scope in _list select scope.Name);
         }
 
         #endregion

@@ -13,7 +13,7 @@ namespace Skybrud.Social.Instagram.Models.Media {
         /// <summary>
         /// Gets the amount of likes the media has received.
         /// </summary>
-        public int Count { get; private set; }
+        public int Count { get; }
 
         #endregion
 

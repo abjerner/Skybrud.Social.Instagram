@@ -15,7 +15,7 @@ namespace Skybrud.Social.Instagram.Models.Media {
         /// <summary>
         /// Gets pagination information of the response.
         /// </summary>
-        public InstagramIdBasedPagination Pagination { get; private set; }
+        public InstagramIdBasedPagination Pagination { get; }
 
         #endregion
 

@@ -16,7 +16,7 @@ namespace Skybrud.Social.Instagram.Models.Tags {
         /// <summary>
         /// Gets pagination information of the response.
         /// </summary>
-        public InstagramTagIdBasedPagination Pagination { get; private set; }
+        public InstagramTagIdBasedPagination Pagination { get; }
 
         #endregion
 

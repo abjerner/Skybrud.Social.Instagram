@@ -14,7 +14,7 @@ namespace Skybrud.Social.Instagram.Models.Common {
         /// <summary>
         /// Gets meta data about the response.
         /// </summary>
-        public InstagramMetaData Meta { get; private set; }
+        public InstagramMetaData Meta { get; }
         
         /// <summary>
         /// Gets the data of the response.

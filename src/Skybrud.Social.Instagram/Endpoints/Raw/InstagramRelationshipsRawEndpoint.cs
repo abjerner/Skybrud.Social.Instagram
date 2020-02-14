@@ -18,7 +18,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         /// <summary>
         /// Gets a reference to the Instagram OAuth client.
         /// </summary>
-        public InstagramOAuthClient Client { get; private set; }
+        public InstagramOAuthClient Client { get; }
 
         #endregion
 
@@ -77,7 +77,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         ///     <cref>https://instagram.com/developer/endpoints/relationships/#get_users_follows</cref>
         /// </see>
         public IHttpResponse Follows(InstagramGetFollowsOptions options) {
-            if (options == null) throw new ArgumentNullException("options");
+            if (options == null) throw new ArgumentNullException(nameof(options));
             return Client.Get("https://api.instagram.com/v1/users/" + options.Identifier + "/follows", options);
         }
 
@@ -126,7 +126,7 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
         ///     <cref>https://instagram.com/developer/endpoints/relationships/#get_users_followed_by</cref>
         /// </see>
         public IHttpResponse FollowedBy(InstagramGetFollowedByOptions options) {
-            if (options == null) throw new ArgumentNullException("options");
+            if (options == null) throw new ArgumentNullException(nameof(options));
             return Client.Get("https://api.instagram.com/v1/users/" + options.Identifier + "/followed-by", options);
         }
 

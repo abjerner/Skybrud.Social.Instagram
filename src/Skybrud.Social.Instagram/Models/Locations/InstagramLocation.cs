@@ -14,24 +14,24 @@ namespace Skybrud.Social.Instagram.Models.Locations {
         /// <summary>
         /// Gets the ID of the location.
         /// </summary>
-        public long Id { get; private set; }
+        public long Id { get; }
 
         /// <summary>
         /// The name of the location.
         /// </summary>
-        public string Name { get; private set; }
+        public string Name { get; }
 
         /// <summary>
         /// Gets the latitude of the location. The latitude specifies the north-south position of a
         /// point on the Earth's surface.
         /// </summary>
-        public double Latitude { get; private set; }
+        public double Latitude { get; }
 
         /// <summary>
         /// Gets the longitude of the location. The longitude specifies the east-west position of a
         /// point on the Earth's surface.
         /// </summary>
-        public double Longitude { get; private set; }
+        public double Longitude { get; }
 
         #endregion
 
