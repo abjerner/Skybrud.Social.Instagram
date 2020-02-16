@@ -27,7 +27,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Skybrud.Essentials.Http" Version="1.0.12" />
+    <PackageReference Include="Skybrud.Essentials.Http" Version="1.0.13" />
   </ItemGroup>
 
   <PropertyGroup>
