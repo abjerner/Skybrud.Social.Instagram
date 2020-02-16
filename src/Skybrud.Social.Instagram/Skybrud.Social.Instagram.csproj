@@ -34,7 +34,7 @@
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
   </PropertyGroup>
 
-  <Target Name="PreBuild" BeforeTargets="PreBuildEvent" Condition="'$(TargetFramework)'=='netstandard1.1'">
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent" Condition="'$(TargetFramework)'=='netstandard1.3'">
     <Exec Command="&quot;$(ProjectDir)../build/Skybrud.PreBuildTool.exe&quot; /date=2012-07-30 /projectPath=&quot;$(ProjectPath)&quot;" />
   </Target>
 
