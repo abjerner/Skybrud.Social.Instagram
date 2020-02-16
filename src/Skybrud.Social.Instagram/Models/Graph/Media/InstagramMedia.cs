@@ -3,6 +3,8 @@ using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Enums;
 using Skybrud.Essentials.Json.Extensions;
 using Skybrud.Essentials.Time;
+using Skybrud.Social.Instagram.Fields;
+using Skybrud.Social.Instagram.Models.Graph.Comments;
 
 // ReSharper disable InconsistentNaming
 
@@ -21,9 +23,14 @@ namespace Skybrud.Social.Instagram.Models.Graph.Media {
         public string Caption { get; }
 
         /// <summary>
-        /// Gets a list of of child media (carousel albums only).
+        /// Gets a list of child media (carousel albums only). Requires the <see cref="InstagramMediaFields.Children"/> field.
         /// </summary>
         public InstagramMediaList Children { get; }
+
+        /// <summary>
+        /// Gets whether the media has any child media.
+        /// </summary>
+        public bool HasChildren => Children != null;
 
         /// <summary>
         /// Gets the total amount of comments (includes replies).
@@ -85,6 +92,11 @@ namespace Skybrud.Social.Instagram.Models.Graph.Media {
         /// </summary>
         public string Username { get; }
 
+        /// <summary>
+        /// Gets a list of comments of the media. Requires the <see cref="InstagramMediaFields.Comments"/> field.
+        /// </summary>
+        public InstagramCommentList Comments { get; }
+
         #endregion
 
         #region Constructors
@@ -109,6 +121,7 @@ namespace Skybrud.Social.Instagram.Models.Graph.Media {
             ThumbnailUrl = obj.GetString("thumbnail_url");
             Timestamp = obj.GetString("timestamp", EssentialsTime.Parse);
             Username = obj.GetString("username");
+            Comments = obj.GetObject("comments", InstagramCommentList.Parse);
         }
 
         #endregion
