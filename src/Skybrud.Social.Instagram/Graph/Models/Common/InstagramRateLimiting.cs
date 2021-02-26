@@ -4,7 +4,7 @@ using Skybrud.Essentials.Http;
 namespace Skybrud.Social.Instagram.Graph.Models.Common {
     
     /// <summary>
-    /// Class with rate-limiting information about a response from the <strong>Insatgram Graph API</strong>.
+    /// Class with rate-limiting information about a response from the <strong>Instagram Graph API</strong>.
     /// </summary>
     /// <see>
     ///     <cref>https://instagram.com/developer/limits/</cref>

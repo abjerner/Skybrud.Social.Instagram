@@ -4,7 +4,7 @@ using Skybrud.Essentials.Json.Extensions;
 namespace Skybrud.Social.Instagram.Graph.Models.Errors {
 
     /// <summary>
-    /// Class representing an error received through the <strong>Insatgram Graph API</strong>.
+    /// Class representing an error received through the <strong>Instagram Graph API</strong>.
     /// </summary>
     public class InstagramHttpError : InstagramObject {
 
