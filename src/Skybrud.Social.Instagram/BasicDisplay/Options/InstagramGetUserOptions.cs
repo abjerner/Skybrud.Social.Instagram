@@ -11,28 +11,28 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Options {
 
         public long UserId { get; set; }
 
-        public InstagramFieldsCollection Fields { get; set; }
+        public InstagramFieldCollection Fields { get; set; }
 
         #endregion
 
         #region Constructors
 
         public InstagramGetUserOptions() {
-            Fields = new InstagramFieldsCollection();
+            Fields = new InstagramFieldCollection();
         }
 
-        public InstagramGetUserOptions(InstagramFieldsCollection fields)  {
-            Fields = fields ?? new InstagramFieldsCollection();
+        public InstagramGetUserOptions(InstagramFieldCollection fields)  {
+            Fields = fields ?? new InstagramFieldCollection();
         }
 
         public InstagramGetUserOptions(long userId) {
             UserId = userId;
-            Fields = new InstagramFieldsCollection();
+            Fields = new InstagramFieldCollection();
         }
 
-        public InstagramGetUserOptions(long userId, InstagramFieldsCollection fields) {
+        public InstagramGetUserOptions(long userId, InstagramFieldCollection fields) {
             UserId = userId;
-            Fields = fields ?? new InstagramFieldsCollection();
+            Fields = fields ?? new InstagramFieldCollection();
         }
 
         #endregion

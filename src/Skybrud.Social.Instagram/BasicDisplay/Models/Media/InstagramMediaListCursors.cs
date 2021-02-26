@@ -4,12 +4,21 @@ using Skybrud.Social.Instagram.BasicDisplay.Models.Users;
 
 namespace Skybrud.Social.Instagram.BasicDisplay.Models.Media {
 
+    /// <summary>
+    /// Class representing the <c>cursors</c> of a <c>paging</c> object of a media list.
+    /// </summary>
     public class InstagramMediaListCursors : InstagramObject {
 
         #region Properties
 
+        /// <summary>
+        /// Gets the cursor for the previous page.
+        /// </summary>
         public string Before { get; }
 
+        /// <summary>
+        /// Gets the cursor for the next page.
+        /// </summary>
         public string After { get; }
 
         #endregion

@@ -9,7 +9,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Exceptions {
     /// <summary>
     /// Class representing an exception/error returned by the <strong>Instagram Basic Display API</strong>.
     /// </summary>
-    public class InstagramHttpException : Exception, IHttpException {
+    public class InstagramHttpException : InstagramException, IHttpException {
 
         #region Properties
 

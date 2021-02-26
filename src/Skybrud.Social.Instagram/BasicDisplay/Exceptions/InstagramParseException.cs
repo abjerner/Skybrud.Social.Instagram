@@ -7,7 +7,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Exceptions {
     /// <summary>
     /// Exception class thrown when parsing a JSON response from the <strong>Instagram Basic Display API</strong> fails.
     /// </summary>
-    public class InstagramParseException : Exception {
+    public class InstagramParseException : InstagramException {
 
         #region Properties
 

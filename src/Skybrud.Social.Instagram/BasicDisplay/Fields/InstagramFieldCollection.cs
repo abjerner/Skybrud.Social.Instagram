@@ -8,7 +8,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Fields {
     /// <summary>
     /// Class representing a collection of fields in the Instagram Basic Display API.
     /// </summary>
-    public class InstagramFieldsCollection : IEnumerable<InstagramField> {
+    public class InstagramFieldCollection : IEnumerable<InstagramField> {
 
         #region Private fields
 
@@ -36,7 +36,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Fields {
         /// Initializes a new collection based on the specified <paramref name="array"/> of fields.
         /// </summary>
         /// <param name="array">Array of fields.</param>
-        public InstagramFieldsCollection(params InstagramField[] array) {
+        public InstagramFieldCollection(params InstagramField[] array) {
             _fields.AddRange(array);
         }
 
@@ -97,8 +97,8 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Fields {
         /// </summary>
         /// <param name="fields">The string of fields the collection should be based on.</param>
         /// <returns>A new collection based on a string of <paramref name="fields"/>.</returns>
-        public static implicit operator InstagramFieldsCollection(string fields) {
-            InstagramFieldsCollection collection = new InstagramFieldsCollection();
+        public static implicit operator InstagramFieldCollection(string fields) {
+            InstagramFieldCollection collection = new InstagramFieldCollection();
             foreach (string name in (fields ?? string.Empty).Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)) {
                 collection.Add(name);
             }
@@ -110,8 +110,8 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Fields {
         /// </summary>
         /// <param name="fields">The array of fields the collection should be based on.</param>
         /// <returns>A new collection based on an array of <paramref name="fields"/>.</returns>
-        public static implicit operator InstagramFieldsCollection(string[] fields) {
-            InstagramFieldsCollection collection = new InstagramFieldsCollection();
+        public static implicit operator InstagramFieldCollection(string[] fields) {
+            InstagramFieldCollection collection = new InstagramFieldCollection();
             foreach (string name in fields) {
                 collection.Add(name);
             }
@@ -123,8 +123,8 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Fields {
         /// </summary>
         /// <param name="field">The field the collection should be based on.</param>
         /// <returns>A new collection based on a single <paramref name="field"/>.</returns>
-        public static implicit operator InstagramFieldsCollection(InstagramField field) {
-            return new InstagramFieldsCollection(field);
+        public static implicit operator InstagramFieldCollection(InstagramField field) {
+            return new InstagramFieldCollection(field);
         }
 
         /// <summary>
@@ -132,8 +132,8 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Fields {
         /// </summary>
         /// <param name="fields">The fields the collection should be based on.</param>
         /// <returns>A new collection based on an array of <paramref name="fields"/>.</returns>
-        public static implicit operator InstagramFieldsCollection(InstagramField[] fields) {
-            return new InstagramFieldsCollection(fields);
+        public static implicit operator InstagramFieldCollection(InstagramField[] fields) {
+            return new InstagramFieldCollection(fields);
         }
 
         /// <summary>
@@ -142,7 +142,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Fields {
         /// </summary>
         /// <param name="collection">The collection to which <paramref name="field"/> will be added.</param>
         /// <param name="field">The field to be added to the <paramref name="collection"/>.</param>
-        public static InstagramFieldsCollection operator +(InstagramFieldsCollection collection, InstagramField field) {
+        public static InstagramFieldCollection operator +(InstagramFieldCollection collection, InstagramField field) {
             collection.Add(field);
             return collection;
         }
