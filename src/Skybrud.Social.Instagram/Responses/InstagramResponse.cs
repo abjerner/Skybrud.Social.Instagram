@@ -64,52 +64,6 @@ namespace Skybrud.Social.Instagram.Responses {
                 throw new InstagramHttpException(response, error);
             }
 
-            // Get the "meta" object (may be the root object for some errors)
-            InstagramMetaData meta = obj.HasValue("code") ? InstagramMetaData.Parse(obj) : obj.GetObject("meta", InstagramMetaData.Parse);
-
-            // If the type isn't provided (it really should), we just throw an exception of the base type
-            if (string.IsNullOrWhiteSpace(meta.ErrorType)) {
-                throw new InstagramHttpException(response, meta);
-            }
-            
-            // Handle OAuth exception types
-            if (meta.ErrorType.StartsWith("OAuth")) {
-                
-                switch (meta.ErrorType) {
-
-                    case "OAuthAccessTokenException":
-                        throw new InstagramOAuthAccessTokenException(response, meta);
-
-                    case "OAuthForbiddenException":
-                        throw new InstagramOAuthForbiddenException(response, meta);
-
-                    case "OAuthParameterException":
-                        throw new InstagramOAuthParameterException(response, meta);
-
-                    case "OAuthPermissionsException":
-                        throw new InstagramOAuthPermissionsException(response, meta);
-
-                    case "OAuthRateLimitException":
-                        throw new InstagramOAuthRateLimitException(response, meta);
-
-                    default:
-                        throw new InstagramOAuthException(response, meta);
-
-                }
-            
-            }
-
-            // Handle other error types
-            switch (meta.ErrorType) {
-                
-                case "APINotFoundError":
-                    throw new InstagramNotFoundException(response, meta);
-                
-                default:
-                    throw new InstagramHttpException(response, meta);
-            
-            }
-
         }
 
         #endregion

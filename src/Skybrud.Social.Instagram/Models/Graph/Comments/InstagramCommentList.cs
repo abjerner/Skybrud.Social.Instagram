@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
-using Skybrud.Social.Instagram.Models.Comments;
 
 namespace Skybrud.Social.Instagram.Models.Graph.Comments {
 

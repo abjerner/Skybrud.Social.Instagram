@@ -1,8 +1,6 @@
 using System;
-using Skybrud.Social.Instagram.Endpoints;
 using Skybrud.Social.Instagram.Endpoints.Graph;
 using Skybrud.Social.Instagram.OAuth;
-using InstagramUsersEndpoint = Skybrud.Social.Instagram.Endpoints.InstagramUsersEndpoint;
 
 namespace Skybrud.Social.Instagram {
     
@@ -17,32 +15,7 @@ namespace Skybrud.Social.Instagram {
         /// Gets a reference to the internal OAuth client for communication with the Instagram API.
         /// </summary>
         public InstagramOAuthClient Client { get; }
-
-        /// <summary>
-        /// Gets a reference to the locations endpoint.
-        /// </summary>
-        public InstagramLocationsEndpoint Locations { get; }
-
-        /// <summary>
-        /// Gets a reference to the media endpoint.
-        /// </summary>
-        public InstagramMediaEndpoint Media { get; }
-
-        /// <summary>
-        /// Gets a reference to the relationships endpoint.
-        /// </summary>
-        public InstagramRelationshipsEndpoint Relationships { get; }
-
-        /// <summary>
-        /// Gets a reference to the tags endpoint.
-        /// </summary>
-        public InstagramTagsEndpoint Tags { get; }
-
-        /// <summary>
-        /// Gets a reference to the users endpoint.
-        /// </summary>
-        public InstagramUsersEndpoint Users { get; }
-
+        
         /// <summary>
         /// Gets a reference to the <strong>Instagram Graph API</strong> endpoint.
         /// </summary>
@@ -54,11 +27,6 @@ namespace Skybrud.Social.Instagram {
 
         private InstagramService(InstagramOAuthClient client) {
             Client = client;
-            Locations = new InstagramLocationsEndpoint(this);
-            Media = new InstagramMediaEndpoint(this);
-            Relationships = new InstagramRelationshipsEndpoint(this);
-            Tags = new InstagramTagsEndpoint(this);
-            Users = new InstagramUsersEndpoint(this);
             Graph = new InstagramGraphEndpoint(this);
         }
 
