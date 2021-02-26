@@ -89,12 +89,12 @@ namespace Skybrud.Social.Instagram.Graph.Scopes {
         #region Operators
 
         /// <summary>
-        /// Adding two instances of <see cref="InstagramScope"/> will result in a <see cref="InstagramScopeCollection"/> containing both scopes.
+        /// Adding two instances of <see cref="InstagramScope"/> will result in a <see cref="InstagramScopeList"/> containing both scopes.
         /// </summary>
         /// <param name="left">The left scope.</param>
         /// <param name="right">The right scope.</param>
-        public static InstagramScopeCollection operator +(InstagramScope left, InstagramScope right) {
-            return new InstagramScopeCollection(left, right);
+        public static InstagramScopeList operator +(InstagramScope left, InstagramScope right) {
+            return new InstagramScopeList(left, right);
         }
 
         #endregion

@@ -23,7 +23,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Options {
         /// <summary>
         /// Gets or sets a collection fo fields that should be returned by the API.
         /// </summary>
-        public InstagramFieldCollection Fields { get; set; }
+        public InstagramFieldList Fields { get; set; }
 
         /// <summary>
         /// Gets or sets the maximum amount of media to be returned.
@@ -48,15 +48,15 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Options {
         /// Initializes a new instance with default options.
         /// </summary>
         public InstagramGetUserMediaOptions() {
-            Fields = new InstagramFieldCollection();
+            Fields = new InstagramFieldList();
         }
 
         /// <summary>
         /// Initializes a new instance with the specified <paramref name="fields"/>.
         /// </summary>
         /// <param name="fields">A collection fo fields that should be returned by the API.</param>
-        public InstagramGetUserMediaOptions(InstagramFieldCollection fields)  {
-            Fields = fields ?? new InstagramFieldCollection();
+        public InstagramGetUserMediaOptions(InstagramFieldList fields)  {
+            Fields = fields ?? new InstagramFieldList();
         }
         
         /// <summary>
@@ -65,7 +65,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Options {
         /// <param name="userId">The ID of the user.</param>
         public InstagramGetUserMediaOptions(long userId) {
             UserId = userId;
-            Fields = new InstagramFieldCollection();
+            Fields = new InstagramFieldList();
         }
 
         /// <summary>
@@ -73,9 +73,9 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Options {
         /// </summary>
         /// <param name="userId">The ID of the user.</param>
         /// <param name="fields">A collection fo fields that should be returned by the API.</param>
-        public InstagramGetUserMediaOptions(long userId, InstagramFieldCollection fields) {
+        public InstagramGetUserMediaOptions(long userId, InstagramFieldList fields) {
             UserId = userId;
-            Fields = fields ?? new InstagramFieldCollection();
+            Fields = fields ?? new InstagramFieldList();
         }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Options {
             UserId = userId;
             Limit = limit;
             After = after;
-            Fields = new InstagramFieldCollection();
+            Fields = new InstagramFieldList();
         }
 
         /// <summary>
@@ -100,11 +100,11 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Options {
         /// <param name="limit">The maximum amount of media to be returned.</param>
         /// <param name="after"></param>
         /// <param name="fields"></param>
-        public InstagramGetUserMediaOptions(long userId, int limit, string after, InstagramFieldCollection fields) {
+        public InstagramGetUserMediaOptions(long userId, int limit, string after, InstagramFieldList fields) {
             UserId = userId;
             Limit = limit;
             After = after;
-            Fields = fields ?? new InstagramFieldCollection();
+            Fields = fields ?? new InstagramFieldList();
         }
 
         #endregion
