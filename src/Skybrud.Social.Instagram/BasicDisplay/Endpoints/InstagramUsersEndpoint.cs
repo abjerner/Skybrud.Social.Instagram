@@ -1,5 +1,4 @@
-﻿using System;
-using Skybrud.Essentials.Http;
+﻿using Skybrud.Essentials.Http;
 using Skybrud.Social.Instagram.BasicDisplay.Options;
 using Skybrud.Social.Instagram.BasicDisplay.Responses.Media;
 using Skybrud.Social.Instagram.BasicDisplay.Responses.Users;

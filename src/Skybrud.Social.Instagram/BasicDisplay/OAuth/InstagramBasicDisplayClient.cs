@@ -4,7 +4,7 @@ using Skybrud.Essentials.Http.Collections;
 using Skybrud.Social.Instagram.BasicDisplay.Endpoints;
 using Skybrud.Social.Instagram.BasicDisplay.Responses.Authentication;
 
-namespace Skybrud.Social.Instagram.OAuth {
+namespace Skybrud.Social.Instagram.BasicDisplay.OAuth {
     
     /// <summary>
     /// Class representing a client for communicating and handling communication with the <strong>Instagran Basic Display API</strong>.
@@ -42,10 +42,17 @@ namespace Skybrud.Social.Instagram.OAuth {
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance with default options.
+        /// </summary>
         public InstagramBasicDisplayClient() {
             Users = new InstagramUsersRawEndpoint(this);
         }
 
+        /// <summary>
+        /// Initialized a new instance based on the specified <paramref name="accessToken"/>.
+        /// </summary>
+        /// <param name="accessToken"></param>
         public InstagramBasicDisplayClient(string accessToken) : this() {
             AccessToken = accessToken;
         }
@@ -96,7 +103,7 @@ namespace Skybrud.Social.Instagram.OAuth {
         /// Exchanges the specified authorization <paramref name="code"/> for a short-lived access token.
         /// </summary>
         /// <param name="code">The authorization code.</param>
-        /// <returns></returns>
+        /// <returns>An instance of <see cref="InstagramShortLivedTokenResponse"/> representing the API response.</returns>
         /// <see>
         ///     <cref>https://developers.facebook.com/docs/instagram-basic-display-api/guides/getting-access-tokens-and-permissions#step-2--exchange-the-code-for-a-token</cref>
         /// </see>
@@ -123,7 +130,7 @@ namespace Skybrud.Social.Instagram.OAuth {
         /// Exchanges the specified <paramref name="accessToken"/> for a new long-lived access token.
         /// </summary>
         /// <param name="accessToken">The access token to be exchanged.</param>
-        /// <returns></returns>
+        /// <returns>An instance of <see cref="InstagramLongLivedTokenResponse"/> representing the API response.</returns>
         /// <see>
         ///     <cref>https://developers.facebook.com/docs/instagram-basic-display-api/guides/long-lived-access-tokens#get-a-long-lived-token</cref>
         /// </see>

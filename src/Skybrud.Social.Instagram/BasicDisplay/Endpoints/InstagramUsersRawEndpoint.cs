@@ -1,6 +1,7 @@
 ﻿using System;
 using Skybrud.Essentials.Http;
 using Skybrud.Social.Instagram.BasicDisplay.Fields;
+using Skybrud.Social.Instagram.BasicDisplay.OAuth;
 using Skybrud.Social.Instagram.BasicDisplay.Options;
 using Skybrud.Social.Instagram.OAuth;
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using Skybrud.Social.Instagram.BasicDisplay.Endpoints;
+using Skybrud.Social.Instagram.BasicDisplay.OAuth;
 using Skybrud.Social.Instagram.OAuth;
 
 namespace Skybrud.Social.Instagram.BasicDisplay {

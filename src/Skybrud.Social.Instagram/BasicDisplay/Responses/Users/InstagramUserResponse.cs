@@ -1,6 +1,5 @@
 ﻿using Skybrud.Essentials.Http;
 using Skybrud.Social.Instagram.BasicDisplay.Models.Users;
-using Skybrud.Social.Instagram.Responses;
 
 namespace Skybrud.Social.Instagram.BasicDisplay.Responses.Users {
 
@@ -14,13 +13,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Responses.Users {
         /// </summary>
         /// <param name="response">The raw response the instance should be based on.</param>
         public InstagramUserResponse(IHttpResponse response) : base(response) {
-
-            // Validate the response
-            ValidateResponse(response);
-
-            // Parse the response body
             Body = ParseJsonObject(response.Body, InstagramUser.Parse);
-
         }
 
     }
