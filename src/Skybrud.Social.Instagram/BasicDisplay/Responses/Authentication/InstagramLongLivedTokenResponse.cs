@@ -1,6 +1,5 @@
 using Skybrud.Essentials.Http;
 using Skybrud.Social.Instagram.BasicDisplay.Models.Authentication;
-using Skybrud.Social.Instagram.Responses;
 
 namespace Skybrud.Social.Instagram.BasicDisplay.Responses.Authentication {
 

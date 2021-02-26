@@ -1,12 +1,12 @@
 ﻿using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 
-namespace Skybrud.Social.Instagram.BasicDisplay.Models.Errors {
+namespace Skybrud.Social.Instagram.Graph.Models.Errors {
 
     /// <summary>
-    /// Class representing details about an error returned by the <strong>Instagram Basic Display API</strong>.
+    /// Class representing an error received through the <strong>Insatgram Graph API</strong>.
     /// </summary>
-    public class InstagramError : InstagramObject {
+    public class InstagramHttpError : InstagramObject {
 
         #region Properties
 
@@ -30,15 +30,25 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Models.Errors {
         /// </summary>
         public int ErrorSubcode { get; }
 
+        /// <summary>
+        /// Gets the Facebook trace ID of the error.
+        /// </summary>
+        public string TraceId { get; }
+
         #endregion
 
         #region Constructors
 
-        private InstagramError(JObject obj) : base(obj) {
+        /// <summary>
+        /// Initializes a new instance based on the specified <paramref name="obj"/>.
+        /// </summary>
+        /// <param name="obj">An instance of <see cref="JObject"/> representing the entry.</param>
+        protected InstagramHttpError(JObject obj) : base(obj) {
             Message = obj.GetString("message");
             Type = obj.GetString("type");
             Code = obj.GetInt32("code");
             ErrorSubcode = obj.GetInt32("error_subcode");
+            TraceId = obj.GetString("fbtrace_id");
         }
 
         #endregion
@@ -46,12 +56,12 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Models.Errors {
         #region Static methods
 
         /// <summary>
-        /// Gets an instance of <see cref="InstagramError"/> from the specified <paramref name="obj"/>.
+        /// Parses the specified <paramref name="obj"/> into an instance of <see cref="InstagramHttpError"/>.
         /// </summary>
         /// <param name="obj">The instance of <see cref="JObject"/> to parse.</param>
-        /// <returns>An instance of <see cref="InstagramError"/>.</returns>
-        public static InstagramError Parse(JObject obj) {
-            return obj == null ? null : new InstagramError(obj);
+        /// <returns>An instance of <see cref="InstagramHttpError"/>.</returns>
+        public static InstagramHttpError Parse(JObject obj) {
+            return obj == null ? null : new InstagramHttpError(obj);
         }
 
         #endregion

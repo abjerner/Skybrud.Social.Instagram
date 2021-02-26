@@ -1,23 +1,26 @@
-﻿using System;
-using Skybrud.Social.Instagram.BasicDisplay.Endpoints;
-using Skybrud.Social.Instagram.BasicDisplay.OAuth;
+using System;
+using Skybrud.Social.Instagram.Graph.Endpoints;
+using Skybrud.Social.Instagram.Graph.OAuth;
 
-namespace Skybrud.Social.Instagram.BasicDisplay {
+namespace Skybrud.Social.Instagram.Graph {
 
     /// <summary>
-    /// Class representing the object oriented implementation of the <strong>Instagram Basic Display API</strong>.
+    /// Class representing the object oriented implementation of the <strong>Instagram Graph API</strong>.
     /// </summary>
-    public class InstagramBasicDisplayService {
+    /// <see>
+    ///     <cref>https://developers.facebook.com/docs/instagram-api</cref>
+    /// </see>
+    public class InstagramGraphService {
 
         #region Properties
 
         /// <summary>
-        /// Gets a reference to the internal OAuth client for communication with the <strong>Instagram Basic Display API</strong>.
+        /// Gets a reference to the internal OAuth client for communication with the <strong>Instagram Graph API</strong>.
         /// </summary>
-        public InstagramBasicDisplayClient Client { get; }
+        public InstagramOAuthClient Client { get; }
 
         /// <summary>
-        /// Gets a reference to the <strong>Users</strong> endpoint.
+        /// Gets a reference to the <strong>User</strong> endpoint.
         /// </summary>
         public InstagramUsersEndpoint Users { get; }
 
@@ -25,7 +28,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay {
 
         #region Constructors
 
-        private InstagramBasicDisplayService(InstagramBasicDisplayClient client) {
+        private InstagramGraphService(InstagramOAuthClient client) {
             Client = client;
             Users = new InstagramUsersEndpoint(this);
         }
@@ -39,18 +42,18 @@ namespace Skybrud.Social.Instagram.BasicDisplay {
         /// OAuth client will be initialized from the access token.
         /// </summary>
         /// <param name="accessToken">The access token.</param>
-        public static InstagramBasicDisplayService CreateFromAccessToken(string accessToken) {
+        public static InstagramGraphService CreateFromAccessToken(string accessToken) {
             if (string.IsNullOrWhiteSpace(accessToken)) throw new ArgumentNullException(nameof(accessToken));
-            return new InstagramBasicDisplayService(new InstagramBasicDisplayClient(accessToken));
+            return new InstagramGraphService(new InstagramOAuthClient(accessToken));
         }
 
         /// <summary>
         /// Initializes a new service instance from the specified OAuth <paramref name="client"/>.
         /// </summary>
         /// <param name="client">The OAuth client.</param>
-        public static InstagramBasicDisplayService CreateFromOAuthClient(InstagramBasicDisplayClient client) {
+        public static InstagramGraphService CreateFromOAuthClient(InstagramOAuthClient client) {
             if (client == null) throw new ArgumentNullException(nameof(client));
-            return new InstagramBasicDisplayService(client);
+            return new InstagramGraphService(client);
         }
 
         #endregion

@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 using Skybrud.Social.Instagram.BasicDisplay.Models.Users;
-using Skybrud.Social.Instagram.Models;
 
 namespace Skybrud.Social.Instagram.BasicDisplay.Models.Media {
     
