@@ -67,10 +67,10 @@ namespace Skybrud.Social.Instagram.Graph.Scopes {
         }
 
         /// <summary>
-        /// Attempts to get a scope with the specified <code>name</code>.
+        /// Attempts to get a scope with the specified <paramref name="name"/>.
         /// </summary>
         /// <param name="name">The name of the scope.</param>
-        /// <returns>Gets a scope matching the specified <code>name</code>, or <code>null</code> if not found-</returns>
+        /// <returns>Gets a scope matching the specified <paramref name="name"/>, or <c>null</c> if not found.</returns>
         public static InstagramScope GetScope(string name) {
             return Scopes.TryGetValue(name, out InstagramScope scope) ? scope : null;
         }
@@ -79,7 +79,7 @@ namespace Skybrud.Social.Instagram.Graph.Scopes {
         /// Gets whether the scope is a known scope.
         /// </summary>
         /// <param name="name">The name of the scope.</param>
-        /// <returns>Returns <code>true</code> if the specified <code>name</code> matches a known scope, otherwise <code>false</code>.</returns>
+        /// <returns><c>true</c> if the specified <paramref name="name"/> matches a known scope, otherwise <c>false</c>.</returns>
         public static bool ScopeExists(string name) {
             return Scopes.ContainsKey(name);
         }

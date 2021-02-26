@@ -37,7 +37,7 @@ namespace Skybrud.Social.Instagram.Graph.Models.Common {
         #region Static methods
 
         /// <summary>
-        /// Parses rate-limiting information from the specified <code>response</code>.
+        /// Parses rate-limiting information from the specified <paramref name="response"/>.
         /// </summary>
         /// <param name="response">The response that holds the rate-limiting information.</param>
         /// <returns>Returns an instance of <see cref="InstagramRateLimiting"/>.</returns>

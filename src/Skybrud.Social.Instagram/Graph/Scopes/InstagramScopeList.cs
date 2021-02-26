@@ -26,7 +26,7 @@ namespace Skybrud.Social.Instagram.Graph.Scopes {
         #region Constructors
 
         /// <summary>
-        /// Initializes a new list based on the specified <code>array</code> of scopes.
+        /// Initializes a new list based on the specified <paramref name="array"/> of scopes.
         /// </summary>
         /// <param name="array">Array of scopes.</param>
         public InstagramScopeList(params InstagramScope[] array) {
@@ -38,7 +38,7 @@ namespace Skybrud.Social.Instagram.Graph.Scopes {
         #region Member methods
 
         /// <summary>
-        /// Adds the specified <code>scope</code> to the list.
+        /// Adds the specified <paramref name="scope"/> to the list.
         /// </summary>
         /// <param name="scope">The scope to be added.</param>
         public void Add(InstagramScope scope) {
@@ -74,28 +74,28 @@ namespace Skybrud.Social.Instagram.Graph.Scopes {
         #region Operator overloading
 
         /// <summary>
-        /// Initializes a new list based on a single <code>scope</code>.
+        /// Initializes a new list based on a single <paramref name="scope"/>.
         /// </summary>
         /// <param name="scope">The scope the list should be based on.</param>
-        /// <returns>Returns a new list based on a single <code>scope</code>.</returns>
+        /// <returns>A new list based on a single <paramref name="scope"/>.</returns>
         public static implicit operator InstagramScopeList(InstagramScope scope) {
             return new InstagramScopeList(scope);
         }
 
         /// <summary>
-        /// Initializes a new list based on an <code>array</code> of scopes.
+        /// Initializes a new list based on an <paramref name="array"/> of scopes.
         /// </summary>
         /// <param name="array">The array of scopes the list should be based on.</param>
-        /// <returns>Returns a new list based on an <code>array</code> of scopes.</returns>
+        /// <returns>A new list based on an <paramref name="array"/> of scopes.</returns>
         public static implicit operator InstagramScopeList(InstagramScope[] array) {
             return new InstagramScopeList(array ?? new InstagramScope[0]);
         }
 
         /// <summary>
-        /// Adds support for adding a <code>scope</code> to the <code>collection</code> using the plus operator.
+        /// Adds support for adding a <paramref name="scope"/> to the <paramref name="list"/> using the plus operator.
         /// </summary>
-        /// <param name="list">The list to which <code>scope</code> will be added.</param>
-        /// <param name="scope">The scope to be added to the <code>collection</code>.</param>
+        /// <param name="list">The list to which <paramref name="scope"/> will be added.</param>
+        /// <param name="scope">The scope to be added to the <paramref name="list"/>.</param>
         public static InstagramScopeList operator +(InstagramScopeList list, InstagramScope scope) {
             list.Add(scope);
             return list;
