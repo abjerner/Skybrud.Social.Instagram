@@ -1,4 +1,4 @@
-﻿namespace Skybrud.Social.Instagram.Fields {
+﻿namespace Skybrud.Social.Instagram.Graph.Fields {
     
     /// <summary>
     /// Class representing a field in the Instagram Graph API.

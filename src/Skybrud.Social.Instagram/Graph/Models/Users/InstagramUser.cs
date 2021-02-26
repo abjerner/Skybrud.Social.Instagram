@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
-using Skybrud.Social.Instagram.Fields;
+using Skybrud.Social.Instagram.Graph.Fields;
 using Skybrud.Social.Instagram.Graph.Models.Media;
 
 // ReSharper disable InconsistentNaming

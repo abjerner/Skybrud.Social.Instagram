@@ -3,7 +3,7 @@ using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Enums;
 using Skybrud.Essentials.Json.Extensions;
 using Skybrud.Essentials.Time;
-using Skybrud.Social.Instagram.Fields;
+using Skybrud.Social.Instagram.Graph.Fields;
 using Skybrud.Social.Instagram.Graph.Models.Comments;
 
 // ReSharper disable InconsistentNaming

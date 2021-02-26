@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Skybrud.Social.Instagram.Fields {
+namespace Skybrud.Social.Instagram.Graph.Fields {
     
     /// <summary>
     /// Class representing a collection of fields in the Instagram Graph API.

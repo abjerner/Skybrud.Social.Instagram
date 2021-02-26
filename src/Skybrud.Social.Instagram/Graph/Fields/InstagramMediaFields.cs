@@ -1,4 +1,4 @@
-﻿namespace Skybrud.Social.Instagram.Fields {
+﻿namespace Skybrud.Social.Instagram.Graph.Fields {
 
     /// <summary>
     /// Static class with constants representing the fields of an Insatgram media.

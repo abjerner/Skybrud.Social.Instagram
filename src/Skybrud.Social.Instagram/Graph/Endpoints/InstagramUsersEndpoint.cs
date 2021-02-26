@@ -1,4 +1,4 @@
-﻿using Skybrud.Social.Instagram.Fields;
+﻿using Skybrud.Social.Instagram.Graph.Fields;
 using Skybrud.Social.Instagram.Graph.Options.Users;
 using Skybrud.Social.Instagram.Graph.Responses.Media;
 using Skybrud.Social.Instagram.Graph.Responses.Users;

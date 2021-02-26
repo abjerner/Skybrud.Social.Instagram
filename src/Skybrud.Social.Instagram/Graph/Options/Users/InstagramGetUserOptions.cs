@@ -2,7 +2,7 @@
 using Skybrud.Essentials.Http;
 using Skybrud.Essentials.Http.Collections;
 using Skybrud.Essentials.Http.Options;
-using Skybrud.Social.Instagram.Fields;
+using Skybrud.Social.Instagram.Graph.Fields;
 
 namespace Skybrud.Social.Instagram.Graph.Options.Users {
 
