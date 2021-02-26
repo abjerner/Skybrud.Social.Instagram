@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace Skybrud.Social.Instagram.Graph.Fields {
-    
+
     /// <summary>
-    /// Class representing a collection of fields in the Instagram Graph API.
+    /// Class representing a collection of fields in the <strong>Instagram Graph API</strong>.
     /// </summary>
     public class InstagramFieldsCollection : IEnumerable<InstagramField> {
 

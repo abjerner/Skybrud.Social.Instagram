@@ -1,7 +1,7 @@
 ﻿namespace Skybrud.Social.Instagram.Graph.Fields {
 
     /// <summary>
-    /// Static class with constants representing the fields of an Insatgram media.
+    /// Static class with constants representing the fields of an Instagram media.
     /// </summary>
     /// <see>
     ///     <cref>https://developers.facebook.com/docs/instagram-api/reference/user/media#get-media</cref>
