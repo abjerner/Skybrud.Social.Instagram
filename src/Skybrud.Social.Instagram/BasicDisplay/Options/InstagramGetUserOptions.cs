@@ -5,31 +5,56 @@ using Skybrud.Social.Instagram.BasicDisplay.Fields;
 
 namespace Skybrud.Social.Instagram.BasicDisplay.Options {
     
+    /// <summary>
+    /// Class representing the options for a request to get information about an Instagram user.
+    /// </summary>
     public class InstagramGetUserOptions : IHttpRequestOptions {
 
         #region Properties
 
+        /// <summary>
+        /// Gets or sets the ID of the user to request information about. If not specified, information about the authenticated user will be requested instead.
+        /// </summary>
         public long UserId { get; set; }
 
+        /// <summary>
+        /// Gets or sets the fields to be returned by the API.
+        /// </summary>
         public InstagramFieldCollection Fields { get; set; }
 
         #endregion
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance with default options.
+        /// </summary>
         public InstagramGetUserOptions() {
             Fields = new InstagramFieldCollection();
         }
 
+        /// <summary>
+        /// Initializes a instance based on the specified <paramref name="fields"/>.
+        /// </summary>
+        /// <param name="fields">The fields to be returned by the API.</param>
         public InstagramGetUserOptions(InstagramFieldCollection fields)  {
             Fields = fields ?? new InstagramFieldCollection();
         }
 
+        /// <summary>
+        /// Initializes a new instance based on the specified <paramref name="userId"/>.
+        /// </summary>
+        /// <param name="userId">The ID of the user.</param>
         public InstagramGetUserOptions(long userId) {
             UserId = userId;
             Fields = new InstagramFieldCollection();
         }
 
+        /// <summary>
+        /// Initializes a new instance based on the specified <paramref name="userId"/> and <paramref name="fields"/>.
+        /// </summary>
+        /// <param name="userId">The ID of the user.</param>
+        /// <param name="fields">The fields to be returned by the API.</param>
         public InstagramGetUserOptions(long userId, InstagramFieldCollection fields) {
             UserId = userId;
             Fields = fields ?? new InstagramFieldCollection();

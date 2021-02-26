@@ -79,7 +79,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Options {
         }
 
         /// <summary>
-        /// Initializes a new instance with the specified <paramref name="userId"/>, <paramref name="fields"/> and
+        /// Initializes a new instance with the specified <paramref name="userId"/>, <paramref name="limit"/> and
         /// <paramref name="after"/>.
         /// </summary>
         /// <param name="userId">The ID of the user. Use <c>0</c> to indicate the authenticated user.</param>
