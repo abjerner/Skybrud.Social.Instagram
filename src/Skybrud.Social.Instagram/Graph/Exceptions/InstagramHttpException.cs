@@ -1,5 +1,7 @@
 using System;
+using System.Net;
 using Skybrud.Essentials.Http;
+using Skybrud.Essentials.Http.Exceptions;
 using Skybrud.Social.Instagram.Graph.Models.Common;
 using Skybrud.Social.Instagram.Graph.Models.Errors;
 
@@ -8,7 +10,7 @@ namespace Skybrud.Social.Instagram.Graph.Exceptions {
     /// <summary>
     /// Class representing an exception/error returned by the <strong>Instagram Graph API</strong>.
     /// </summary>
-    public class InstagramHttpException : Exception {
+    public class InstagramHttpException : InstagramException, IHttpException {
 
         #region Properties
 
@@ -16,6 +18,11 @@ namespace Skybrud.Social.Instagram.Graph.Exceptions {
         /// Gets a reference to the underlying <see cref="IHttpResponse"/>.
         /// </summary>
         public IHttpResponse Response { get; }
+
+        /// <summary>
+        /// Gets the status code of the response.
+        /// </summary>
+        public HttpStatusCode StatusCode => Response.StatusCode;
 
         /// <summary>
         /// Gets information about rate limiting.
