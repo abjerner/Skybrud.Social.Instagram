@@ -21,7 +21,7 @@ namespace Skybrud.Social.Instagram.Graph.Options.Users {
         /// <summary>
         /// Gets or sets the fields to be returned.
         /// </summary>
-        public InstagramFieldsCollection Fields { get; set; }
+        public InstagramFieldList Fields { get; set; }
 
         #endregion
 
@@ -38,7 +38,7 @@ namespace Skybrud.Social.Instagram.Graph.Options.Users {
         /// <param name="id">The ID of the Instagram user.</param>
         public InstagramGetUserOptions(string id) {
             Id = id;
-            Fields = new InstagramFieldsCollection();
+            Fields = new InstagramFieldList();
         }
         
         /// <summary>
@@ -46,7 +46,7 @@ namespace Skybrud.Social.Instagram.Graph.Options.Users {
         /// </summary>
         /// <param name="id">The ID of the Instagram user.</param>
         /// <param name="fields">The fields to be returned by the API.</param>
-        public InstagramGetUserOptions(string id, InstagramFieldsCollection fields) {
+        public InstagramGetUserOptions(string id, InstagramFieldList fields) {
             Id = id;
             Fields = fields;
         }

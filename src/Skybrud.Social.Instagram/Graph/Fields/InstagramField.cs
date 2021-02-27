@@ -37,12 +37,12 @@
         }
 
         /// <summary>
-        /// Adding two instances of <see cref="InstagramField"/> will result in a <see cref="InstagramFieldsCollection"/> containing both fields.
+        /// Adding two instances of <see cref="InstagramField"/> will result in a <see cref="InstagramFieldList"/> containing both fields.
         /// </summary>
         /// <param name="left">The left field.</param>
         /// <param name="right">The right field.</param>
-        public static InstagramFieldsCollection operator +(InstagramField left, InstagramField right) {
-            return new InstagramFieldsCollection(left, right);
+        public static InstagramFieldList operator +(InstagramField left, InstagramField right) {
+            return new InstagramFieldList(left, right);
         }
 
         #endregion

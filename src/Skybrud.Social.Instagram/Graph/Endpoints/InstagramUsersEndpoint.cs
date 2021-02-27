@@ -60,7 +60,7 @@ namespace Skybrud.Social.Instagram.Graph.Endpoints {
         /// <see>
         ///     <cref>https://developers.facebook.com/docs/instagram-api/reference/user/#metadata</cref>
         /// </see>
-        public InstagramUserResponse GetUser(string id, InstagramFieldsCollection fields) {
+        public InstagramUserResponse GetUser(string id, InstagramFieldList fields) {
             return new InstagramUserResponse(Raw.GetUser(id, fields));
         }
 
@@ -97,7 +97,7 @@ namespace Skybrud.Social.Instagram.Graph.Endpoints {
         /// <see>
         ///     <cref>https://developers.facebook.com/docs/instagram-api/reference/user/media#get-media</cref>
         /// </see>
-        public InstagramMediaListResponse GetRecentMedia(string id, InstagramFieldsCollection fields) {
+        public InstagramMediaListResponse GetRecentMedia(string id, InstagramFieldList fields) {
             return new InstagramMediaListResponse(Raw.GetRecentMedia(id, fields));
         }
 
@@ -112,7 +112,7 @@ namespace Skybrud.Social.Instagram.Graph.Endpoints {
         /// <see>
         ///     <cref>https://developers.facebook.com/docs/instagram-api/reference/user/media#get-media</cref>
         /// </see>
-        public InstagramMediaListResponse GetRecentMedia(string id, int limit, string after, InstagramFieldsCollection fields) {
+        public InstagramMediaListResponse GetRecentMedia(string id, int limit, string after, InstagramFieldList fields) {
             return new InstagramMediaListResponse(Raw.GetRecentMedia(id, limit, after, fields));
         }
 

@@ -57,7 +57,7 @@ namespace Skybrud.Social.Instagram.Graph.Endpoints {
         /// <see>
         ///     <cref>https://developers.facebook.com/docs/instagram-api/reference/user/#metadata</cref>
         /// </see>
-        public IHttpResponse GetUser(string id, InstagramFieldsCollection fields) {
+        public IHttpResponse GetUser(string id, InstagramFieldList fields) {
             if (string.IsNullOrWhiteSpace(id)) throw new ArgumentNullException(nameof(id));
             return GetUser(new InstagramGetUserOptions(id, fields));
         }
@@ -97,7 +97,7 @@ namespace Skybrud.Social.Instagram.Graph.Endpoints {
         /// <see>
         ///     <cref>https://developers.facebook.com/docs/instagram-api/reference/user/media#get-media</cref>
         /// </see>
-        public IHttpResponse GetRecentMedia(string id, InstagramFieldsCollection fields) {
+        public IHttpResponse GetRecentMedia(string id, InstagramFieldList fields) {
             if (string.IsNullOrWhiteSpace(id)) throw new ArgumentNullException(nameof(id));
             return GetRecentMedia(new InstagramGetRecentMediaOptions(id, fields));
         }
@@ -113,7 +113,7 @@ namespace Skybrud.Social.Instagram.Graph.Endpoints {
         /// <see>
         ///     <cref>https://developers.facebook.com/docs/instagram-api/reference/user/media#get-media</cref>
         /// </see>
-        public IHttpResponse GetRecentMedia(string id, int limit, string after, InstagramFieldsCollection fields) {
+        public IHttpResponse GetRecentMedia(string id, int limit, string after, InstagramFieldList fields) {
             if (string.IsNullOrWhiteSpace(id)) throw new ArgumentNullException(nameof(id));
             return GetRecentMedia(new InstagramGetRecentMediaOptions(id, limit, after, fields));
         }

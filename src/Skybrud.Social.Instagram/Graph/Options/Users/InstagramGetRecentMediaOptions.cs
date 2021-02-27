@@ -41,7 +41,7 @@ namespace Skybrud.Social.Instagram.Graph.Options.Users {
         /// <summary>
         /// Gets or sets the fields to be returned.
         /// </summary>
-        public InstagramFieldsCollection Fields { get; set; }
+        public InstagramFieldList Fields { get; set; }
 
         #endregion
 
@@ -58,7 +58,7 @@ namespace Skybrud.Social.Instagram.Graph.Options.Users {
         /// <param name="id">The ID of the Instagram user.</param>
         public InstagramGetRecentMediaOptions(string id) {
             Id = id;
-            Fields = new InstagramFieldsCollection();
+            Fields = new InstagramFieldList();
         }
 
         /// <summary>
@@ -66,9 +66,9 @@ namespace Skybrud.Social.Instagram.Graph.Options.Users {
         /// </summary>
         /// <param name="id">The ID of the Instagram user.</param>
         /// <param name="fields">The fields to be returned by the API.</param>
-        public InstagramGetRecentMediaOptions(string id, InstagramFieldsCollection fields) {
+        public InstagramGetRecentMediaOptions(string id, InstagramFieldList fields) {
             Id = id;
-            Fields = fields ?? new InstagramFieldsCollection();
+            Fields = fields ?? new InstagramFieldList();
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace Skybrud.Social.Instagram.Graph.Options.Users {
         public InstagramGetRecentMediaOptions(string id, int limit) {
             Id = id;
             Limit = limit;
-            Fields = new InstagramFieldsCollection();
+            Fields = new InstagramFieldList();
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace Skybrud.Social.Instagram.Graph.Options.Users {
             Id = id;
             Limit = limit;
             After = after;
-            Fields = new InstagramFieldsCollection();
+            Fields = new InstagramFieldList();
         }
 
         /// <summary>
@@ -102,11 +102,11 @@ namespace Skybrud.Social.Instagram.Graph.Options.Users {
         /// <param name="limit">The maximum amount of media that should be returned in each page.</param>
         /// <param name="after">The cursor that points to the end of the page of data that has been returned.</param>
         /// <param name="fields">The fields to be returned by the API.</param>
-        public InstagramGetRecentMediaOptions(string id, int limit, string after, InstagramFieldsCollection fields) {
+        public InstagramGetRecentMediaOptions(string id, int limit, string after, InstagramFieldList fields) {
             Id = id;
             Limit = limit;
             After = after;
-            Fields = fields ?? new InstagramFieldsCollection();
+            Fields = fields ?? new InstagramFieldList();
         }
 
         #endregion
