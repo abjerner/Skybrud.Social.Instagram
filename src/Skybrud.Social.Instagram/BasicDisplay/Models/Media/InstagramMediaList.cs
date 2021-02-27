@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using System.Collections;
+using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 using Skybrud.Social.Instagram.BasicDisplay.Models.Users;
 
@@ -7,7 +9,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Models.Media {
     /// <summary>
     /// Class representing a list of media.
     /// </summary>
-    public class InstagramMediaList : InstagramObject {
+    public class InstagramMediaList : InstagramObject, IEnumerable<InstagramMedia> {
 
         #region Properties
 
@@ -32,6 +34,19 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Models.Media {
 
         #endregion
 
+        #region Member methods
+
+        /// <inheritdoc />
+        public IEnumerator<InstagramMedia> GetEnumerator() {
+            return ((IEnumerable<InstagramMedia>) Data).GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator() {
+            return GetEnumerator();
+        }
+
+        #endregion
+
         #region Static methods
 
         /// <summary>
@@ -44,6 +59,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Models.Media {
         }
 
         #endregion
+
 
     }
 
