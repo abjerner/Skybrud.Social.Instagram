@@ -1,7 +1,7 @@
 ﻿namespace Skybrud.Social.Instagram.Graph.Scopes {
 
     /// <summary>
-    /// Static class with known scopes of the Instagram API.
+    /// Static class with known scopes of the <strong>Instagram Graph API</strong>.
     /// </summary>
     public static class InstagramScopes {
 

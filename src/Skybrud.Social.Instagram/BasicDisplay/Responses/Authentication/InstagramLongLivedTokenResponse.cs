@@ -6,7 +6,16 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Responses.Authentication {
     /// <summary>
     /// Class representing the response of a request to exchange an access token with a new long-lived access token.
     /// </summary>
-    public class InstagramLongLivedTokenResponse : InstagramResponse<InstagramLongLivedToken> {
+    public class InstagramLongLivedTokenResponse : InstagramTokenResponse {
+
+        #region Properties
+
+        /// <summary>
+        /// Gets the body of the response.
+        /// </summary>
+        public new InstagramLongLivedToken Body { get; protected set; }
+
+        #endregion
 
         #region Constructors
 
@@ -15,7 +24,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Responses.Authentication {
         /// </summary>
         /// <param name="response">The underlying raw response the instance should be based on.</param>
         public InstagramLongLivedTokenResponse(IHttpResponse response) : base(response) {
-            Body = ParseJsonObject(response.Body, InstagramLongLivedToken.Parse);
+            base.Body = Body = ParseJsonObject(response.Body, InstagramLongLivedToken.Parse);
         }
 
         #endregion

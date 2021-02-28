@@ -1,4 +1,3 @@
-using System;
 using System.Net;
 using Skybrud.Essentials.Http;
 using Skybrud.Essentials.Http.Exceptions;
@@ -33,15 +32,18 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Exceptions {
         /// </summary>
         public bool HasError => Error != null;
 
+        /// <inheritdoc />
+        public override string Message => base.Message ?? $"Invalid response received from the Instagram Basic Display API (Status: {(int) StatusCode}).";
+
         #endregion
 
         #region Constructors
 
-        internal InstagramHttpException(IHttpResponse response) : base($"Invalid response received from the Instagram Basic Display API (Status: {(int) response.StatusCode}).") {
+        internal InstagramHttpException(IHttpResponse response) : base(null) {
             Response = response;
         }
 
-        internal InstagramHttpException(IHttpResponse response, InstagramError error) : base(error.Message) {
+        internal InstagramHttpException(IHttpResponse response, InstagramError error) : base(error?.Message) {
             Response = response;
             Error = error;
         }

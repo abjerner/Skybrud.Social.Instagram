@@ -1,8 +1,10 @@
-﻿using Skybrud.Essentials.Http;
+﻿using System.Linq;
+using Skybrud.Essentials.Http;
 using Skybrud.Essentials.Http.Client;
 using Skybrud.Essentials.Http.Collections;
 using Skybrud.Social.Instagram.BasicDisplay.Endpoints;
 using Skybrud.Social.Instagram.BasicDisplay.Responses.Authentication;
+using Skybrud.Social.Instagram.BasicDisplay.Scopes;
 
 namespace Skybrud.Social.Instagram.BasicDisplay.OAuth {
     
@@ -68,7 +70,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.OAuth {
         /// <param name="scope">The scope of your application.</param>
         /// <returns>The authorization URL.</returns>
         /// <see>
-        ///     <cref>https://developers.facebook.com/docs/instagram-basic-display-api/guides/getting-access-tokens-and-permissions#step-1--get-authorization</cref>
+        ///     <cref>https://developers.facebook.com/docs/instagram-basic-display-api/reference/oauth-authorize</cref>
         /// </see>
         public string GetAuthorizationUrl(string state, string scope) {
 
@@ -93,10 +95,36 @@ namespace Skybrud.Social.Instagram.BasicDisplay.OAuth {
         /// <param name="scope">The scope of your application.</param>
         /// <returns>The authorization URL.</returns>
         /// <see>
-        ///     <cref>https://developers.facebook.com/docs/instagram-basic-display-api/guides/getting-access-tokens-and-permissions#step-1--get-authorization</cref>
+        ///     <cref>https://developers.facebook.com/docs/instagram-basic-display-api/reference/oauth-authorize</cref>
         /// </see>
         public string GetAuthorizationUrl(string state, string[] scope) {
             return GetAuthorizationUrl(state, scope == null ? string.Empty : string.Join(",", scope));
+        }
+
+        /// <summary>
+        /// Gets an authorization based on the specified <paramref name="state"/> and <paramref name="scope"/>.
+        /// </summary>
+        /// <param name="state">A unique state for the request.</param>
+        /// <param name="scope">The scope of your application.</param>
+        /// <returns>The authorization URL.</returns>
+        /// <see>
+        ///     <cref>https://developers.facebook.com/docs/instagram-basic-display-api/reference/oauth-authorize</cref>
+        /// </see>
+        public string GetAuthorizationUrl(string state, params InstagramScope[] scope) {
+            return GetAuthorizationUrl(state, scope == null ? null : string.Join(",", from s in scope select s.Alias));
+        }
+
+        /// <summary>
+        /// Gets an authorization based on the specified <paramref name="state"/> and <paramref name="scope"/>.
+        /// </summary>
+        /// <param name="state">A unique state for the request.</param>
+        /// <param name="scope">The scope of your application.</param>
+        /// <returns>The authorization URL.</returns>
+        /// <see>
+        ///     <cref>https://developers.facebook.com/docs/instagram-basic-display-api/reference/oauth-authorize</cref>
+        /// </see>
+        public string GetAuthorizationUrl(string state, InstagramScopeList scope) {
+            return GetAuthorizationUrl(state, scope?.ToString());
         }
 
         /// <summary>
@@ -105,7 +133,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.OAuth {
         /// <param name="code">The authorization code.</param>
         /// <returns>An instance of <see cref="InstagramShortLivedTokenResponse"/> representing the API response.</returns>
         /// <see>
-        ///     <cref>https://developers.facebook.com/docs/instagram-basic-display-api/guides/getting-access-tokens-and-permissions#step-2--exchange-the-code-for-a-token</cref>
+        ///     <cref>https://developers.facebook.com/docs/instagram-basic-display-api/reference/oauth-access-token</cref>
         /// </see>
         public InstagramShortLivedTokenResponse GetAccessTokenFromAuthCode(string code) {
 
@@ -127,27 +155,48 @@ namespace Skybrud.Social.Instagram.BasicDisplay.OAuth {
         }
 
         /// <summary>
-        /// Exchanges the specified <paramref name="accessToken"/> for a new long-lived access token.
+        /// Exchanges the specified short-lived <paramref name="accessToken"/> for a new long-lived access token.
         /// </summary>
-        /// <param name="accessToken">The access token to be exchanged.</param>
+        /// <param name="accessToken">The short-lived access token to be exchanged.</param>
         /// <returns>An instance of <see cref="InstagramLongLivedTokenResponse"/> representing the API response.</returns>
         /// <see>
-        ///     <cref>https://developers.facebook.com/docs/instagram-basic-display-api/guides/long-lived-access-tokens#get-a-long-lived-token</cref>
-        /// </see>
-        /// <see>
-        ///     <cref>https://developers.facebook.com/docs/instagram-basic-display-api/guides/long-lived-access-tokens#refresh-a-long-lived-token</cref>
+        ///     <cref>https://developers.facebook.com/docs/instagram-basic-display-api/reference/access_token</cref>
         /// </see>
         public InstagramLongLivedTokenResponse GetLongLivedAccessToken(string accessToken) {
 
-            // Initialize the POST data
-            IHttpPostData post = new HttpPostData {
+            // Initialize the query string
+            HttpQueryString query = new HttpQueryString {
                 { "grant_type", "ig_exchange_token" },
                 { "client_secret", ClientSecret },
                 { "access_token", accessToken }
             };
 
-            // Make a POST request to the API
-            IHttpResponse response = HttpUtils.Requests.Post("https://api.instagram.com/oauth/access_token", post);
+            // Make a GET request to the API
+            IHttpResponse response = HttpUtils.Requests.Get("https://graph.instagram.com/access_token", query);
+
+            // Wrap the raw response
+            return new InstagramLongLivedTokenResponse(response);
+
+        }
+
+        /// <summary>
+        /// Exchanges the specified long-lived <paramref name="accessToken"/> for a new long-lived access token.
+        /// </summary>
+        /// <param name="accessToken">The long-lived access token to be exchanged.</param>
+        /// <returns>An instance of <see cref="InstagramLongLivedTokenResponse"/> representing the API response.</returns>
+        /// <see>
+        ///     <cref>https://developers.facebook.com/docs/instagram-basic-display-api/reference/refresh_access_token</cref>
+        /// </see>
+        public InstagramLongLivedTokenResponse RefreshAccessToken(string accessToken) {
+
+            // Initialize the query string
+            IHttpQueryString query = new HttpQueryString {
+                { "grant_type", "ig_refresh_token" },
+                { "access_token", accessToken }
+            };
+
+            // Make a GET request to the API
+            IHttpResponse response = HttpUtils.Requests.Get("https://graph.instagram.com/refresh_access_token", query);
 
             // Wrap the raw response
             return new InstagramLongLivedTokenResponse(response);

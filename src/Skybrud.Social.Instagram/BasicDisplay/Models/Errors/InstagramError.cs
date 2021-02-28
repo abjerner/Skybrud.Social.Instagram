@@ -35,8 +35,8 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Models.Errors {
         #region Constructors
 
         private InstagramError(JObject obj) : base(obj) {
-            Message = obj.GetString("message");
-            Type = obj.GetString("type");
+            Message = obj.GetString("message") ?? obj.GetString("error_message");
+            Type = obj.GetString("type") ?? obj.GetString("error_type");
             Code = obj.GetInt32("code");
             ErrorSubcode = obj.GetInt32("error_subcode");
         }

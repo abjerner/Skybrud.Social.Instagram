@@ -8,6 +8,15 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Responses.Authentication {
     /// </summary>
     public class InstagramShortLivedTokenResponse : InstagramResponse<InstagramShortLivedToken> {
 
+        #region Properties
+
+        /// <summary>
+        /// Gets the body of the response.
+        /// </summary>
+        public new InstagramShortLivedToken Body { get; protected set; }
+
+        #endregion
+
         #region Constructors
 
         /// <summary>
@@ -15,7 +24,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Responses.Authentication {
         /// </summary>
         /// <param name="response">The underlying raw response the instance should be based on.</param>
         public InstagramShortLivedTokenResponse(IHttpResponse response) : base(response) {
-            Body = ParseJsonObject(response.Body, InstagramShortLivedToken.Parse);
+            base.Body = Body = ParseJsonObject(response.Body, InstagramShortLivedToken.Parse);
         }
 
         #endregion

@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Http;
 using Skybrud.Essentials.Json.Extensions;
@@ -26,14 +27,37 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Responses {
             // Handle errors when the response body isn't JSON
             if (!response.Body.StartsWith("{")) throw new InstagramHttpException(response);
 
-            // Parse the response body
-            JObject obj = ParseJsonObject(response.Body);
+            JObject body = null;
+            try {
 
-            // Get details about the error
-            InstagramError error = obj.GetObject("error", InstagramError.Parse);
+                // Parse the response body
+                body = ParseJsonObject(response.Body);
 
-            // Throw the exception
-            throw new InstagramHttpException(response, error);
+                // Get the error type (only OAuth errors seem to have this property)
+                string errorType = body.GetString("error_type");
+
+                switch (errorType) {
+
+                    case "OAuthException":
+
+                        // Throw the exception
+                        throw new InstagramOAuthException(response, InstagramError.Parse(body));
+
+                    default:
+
+                        // Get details about the error
+                        InstagramError error = body.GetObject("error", InstagramError.Parse);
+
+                        // Throw the exception
+                        throw new InstagramHttpException(response, error);
+
+                }
+
+            } catch (Exception ex) when (!(ex is InstagramHttpException)) {
+
+                throw new InstagramParseException("Failed parsing Instagram error response.", response, body, ex);
+
+            }
 
         }
 

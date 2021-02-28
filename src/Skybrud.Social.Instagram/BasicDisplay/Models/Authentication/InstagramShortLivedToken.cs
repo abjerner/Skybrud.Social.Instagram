@@ -6,14 +6,9 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Models.Authentication {
     /// <summary>
     /// Class with information about a short-lived access token.
     /// </summary>
-    public class InstagramShortLivedToken : InstagramObject {
+    public class InstagramShortLivedToken : InstagramToken {
 
         #region Properties
-
-        /// <summary>
-        /// Gets the access token.
-        /// </summary>
-        public string AccessToken { get; }
 
         /// <summary>
         /// Gets the ID of the authenticated user.
@@ -24,9 +19,8 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Models.Authentication {
 
         #region Constructors
 
-        private InstagramShortLivedToken(JObject obj) : base(obj)  {
-            AccessToken = obj.GetString("access_token");
-            UserId = obj.GetInt64("user_id");
+        private InstagramShortLivedToken(JObject json) : base(json) {
+            UserId = json.GetInt64("user_id");
         }
 
         #endregion
@@ -34,12 +28,12 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Models.Authentication {
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <paramref name="obj"/> into an instance of <see cref="InstagramShortLivedToken"/>.
+        /// Parses the specified <paramref name="json"/> object into an instance of <see cref="InstagramShortLivedToken"/>.
         /// </summary>
-        /// <param name="obj">The instance of <see cref="JObject"/> to be parsed.</param>
+        /// <param name="json">The instance of <see cref="JObject"/> to be parsed.</param>
         /// <returns>An instance of <see cref="InstagramLongLivedToken"/>.</returns>
-        public static InstagramShortLivedToken Parse(JObject obj) {
-            return obj == null ? null : new InstagramShortLivedToken(obj);
+        public static InstagramShortLivedToken Parse(JObject json) {
+            return json == null ? null : new InstagramShortLivedToken(json);
         }
 
         #endregion
