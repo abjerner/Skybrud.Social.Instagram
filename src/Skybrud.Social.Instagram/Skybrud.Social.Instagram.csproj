@@ -10,11 +10,11 @@
 
   <PropertyGroup>
     <RootNamespace>Skybrud.Social.Instagram</RootNamespace>
-    <Version>1.0.0-beta005</Version>
+    <Version>1.0.0-beta006</Version>
     <Company>Skybrud.dk a/s</Company>
     <Product>Skybrud.Social</Product>
     <Authors>Anders Bjerner</Authors>
-    <Copyright>Copyright © 2020</Copyright>
+    <Copyright>Copyright © 2021</Copyright>
     <Description>Authentication and service implementation for the Instagram API.</Description>
     <RepositoryUrl>https://github.com/abjerner/Skybrud.Social.Instagram</RepositoryUrl>
   </PropertyGroup>
@@ -42,7 +42,7 @@
     <Exec Command="mkdir $(ProjectDir)bin\Dev\$(TargetFramework)&#xD;&#xA;xcopy $(ProjectDir)bin\$(ConfigurationName)\$(TargetFramework)\$(TargetName).* $(ProjectDir)bin\Dev\$(TargetFramework)\ /y" />
   </Target>-->
 
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(ConfigurationName)'=='Release' AND '$(BuildTools)'=='1'">
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(ConfigurationName)'=='Release' AND '$(TargetFramework)'=='net47' AND '$(BuildTools)'=='1'">
     <Exec Command="&quot;$(ProjectDir)..\build\Skybrud.BuildTools.Tasks.exe&quot; &quot;postBuild&quot; &quot;$(ConfigurationName)&quot; &quot;$(ProjectPath)&quot; &quot;$(TargetPath)&quot;" />
   </Target>
 
