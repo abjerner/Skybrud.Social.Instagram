@@ -14,7 +14,7 @@ namespace Skybrud.Social.Instagram.Graph.Responses {
     public class InstagramResponse : HttpResponseBase {
 
         #region Properties
-        
+
         /// <summary>
         /// Gets information about rate limiting.
         /// </summary>
@@ -33,7 +33,7 @@ namespace Skybrud.Social.Instagram.Graph.Responses {
         }
 
         #endregion
-        
+
         #region Static methods
 
         /// <summary>
@@ -47,12 +47,10 @@ namespace Skybrud.Social.Instagram.Graph.Responses {
 
             // Handle errors when the response body isn't JSON
             if (!response.Body.StartsWith("{")) {
-                switch (response.StatusCode) {
-                    case HttpStatusCode.NotFound:
-                        throw new InstagramNotFoundException(response);
-                    default:
-                        throw new InstagramHttpException(response);
-                }
+                throw response.StatusCode switch {
+                    HttpStatusCode.NotFound => new InstagramNotFoundException(response),
+                    _ => new InstagramHttpException(response)
+                };
             }
 
             // Parse the response body

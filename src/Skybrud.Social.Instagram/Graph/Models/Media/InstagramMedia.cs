@@ -16,7 +16,7 @@ namespace Skybrud.Social.Instagram.Graph.Models.Media {
     public class InstagramMedia : InstagramObject {
 
         #region Properties
-        
+
         /// <summary>
         /// Gets the caption (text) of the image.
         /// </summary>
@@ -61,7 +61,7 @@ namespace Skybrud.Social.Instagram.Graph.Models.Media {
         /// Gets the type of the media.
         /// </summary>
         public InstagramMediaType MediaType { get; }
-        
+
         /// <summary>
         /// Gets the media URL.
         /// </summary>
@@ -126,17 +126,13 @@ namespace Skybrud.Social.Instagram.Graph.Models.Media {
 
         #endregion
 
-        #region Member methods
+        #region Static methods
 
-        private InstagramMediaType ParseMediaType(string value) {
+        private static InstagramMediaType ParseMediaType(string value) {
             if (string.IsNullOrWhiteSpace(value)) return InstagramMediaType.Unspecified;
             if (EnumUtils.TryParseEnum(value, out InstagramMediaType type)) return type;
             throw new Exception("Unknown media type: " + value);
         }
-
-        #endregion
-
-        #region Static methods
 
         /// <summary>
         /// Parses the specified <paramref name="obj"/> into an instance of <see cref="InstagramMedia"/>.

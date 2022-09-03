@@ -1,4 +1,3 @@
-using System;
 using System.Net;
 using Skybrud.Essentials.Http;
 using Skybrud.Essentials.Http.Exceptions;

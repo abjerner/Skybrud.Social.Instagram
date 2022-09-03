@@ -1,7 +1,7 @@
 ﻿// ReSharper disable InconsistentNaming
 
 namespace Skybrud.Social.Instagram.Graph.Fields {
-    
+
     /// <summary>
     /// Static class with constants representing the fields of an Instagram user.
     /// </summary>

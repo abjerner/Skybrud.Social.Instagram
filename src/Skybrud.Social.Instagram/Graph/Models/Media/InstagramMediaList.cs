@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 using Skybrud.Social.Instagram.Graph.Models.Paging;
 
@@ -14,7 +15,7 @@ namespace Skybrud.Social.Instagram.Graph.Models.Media {
         /// <summary>
         /// Gets an array of the <see cref="InstagramMedia"/> mkaing up the response body.
         /// </summary>
-        public InstagramMedia[] Data { get; }
+        public IReadOnlyList<InstagramMedia> Data { get; }
 
         /// <summary>
         /// Gets pagiging information about the list.

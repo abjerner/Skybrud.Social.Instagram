@@ -9,7 +9,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Scopes {
 
         #region Private fields
 
-        private static readonly Dictionary<string, InstagramScope> Scopes = new Dictionary<string, InstagramScope>();
+        private static readonly Dictionary<string, InstagramScope> _scopes = new();
 
         #endregion
 
@@ -69,8 +69,8 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Scopes {
         /// <param name="name">The name of the scope.</param>
         /// <param name="description">The description of the scope.</param>
         internal static InstagramScope RegisterScope(string alias, string name, string description = null) {
-            InstagramScope scope = new InstagramScope(alias, name, description);
-            Scopes.Add(scope.Alias, scope);
+            InstagramScope scope = new(alias, name, description);
+            _scopes.Add(scope.Alias, scope);
             return scope;
         }
 
@@ -80,7 +80,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Scopes {
         /// <param name="alias">The alias of the scope.</param>
         /// <returns>Gets a scope matching the specified <paramref name="alias"/>, or <c>null</c> if not found.</returns>
         public static InstagramScope GetScope(string alias) {
-            return Scopes.TryGetValue(alias, out InstagramScope scope) ? scope : null;
+            return _scopes.TryGetValue(alias, out InstagramScope scope) ? scope : null;
         }
 
         /// <summary>
@@ -89,11 +89,11 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Scopes {
         /// <param name="alias">The alias of the scope.</param>
         /// <returns><c>true</c> if the specified <paramref name="alias"/> matches a known scope, otherwise <c>false</c>.</returns>
         public static bool ScopeExists(string alias) {
-            return Scopes.ContainsKey(alias);
+            return _scopes.ContainsKey(alias);
         }
 
         #endregion
-        
+
         #region Operators
 
         /// <summary>

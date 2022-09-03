@@ -8,12 +8,12 @@
         /// <summary>
         /// Allows your app to read the User node, which represents the Instagram user, and the node’s edges.
         /// </summary>
-        public static readonly InstagramScope UserProfile = new InstagramScope("user_profile", "User Profile");
+        public static readonly InstagramScope UserProfile = new("user_profile", "User Profile");
 
         /// <summary>
         /// Allows your app to read the Media node, which represents an image, video, or album, and the node’s edges.
         /// </summary>
-        public static readonly InstagramScope UserMedia = new InstagramScope("user_media", "User Media");
+        public static readonly InstagramScope UserMedia = new("user_media", "User Media");
 
     }
 

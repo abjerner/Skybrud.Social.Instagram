@@ -46,7 +46,7 @@ namespace Skybrud.Social.Instagram.Graph.OAuth {
         #endregion
 
         #region Methods
-        
+
         /// <summary>
         /// Virtual method that can be used for configuring a request.
         /// </summary>

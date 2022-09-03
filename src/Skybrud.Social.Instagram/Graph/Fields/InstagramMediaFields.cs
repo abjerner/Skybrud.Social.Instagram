@@ -11,77 +11,77 @@
         /// <summary>
         /// The caption of the media.
         /// </summary>
-        public static readonly InstagramField Caption = new InstagramField("caption");
+        public static readonly InstagramField Caption = new("caption");
 
         /// <summary>
         /// The total amount of comments the media has received.
         /// </summary>
-        public static readonly InstagramField CommentsCount = new InstagramField("comments_count");
+        public static readonly InstagramField CommentsCount = new("comments_count");
 
         /// <summary>
         /// The Instagram ID of the media.
         /// </summary>
-        public static readonly InstagramField Id = new InstagramField("ig_id");
+        public static readonly InstagramField Id = new("ig_id");
 
         /// <summary>
         /// Whether comments has been enabled for the media.
         /// </summary>
-        public static readonly InstagramField IsCommentEnabled = new InstagramField("is_comment_enabled");
+        public static readonly InstagramField IsCommentEnabled = new("is_comment_enabled");
 
         /// <summary>
         /// The total amount of likes the media has received.
         /// </summary>
-        public static readonly InstagramField LikeCount = new InstagramField("like_count");
+        public static readonly InstagramField LikeCount = new("like_count");
 
         /// <summary>
         /// The type of the media.
         /// </summary>
-        public static readonly InstagramField MediaType = new InstagramField("media_type");
+        public static readonly InstagramField MediaType = new("media_type");
 
         /// <summary>
         /// The URL of the media.
         /// </summary>
-        public static readonly InstagramField MediaUrl = new InstagramField("media_url");
+        public static readonly InstagramField MediaUrl = new("media_url");
 
         /// <summary>
         /// The owner of the media.
         /// </summary>
-        public static readonly InstagramField Owner = new InstagramField("owner");
+        public static readonly InstagramField Owner = new("owner");
 
         /// <summary>
         /// The permalink (web URL) of the media.
         /// </summary>
-        public static readonly InstagramField Permalink = new InstagramField("permalink");
+        public static readonly InstagramField Permalink = new("permalink");
 
         /// <summary>
         /// The shortcode of the media.
         /// </summary>
-        public static readonly InstagramField Shortcode = new InstagramField("shortcode");
+        public static readonly InstagramField Shortcode = new("shortcode");
 
         /// <summary>
         /// The thumbnail URL of the media.
         /// </summary>
-        public static readonly InstagramField ThumbnailUrl = new InstagramField("caption");
+        public static readonly InstagramField ThumbnailUrl = new("caption");
 
         /// <summary>
         /// The timestamp of the media.
         /// </summary>
-        public static readonly InstagramField Timestamp = new InstagramField("timestamp");
+        public static readonly InstagramField Timestamp = new("timestamp");
 
         /// <summary>
         /// The username of the media.
         /// </summary>
-        public static readonly InstagramField Username = new InstagramField("username");
+        public static readonly InstagramField Username = new("username");
 
         /// <summary>
         /// The child media of the media (carousel albums only).
         /// </summary>
-        public static readonly InstagramField Children = new InstagramField("children");
+        public static readonly InstagramField Children = new("children");
 
         /// <summary>
         /// Represents the <c>comments</c> edge of the media.
         /// </summary>
-        public static readonly InstagramField Comments = new InstagramField("comments");
+        public static readonly InstagramField Comments = new("comments");
 
     }
 

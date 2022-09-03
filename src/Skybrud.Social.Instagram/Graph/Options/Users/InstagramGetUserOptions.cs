@@ -40,7 +40,7 @@ namespace Skybrud.Social.Instagram.Graph.Options.Users {
             Id = id;
             Fields = new InstagramFieldList();
         }
-        
+
         /// <summary>
         /// Initializes a new instance based on the specified <paramref name="id"/>.
         /// </summary>

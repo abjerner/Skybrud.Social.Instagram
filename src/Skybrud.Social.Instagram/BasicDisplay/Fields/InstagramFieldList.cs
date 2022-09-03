@@ -12,7 +12,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Fields {
 
         #region Private fields
 
-        private readonly List<InstagramField> _fields = new List<InstagramField>();
+        private readonly List<InstagramField> _fields = new();
 
         #endregion
 
@@ -26,7 +26,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Fields {
         /// <summary>
         /// Gets an array of all the fields added to the list.
         /// </summary>
-        public InstagramField[] Fields => _fields.ToArray();
+        public IReadOnlyList<InstagramField> Fields => _fields;
 
         #endregion
 
@@ -98,7 +98,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Fields {
         /// <param name="fields">The string of fields the list should be based on.</param>
         /// <returns>A new list based on a string of <paramref name="fields"/>.</returns>
         public static implicit operator InstagramFieldList(string fields) {
-            InstagramFieldList list = new InstagramFieldList();
+            InstagramFieldList list = new();
             foreach (string name in (fields ?? string.Empty).Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)) {
                 list.Add(name);
             }
@@ -111,7 +111,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Fields {
         /// <param name="fields">The array of fields the list should be based on.</param>
         /// <returns>A new list based on an array of <paramref name="fields"/>.</returns>
         public static implicit operator InstagramFieldList(string[] fields) {
-            InstagramFieldList list = new InstagramFieldList();
+            InstagramFieldList list = new();
             foreach (string name in fields) {
                 list.Add(name);
             }

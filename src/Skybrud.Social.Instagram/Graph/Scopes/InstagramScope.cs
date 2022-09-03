@@ -9,7 +9,7 @@ namespace Skybrud.Social.Instagram.Graph.Scopes {
 
         #region Private fields
 
-        private static readonly Dictionary<string, InstagramScope> Scopes = new Dictionary<string, InstagramScope>();
+        private static readonly Dictionary<string, InstagramScope> _scopes = new();
 
         #endregion
 
@@ -61,8 +61,8 @@ namespace Skybrud.Social.Instagram.Graph.Scopes {
         /// <param name="name">The name of the scope.</param>
         /// <param name="description">The description of the scope.</param>
         internal static InstagramScope RegisterScope(string name, string description = null) {
-            InstagramScope scope = new InstagramScope(name, description);
-            Scopes.Add(scope.Name, scope);
+            InstagramScope scope = new(name, description);
+            _scopes.Add(scope.Name, scope);
             return scope;
         }
 
@@ -72,7 +72,7 @@ namespace Skybrud.Social.Instagram.Graph.Scopes {
         /// <param name="name">The name of the scope.</param>
         /// <returns>Gets a scope matching the specified <paramref name="name"/>, or <c>null</c> if not found.</returns>
         public static InstagramScope GetScope(string name) {
-            return Scopes.TryGetValue(name, out InstagramScope scope) ? scope : null;
+            return _scopes.TryGetValue(name, out InstagramScope scope) ? scope : null;
         }
 
         /// <summary>
@@ -81,11 +81,11 @@ namespace Skybrud.Social.Instagram.Graph.Scopes {
         /// <param name="name">The name of the scope.</param>
         /// <returns><c>true</c> if the specified <paramref name="name"/> matches a known scope, otherwise <c>false</c>.</returns>
         public static bool ScopeExists(string name) {
-            return Scopes.ContainsKey(name);
+            return _scopes.ContainsKey(name);
         }
 
         #endregion
-        
+
         #region Operators
 
         /// <summary>

@@ -68,7 +68,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Options {
         public IHttpRequest GetRequest()  {
 
             IHttpQueryString query = new HttpQueryString();
-            if (Fields != null && Fields.Count > 0) query.Add("fields", Fields);
+            if (Fields is { Count: > 0 }) query.Add("fields", Fields);
 
             return HttpRequest.Get($"/{(UserId == 0 ? "me" : UserId.ToString())}", query);
 

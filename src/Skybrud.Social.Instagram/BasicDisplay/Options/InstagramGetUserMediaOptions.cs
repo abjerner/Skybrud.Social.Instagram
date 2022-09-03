@@ -115,7 +115,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Options {
         public IHttpRequest GetRequest()  {
 
             IHttpQueryString query = new HttpQueryString();
-            if (Fields != null && Fields.Count > 0) query.Add("fields", Fields);
+            if (Fields is { Count: > 0 }) query.Add("fields", Fields);
             if (Limit > 0) query.Add("limit", Limit);
             if (string.IsNullOrWhiteSpace(After) == false) query.Add("after", After);
             if (string.IsNullOrWhiteSpace(Before) == false) query.Add("before", Before);

@@ -114,7 +114,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Fields {
 
         /// <inheritdoc />
         public override string ToString()  {
-            return Name + (Limit > 0 ? ".limit(" + Limit + ")" : string.Empty) + (Fields != null && Fields.Count > 0 ? "{" + Fields + "}" : string.Empty);
+            return Name + (Limit > 0 ? $".limit({Limit})" : string.Empty) + (Fields is { Count: > 0 } ? $"{{{Fields}}}" : string.Empty);
         }
 
         /// <summary>

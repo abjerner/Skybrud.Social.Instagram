@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Skybrud.Social.Instagram.Graph.Exceptions {
+﻿namespace Skybrud.Social.Instagram.Graph.Exceptions {
 
     /// <summary>
     /// Exception class thrown when parsing a JSON response from the <strong>Instagram Graph API</strong> fails.

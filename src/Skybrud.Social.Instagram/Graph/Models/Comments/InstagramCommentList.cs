@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 using Skybrud.Social.Instagram.Graph.Models.Paging;
 
@@ -14,7 +15,7 @@ namespace Skybrud.Social.Instagram.Graph.Models.Comments {
         /// <summary>
         /// Gets an array of the <see cref="InstagramComment"/> making up the response body.
         /// </summary>
-        public InstagramComment[] Data { get; }
+        public IReadOnlyList<InstagramComment> Data { get; }
 
         /// <summary>
         /// Gets pagiging information about the list.

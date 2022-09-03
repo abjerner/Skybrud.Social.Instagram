@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,7 +11,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Scopes {
 
         #region Private fields
 
-        private readonly List<InstagramScope> _list = new List<InstagramScope>();
+        private readonly List<InstagramScope> _list = new();
 
         #endregion
 
@@ -88,7 +89,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Scopes {
         /// <param name="array">The array of scopes the list should be based on.</param>
         /// <returns>A new list based on an <paramref name="array"/> of scopes.</returns>
         public static implicit operator InstagramScopeList(InstagramScope[] array) {
-            return new InstagramScopeList(array ?? new InstagramScope[0]);
+            return new InstagramScopeList(array ?? Array.Empty<InstagramScope>());
         }
 
         /// <summary>
