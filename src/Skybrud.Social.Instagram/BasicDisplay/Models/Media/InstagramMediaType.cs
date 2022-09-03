@@ -6,7 +6,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Models.Media {
     /// Enum class representing the type of a media.
     /// </summary>
     public enum InstagramMediaType {
-        
+
         /// <summary>
         /// Indicates that the type is unspecified - eg. if the <see cref="InstagramMediaFields.MediaType"/> isn't requested or returned by the API.
         /// </summary>
@@ -23,7 +23,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Models.Media {
         Video,
 
         /// <summary>
-        /// Indicates that the media as a carousel album. 
+        /// Indicates that the media as a carousel album.
         /// </summary>
         CarouselAlbum
 

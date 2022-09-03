@@ -7,14 +7,14 @@ using Skybrud.Social.Instagram.BasicDisplay.Responses.Authentication;
 using Skybrud.Social.Instagram.BasicDisplay.Scopes;
 
 namespace Skybrud.Social.Instagram.BasicDisplay.OAuth {
-    
+
     /// <summary>
     /// Class representing a client for communicating and handling communication with the <strong>Instagran Basic Display API</strong>.
     /// </summary>
     public class InstagramBasicDisplayClient : HttpClient {
 
         #region Properties
-        
+
         /// <summary>
         /// Gets or sets the client ID of your app.
         /// </summary>
@@ -75,7 +75,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.OAuth {
         public string GetAuthorizationUrl(string state, string scope) {
 
             // Initialize the query string
-            IHttpQueryString query = new HttpQueryString {
+            HttpQueryString query = new() {
                 { "client_id", ClientId },
                 { "redirect_uri", RedirectUri },
                 { "response_type", "code" },
@@ -84,7 +84,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.OAuth {
             };
 
             // Construct the authorization URL
-            return "https://api.instagram.com/oauth/authorize?" + query;
+            return $"https://api.instagram.com/oauth/authorize?{query}";
 
         }
 
@@ -138,7 +138,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.OAuth {
         public InstagramShortLivedTokenResponse GetAccessTokenFromAuthCode(string code) {
 
             // Initialize the POST data
-            IHttpPostData post = new HttpPostData {
+            HttpPostData post = new() {
                 { "client_id", ClientId },
                 { "client_secret", ClientSecret },
                 { "code", code },
@@ -165,7 +165,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.OAuth {
         public InstagramLongLivedTokenResponse GetLongLivedAccessToken(string accessToken) {
 
             // Initialize the query string
-            HttpQueryString query = new HttpQueryString {
+            HttpQueryString query = new() {
                 { "grant_type", "ig_exchange_token" },
                 { "client_secret", ClientSecret },
                 { "access_token", accessToken }
@@ -190,7 +190,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.OAuth {
         public InstagramLongLivedTokenResponse RefreshAccessToken(string accessToken) {
 
             // Initialize the query string
-            IHttpQueryString query = new HttpQueryString {
+            HttpQueryString query = new() {
                 { "grant_type", "ig_refresh_token" },
                 { "access_token", accessToken }
             };
@@ -206,8 +206,8 @@ namespace Skybrud.Social.Instagram.BasicDisplay.OAuth {
         /// <inheritdoc />
         protected override void PrepareHttpRequest(IHttpRequest request) {
 
-            if (string.IsNullOrWhiteSpace(AccessToken) == false)  {
-                if (request.QueryString == null) request.QueryString = new HttpQueryString();
+            if (string.IsNullOrWhiteSpace(AccessToken) == false) {
+                request.QueryString ??= new HttpQueryString();
                 request.QueryString.Set("access_token", AccessToken);
             }
 

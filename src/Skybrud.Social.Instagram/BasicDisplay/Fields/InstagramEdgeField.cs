@@ -69,7 +69,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Fields {
         public InstagramEdgeField(InstagramField field) : base(field.Name) {
             Fields = new InstagramFieldList();
         }
-        
+
         /// <summary>
         /// Initializes a new field with the name of <paramref name="field"/> and based on the specified <paramref name="fields"/>.
         /// </summary>
@@ -80,7 +80,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Fields {
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="field">The field the this field should be based on.</param>
         /// <param name="limit">The limit of the edge.</param>
@@ -116,7 +116,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Fields {
         public override string ToString()  {
             return Name + (Limit > 0 ? ".limit(" + Limit + ")" : string.Empty) + (Fields != null && Fields.Count > 0 ? "{" + Fields + "}" : string.Empty);
         }
-        
+
         /// <summary>
         /// Returns an enumerator that iterates through the fields.
         /// </summary>

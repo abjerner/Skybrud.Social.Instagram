@@ -3,7 +3,7 @@ using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 
 namespace Skybrud.Social.Instagram.BasicDisplay.Models.Authentication {
-    
+
     /// <summary>
     /// Class with information about a long-lived access token.
     /// </summary>

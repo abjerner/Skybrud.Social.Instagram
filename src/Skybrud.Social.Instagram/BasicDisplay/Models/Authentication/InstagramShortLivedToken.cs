@@ -2,7 +2,7 @@
 using Skybrud.Essentials.Json.Extensions;
 
 namespace Skybrud.Social.Instagram.BasicDisplay.Models.Authentication {
-    
+
     /// <summary>
     /// Class with information about a short-lived access token.
     /// </summary>

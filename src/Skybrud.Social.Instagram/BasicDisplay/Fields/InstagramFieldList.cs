@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace Skybrud.Social.Instagram.BasicDisplay.Fields {
-    
+
     /// <summary>
     /// Class representing a list of fields in the Instagram Basic Display API.
     /// </summary>

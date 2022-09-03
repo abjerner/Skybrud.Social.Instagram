@@ -19,7 +19,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Fields {
         /// The type of the media. Raw values can be <c>IMAGE</c>, <c>VIDEO</c>, or <c>CAROUSEL_ALBUM</c>.
         /// </summary>
         public static readonly InstagramField MediaType = new InstagramField("media_type");
-        
+
         /// <summary>
         /// The URL of the media.
         /// </summary>

@@ -11,7 +11,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Models.Users {
         /// Indicates that the type is unspecified - eg. if the <see cref="InstagramUserFields.AccountType"/> isn't requested or returned by the API.
         /// </summary>
         Unspecified,
-        
+
         /// <summary>
         /// Indicates tat the user is a business account.
         /// </summary>

@@ -4,7 +4,7 @@ using Skybrud.Essentials.Http.Options;
 using Skybrud.Social.Instagram.BasicDisplay.Fields;
 
 namespace Skybrud.Social.Instagram.BasicDisplay.Options {
-    
+
     /// <summary>
     /// Options for getting recent media of a given Instagram user.
     /// </summary>
@@ -58,7 +58,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Options {
         public InstagramGetUserMediaOptions(InstagramFieldList fields)  {
             Fields = fields ?? new InstagramFieldList();
         }
-        
+
         /// <summary>
         /// Initializes a new instance with the specified <paramref name="userId"/>.
         /// </summary>
@@ -113,7 +113,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Options {
 
         /// <inheritdoc />
         public IHttpRequest GetRequest()  {
-            
+
             IHttpQueryString query = new HttpQueryString();
             if (Fields != null && Fields.Count > 0) query.Add("fields", Fields);
             if (Limit > 0) query.Add("limit", Limit);

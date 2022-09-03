@@ -4,7 +4,7 @@ using Skybrud.Essentials.Http.Options;
 using Skybrud.Social.Instagram.BasicDisplay.Fields;
 
 namespace Skybrud.Social.Instagram.BasicDisplay.Options {
-    
+
     /// <summary>
     /// Class representing the options for a request to get information about an Instagram user.
     /// </summary>
@@ -66,7 +66,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Options {
 
         /// <inheritdoc />
         public IHttpRequest GetRequest()  {
-            
+
             IHttpQueryString query = new HttpQueryString();
             if (Fields != null && Fields.Count > 0) query.Add("fields", Fields);
 

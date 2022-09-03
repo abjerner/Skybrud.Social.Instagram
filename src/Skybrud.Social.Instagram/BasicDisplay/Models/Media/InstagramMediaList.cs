@@ -5,7 +5,7 @@ using Skybrud.Essentials.Json.Extensions;
 using Skybrud.Social.Instagram.BasicDisplay.Models.Users;
 
 namespace Skybrud.Social.Instagram.BasicDisplay.Models.Media {
-    
+
     /// <summary>
     /// Class representing a list of media.
     /// </summary>
@@ -16,7 +16,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Models.Media {
         /// <summary>
         /// Gets an array with the media of the list.
         /// </summary>
-        public InstagramMedia[] Data { get; }
+        public IReadOnlyList<InstagramMedia> Data { get; }
 
         /// <summary>
         /// Gets paging information about the media list.

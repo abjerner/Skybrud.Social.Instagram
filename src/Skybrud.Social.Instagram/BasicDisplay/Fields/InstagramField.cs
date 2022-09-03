@@ -1,5 +1,5 @@
 ﻿namespace Skybrud.Social.Instagram.BasicDisplay.Fields {
-    
+
     /// <summary>
     /// Class representing a field in the Instagram Basic Display API.
     /// </summary>
