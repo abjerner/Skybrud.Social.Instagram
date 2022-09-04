@@ -9,7 +9,7 @@
 
   <PropertyGroup>
     <RootNamespace>Skybrud.Social.Instagram</RootNamespace>
-    <VersionPrefix>1.0.0-beta006</VersionPrefix>
+    <VersionPrefix>1.0.0-beta007</VersionPrefix>
     <VersionSuffix Condition="'$(Configuration)'=='Debug'">build$([System.DateTime]::UtcNow.ToString(`yyyyMMddHHmm`))</VersionSuffix>
     <Company>Limbo</Company>
     <Product>Skybrud.Social</Product>
