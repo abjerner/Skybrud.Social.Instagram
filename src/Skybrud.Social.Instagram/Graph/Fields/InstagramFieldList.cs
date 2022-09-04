@@ -26,7 +26,7 @@ namespace Skybrud.Social.Instagram.Graph.Fields {
         /// <summary>
         /// Gets an array of all the fields added to the list.
         /// </summary>
-        public InstagramField[] Fields => _fields.ToArray();
+        public IReadOnlyList<InstagramField> Fields => _fields;
 
         #endregion
 

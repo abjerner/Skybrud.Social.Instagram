@@ -8,15 +8,11 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Responses.Authentication {
     /// </summary>
     public class InstagramTokenResponse : InstagramResponse<InstagramToken> {
 
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance based on the specified <paramref name="response"/>.
         /// </summary>
         /// <param name="response">The underlying raw response the instance should be based on.</param>
         protected InstagramTokenResponse(IHttpResponse response) : base(response) { }
-
-        #endregion
 
     }
 

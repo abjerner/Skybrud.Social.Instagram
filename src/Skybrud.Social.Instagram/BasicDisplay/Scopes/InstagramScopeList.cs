@@ -20,7 +20,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Scopes {
         /// <summary>
         /// Gets an array of all the scopes added to the list.
         /// </summary>
-        public InstagramScope[] Items => _list.ToArray();
+        public IReadOnlyList<InstagramScope> Items => _list;
 
         #endregion
 

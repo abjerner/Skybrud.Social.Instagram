@@ -13,13 +13,7 @@ namespace Skybrud.Social.Instagram.Graph.Responses.Media {
         /// </summary>
         /// <param name="response">The raw response the instance should be based on.</param>
         public InstagramMediaListResponse(IHttpResponse response) : base(response) {
-
-            // Validate the response
-            ValidateResponse(response);
-
-            // Parse the response body
             Body = ParseJsonObject(response.Body, InstagramMediaList.Parse);
-
         }
 
     }

@@ -30,6 +30,7 @@ namespace Skybrud.Social.Instagram.Graph.Responses {
         /// <param name="response">The underlying raw response the instance should be based on.</param>
         protected InstagramResponse(IHttpResponse response) : base(response) {
             RateLimiting = InstagramRateLimiting.GetFromResponse(response);
+            ValidateResponse(response);
         }
 
         #endregion

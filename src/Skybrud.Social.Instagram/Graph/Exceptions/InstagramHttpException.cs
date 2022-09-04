@@ -47,7 +47,7 @@ namespace Skybrud.Social.Instagram.Graph.Exceptions {
 
         #region Constructors
 
-        internal InstagramHttpException(IHttpResponse response) : base($"Invalid response received from the Instagram Graph API (Status: {(int) response.StatusCode}.") {
+        internal InstagramHttpException(IHttpResponse response) : base($"Invalid response received from the Instagram Graph API (status: {(int) response.StatusCode}.") {
             Response = response;
             RateLimiting = InstagramRateLimiting.GetFromResponse(response);
         }

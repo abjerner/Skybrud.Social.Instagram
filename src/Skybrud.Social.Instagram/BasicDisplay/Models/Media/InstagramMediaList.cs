@@ -38,7 +38,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Models.Media {
 
         /// <inheritdoc />
         public IEnumerator<InstagramMedia> GetEnumerator() {
-            return ((IEnumerable<InstagramMedia>) Data).GetEnumerator();
+            return Data.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator() {

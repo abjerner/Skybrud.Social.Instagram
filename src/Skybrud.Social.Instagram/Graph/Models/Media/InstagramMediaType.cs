@@ -16,7 +16,7 @@ namespace Skybrud.Social.Instagram.Graph.Models.Media {
         /// Indicates that the media is an image.
         /// </summary>
         Image,
-        
+
         /// <summary>
         /// Indicates that the media is a video.
         /// </summary>

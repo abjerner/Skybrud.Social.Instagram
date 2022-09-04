@@ -61,7 +61,7 @@ namespace Skybrud.Social.Instagram.Graph.OAuth {
             // If the URL starts with a forward slash, it must be an relative URL for the Instagram Graph API
             if (request.Url.StartsWith("/")) {
                 // TODO: Add support for API versioning
-                request.Url = "https://graph.facebook.com" + request.Url;
+                request.Url = $"https://graph.facebook.com{request.Url}";
             }
 
         }

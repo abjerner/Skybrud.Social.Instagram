@@ -120,7 +120,7 @@ namespace Skybrud.Social.Instagram.Graph.Options.Users {
             if (string.IsNullOrWhiteSpace(Id)) throw new PropertyNotSetException(nameof(Id));
 
             // Initialize a new query string
-            IHttpQueryString query = new HttpQueryString();
+            HttpQueryString query = new();
 
             // Convert the collection of fields to a string
             string fields = (Fields == null ? string.Empty : Fields.ToString()).Trim();

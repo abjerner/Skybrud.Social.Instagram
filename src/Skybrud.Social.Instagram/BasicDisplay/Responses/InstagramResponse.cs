@@ -53,7 +53,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Responses {
 
                 }
 
-            } catch (Exception ex) when (!(ex is InstagramHttpException)) {
+            } catch (Exception ex) when (ex is not InstagramHttpException) {
 
                 throw new InstagramParseException("Failed parsing Instagram error response.", response, body, ex);
 
