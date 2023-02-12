@@ -31,6 +31,7 @@ namespace Skybrud.Social.Instagram.Graph.Models.Media {
         /// <summary>
         /// Gets whether the media has any child media.
         /// </summary>
+        [JsonIgnore]
         [MemberNotNullWhen(true, "Children")]
         public bool HasChildren => Children != null;
 

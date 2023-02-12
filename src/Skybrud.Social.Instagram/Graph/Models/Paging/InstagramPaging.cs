@@ -19,6 +19,7 @@ namespace Skybrud.Social.Instagram.Graph.Models.Paging {
         /// <summary>
         /// Gets the <see cref="Next"/> property was specified in the response.
         /// </summary>
+        [JsonIgnore]
         [MemberNotNullWhen(true, "Next")]
         public bool HasNext => string.IsNullOrWhiteSpace(Next) == false;
 
@@ -30,6 +31,7 @@ namespace Skybrud.Social.Instagram.Graph.Models.Paging {
         /// <summary>
         /// Gets the <see cref="Previous"/> property was specified in the response.
         /// </summary>
+        [JsonIgnore]
         [MemberNotNullWhen(true, "Previous")]
         public bool HasPrevious => string.IsNullOrWhiteSpace(Previous) == false;
 

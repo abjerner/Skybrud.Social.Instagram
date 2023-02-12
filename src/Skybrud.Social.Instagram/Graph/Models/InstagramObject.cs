@@ -13,6 +13,7 @@ namespace Skybrud.Social.Instagram.Graph.Models {
         /// <summary>
         /// Gets the internal Newtonsoft.Json.Linq.JObject the object was created from.
         /// </summary>
+        [JsonIgnore]
         public new JObject JObject => base.JObject!;
 
         #endregion
