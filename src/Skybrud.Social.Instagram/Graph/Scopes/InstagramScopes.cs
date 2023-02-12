@@ -8,32 +8,32 @@
         /// <summary>
         /// To read any and all data related to a user (e.g. following/followed-by lists, photos, etc.) (granted by default).
         /// </summary>
-        public static readonly InstagramScope Basic = new("basic");
+        public static readonly InstagramScope Basic = new("basic", "Basic");
 
         /// <summary>
         /// Grants your app read access to public content of other Instagram users.
         /// </summary>
-        public static readonly InstagramScope PublicContent = new("public_content");
+        public static readonly InstagramScope PublicContent = new("public_content", "Public content");
 
         /// <summary>
         /// Grants your app read access to the list of followers and followed-by users.
         /// </summary>
-        public static readonly InstagramScope FollowerList = new("follower_list");
+        public static readonly InstagramScope FollowerList = new("follower_list", "Follower list");
 
         /// <summary>
         /// To create or delete comments on a user’s behalf.
         /// </summary>
-        public static readonly InstagramScope Comments = new("comments");
+        public static readonly InstagramScope Comments = new("comments", "Comments");
 
         /// <summary>
         /// To follow and unfollow users on a user’s behalf.
         /// </summary>
-        public static readonly InstagramScope Relationships = new("relationships");
+        public static readonly InstagramScope Relationships = new("relationships", "Relationships");
 
         /// <summary>
         /// To like and unlike items on a user’s behalf.
         /// </summary>
-        public static readonly InstagramScope Likes = new("likes");
+        public static readonly InstagramScope Likes = new("likes", "Likes");
 
     }
 

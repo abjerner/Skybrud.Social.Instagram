@@ -16,6 +16,11 @@ namespace Skybrud.Social.Instagram.Graph.Scopes {
         #region Properties
 
         /// <summary>
+        /// Gets the alias of the scope.
+        /// </summary>
+        public string Alias { get; }
+
+        /// <summary>
         /// Gets the name of the scope.
         /// </summary>
         public string Name { get; }
@@ -32,9 +37,11 @@ namespace Skybrud.Social.Instagram.Graph.Scopes {
         /// <summary>
         /// Default and private constructor.
         /// </summary>
+        /// <param name="alias">The alias of the scope.</param>
         /// <param name="name">The name of the scope.</param>
         /// <param name="description">The description of the scope.</param>
-        public InstagramScope(string name, string? description = null) {
+        public InstagramScope(string alias, string name, string? description = null) {
+            Alias = alias;
             Name = name;
             Description = string.IsNullOrWhiteSpace(description) ? null : description!.Trim();
         }
@@ -44,11 +51,11 @@ namespace Skybrud.Social.Instagram.Graph.Scopes {
         #region Member methods
 
         /// <summary>
-        /// Gets the name of the scope.
+        /// Gets the alias of the scope.
         /// </summary>
-        /// <returns>Returns the name of the scope.</returns>
+        /// <returns>Returns the alias of the scope.</returns>
         public override string ToString() {
-            return Name;
+            return Alias;
         }
 
         #endregion
@@ -58,30 +65,31 @@ namespace Skybrud.Social.Instagram.Graph.Scopes {
         /// <summary>
         /// Registers a scope in the internal dictionary.
         /// </summary>
+        /// <param name="alias">The alias of the scope.</param>
         /// <param name="name">The name of the scope.</param>
         /// <param name="description">The description of the scope.</param>
-        internal static InstagramScope RegisterScope(string name, string? description = null) {
-            InstagramScope scope = new(name, description);
-            _scopes.Add(scope.Name, scope);
+        internal static InstagramScope RegisterScope(string alias, string name, string? description = null) {
+            InstagramScope scope = new(alias, name, description);
+            _scopes.Add(scope.Alias, scope);
             return scope;
         }
 
         /// <summary>
-        /// Attempts to get a scope with the specified <paramref name="name"/>.
+        /// Attempts to get a scope with the specified <paramref name="alias"/>.
         /// </summary>
-        /// <param name="name">The name of the scope.</param>
-        /// <returns>Gets a scope matching the specified <paramref name="name"/>, or <c>null</c> if not found.</returns>
-        public static InstagramScope? GetScope(string name) {
-            return _scopes.TryGetValue(name, out InstagramScope? scope) ? scope : null;
+        /// <param name="alias">The alias of the scope.</param>
+        /// <returns>Gets a scope matching the specified <paramref name="alias"/>, or <c>null</c> if not found.</returns>
+        public static InstagramScope? GetScope(string alias) {
+            return _scopes.TryGetValue(alias, out InstagramScope? scope) ? scope : null;
         }
 
         /// <summary>
         /// Gets whether the scope is a known scope.
         /// </summary>
-        /// <param name="name">The name of the scope.</param>
-        /// <returns><c>true</c> if the specified <paramref name="name"/> matches a known scope, otherwise <c>false</c>.</returns>
-        public static bool ScopeExists(string name) {
-            return _scopes.ContainsKey(name);
+        /// <param name="alias">The alias of the scope.</param>
+        /// <returns><c>true</c> if the specified <paramref name="alias"/> matches a known scope, otherwise <c>false</c>.</returns>
+        public static bool ScopeExists(string alias) {
+            return _scopes.ContainsKey(alias);
         }
 
         #endregion

@@ -8,20 +8,20 @@
         #region Properties
 
         /// <summary>
-        /// Gets the name of the field.
+        /// Gets the alias of the field.
         /// </summary>
-        public string Name { get; }
+        public string Alias { get; }
 
         #endregion
 
         #region Constructors
 
         /// <summary>
-        /// Initializes a new field with the specified <paramref name="name"/>.
+        /// Initializes a new field with the specified <paramref name="alias"/>.
         /// </summary>
-        /// <param name="name">The name of the field.</param>
-        public InstagramField(string name) {
-            Name = name;
+        /// <param name="alias">The alias of the field.</param>
+        public InstagramField(string alias) {
+            Alias = alias;
         }
 
         #endregion
@@ -30,7 +30,7 @@
 
         /// <inheritdoc />
         public override string ToString()  {
-            return Name;
+            return Alias;
         }
 
         #endregion
@@ -38,11 +38,11 @@
         #region Operators
 
         /// <summary>
-        /// Initializes a new field based on the specified <paramref name="name"/>.
+        /// Initializes a new field based on the specified <paramref name="alias"/>.
         /// </summary>
-        /// <param name="name">The name of the field.</param>
-        public static implicit operator InstagramField(string name) {
-            return new InstagramField(name);
+        /// <param name="alias">The alias of the field.</param>
+        public static implicit operator InstagramField(string alias) {
+            return new InstagramField(alias);
         }
 
         /// <summary>

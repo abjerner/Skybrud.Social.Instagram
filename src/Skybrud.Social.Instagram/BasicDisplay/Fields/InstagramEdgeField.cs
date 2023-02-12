@@ -25,39 +25,39 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Fields {
         #region Constructors
 
         /// <summary>
-        /// Initializes a new field with the specified <paramref name="name"/>.
+        /// Initializes a new field with the specified <paramref name="alias"/>.
         /// </summary>
-        /// <param name="name">The name of the field.</param>
-        public InstagramEdgeField(string name) : base(name) {
+        /// <param name="alias">The name of the field.</param>
+        public InstagramEdgeField(string alias) : base(alias) {
             Fields = new InstagramFieldList();
         }
 
         /// <summary>
-        /// Initializes a new edge field based on the specified <paramref name="name"/> and <paramref name="fields"/>.
+        /// Initializes a new edge field based on the specified <paramref name="alias"/> and <paramref name="fields"/>.
         /// </summary>
-        /// <param name="name">The name of the edge field.</param>
+        /// <param name="alias">The name of the edge field.</param>
         /// <param name="fields">The fields that should be requested from the edge.</param>
-        public InstagramEdgeField(string name, InstagramFieldList? fields) : base(name)  {
+        public InstagramEdgeField(string alias, InstagramFieldList? fields) : base(alias)  {
             Fields = fields ?? new InstagramFieldList();
         }
 
         /// <summary>
-        /// Initializes a new edge field based on the specified <paramref name="name"/> and <paramref name="limit"/>.
+        /// Initializes a new edge field based on the specified <paramref name="alias"/> and <paramref name="limit"/>.
         /// </summary>
-        /// <param name="name">The name of the edge field.</param>
+        /// <param name="alias">The name of the edge field.</param>
         /// <param name="limit">The limit of the edge.</param>
-        public InstagramEdgeField(string name, int limit) : base(name)  {
+        public InstagramEdgeField(string alias, int limit) : base(alias)  {
             Limit = limit;
             Fields = new InstagramFieldList();
         }
 
         /// <summary>
-        /// Initializes a new edge field based on the specified <paramref name="name"/>, <paramref name="limit"/> and <paramref name="fields"/>.
+        /// Initializes a new edge field based on the specified <paramref name="alias"/>, <paramref name="limit"/> and <paramref name="fields"/>.
         /// </summary>
-        /// <param name="name">The name of the edge field.</param>
+        /// <param name="alias">The name of the edge field.</param>
         /// <param name="limit">The limit of the edge.</param>
         /// <param name="fields">The fields that should be requested from the edge.</param>
-        public InstagramEdgeField(string name, int limit, InstagramFieldList? fields) : base(name)  {
+        public InstagramEdgeField(string alias, int limit, InstagramFieldList? fields) : base(alias)  {
             Limit = limit;
             Fields = fields ?? new InstagramFieldList();
         }
@@ -66,7 +66,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Fields {
         /// Initializes a new edge field based on the specified <paramref name="field"/>.
         /// </summary>
         /// <param name="field">The field.</param>
-        public InstagramEdgeField(InstagramField field) : base(field.Name) {
+        public InstagramEdgeField(InstagramField field) : base(field.Alias) {
             Fields = new InstagramFieldList();
         }
 
@@ -75,7 +75,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Fields {
         /// </summary>
         /// <param name="field">The field the this field should be based on.</param>
         /// <param name="fields">The fields that should be requested from the edge.</param>
-        public InstagramEdgeField(InstagramField field, InstagramFieldList? fields) : base(field.Name)  {
+        public InstagramEdgeField(InstagramField field, InstagramFieldList? fields) : base(field.Alias)  {
             Fields = fields ?? new InstagramFieldList();
         }
 
@@ -84,7 +84,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Fields {
         /// </summary>
         /// <param name="field">The field the this field should be based on.</param>
         /// <param name="limit">The limit of the edge.</param>
-        public InstagramEdgeField(InstagramField field, int limit) : base(field.Name)  {
+        public InstagramEdgeField(InstagramField field, int limit) : base(field.Alias)  {
             Limit = limit;
             Fields = new InstagramFieldList();
         }
@@ -95,7 +95,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Fields {
         /// <param name="field">The field the this field should be based on.</param>
         /// <param name="limit">The limit of the edge.</param>
         /// <param name="fields">The fields that should be requested from the edge.</param>
-        public InstagramEdgeField(InstagramField field, int limit, InstagramFieldList? fields) : base(field.Name)  {
+        public InstagramEdgeField(InstagramField field, int limit, InstagramFieldList? fields) : base(field.Alias)  {
             Limit = limit;
             Fields = fields ?? new InstagramFieldList();
         }
@@ -114,7 +114,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Fields {
 
         /// <inheritdoc />
         public override string ToString()  {
-            return Name + (Limit > 0 ? $".limit({Limit})" : string.Empty) + (Fields is { Count: > 0 } ? $"{{{Fields}}}" : string.Empty);
+            return Alias + (Limit > 0 ? $".limit({Limit})" : string.Empty) + (Fields is { Count: > 0 } ? $"{{{Fields}}}" : string.Empty);
         }
 
         /// <summary>

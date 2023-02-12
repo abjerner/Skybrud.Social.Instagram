@@ -64,7 +64,7 @@ namespace Skybrud.Social.Instagram.Graph.Scopes {
         /// </summary>
         /// <returns>String of scopes separated by a comma.</returns>
         public override string ToString() {
-            return string.Join(" ", from scope in _list select scope.Name);
+            return string.Join(" ", from scope in _list select scope.Alias);
         }
 
         IEnumerator IEnumerable.GetEnumerator() {

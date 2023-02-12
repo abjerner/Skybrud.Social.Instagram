@@ -67,7 +67,7 @@ namespace Skybrud.Social.Instagram.Graph.Fields {
         /// </summary>
         /// <returns>String of fields separated by a comma.</returns>
         public override string ToString() {
-            return string.Join(",", from field in _list select field.Name);
+            return string.Join(",", from field in _list select field.Alias);
         }
 
         IEnumerator IEnumerable.GetEnumerator() {
@@ -85,8 +85,8 @@ namespace Skybrud.Social.Instagram.Graph.Fields {
         /// <returns>A new list based on a string of <paramref name="fields"/>.</returns>
         public static implicit operator InstagramFieldList(string? fields) {
             InstagramFieldList list = new();
-            foreach (string name in (fields ?? string.Empty).Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)) {
-                list.Add(name);
+            foreach (string alias in (fields ?? string.Empty).Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)) {
+                list.Add(alias);
             }
             return list;
         }
@@ -98,8 +98,8 @@ namespace Skybrud.Social.Instagram.Graph.Fields {
         /// <returns>A new list based on an array of <paramref name="fields"/>.</returns>
         public static implicit operator InstagramFieldList(string[] fields) {
             InstagramFieldList list = new();
-            foreach (string name in fields) {
-                list.Add(name);
+            foreach (string alias in fields) {
+                list.Add(alias);
             }
             return list;
         }
