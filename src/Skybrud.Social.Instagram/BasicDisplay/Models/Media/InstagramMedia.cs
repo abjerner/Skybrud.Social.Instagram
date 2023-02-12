@@ -64,7 +64,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Models.Media {
         private InstagramMedia(JObject json) : base(json) {
             Id = json.GetString("id")!;
             Caption = json.GetString("caption");
-            MediaType = json.GetEnumOrNull<InstagramMediaType>("media_type");
+            MediaType = json.GetString("media_type", ParseEnumOrDefault<InstagramMediaType>);
             MediaUrl = json.GetString("media_url");
             Permalink = json.GetString("permalink");
             ThumbnailUrl = json.GetString("thumbnail_url");

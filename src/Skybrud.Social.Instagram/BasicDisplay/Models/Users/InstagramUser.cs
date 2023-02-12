@@ -42,7 +42,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Models.Users {
 
         private InstagramUser(JObject json) : base(json) {
             Id = json.GetInt64("id");
-            AccountType = json.GetEnumOrNull<InstagramUserType>("account_type");
+            AccountType = json.GetString("account_type", ParseEnumOrDefault<InstagramUserType>);
             Username = json.GetString("username");
             MediaCount = json.GetInt32OrNull("media_count");
             Media = json.GetObject("media", InstagramMediaList.Parse);

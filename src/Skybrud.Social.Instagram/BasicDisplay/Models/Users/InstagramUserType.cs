@@ -6,6 +6,11 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Models.Users {
     public enum InstagramUserType {
 
         /// <summary>
+        /// Indiciates a user type that is currently not supported by this package.
+        /// </summary>
+        Unknown,
+
+        /// <summary>
         /// Indicates tat the user is a business account.
         /// </summary>
         Business,
