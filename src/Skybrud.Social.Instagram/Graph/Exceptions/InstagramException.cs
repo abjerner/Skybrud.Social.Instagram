@@ -3,7 +3,7 @@
 namespace Skybrud.Social.Instagram.Graph.Exceptions {
 
     /// <summary>
-    /// Class representing an exception related to the implementation for the <strong>Instagram Graph Display API</strong>.
+    /// Class representing an exception related to the implementation for the <strong>Instagram Graph API</strong>.
     /// </summary>
     public class InstagramException : Exception {
 

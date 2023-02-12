@@ -27,11 +27,10 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Responses {
             // Handle errors when the response body isn't JSON
             if (!response.Body.StartsWith("{")) throw new InstagramHttpException(response);
 
-            JObject? body = null;
             try {
 
                 // Parse the response body
-                body = ParseJsonObject(response.Body);
+                JObject body = ParseJsonObject(response.Body);
 
                 // Get the error type (only OAuth errors seem to have this property)
                 string? errorType = body.GetString("error_type");
@@ -55,7 +54,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Responses {
 
             } catch (Exception ex) when (ex is not InstagramHttpException) {
 
-                throw new InstagramParseException("Failed parsing Instagram error response.", response, body!, ex);
+                throw new InstagramParseResponseException(response, "Failed parsing Instagram error response.");
 
             }
 

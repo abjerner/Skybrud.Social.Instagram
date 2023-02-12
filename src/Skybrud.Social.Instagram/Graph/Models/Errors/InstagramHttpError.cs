@@ -29,7 +29,7 @@ namespace Skybrud.Social.Instagram.Graph.Models.Errors {
         /// <summary>
         /// Gets the subcode of the error.
         /// </summary>
-        public int ErrorSubcode { get; }
+        public int? ErrorSubcode { get; }
 
         /// <summary>
         /// Gets the Facebook trace ID of the error.
@@ -48,7 +48,7 @@ namespace Skybrud.Social.Instagram.Graph.Models.Errors {
             Message = json.GetString("message")!;
             Type = json.GetString("type")!;
             Code = json.GetInt32("code")!;
-            ErrorSubcode = json.GetInt32("error_subcode");
+            ErrorSubcode = json.GetInt32OrNull("error_subcode");
             TraceId = json.GetString("fbtrace_id")!;
         }
 
