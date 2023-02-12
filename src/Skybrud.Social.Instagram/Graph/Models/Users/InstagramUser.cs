@@ -86,12 +86,12 @@ namespace Skybrud.Social.Instagram.Graph.Models.Users {
         /// <param name="json">An instance of <see cref="JObject"/> representing the entry.</param>
         protected InstagramUser(JObject json) : base(json) {
             Biography = json.GetString("biography");
-            FollowersCount = json.GetInt64("followers_count");
-            FollowsCount = json.GetInt64("follows_count");
+            FollowersCount = json.GetInt64OrNull("followers_count");
+            FollowsCount = json.GetInt64OrNull("follows_count");
             Id = json.GetString("id")!;
             Username = json.GetString("username");
             Name = json.GetString("name");
-            MediaCount = json.GetInt64("media_count");
+            MediaCount = json.GetInt64OrNull("media_count");
             InstagramId = json.GetString("ig_id");
             Website = json.GetString("website");
             ProfilePictureUrl = json.GetString("profile_picture_url");
