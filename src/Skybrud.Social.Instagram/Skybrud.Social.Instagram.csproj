@@ -16,16 +16,17 @@
     <Product>Skybrud.Social</Product>
     <Authors>Anders Bjerner</Authors>
     <Copyright>Copyright © 2022</Copyright>
-    <Description>Authentication and service implementation for the Instagram API.</Description>
+    <Description>.NET wrapper and API implementation for the Instagram Basic Display API and Instagram Graph API.</Description>
   </PropertyGroup>
 
   <!-- Information for the NuGet package -->
   <PropertyGroup>
     <PackageId>Skybrud.Social.Instagram</PackageId>
-    <PackageTags>Instagram, API, Skybrud, Social, OAuth, JSON</PackageTags>
+    <PackageTags>Instagram, API, Skybrud, Limbo, Social, OAuth, JSON</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://social.skybrud.dk/instagram/</PackageProjectUrl>
     <PackageIcon>Limbo.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/abjerner/Skybrud.Social.Instagram</RepositoryUrl>
   </PropertyGroup>
@@ -36,9 +37,10 @@
     <PackageReference Include="Skybrud.Essentials.Http" Version="1.1.4" />
   </ItemGroup>
 
-  <!-- Include package icon for NuGet -->
+  <!-- Include package icon and README file for NuGet -->
   <ItemGroup>
     <Content Include="../build/Limbo.png" Pack="true" PackagePath="\" />
+    <None Include="../../NUGET.md" Pack="true" PackagePath="\README.md" />
   </ItemGroup>
 
   <!-- Generate XML documentation -->
