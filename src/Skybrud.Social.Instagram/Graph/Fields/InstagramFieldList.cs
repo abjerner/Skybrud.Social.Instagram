@@ -8,11 +8,11 @@ namespace Skybrud.Social.Instagram.Graph.Fields {
     /// <summary>
     /// Class representing a list of fields in the <strong>Instagram Graph API</strong>.
     /// </summary>
-    public class InstagramFieldList : IEnumerable<InstagramField> {
+    public class InstagramFieldList : IReadOnlyList<InstagramField> {
 
         #region Private fields
 
-        private readonly List<InstagramField> _fields = new();
+        private readonly List<InstagramField> _list = new();
 
         #endregion
 
@@ -21,12 +21,14 @@ namespace Skybrud.Social.Instagram.Graph.Fields {
         /// <summary>
         /// Gets the total number of fields added to the list.
         /// </summary>
-        public int Count => _fields.Count;
+        public int Count => _list.Count;
 
         /// <summary>
-        /// Gets an array of all the fields added to the list.
+        /// Gets the field at the specified <paramref name="index"/>.
         /// </summary>
-        public IReadOnlyList<InstagramField> Fields => _fields;
+        /// <param name="index">The index.</param>
+        /// <returns>An instance of <see cref="InstagramField"/>.</returns>
+        public InstagramField this[int index] => _list[index];
 
         #endregion
 
@@ -37,7 +39,7 @@ namespace Skybrud.Social.Instagram.Graph.Fields {
         /// </summary>
         /// <param name="array">Array of fields.</param>
         public InstagramFieldList(params InstagramField[] array) {
-            _fields.AddRange(array);
+            _list.AddRange(array);
         }
 
         #endregion
@@ -49,23 +51,7 @@ namespace Skybrud.Social.Instagram.Graph.Fields {
         /// </summary>
         /// <param name="field">The field to be added.</param>
         public void Add(InstagramField field) {
-            _fields.Add(field);
-        }
-
-        /// <summary>
-        /// Returns an array of fields based on the list.
-        /// </summary>
-        /// <returns>Array of fields contained in the list.</returns>
-        public InstagramField[] ToArray() {
-            return _fields.ToArray();
-        }
-
-        /// <summary>
-        /// Returns an array of strings representing each field in the list.
-        /// </summary>
-        /// <returns>Array of strings representing each field in the list.</returns>
-        public string[] ToStringArray() {
-            return (from field in _fields select field.Name).ToArray();
+            _list.Add(field);
         }
 
         /// <summary>
@@ -73,7 +59,7 @@ namespace Skybrud.Social.Instagram.Graph.Fields {
         /// </summary>
         /// <returns>An instance of <see cref="IEnumerator{InstagramField}"/>.</returns>
         public IEnumerator<InstagramField> GetEnumerator() {
-            return _fields.GetEnumerator();
+            return _list.GetEnumerator();
         }
 
         /// <summary>
@@ -81,7 +67,7 @@ namespace Skybrud.Social.Instagram.Graph.Fields {
         /// </summary>
         /// <returns>String of fields separated by a comma.</returns>
         public override string ToString() {
-            return string.Join(",", from field in _fields select field.Name);
+            return string.Join(",", from field in _list select field.Name);
         }
 
         IEnumerator IEnumerable.GetEnumerator() {

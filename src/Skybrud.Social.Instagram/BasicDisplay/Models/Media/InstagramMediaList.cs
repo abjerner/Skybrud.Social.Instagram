@@ -10,9 +10,21 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Models.Media {
     /// <summary>
     /// Class representing a list of media.
     /// </summary>
-    public class InstagramMediaList : InstagramObject, IEnumerable<InstagramMedia> {
+    public class InstagramMediaList : InstagramObject, IReadOnlyList<InstagramMedia> {
 
         #region Properties
+
+        /// <summary>
+        /// Gets the total amount of medias in the list.
+        /// </summary>
+        public int Count => Data.Count;
+
+        /// <summary>
+        /// Gets the media at the specified <paramref name="index"/>.
+        /// </summary>
+        /// <param name="index">The index.</param>
+        /// <returns>An instance of <see cref="InstagramMedia"/>.</returns>
+        public InstagramMedia this[int index] => Data[index];
 
         /// <summary>
         /// Gets an array with the media of the list.

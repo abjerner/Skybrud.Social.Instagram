@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Newtonsoft.Extensions;
@@ -9,9 +10,21 @@ namespace Skybrud.Social.Instagram.Graph.Models.Comments {
     /// <summary>
     /// Class representing a list of Instagram comments.
     /// </summary>
-    public class InstagramCommentList : InstagramObject {
+    public class InstagramCommentList : InstagramObject, IReadOnlyList<InstagramComment> {
 
         #region Properties
+
+        /// <summary>
+        /// Gets the total amount of comments in the list.
+        /// </summary>
+        public int Count => Data.Count;
+
+        /// <summary>
+        /// Gets the comment at the specified <paramref name="index"/>.
+        /// </summary>
+        /// <param name="index">The index.</param>
+        /// <returns>An instance of <see cref="InstagramComment"/>.</returns>
+        public InstagramComment this[int index] => Data[index];
 
         /// <summary>
         /// Gets an array of the <see cref="InstagramComment"/> making up the response body.
@@ -34,6 +47,19 @@ namespace Skybrud.Social.Instagram.Graph.Models.Comments {
         protected InstagramCommentList(JObject json) : base(json) {
             Data = json.GetArrayItems("data", InstagramComment.Parse);
             Paging = json.GetObject("paging", InstagramPaging.Parse)!;
+        }
+
+        #endregion
+
+        #region Member methods
+
+        /// <inheritdoc />
+        public IEnumerator<InstagramComment> GetEnumerator() {
+            return Data.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator() {
+            return GetEnumerator();
         }
 
         #endregion

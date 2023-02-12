@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,7 +8,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Scopes {
     /// <summary>
     /// Class representing a list of scopes for the <strong>Instagram Basic Display API</strong>.
     /// </summary>
-    public class InstagramScopeList {
+    public class InstagramScopeList : IReadOnlyList<InstagramScope> {
 
         #region Private fields
 
@@ -18,9 +19,16 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Scopes {
         #region Properties
 
         /// <summary>
-        /// Gets an array of all the scopes added to the list.
+        /// Gets the total amount of scopes added to the list.
         /// </summary>
-        public IReadOnlyList<InstagramScope> Items => _list;
+        public int Count => _list.Count;
+
+        /// <summary>
+        /// Gets the scope at the specified <paramref name="index"/>.
+        /// </summary>
+        /// <param name="index">The index.</param>
+        /// <returns>An instance of <see cref="InstagramScope"/>.</returns>
+        public InstagramScope this[int index] => _list[index];
 
         #endregion
 
@@ -46,20 +54,9 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Scopes {
             _list.Add(scope);
         }
 
-        /// <summary>
-        /// Returns an array of scopes based on the list.
-        /// </summary>
-        /// <returns>Array of scopes contained in the location.</returns>
-        public InstagramScope[] ToArray() {
-            return _list.ToArray();
-        }
-
-        /// <summary>
-        /// Returns an array of strings representing each scope in the list.
-        /// </summary>
-        /// <returns>Array of strings representing each scope in the list.</returns>
-        public string[] ToStringArray() {
-            return (from scope in _list select scope.Alias).ToArray();
+        /// <inheritdoc />
+        public IEnumerator<InstagramScope> GetEnumerator() {
+            return _list.GetEnumerator();
         }
 
         /// <summary>
@@ -68,6 +65,10 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Scopes {
         /// <returns>String of scopes separated by a comma.</returns>
         public override string ToString() {
             return string.Join(",", from scope in _list select scope.Alias);
+        }
+
+        IEnumerator IEnumerable.GetEnumerator() {
+            return GetEnumerator();
         }
 
         #endregion

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Newtonsoft.Extensions;
@@ -9,9 +10,21 @@ namespace Skybrud.Social.Instagram.Graph.Models.Media {
     /// <summary>
     /// Class representing a list of Instagram media.
     /// </summary>
-    public class InstagramMediaList : InstagramObject {
+    public class InstagramMediaList : InstagramObject, IReadOnlyList<InstagramMedia> {
 
         #region Properties
+
+        /// <summary>
+        /// Gets the total amount of medias in the list.
+        /// </summary>
+        public int Count => Data.Count;
+
+        /// <summary>
+        /// Gets the media at the specified <paramref name="index"/>.
+        /// </summary>
+        /// <param name="index">The index.</param>
+        /// <returns>An instance of <see cref="InstagramMedia"/>.</returns>
+        public InstagramMedia this[int index] => Data[index];
 
         /// <summary>
         /// Gets an array of the <see cref="InstagramMedia"/> mkaing up the response body.
@@ -34,6 +47,19 @@ namespace Skybrud.Social.Instagram.Graph.Models.Media {
         protected InstagramMediaList(JObject json) : base(json) {
             Data = json.GetArrayItems("data", InstagramMedia.Parse);
             Paging = json.GetObject("paging", InstagramPaging.Parse)!;
+        }
+
+        #endregion
+
+        #region Member methods
+
+        /// <inheritdoc />
+        public IEnumerator<InstagramMedia> GetEnumerator() {
+            return Data.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator() {
+            return GetEnumerator();
         }
 
         #endregion
