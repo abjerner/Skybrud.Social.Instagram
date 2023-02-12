@@ -49,7 +49,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Endpoints {
         /// <see>
         ///     <cref>https://developers.facebook.com/docs/instagram-basic-display-api/reference/me</cref>
         /// </see>
-        public IHttpResponse GetUser(InstagramFieldList fields) {
+        public IHttpResponse GetUser(InstagramFieldList? fields) {
             return GetUser(new InstagramGetUserOptions(fields));
         }
 
@@ -74,7 +74,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Endpoints {
         /// <see>
         ///     <cref>https://developers.facebook.com/docs/instagram-basic-display-api/reference/user</cref>
         /// </see>
-        public IHttpResponse GetUser(long userId, InstagramFieldList fields) {
+        public IHttpResponse GetUser(long userId, InstagramFieldList? fields) {
             return GetUser(new InstagramGetUserOptions(userId, fields));
         }
 
@@ -86,7 +86,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Endpoints {
         /// <see>
         ///     <cref>https://developers.facebook.com/docs/instagram-basic-display-api/reference/user</cref>
         /// </see>
-        public IHttpResponse GetUser(InstagramGetUserOptions options)  {
+        public IHttpResponse GetUser(InstagramGetUserOptions? options)  {
             if (options == null) throw new ArgumentNullException(nameof(options));
             return Client.GetResponse(options);
         }
