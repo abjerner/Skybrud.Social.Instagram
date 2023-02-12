@@ -1,5 +1,6 @@
 ﻿// ReSharper disable InconsistentNaming
 
+using System.Diagnostics.CodeAnalysis;
 using Skybrud.Essentials.Common;
 using Skybrud.Essentials.Http;
 using Skybrud.Essentials.Http.Collections;
@@ -21,7 +22,11 @@ namespace Skybrud.Social.Instagram.Graph.Options.Users {
         /// <summary>
         /// Gets or sets the ID of the Instagram user.
         /// </summary>
+#if NET7_0_OR_GREATER
+        public required string Id { get; set; }
+#else
         public string? Id { get; set; }
+#endif
 
         /// <summary>
         /// Gets or sets the maximum amount of media that should be returned in each page.
@@ -56,6 +61,9 @@ namespace Skybrud.Social.Instagram.Graph.Options.Users {
         /// Initializes a new instance based on the specified <paramref name="id"/>.
         /// </summary>
         /// <param name="id">The ID of the Instagram user.</param>
+#if NET7_0_OR_GREATER
+        [SetsRequiredMembers]
+#endif
         public InstagramGetRecentMediaOptions(string id) {
             Id = id;
         }
@@ -65,6 +73,9 @@ namespace Skybrud.Social.Instagram.Graph.Options.Users {
         /// </summary>
         /// <param name="id">The ID of the Instagram user.</param>
         /// <param name="fields">The fields to be returned by the API.</param>
+#if NET7_0_OR_GREATER
+        [SetsRequiredMembers]
+#endif
         public InstagramGetRecentMediaOptions(string id, InstagramFieldList? fields) {
             Id = id;
             Fields = fields ?? Fields;
@@ -75,6 +86,9 @@ namespace Skybrud.Social.Instagram.Graph.Options.Users {
         /// </summary>
         /// <param name="id">The ID of the Instagram user.</param>
         /// <param name="limit">The maximum amount of media that should be returned in each page.</param>
+#if NET7_0_OR_GREATER
+        [SetsRequiredMembers]
+#endif
         public InstagramGetRecentMediaOptions(string id, int? limit) {
             Id = id;
             Limit = limit;
@@ -86,6 +100,9 @@ namespace Skybrud.Social.Instagram.Graph.Options.Users {
         /// <param name="id">The ID of the Instagram user.</param>
         /// <param name="limit">The maximum amount of media that should be returned in each page.</param>
         /// <param name="after">The cursor that points to the end of the page of data that has been returned.</param>
+#if NET7_0_OR_GREATER
+        [SetsRequiredMembers]
+#endif
         public InstagramGetRecentMediaOptions(string id, int? limit, string? after) {
             Id = id;
             Limit = limit;
@@ -100,6 +117,9 @@ namespace Skybrud.Social.Instagram.Graph.Options.Users {
         /// <param name="limit">The maximum amount of media that should be returned in each page.</param>
         /// <param name="after">The cursor that points to the end of the page of data that has been returned.</param>
         /// <param name="fields">The fields to be returned by the API.</param>
+#if NET7_0_OR_GREATER
+        [SetsRequiredMembers]
+#endif
         public InstagramGetRecentMediaOptions(string id, int? limit, string? after, InstagramFieldList? fields) {
             Id = id;
             Limit = limit;

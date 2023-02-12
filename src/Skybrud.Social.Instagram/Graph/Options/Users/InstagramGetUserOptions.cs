@@ -1,4 +1,5 @@
-﻿using Skybrud.Essentials.Common;
+﻿using System.Diagnostics.CodeAnalysis;
+using Skybrud.Essentials.Common;
 using Skybrud.Essentials.Http;
 using Skybrud.Essentials.Http.Collections;
 using Skybrud.Essentials.Http.Options;
@@ -16,7 +17,11 @@ namespace Skybrud.Social.Instagram.Graph.Options.Users {
         /// <summary>
         /// Gets or sets the ID of the Instagram user.
         /// </summary>
+#if NET7_0_OR_GREATER
+        public required string Id { get; set; }
+#else
         public string? Id { get; set; }
+#endif
 
         /// <summary>
         /// Gets or sets the fields to be returned.
@@ -36,6 +41,9 @@ namespace Skybrud.Social.Instagram.Graph.Options.Users {
         /// Initializes a new instance based on the specified <paramref name="id"/>.
         /// </summary>
         /// <param name="id">The ID of the Instagram user.</param>
+#if NET7_0_OR_GREATER
+        [SetsRequiredMembers]
+#endif
         public InstagramGetUserOptions(string id) {
             Id = id;
             Fields = new InstagramFieldList();
@@ -46,6 +54,9 @@ namespace Skybrud.Social.Instagram.Graph.Options.Users {
         /// </summary>
         /// <param name="id">The ID of the Instagram user.</param>
         /// <param name="fields">The fields to be returned by the API.</param>
+#if NET7_0_OR_GREATER
+        [SetsRequiredMembers]
+#endif
         public InstagramGetUserOptions(string id, InstagramFieldList fields) {
             Id = id;
             Fields = fields;
