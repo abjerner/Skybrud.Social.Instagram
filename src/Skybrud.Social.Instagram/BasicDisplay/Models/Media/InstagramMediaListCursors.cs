@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Newtonsoft.Extensions;
 
@@ -19,6 +20,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Models.Media {
         /// <summary>
         /// Gets whether the <see cref="Before"/> cursor was present in the response.
         /// </summary>
+        [JsonIgnore]
         [MemberNotNullWhen(true, "Before")]
         public bool HasBefore => string.IsNullOrWhiteSpace(Before) == false;
 
@@ -30,6 +32,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Models.Media {
         /// <summary>
         /// Gets whether the <see cref="After"/> cursor was present in the response.
         /// </summary>
+        [JsonIgnore]
         [MemberNotNullWhen(true, "After")]
         public bool HasAfter => string.IsNullOrWhiteSpace(After) == false;
 

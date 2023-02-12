@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Newtonsoft.Extensions;
-using Skybrud.Social.Instagram.BasicDisplay.Models.Users;
 
 namespace Skybrud.Social.Instagram.BasicDisplay.Models.Media {
 
@@ -25,6 +25,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Models.Media {
         /// <summary>
         /// Gets whether the list has an additional page.
         /// </summary>
+        [JsonIgnore]
         [MemberNotNullWhen(true, "Next")]
         public bool HasNext => string.IsNullOrWhiteSpace(Next) == false;
 

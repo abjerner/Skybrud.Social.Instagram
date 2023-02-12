@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Newtonsoft;
 
 namespace Skybrud.Social.Instagram.BasicDisplay.Models {
@@ -13,6 +14,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Models {
         /// <summary>
         /// Gets the internal Newtonsoft.Json.Linq.JObject the object was created from.
         /// </summary>
+        [JsonIgnore]
         public new JObject JObject => base.JObject!;
 
         #endregion
