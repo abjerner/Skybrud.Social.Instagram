@@ -13,6 +13,12 @@ namespace Skybrud.Social.Instagram.Graph.OAuth {
         #region Properties
 
         /// <summary>
+        /// Gets or sets the version of the Instagram Graph API to be used. If not specified, the version is determined
+        /// by your Facebook app that you're using for accessing the API.
+        /// </summary>
+        public string? Version { get; set; }
+
+        /// <summary>
         /// Gets or sets the access token.
         /// </summary>
         public string? AccessToken { get; set; }
@@ -58,11 +64,11 @@ namespace Skybrud.Social.Instagram.Graph.OAuth {
                 request.QueryString.Add("access_token", AccessToken!);
             }
 
+            // Append the version if specified and not present in the URL
+            if (!string.IsNullOrWhiteSpace(Version) && !request.Url.StartsWith($"/{Version}")) request.Url = $"/{Version}{request.Url}";
+
             // If the URL starts with a forward slash, it must be an relative URL for the Instagram Graph API
-            if (request.Url.StartsWith("/")) {
-                // TODO: Add support for API versioning
-                request.Url = $"https://graph.facebook.com{request.Url}";
-            }
+            if (request.Url.StartsWith("/")) request.Url = $"https://graph.facebook.com{request.Url}";
 
         }
 
