@@ -8,16 +8,16 @@ As an add-on for [Skybrud.Social](https://github.com/abjerner/Skybrud.Social), *
 
 ### Installation
 
-Install the <a href="https://www.nuget.org/packages/Skybrud.Social.Instagram/1.0.0-beta007" target="_blank">NuGet package</a> - either via the .NET CLI:
+Install the <a href="https://www.nuget.org/packages/Skybrud.Social.Instagram/1.0.0-beta003" target="_blank">NuGet package</a> - either via the .NET CLI:
 
 ```
-dotnet add package Skybrud.Social.Instagram --version 1.0.0-beta007
+dotnet add package Skybrud.Social.Instagram --version 1.0.0-beta003
 ```
 
 or the NuGet package manager:
 
 ```
-Install-Package Skybrud.Social.Instagram -Version 1.0.0-beta007
+Install-Package Skybrud.Social.Instagram -Version 1.0.0-beta003
 ```
 
 
