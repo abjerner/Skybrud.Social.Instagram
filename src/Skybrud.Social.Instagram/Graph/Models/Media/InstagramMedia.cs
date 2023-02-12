@@ -1,7 +1,6 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Skybrud.Essentials.Enums;
 using Skybrud.Essentials.Json.Newtonsoft.Extensions;
 using Skybrud.Essentials.Time;
 using Skybrud.Social.Instagram.Graph.Fields;
@@ -116,7 +115,7 @@ namespace Skybrud.Social.Instagram.Graph.Models.Media {
             InstagramId = obj.GetString("ig_id");
             IsCommentsEnabled = obj.GetBooleanOrNull("is_comment_enabled");
             LikeCount = obj.GetInt64OrNull("like_count");
-            MediaType = obj.GetString("media_type", ParseMediaType);
+            MediaType = obj.GetString("media_type", ParseEnumOrDefault<InstagramMediaType>);
             MediaUrl = obj.GetString("media_url");
             // owner
             Permalink = obj.GetString("permalink");
@@ -130,12 +129,6 @@ namespace Skybrud.Social.Instagram.Graph.Models.Media {
         #endregion
 
         #region Static methods
-
-        private static InstagramMediaType ParseMediaType(string value) {
-            if (string.IsNullOrWhiteSpace(value)) return InstagramMediaType.Unspecified;
-            if (EnumUtils.TryParseEnum(value, out InstagramMediaType type)) return type;
-            throw new Exception("Unknown media type: " + value);
-        }
 
         /// <summary>
         /// Parses the specified <paramref name="json"/> object into an instance of <see cref="InstagramMedia"/>.

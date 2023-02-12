@@ -1,16 +1,18 @@
-﻿// ReSharper disable InconsistentNaming
+﻿using Newtonsoft.Json;
+using Skybrud.Essentials.Json.Converters.Enums;
 
 namespace Skybrud.Social.Instagram.Graph.Models.Media {
 
     /// <summary>
     /// Indicates the type of an <see cref="InstagramMedia"/>.
     /// </summary>
+    [JsonConverter(typeof(EnumStringConverter))]
     public enum InstagramMediaType {
 
         /// <summary>
-        /// Indicates that the <c>media_type</c> property was not included in the response.
+        /// Indiciates a media type that is currently not supported by this package.
         /// </summary>
-        Unspecified,
+        Unknown,
 
         /// <summary>
         /// Indicates that the media is an image.
