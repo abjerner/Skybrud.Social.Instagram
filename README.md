@@ -1,23 +1,33 @@
-Skybrud.Social.Instagram
-========================
+# Skybrud.Social.Instagram [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md) [![NuGet](https://img.shields.io/nuget/v/Skybrud.Social.Instagram.svg)](https://www.nuget.org/packages/Skybrud.Social.Instagram) [![NuGet](https://img.shields.io/nuget/dt/Skybrud.Social.Instagram.svg)](https://www.nuget.org/packages/Skybrud.Social.Instagram)
 
-As an add-on for [Skybrud.Social](https://github.com/abjerner/Skybrud.Social), **Skybrud.Social.Instagram** helps you with both authentication as well as raw and object-oriented communication with the Instagram API.
+**Skybrud.Social.Instagram** is a .NET wrapper and API implementation for the [**Instagram Basic Display API**](https://developers.facebook.com/docs/instagram-basic-display-api) and [**Instagram Graph API**](https://developers.facebook.com/docs/instagram-api).
+
+The package helps handling some of the underlying authentication as well as communicating with both APIs in a strongly typed way.
+
+
+
+<br /><br />
+
+### Target Frameworks
+
+.NET Standard 1.3, .NET Standard 2.0 and .NET 7 ([read more](https://www.nuget.org/packages/Skybrud.Social.Instagram#supportedframeworks-body-tab)).
+
 
 
 <br /><br />
 
 ### Installation
 
-Install the <a href="https://www.nuget.org/packages/Skybrud.Social.Instagram/1.0.0-beta003" target="_blank">NuGet package</a> - either via the .NET CLI:
+Install the <a href="https://www.nuget.org/packages/Skybrud.Social.Instagram/1.0.0-beta008" target="_blank">NuGet package</a> - either via the .NET CLI:
 
 ```
-dotnet add package Skybrud.Social.Instagram --version 1.0.0-beta003
+dotnet add package Skybrud.Social.Instagram --version 1.0.0-beta008
 ```
 
 or the NuGet package manager:
 
 ```
-Install-Package Skybrud.Social.Instagram -Version 1.0.0-beta003
+Install-Package Skybrud.Social.Instagram -Version 1.0.0-beta008
 ```
 
 
