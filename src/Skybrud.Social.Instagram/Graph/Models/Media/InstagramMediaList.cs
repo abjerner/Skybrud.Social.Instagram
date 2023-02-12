@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Newtonsoft.Extensions;
 using Skybrud.Social.Instagram.Graph.Models.Paging;
@@ -44,6 +45,7 @@ namespace Skybrud.Social.Instagram.Graph.Models.Media {
         /// </summary>
         /// <param name="json">The instance of <see cref="JObject"/> to parse.</param>
         /// <returns>An instance of <see cref="InstagramMediaList"/>. <paramref name="json"/> is <see langword="null"/>, <see langword="null"/> is returned instead.</returns>
+        [return: NotNullIfNotNull("json")]
         public static InstagramMediaList? Parse(JObject? json) {
             return json == null ? null : new InstagramMediaList(json);
         }

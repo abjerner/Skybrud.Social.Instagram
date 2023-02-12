@@ -142,6 +142,7 @@ namespace Skybrud.Social.Instagram.Graph.Models.Media {
         /// </summary>
         /// <param name="json">The instance of <see cref="JObject"/> to parse.</param>
         /// <returns>An instance of <see cref="InstagramMedia"/>. <paramref name="json"/> is <see langword="null"/>, <see langword="null"/> is returned instead.</returns>
+        [return: NotNullIfNotNull("json")]
         public static InstagramMedia? Parse(JObject? json) {
             return json == null ? null : new InstagramMedia(json);
         }
