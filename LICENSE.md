@@ -1,4 +1,4 @@
-Copyright (c) 2022 [Anders Bjerner](https://github.com/abjerner)
+Copyright (c) 2023 [Anders Bjerner](https://github.com/abjerner)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in

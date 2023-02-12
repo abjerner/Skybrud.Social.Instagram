@@ -10,19 +10,19 @@
 
   <PropertyGroup>
     <RootNamespace>Skybrud.Social.Instagram</RootNamespace>
-    <VersionPrefix>1.0.0-beta007</VersionPrefix>
+    <VersionPrefix>1.0.0-beta008</VersionPrefix>
     <VersionSuffix Condition="'$(Configuration)'=='Debug'">build$([System.DateTime]::UtcNow.ToString(`yyyyMMddHHmm`))</VersionSuffix>
     <Company>Limbo</Company>
     <Product>Skybrud.Social</Product>
     <Authors>Anders Bjerner</Authors>
-    <Copyright>Copyright © 2022</Copyright>
+    <Copyright>Copyright © 2023</Copyright>
     <Description>.NET wrapper and API implementation for the Instagram Basic Display API and Instagram Graph API.</Description>
   </PropertyGroup>
 
   <!-- Information for the NuGet package -->
   <PropertyGroup>
     <PackageId>Skybrud.Social.Instagram</PackageId>
-    <PackageTags>Instagram, API, Skybrud, Limbo, Social, OAuth, JSON</PackageTags>
+    <PackageTags>Instagram, API, Skybrud, Limbo, Social, OAuth, JSON, Integration, Integrations, Api-Client, Api-Wrapper</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://social.skybrud.dk/instagram/</PackageProjectUrl>
     <PackageIcon>Limbo.png</PackageIcon>
