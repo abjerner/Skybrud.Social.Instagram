@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Skybrud.Essentials.Common;
 using Skybrud.Essentials.Http;
 using Skybrud.Essentials.Http.Client;
 using Skybrud.Essentials.Http.Collections;
@@ -18,22 +19,22 @@ namespace Skybrud.Social.Instagram.BasicDisplay.OAuth {
         /// <summary>
         /// Gets or sets the client ID of your app.
         /// </summary>
-        public string ClientId { get; set; }
+        public string? ClientId { get; set; }
 
         /// <summary>
         /// Gets or sets the client secret of your app.
         /// </summary>
-        public string ClientSecret { get; set; }
+        public string? ClientSecret { get; set; }
 
         /// <summary>
         /// Gets or sets the redirect URI of your app.
         /// </summary>
-        public string RedirectUri { get; set; }
+        public string? RedirectUri { get; set; }
 
         /// <summary>
         /// Gets or sets the access token.
         /// </summary>
-        public string AccessToken { get; set; }
+        public string? AccessToken { get; set; }
 
         /// <summary>
         /// Gets a reference to the raw <strong>Users</strong> endpoint.
@@ -72,7 +73,10 @@ namespace Skybrud.Social.Instagram.BasicDisplay.OAuth {
         /// <see>
         ///     <cref>https://developers.facebook.com/docs/instagram-basic-display-api/reference/oauth-authorize</cref>
         /// </see>
-        public string GetAuthorizationUrl(string state, string scope) {
+        public string GetAuthorizationUrl(string state, string? scope) {
+
+            if (string.IsNullOrWhiteSpace(ClientId)) throw new PropertyNotSetException(nameof(ClientId));
+            if (string.IsNullOrWhiteSpace(RedirectUri)) throw new PropertyNotSetException(nameof(RedirectUri));
 
             // Initialize the query string
             HttpQueryString query = new() {
@@ -97,7 +101,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.OAuth {
         /// <see>
         ///     <cref>https://developers.facebook.com/docs/instagram-basic-display-api/reference/oauth-authorize</cref>
         /// </see>
-        public string GetAuthorizationUrl(string state, string[] scope) {
+        public string GetAuthorizationUrl(string state, string[]? scope) {
             return GetAuthorizationUrl(state, scope == null ? string.Empty : string.Join(",", scope));
         }
 
@@ -110,7 +114,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.OAuth {
         /// <see>
         ///     <cref>https://developers.facebook.com/docs/instagram-basic-display-api/reference/oauth-authorize</cref>
         /// </see>
-        public string GetAuthorizationUrl(string state, params InstagramScope[] scope) {
+        public string GetAuthorizationUrl(string state, params InstagramScope[]? scope) {
             return GetAuthorizationUrl(state, scope == null ? null : string.Join(",", from s in scope select s.Alias));
         }
 
@@ -123,7 +127,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.OAuth {
         /// <see>
         ///     <cref>https://developers.facebook.com/docs/instagram-basic-display-api/reference/oauth-authorize</cref>
         /// </see>
-        public string GetAuthorizationUrl(string state, InstagramScopeList scope) {
+        public string GetAuthorizationUrl(string state, InstagramScopeList? scope) {
             return GetAuthorizationUrl(state, scope?.ToString());
         }
 
@@ -137,13 +141,17 @@ namespace Skybrud.Social.Instagram.BasicDisplay.OAuth {
         /// </see>
         public InstagramShortLivedTokenResponse GetAccessTokenFromAuthCode(string code) {
 
+            if (string.IsNullOrWhiteSpace(ClientId)) throw new PropertyNotSetException(nameof(ClientId));
+            if (string.IsNullOrWhiteSpace(ClientSecret)) throw new PropertyNotSetException(nameof(ClientSecret));
+            if (string.IsNullOrWhiteSpace(RedirectUri)) throw new PropertyNotSetException(nameof(RedirectUri));
+
             // Initialize the POST data
             HttpPostData post = new() {
-                { "client_id", ClientId },
-                { "client_secret", ClientSecret },
+                { "client_id", ClientId! },
+                { "client_secret", ClientSecret! },
                 { "code", code },
                 { "grant_type", "authorization_code" },
-                { "redirect_uri", RedirectUri }
+                { "redirect_uri", RedirectUri! }
             };
 
             // Make a POST request to the API
@@ -163,11 +171,13 @@ namespace Skybrud.Social.Instagram.BasicDisplay.OAuth {
         ///     <cref>https://developers.facebook.com/docs/instagram-basic-display-api/reference/access_token</cref>
         /// </see>
         public InstagramLongLivedTokenResponse GetLongLivedAccessToken(string accessToken) {
+            
+            if (string.IsNullOrWhiteSpace(ClientSecret)) throw new PropertyNotSetException(nameof(ClientSecret));
 
             // Initialize the query string
             HttpQueryString query = new() {
                 { "grant_type", "ig_exchange_token" },
-                { "client_secret", ClientSecret },
+                { "client_secret", ClientSecret! },
                 { "access_token", accessToken }
             };
 
@@ -207,8 +217,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.OAuth {
         protected override void PrepareHttpRequest(IHttpRequest request) {
 
             if (string.IsNullOrWhiteSpace(AccessToken) == false) {
-                request.QueryString ??= new HttpQueryString();
-                request.QueryString.Set("access_token", AccessToken);
+                request.QueryString.Set("access_token", AccessToken!);
             }
 
             if (request.Url.StartsWith("/")) {

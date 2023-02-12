@@ -16,12 +16,12 @@ namespace Skybrud.Social.Instagram.Graph.Options.Users {
         /// <summary>
         /// Gets or sets the ID of the Instagram user.
         /// </summary>
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         /// <summary>
         /// Gets or sets the fields to be returned.
         /// </summary>
-        public InstagramFieldList Fields { get; set; }
+        public InstagramFieldList Fields { get; set; } = new();
 
         #endregion
 
@@ -65,7 +65,7 @@ namespace Skybrud.Social.Instagram.Graph.Options.Users {
             HttpQueryString query = new();
 
             // Convert the collection of fields to a string
-            string fields = (Fields == null ? string.Empty : Fields.ToString()).Trim();
+            string fields = Fields.ToString().Trim();
 
             // Update the query string
             if (string.IsNullOrWhiteSpace(fields) == false) query.Set("fields", fields);

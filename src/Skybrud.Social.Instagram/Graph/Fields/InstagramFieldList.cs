@@ -97,7 +97,7 @@ namespace Skybrud.Social.Instagram.Graph.Fields {
         /// </summary>
         /// <param name="fields">The string of fields the list should be based on.</param>
         /// <returns>A new list based on a string of <paramref name="fields"/>.</returns>
-        public static implicit operator InstagramFieldList(string fields) {
+        public static implicit operator InstagramFieldList(string? fields) {
             InstagramFieldList list = new();
             foreach (string name in (fields ?? string.Empty).Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)) {
                 list.Add(name);

@@ -15,7 +15,7 @@ namespace Skybrud.Social.Instagram.Graph.OAuth {
         /// <summary>
         /// Gets or sets the access token.
         /// </summary>
-        public string AccessToken { get; set; }
+        public string? AccessToken { get; set; }
 
         /// <summary>
         /// Gets a reference to the raw <strong>Users</strong> endpoint.
@@ -55,7 +55,7 @@ namespace Skybrud.Social.Instagram.Graph.OAuth {
 
             // Append either the access token or the client ID to the query string
             if (!string.IsNullOrWhiteSpace(AccessToken)) {
-                request.QueryString.Add("access_token", AccessToken);
+                request.QueryString.Add("access_token", AccessToken!);
             }
 
             // If the URL starts with a forward slash, it must be an relative URL for the Instagram Graph API

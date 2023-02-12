@@ -1,5 +1,6 @@
-﻿using Newtonsoft.Json.Linq;
-using Skybrud.Essentials.Json.Extensions;
+﻿using System.Diagnostics.CodeAnalysis;
+using Newtonsoft.Json.Linq;
+using Skybrud.Essentials.Json.Newtonsoft.Extensions;
 
 namespace Skybrud.Social.Instagram.Graph.Models.Paging {
 
@@ -13,21 +14,23 @@ namespace Skybrud.Social.Instagram.Graph.Models.Paging {
         /// <summary>
         /// Gets the URL for the next page.
         /// </summary>
-        public string Next { get; }
+        public string? Next { get; }
 
         /// <summary>
         /// Gets the <see cref="Next"/> property was specified in the response.
         /// </summary>
+        [MemberNotNullWhen(true, "Next")]
         public bool HasNext => string.IsNullOrWhiteSpace(Next) == false;
 
         /// <summary>
         /// Gets the URL for the previous page.
         /// </summary>
-        public string Previous { get; set; }
+        public string? Previous { get; set; }
 
         /// <summary>
         /// Gets the <see cref="Previous"/> property was specified in the response.
         /// </summary>
+        [MemberNotNullWhen(true, "Previous")]
         public bool HasPrevious => string.IsNullOrWhiteSpace(Previous) == false;
 
         /// <summary>
@@ -44,7 +47,7 @@ namespace Skybrud.Social.Instagram.Graph.Models.Paging {
         /// </summary>
         /// <param name="obj">An instance of <see cref="JObject"/> representing the entry.</param>
         protected InstagramPaging(JObject obj) : base(obj) {
-            Cursors = obj.GetObject("cursors", InstagramPagingCursors.Parse);
+            Cursors = obj.GetObject("cursors", InstagramPagingCursors.Parse)!;
             Next = obj.GetString("next");
             Previous = obj.GetString("previous");
         }
@@ -54,12 +57,13 @@ namespace Skybrud.Social.Instagram.Graph.Models.Paging {
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <paramref name="obj"/> into an instance of <see cref="InstagramPaging"/>.
+        /// Parses the specified <paramref name="json"/> object into an instance of <see cref="InstagramPaging"/>.
         /// </summary>
-        /// <param name="obj">The instance of <see cref="JObject"/> to parse.</param>
-        /// <returns>An instance of <see cref="InstagramPaging"/>.</returns>
-        public static InstagramPaging Parse(JObject obj) {
-            return obj == null ? null : new InstagramPaging(obj);
+        /// <param name="json">The instance of <see cref="JObject"/> to parse.</param>
+        /// <returns>An instance of <see cref="InstagramPaging"/>. <paramref name="json"/> is <see langword="null"/>, <see langword="null"/> is returned instead.</returns>
+        [return: NotNullIfNotNull("json")]
+        public static InstagramPaging? Parse(JObject? json) {
+            return json == null ? null : new InstagramPaging(json);
         }
 
         #endregion

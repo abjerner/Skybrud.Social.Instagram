@@ -88,7 +88,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Scopes {
         /// </summary>
         /// <param name="array">The array of scopes the list should be based on.</param>
         /// <returns>A new list based on an <paramref name="array"/> of scopes.</returns>
-        public static implicit operator InstagramScopeList(InstagramScope[] array) {
+        public static implicit operator InstagramScopeList(InstagramScope[]? array) {
             return new InstagramScopeList(array ?? Array.Empty<InstagramScope>());
         }
 

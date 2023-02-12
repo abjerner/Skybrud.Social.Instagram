@@ -28,7 +28,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Scopes {
         /// <summary>
         /// Gets the description of the scope.
         /// </summary>
-        public string Description { get; }
+        public string? Description { get; }
 
         #endregion
 
@@ -40,10 +40,10 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Scopes {
         /// <param name="alias">The alias of the scope.</param>
         /// <param name="name">The name of the scope.</param>
         /// <param name="description">The description of the scope.</param>
-        public InstagramScope(string alias, string name, string description = null) {
+        public InstagramScope(string alias, string name, string? description = null) {
             Alias = alias;
             Name = name;
-            Description = string.IsNullOrWhiteSpace(description) ? null : description.Trim();
+            Description = string.IsNullOrWhiteSpace(description) ? null : description!.Trim();
         }
 
         #endregion
@@ -68,7 +68,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Scopes {
         /// <param name="alias">The alias of the scope.</param>
         /// <param name="name">The name of the scope.</param>
         /// <param name="description">The description of the scope.</param>
-        internal static InstagramScope RegisterScope(string alias, string name, string description = null) {
+        internal static InstagramScope RegisterScope(string alias, string name, string? description = null) {
             InstagramScope scope = new(alias, name, description);
             _scopes.Add(scope.Alias, scope);
             return scope;
@@ -79,8 +79,8 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Scopes {
         /// </summary>
         /// <param name="alias">The alias of the scope.</param>
         /// <returns>Gets a scope matching the specified <paramref name="alias"/>, or <c>null</c> if not found.</returns>
-        public static InstagramScope GetScope(string alias) {
-            return _scopes.TryGetValue(alias, out InstagramScope scope) ? scope : null;
+        public static InstagramScope? GetScope(string alias) {
+            return _scopes.TryGetValue(alias, out InstagramScope? scope) ? scope : null;
         }
 
         /// <summary>

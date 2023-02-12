@@ -1,5 +1,6 @@
-﻿using Newtonsoft.Json.Linq;
-using Skybrud.Essentials.Json.Extensions;
+﻿using System.Diagnostics.CodeAnalysis;
+using Newtonsoft.Json.Linq;
+using Skybrud.Essentials.Json.Newtonsoft.Extensions;
 
 namespace Skybrud.Social.Instagram.BasicDisplay.Models.Authentication {
 
@@ -32,7 +33,8 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Models.Authentication {
         /// </summary>
         /// <param name="json">The instance of <see cref="JObject"/> to be parsed.</param>
         /// <returns>An instance of <see cref="InstagramLongLivedToken"/>.</returns>
-        public static InstagramShortLivedToken Parse(JObject json) {
+        [return: NotNullIfNotNull("json")]
+        public static InstagramShortLivedToken? Parse(JObject? json) {
             return json == null ? null : new InstagramShortLivedToken(json);
         }
 

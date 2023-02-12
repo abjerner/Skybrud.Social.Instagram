@@ -4,8 +4,6 @@ using Skybrud.Social.Instagram.Graph.Fields;
 using Skybrud.Social.Instagram.Graph.OAuth;
 using Skybrud.Social.Instagram.Graph.Options.Users;
 
-// ReSharper disable InconsistentNaming
-
 namespace Skybrud.Social.Instagram.Graph.Endpoints {
 
     /// <summary>

@@ -1,8 +1,7 @@
-﻿using Newtonsoft.Json.Linq;
-using Skybrud.Essentials.Json.Extensions;
+﻿using System.Diagnostics.CodeAnalysis;
+using Newtonsoft.Json.Linq;
+using Skybrud.Essentials.Json.Newtonsoft.Extensions;
 using Skybrud.Essentials.Time;
-
-// ReSharper disable InconsistentNaming
 
 namespace Skybrud.Social.Instagram.Graph.Models.Comments {
 
@@ -16,7 +15,7 @@ namespace Skybrud.Social.Instagram.Graph.Models.Comments {
         /// <summary>
         /// Gets whether the comment is hidden.
         /// </summary>
-        public bool IsHidden { get; }
+        public bool? IsHidden { get; }
 
         /// <summary>
         /// Gets the ID of the comment.
@@ -26,44 +25,44 @@ namespace Skybrud.Social.Instagram.Graph.Models.Comments {
         /// <summary>
         /// Gets the amount of likes the comment has received.
         /// </summary>
-        public int LikeCount { get; }
+        public int? LikeCount { get; }
 
         /// <summary>
         /// Gets the text of the comment.
         /// </summary>
-        public string Text { get; }
+        public string? Text { get; }
 
         /// <summary>
         /// Gets a timestamp for when the comment was posted.
         /// </summary>
-        public EssentialsTime Timestamp { get; }
+        public EssentialsTime? Timestamp { get; }
 
         /// <summary>
         /// Gets the username of the user behind the comment.
         /// </summary>
-        public string Username { get; }
+        public string? Username { get; }
 
         /// <summary>
         /// Gets a list of replies to the comment. Requires the <c>replies</c> field.
         /// </summary>
-        public InstagramCommentList Replies { get; }
+        public InstagramCommentList? Replies { get; }
 
         #endregion
 
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance based on the specified <paramref name="obj"/>.
+        /// Initializes a new instance based on the specified <paramref name="json"/> object.
         /// </summary>
-        /// <param name="obj">An instance of <see cref="JObject"/> representing the entry.</param>
-        protected InstagramComment(JObject obj) : base(obj) {
-            IsHidden = obj.GetBoolean("hidden");
-            Id = obj.GetString("id");
-            LikeCount = obj.GetInt32("like_count");
-            Text = obj.GetString("text");
-            Timestamp = obj.GetString("timestamp", EssentialsTime.Parse);
-            Username = obj.GetString("username");
-            Replies = obj.GetObject("replies", InstagramCommentList.Parse);
+        /// <param name="json">An instance of <see cref="JObject"/> representing the entry.</param>
+        protected InstagramComment(JObject json) : base(json) {
+            IsHidden = json.GetBooleanOrNull("hidden");
+            Id = json.GetString("id")!;
+            LikeCount = json.GetInt32OrNull("like_count");
+            Text = json.GetString("text");
+            Timestamp = json.GetString("timestamp", EssentialsTime.Parse);
+            Username = json.GetString("username");
+            Replies = json.GetObject("replies", InstagramCommentList.Parse);
         }
 
         #endregion
@@ -71,12 +70,13 @@ namespace Skybrud.Social.Instagram.Graph.Models.Comments {
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <paramref name="obj"/> into an instance of <see cref="InstagramComment"/>.
+        /// Parses the specified <paramref name="json"/> object into an instance of <see cref="InstagramComment"/>.
         /// </summary>
-        /// <param name="obj">The instance of <see cref="JObject"/> to parse.</param>
+        /// <param name="json">The instance of <see cref="JObject"/> to parse.</param>
         /// <returns>An instance of <see cref="InstagramComment"/>.</returns>
-        public static InstagramComment Parse(JObject obj) {
-            return obj == null ? null : new InstagramComment(obj);
+        [return: NotNullIfNotNull("json")]
+        public static InstagramComment? Parse(JObject? json) {
+            return json == null ? null : new InstagramComment(json);
         }
 
         #endregion

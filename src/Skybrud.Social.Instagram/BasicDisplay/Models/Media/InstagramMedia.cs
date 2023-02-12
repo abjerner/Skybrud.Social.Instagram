@@ -1,5 +1,6 @@
-﻿using Newtonsoft.Json.Linq;
-using Skybrud.Essentials.Json.Extensions;
+﻿using System.Diagnostics.CodeAnalysis;
+using Newtonsoft.Json.Linq;
+using Skybrud.Essentials.Json.Newtonsoft.Extensions;
 using Skybrud.Essentials.Time;
 
 namespace Skybrud.Social.Instagram.BasicDisplay.Models.Media {
@@ -19,57 +20,57 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Models.Media {
         /// <summary>
         /// Gets the caption of the media.
         /// </summary>
-        public string Caption { get; }
+        public string? Caption { get; }
+
+        /// <summary>
+        /// Gets the type of the media.
+        /// </summary>
+        public InstagramMediaType? MediaType { get; }
 
         /// <summary>
         /// Gets the caption of the media.
         /// </summary>
-        public string MediaType { get; }
+        public string? MediaUrl { get; }
 
         /// <summary>
         /// Gets the caption of the media.
         /// </summary>
-        public string MediaUrl { get; }
+        public string? Permalink { get; }
 
         /// <summary>
         /// Gets the caption of the media.
         /// </summary>
-        public string Permalink { get; }
+        public string? ThumbnailUrl { get; }
 
         /// <summary>
         /// Gets the caption of the media.
         /// </summary>
-        public string ThumbnailUrl { get; }
-
-        /// <summary>
-        /// Gets the caption of the media.
-        /// </summary>
-        public EssentialsTime Timestamp { get; }
+        public EssentialsTime? Timestamp { get; }
 
         /// <summary>
         /// Gets the username of the user.
         /// </summary>
-        public string Username { get; }
+        public string? Username { get; }
 
         /// <summary>
         /// Gets a list of media on an album. Only available on <see cref="InstagramMediaType.CarouselAlbum"/> media.
         /// </summary>
-        public InstagramMediaList Children { get; }
+        public InstagramMediaList? Children { get; }
 
         #endregion
 
         #region Constructors
 
-        private InstagramMedia(JObject obj) : base(obj) {
-            Id = obj.GetString("id");
-            Caption = obj.GetString("caption");
-            MediaType = obj.GetString("media_type");
-            MediaUrl = obj.GetString("media_url");
-            Permalink = obj.GetString("permalink");
-            ThumbnailUrl = obj.GetString("thumbnail_url");
-            Timestamp = obj.GetString("timestamp", EssentialsTime.Parse);
-            Username = obj.GetString("username");
-            Children = obj.GetObject("children", InstagramMediaList.Parse);
+        private InstagramMedia(JObject json) : base(json) {
+            Id = json.GetString("id")!;
+            Caption = json.GetString("caption");
+            MediaType = json.GetEnumOrNull<InstagramMediaType>("media_type");
+            MediaUrl = json.GetString("media_url");
+            Permalink = json.GetString("permalink");
+            ThumbnailUrl = json.GetString("thumbnail_url");
+            Timestamp = json.GetString("timestamp", EssentialsTime.Parse);
+            Username = json.GetString("username");
+            Children = json.GetObject("children", InstagramMediaList.Parse);
         }
 
         #endregion
@@ -77,12 +78,13 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Models.Media {
         #region Static methods
 
         /// <summary>
-        /// Gets an instance of <see cref="InstagramMedia"/> from the specified <paramref name="obj"/>.
+        /// Parses the specified <paramref name="json"/> object into an instance of <see cref="InstagramMedia"/>.
         /// </summary>
-        /// <param name="obj">The instance of <see cref="JObject"/> to parse.</param>
+        /// <param name="json">The instance of <see cref="JObject"/> to parse.</param>
         /// <returns>An instance of <see cref="InstagramMedia"/>.</returns>
-        public static InstagramMedia Parse(JObject obj) {
-            return obj == null ? null : new InstagramMedia(obj);
+        [return: NotNullIfNotNull("json")]
+        public static InstagramMedia? Parse(JObject? json) {
+            return json == null ? null : new InstagramMedia(json);
         }
 
         #endregion

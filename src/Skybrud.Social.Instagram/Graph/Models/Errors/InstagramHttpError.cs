@@ -1,5 +1,6 @@
-﻿using Newtonsoft.Json.Linq;
-using Skybrud.Essentials.Json.Extensions;
+﻿using System.Diagnostics.CodeAnalysis;
+using Newtonsoft.Json.Linq;
+using Skybrud.Essentials.Json.Newtonsoft.Extensions;
 
 namespace Skybrud.Social.Instagram.Graph.Models.Errors {
 
@@ -40,15 +41,15 @@ namespace Skybrud.Social.Instagram.Graph.Models.Errors {
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance based on the specified <paramref name="obj"/>.
+        /// Initializes a new instance based on the specified <paramref name="json"/>.
         /// </summary>
-        /// <param name="obj">An instance of <see cref="JObject"/> representing the entry.</param>
-        protected InstagramHttpError(JObject obj) : base(obj) {
-            Message = obj.GetString("message");
-            Type = obj.GetString("type");
-            Code = obj.GetInt32("code");
-            ErrorSubcode = obj.GetInt32("error_subcode");
-            TraceId = obj.GetString("fbtrace_id");
+        /// <param name="json">An instance of <see cref="JObject"/> representing the entry.</param>
+        protected InstagramHttpError(JObject json) : base(json) {
+            Message = json.GetString("message")!;
+            Type = json.GetString("type")!;
+            Code = json.GetInt32("code")!;
+            ErrorSubcode = json.GetInt32("error_subcode");
+            TraceId = json.GetString("fbtrace_id")!;
         }
 
         #endregion
@@ -56,12 +57,13 @@ namespace Skybrud.Social.Instagram.Graph.Models.Errors {
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <paramref name="obj"/> into an instance of <see cref="InstagramHttpError"/>.
+        /// Parses the specified <paramref name="json"/> object into an instance of <see cref="InstagramHttpError"/>.
         /// </summary>
-        /// <param name="obj">The instance of <see cref="JObject"/> to parse.</param>
-        /// <returns>An instance of <see cref="InstagramHttpError"/>.</returns>
-        public static InstagramHttpError Parse(JObject obj) {
-            return obj == null ? null : new InstagramHttpError(obj);
+        /// <param name="json">The instance of <see cref="JObject"/> to parse.</param>
+        /// <returns>An instance of <see cref="InstagramHttpError"/>. <paramref name="json"/> is <see langword="null"/>, <see langword="null"/> is returned instead.</returns>
+        [return: NotNullIfNotNull("json")]
+        public static InstagramHttpError? Parse(JObject? json) {
+            return json == null ? null : new InstagramHttpError(json);
         }
 
         #endregion

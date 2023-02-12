@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Newtonsoft.Json.Linq;
-using Skybrud.Essentials.Json.Extensions;
+using Skybrud.Essentials.Json.Newtonsoft.Extensions;
 using Skybrud.Social.Instagram.BasicDisplay.Models.Users;
 
 namespace Skybrud.Social.Instagram.BasicDisplay.Models.Media {
@@ -27,9 +28,9 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Models.Media {
 
         #region Constructors
 
-        private InstagramMediaList(JObject obj) : base(obj) {
-            Data = obj.GetArrayItems("data", InstagramMedia.Parse);
-            Paging = obj.GetObject("paging", InstagramMediaListPaging.Parse);
+        private InstagramMediaList(JObject json) : base(json) {
+            Data = json.GetArrayItems("data", InstagramMedia.Parse);
+            Paging = json.GetObject("paging", InstagramMediaListPaging.Parse)!;
         }
 
         #endregion
@@ -50,12 +51,13 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Models.Media {
         #region Static methods
 
         /// <summary>
-        /// Gets an instance of <see cref="InstagramUser"/> from the specified <paramref name="obj"/>.
+        /// Parses the specified <paramref name="json"/> object into an instance of <see cref="InstagramMediaList"/>.
         /// </summary>
-        /// <param name="obj">The instance of <see cref="JObject"/> to parse.</param>
+        /// <param name="json">The instance of <see cref="JObject"/> to parse.</param>
         /// <returns>An instance of <see cref="InstagramUser"/>.</returns>
-        public static InstagramMediaList Parse(JObject obj) {
-            return obj == null ? null : new InstagramMediaList(obj);
+        [return: NotNullIfNotNull("json")]
+        public static InstagramMediaList? Parse(JObject? json) {
+            return json == null ? null : new InstagramMediaList(json);
         }
 
         #endregion

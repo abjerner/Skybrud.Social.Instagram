@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using Skybrud.Essentials.Http;
 using Skybrud.Essentials.Http.Exceptions;
@@ -23,28 +24,27 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Exceptions {
         public HttpStatusCode StatusCode => Response.StatusCode;
 
         /// <summary>
-        /// Gets the error returned by the <strong>Instagram Graph API</strong>.
+        /// Gets the error returned by the <strong>Instagram Basic Display API</strong>.
         /// </summary>
-        public InstagramError Error { get; }
+        public InstagramError? Error { get; }
 
         /// <summary>
         /// Gets whether the error was included in the response.
         /// </summary>
+        [MemberNotNullWhen(true, "Error")]
         public bool HasError => Error != null;
-
-        /// <inheritdoc />
-        public override string Message => base.Message ?? $"Invalid response received from the Instagram Basic Display API (Status: {(int) StatusCode}).";
 
         #endregion
 
         #region Constructors
 
-        internal InstagramHttpException(IHttpResponse response) : base(null) {
+        private InstagramHttpException(IHttpResponse response, string? message) : base(message ?? $"Invalid response received from the Instagram Basic Display API (status: {(int) response.StatusCode}.") {
             Response = response;
         }
 
-        internal InstagramHttpException(IHttpResponse response, InstagramError error) : base(error?.Message) {
-            Response = response;
+        internal InstagramHttpException(IHttpResponse response) : this(response, default(string)) { }
+
+        internal InstagramHttpException(IHttpResponse response, InstagramError? error) : this(response, error?.Message!) {
             Error = error;
         }
 

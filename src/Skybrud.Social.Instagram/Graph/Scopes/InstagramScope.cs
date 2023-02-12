@@ -23,7 +23,7 @@ namespace Skybrud.Social.Instagram.Graph.Scopes {
         /// <summary>
         /// Gets the description of the scope.
         /// </summary>
-        public string Description { get; }
+        public string? Description { get; }
 
         #endregion
 
@@ -34,9 +34,9 @@ namespace Skybrud.Social.Instagram.Graph.Scopes {
         /// </summary>
         /// <param name="name">The name of the scope.</param>
         /// <param name="description">The description of the scope.</param>
-        public InstagramScope(string name, string description = null) {
+        public InstagramScope(string name, string? description = null) {
             Name = name;
-            Description = string.IsNullOrWhiteSpace(description) ? null : description.Trim();
+            Description = string.IsNullOrWhiteSpace(description) ? null : description!.Trim();
         }
 
         #endregion
@@ -60,7 +60,7 @@ namespace Skybrud.Social.Instagram.Graph.Scopes {
         /// </summary>
         /// <param name="name">The name of the scope.</param>
         /// <param name="description">The description of the scope.</param>
-        internal static InstagramScope RegisterScope(string name, string description = null) {
+        internal static InstagramScope RegisterScope(string name, string? description = null) {
             InstagramScope scope = new(name, description);
             _scopes.Add(scope.Name, scope);
             return scope;
@@ -71,8 +71,8 @@ namespace Skybrud.Social.Instagram.Graph.Scopes {
         /// </summary>
         /// <param name="name">The name of the scope.</param>
         /// <returns>Gets a scope matching the specified <paramref name="name"/>, or <c>null</c> if not found.</returns>
-        public static InstagramScope GetScope(string name) {
-            return _scopes.TryGetValue(name, out InstagramScope scope) ? scope : null;
+        public static InstagramScope? GetScope(string name) {
+            return _scopes.TryGetValue(name, out InstagramScope? scope) ? scope : null;
         }
 
         /// <summary>

@@ -18,7 +18,7 @@ namespace Skybrud.Social.Instagram.Graph.Exceptions {
         /// </summary>
         /// <param name="message">The message of the exception.</param>
         /// <param name="innerException">The inner exception.</param>
-        public InstagramException(string message, Exception innerException) : base(message, innerException) { }
+        public InstagramException(string message, Exception? innerException) : base(message, innerException) { }
 
     }
 

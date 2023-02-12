@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
-using Skybrud.Essentials.Json.Extensions;
+using Skybrud.Essentials.Json.Newtonsoft.Extensions;
 using Skybrud.Social.Instagram.Graph.Models.Paging;
 
 namespace Skybrud.Social.Instagram.Graph.Models.Media {
@@ -27,12 +27,12 @@ namespace Skybrud.Social.Instagram.Graph.Models.Media {
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance based on the specified <paramref name="obj"/>.
+        /// Initializes a new instance based on the specified <paramref name="json"/> objeect.
         /// </summary>
-        /// <param name="obj">An instance of <see cref="JObject"/> representing the object.</param>
-        protected InstagramMediaList(JObject obj) : base(obj) {
-            Data = obj.GetArrayItems("data", InstagramMedia.Parse);
-            Paging = obj.GetObject("paging", InstagramPaging.Parse);
+        /// <param name="json">An instance of <see cref="JObject"/> representing the object.</param>
+        protected InstagramMediaList(JObject json) : base(json) {
+            Data = json.GetArrayItems("data", InstagramMedia.Parse);
+            Paging = json.GetObject("paging", InstagramPaging.Parse)!;
         }
 
         #endregion
@@ -40,12 +40,12 @@ namespace Skybrud.Social.Instagram.Graph.Models.Media {
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <paramref name="obj"/> into an instance of <see cref="InstagramMediaList"/>.
+        /// Parses the specified <paramref name="json"/> object into an instance of <see cref="InstagramMediaList"/>.
         /// </summary>
-        /// <param name="obj">The instance of <see cref="JObject"/> to parse.</param>
-        /// <returns>An instance of <see cref="InstagramMediaList"/>.</returns>
-        public static InstagramMediaList Parse(JObject obj) {
-            return obj == null ? null : new InstagramMediaList(obj);
+        /// <param name="json">The instance of <see cref="JObject"/> to parse.</param>
+        /// <returns>An instance of <see cref="InstagramMediaList"/>. <paramref name="json"/> is <see langword="null"/>, <see langword="null"/> is returned instead.</returns>
+        public static InstagramMediaList? Parse(JObject? json) {
+            return json == null ? null : new InstagramMediaList(json);
         }
 
         #endregion

@@ -21,7 +21,7 @@ namespace Skybrud.Social.Instagram.Graph.Options.Users {
         /// <summary>
         /// Gets or sets the ID of the Instagram user.
         /// </summary>
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         /// <summary>
         /// Gets or sets the maximum amount of media that should be returned in each page.
@@ -31,17 +31,17 @@ namespace Skybrud.Social.Instagram.Graph.Options.Users {
         /// <summary>
         /// Gets or sets the cursor that points to the start of the page of data that has been returned.
         /// </summary>
-        public string Before { get; set; }
+        public string? Before { get; set; }
 
         /// <summary>
         /// Gets or sets the cursor that points to the end of the page of data that has been returned.
         /// </summary>
-        public string After { get; set; }
+        public string? After { get; set; }
 
         /// <summary>
         /// Gets or sets the fields to be returned.
         /// </summary>
-        public InstagramFieldList Fields { get; set; }
+        public InstagramFieldList Fields { get; set; } = new();
 
         #endregion
 
@@ -58,7 +58,6 @@ namespace Skybrud.Social.Instagram.Graph.Options.Users {
         /// <param name="id">The ID of the Instagram user.</param>
         public InstagramGetRecentMediaOptions(string id) {
             Id = id;
-            Fields = new InstagramFieldList();
         }
 
         /// <summary>
@@ -66,9 +65,9 @@ namespace Skybrud.Social.Instagram.Graph.Options.Users {
         /// </summary>
         /// <param name="id">The ID of the Instagram user.</param>
         /// <param name="fields">The fields to be returned by the API.</param>
-        public InstagramGetRecentMediaOptions(string id, InstagramFieldList fields) {
+        public InstagramGetRecentMediaOptions(string id, InstagramFieldList? fields) {
             Id = id;
-            Fields = fields ?? new InstagramFieldList();
+            Fields = fields ?? Fields;
         }
 
         /// <summary>
@@ -76,10 +75,9 @@ namespace Skybrud.Social.Instagram.Graph.Options.Users {
         /// </summary>
         /// <param name="id">The ID of the Instagram user.</param>
         /// <param name="limit">The maximum amount of media that should be returned in each page.</param>
-        public InstagramGetRecentMediaOptions(string id, int limit) {
+        public InstagramGetRecentMediaOptions(string id, int? limit) {
             Id = id;
             Limit = limit;
-            Fields = new InstagramFieldList();
         }
 
         /// <summary>
@@ -88,7 +86,7 @@ namespace Skybrud.Social.Instagram.Graph.Options.Users {
         /// <param name="id">The ID of the Instagram user.</param>
         /// <param name="limit">The maximum amount of media that should be returned in each page.</param>
         /// <param name="after">The cursor that points to the end of the page of data that has been returned.</param>
-        public InstagramGetRecentMediaOptions(string id, int limit, string after) {
+        public InstagramGetRecentMediaOptions(string id, int? limit, string? after) {
             Id = id;
             Limit = limit;
             After = after;
@@ -102,11 +100,11 @@ namespace Skybrud.Social.Instagram.Graph.Options.Users {
         /// <param name="limit">The maximum amount of media that should be returned in each page.</param>
         /// <param name="after">The cursor that points to the end of the page of data that has been returned.</param>
         /// <param name="fields">The fields to be returned by the API.</param>
-        public InstagramGetRecentMediaOptions(string id, int limit, string after, InstagramFieldList fields) {
+        public InstagramGetRecentMediaOptions(string id, int? limit, string? after, InstagramFieldList? fields) {
             Id = id;
             Limit = limit;
             After = after;
-            Fields = fields ?? new InstagramFieldList();
+            Fields = fields ?? Fields;
         }
 
         #endregion
@@ -123,7 +121,7 @@ namespace Skybrud.Social.Instagram.Graph.Options.Users {
             HttpQueryString query = new();
 
             // Convert the collection of fields to a string
-            string fields = (Fields == null ? string.Empty : Fields.ToString()).Trim();
+            string fields = Fields.ToString().Trim();
 
             // Update the query string
             if (string.IsNullOrWhiteSpace(fields) == false) query.Set("fields", fields);

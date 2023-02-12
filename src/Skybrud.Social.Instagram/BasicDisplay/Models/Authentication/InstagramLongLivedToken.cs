@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Newtonsoft.Json.Linq;
-using Skybrud.Essentials.Json.Extensions;
+using Skybrud.Essentials.Json.Newtonsoft.Extensions;
 
 namespace Skybrud.Social.Instagram.BasicDisplay.Models.Authentication {
 
@@ -26,7 +27,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Models.Authentication {
         #region Constructors
 
         private InstagramLongLivedToken(JObject json) : base(json)  {
-            TokenType = json.GetString("token_type");
+            TokenType = json.GetString("token_type")!;
             ExpiresIn = json.GetDouble("expires_in", TimeSpan.FromSeconds);
         }
 
@@ -39,7 +40,8 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Models.Authentication {
         /// </summary>
         /// <param name="json">The instance of <see cref="JObject"/> to be parsed.</param>
         /// <returns>An instance of <see cref="InstagramLongLivedToken"/>.</returns>
-        public static InstagramLongLivedToken Parse(JObject json) {
+        [return: NotNullIfNotNull("json")]
+        public static InstagramLongLivedToken? Parse(JObject? json) {
             return json == null ? null : new InstagramLongLivedToken(json);
         }
 

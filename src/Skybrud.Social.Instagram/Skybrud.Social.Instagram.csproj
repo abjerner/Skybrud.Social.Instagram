@@ -5,6 +5,7 @@
   <PropertyGroup>
     <LangVersion>10.0</LangVersion>
     <TargetFramework>netstandard1.3</TargetFramework>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -31,6 +32,7 @@
 
   <!-- Include NuGet dependencies -->
   <ItemGroup>
+    <PackageReference Include="Nullable" Version="1.3.1" PrivateAssets="all" />
     <PackageReference Include="Skybrud.Essentials.Http" Version="1.1.4" />
   </ItemGroup>
 

@@ -14,12 +14,12 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Exceptions {
         /// <summary>
         /// Gets a reference to the response that triggered the exception.
         /// </summary>
-        public IHttpResponse Response { get; }
+        public IHttpResponse? Response { get; }
 
         /// <summary>
         /// Gets a reference to the <see cref="JToken"/> that could not be parsed.
         /// </summary>
-        public JToken Token { get; }
+        public JToken? Token { get; }
 
         #endregion
 

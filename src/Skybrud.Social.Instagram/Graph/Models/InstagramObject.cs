@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
-using Skybrud.Essentials.Json;
+using Skybrud.Essentials.Json.Newtonsoft;
 
 namespace Skybrud.Social.Instagram.Graph.Models {
 
@@ -7,6 +7,15 @@ namespace Skybrud.Social.Instagram.Graph.Models {
     /// Class representing a basic object from the <strong>Instagram Graph API</strong> derived from an instance of <see cref="JObject"/>.
     /// </summary>
     public class InstagramObject : JsonObjectBase {
+
+        #region Properties
+
+        /// <summary>
+        /// Gets the internal Newtonsoft.Json.Linq.JObject the object was created from.
+        /// </summary>
+        public new JObject JObject => base.JObject!;
+
+        #endregion
 
         #region Constructor
 

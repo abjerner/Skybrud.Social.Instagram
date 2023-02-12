@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Http;
-using Skybrud.Essentials.Json.Extensions;
+using Skybrud.Essentials.Json.Newtonsoft.Extensions;
 using Skybrud.Social.Instagram.Graph.Exceptions;
 using Skybrud.Social.Instagram.Graph.Models.Common;
 using Skybrud.Social.Instagram.Graph.Models.Errors;
@@ -58,7 +58,7 @@ namespace Skybrud.Social.Instagram.Graph.Responses {
             JObject obj = ParseJsonObject(response.Body);
 
             if (response.ResponseUri.Host == "graph.facebook.com") {
-                InstagramHttpError error = obj.GetObject("error", InstagramHttpError.Parse);
+                InstagramHttpError? error = obj.GetObject("error", InstagramHttpError.Parse);
                 throw new InstagramHttpException(response, error);
             }
 
@@ -78,7 +78,7 @@ namespace Skybrud.Social.Instagram.Graph.Responses {
         /// <summary>
         /// Gets the body of the response.
         /// </summary>
-        public T Body { get; protected set; }
+        public T Body { get; protected set; } = default!;
 
         #endregion
 

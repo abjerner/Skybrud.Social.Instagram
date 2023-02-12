@@ -1,6 +1,6 @@
-﻿using Newtonsoft.Json.Linq;
-using Skybrud.Essentials.Json.Extensions;
-using Skybrud.Social.Instagram.BasicDisplay.Models.Users;
+﻿using System.Diagnostics.CodeAnalysis;
+using Newtonsoft.Json.Linq;
+using Skybrud.Essentials.Json.Newtonsoft.Extensions;
 
 namespace Skybrud.Social.Instagram.BasicDisplay.Models.Media {
 
@@ -14,20 +14,32 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Models.Media {
         /// <summary>
         /// Gets the cursor for the previous page.
         /// </summary>
-        public string Before { get; }
+        public string? Before { get; }
+
+        /// <summary>
+        /// Gets whether the <see cref="Before"/> cursor was present in the response.
+        /// </summary>
+        [MemberNotNullWhen(true, "Before")]
+        public bool HasBefore => string.IsNullOrWhiteSpace(Before) == false;
 
         /// <summary>
         /// Gets the cursor for the next page.
         /// </summary>
-        public string After { get; }
+        public string? After { get; }
+
+        /// <summary>
+        /// Gets whether the <see cref="After"/> cursor was present in the response.
+        /// </summary>
+        [MemberNotNullWhen(true, "After")]
+        public bool HasAfter => string.IsNullOrWhiteSpace(After) == false;
 
         #endregion
 
         #region Constructors
 
-        private InstagramMediaListCursors(JObject obj) : base(obj) {
-            Before = obj.GetString("before");
-            After = obj.GetString("after");
+        private InstagramMediaListCursors(JObject json) : base(json) {
+            Before = json.GetString("before");
+            After = json.GetString("after");
         }
 
         #endregion
@@ -35,12 +47,12 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Models.Media {
         #region Static methods
 
         /// <summary>
-        /// Gets an instance of <see cref="InstagramMediaListCursors"/> from the specified <paramref name="obj"/>.
+        /// Parses the specified <paramref name="json"/> object into an instance of <see cref="InstagramMediaListCursors"/>.
         /// </summary>
-        /// <param name="obj">The instance of <see cref="JObject"/> to parse.</param>
-        /// <returns>An instance of <see cref="InstagramUser"/>.</returns>
-        public static InstagramMediaListCursors Parse(JObject obj) {
-            return obj == null ? null : new InstagramMediaListCursors(obj);
+        /// <param name="json">The instance of <see cref="JObject"/> to parse.</param>
+        /// <returns>An instance of <see cref="InstagramMediaListCursors"/>.</returns>
+        public static InstagramMediaListCursors? Parse(JObject? json) {
+            return json == null ? null : new InstagramMediaListCursors(json);
         }
 
         #endregion

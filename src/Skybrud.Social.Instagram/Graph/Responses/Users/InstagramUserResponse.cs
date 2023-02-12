@@ -13,7 +13,7 @@ namespace Skybrud.Social.Instagram.Graph.Responses.Users {
         /// </summary>
         /// <param name="response">The raw response the instance should be based on.</param>
         public InstagramUserResponse(IHttpResponse response) : base(response) {
-            Body = ParseJsonObject(response.Body, InstagramUser.Parse);
+            Body = ParseJsonObject(response.Body, InstagramUser.Parse)!;
         }
 
     }

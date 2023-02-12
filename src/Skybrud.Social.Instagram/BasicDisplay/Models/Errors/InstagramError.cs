@@ -1,5 +1,6 @@
-﻿using Newtonsoft.Json.Linq;
-using Skybrud.Essentials.Json.Extensions;
+﻿using System.Diagnostics.CodeAnalysis;
+using Newtonsoft.Json.Linq;
+using Skybrud.Essentials.Json.Newtonsoft.Extensions;
 
 namespace Skybrud.Social.Instagram.BasicDisplay.Models.Errors {
 
@@ -13,12 +14,12 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Models.Errors {
         /// <summary>
         /// Gets the message of the error.
         /// </summary>
-        public string Message { get; }
+        public string? Message { get; }
 
         /// <summary>
         /// Gets the type of the error.
         /// </summary>
-        public string Type { get; }
+        public string? Type { get; }
 
         /// <summary>
         /// Gets the code of the error.
@@ -34,11 +35,11 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Models.Errors {
 
         #region Constructors
 
-        private InstagramError(JObject obj) : base(obj) {
-            Message = obj.GetString("message") ?? obj.GetString("error_message");
-            Type = obj.GetString("type") ?? obj.GetString("error_type");
-            Code = obj.GetInt32("code");
-            ErrorSubcode = obj.GetInt32("error_subcode");
+        private InstagramError(JObject json) : base(json) {
+            Message = json.GetString("message") ?? json.GetString("error_message");
+            Type = json.GetString("type") ?? json.GetString("error_type");
+            Code = json.GetInt32("code");
+            ErrorSubcode = json.GetInt32("error_subcode");
         }
 
         #endregion
@@ -46,12 +47,13 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Models.Errors {
         #region Static methods
 
         /// <summary>
-        /// Gets an instance of <see cref="InstagramError"/> from the specified <paramref name="obj"/>.
+        /// Parses the specified <paramref name="json"/> object into an instance of <see cref="InstagramError"/>.
         /// </summary>
-        /// <param name="obj">The instance of <see cref="JObject"/> to parse.</param>
+        /// <param name="json">The instance of <see cref="JObject"/> to parse.</param>
         /// <returns>An instance of <see cref="InstagramError"/>.</returns>
-        public static InstagramError Parse(JObject obj) {
-            return obj == null ? null : new InstagramError(obj);
+        [return: NotNullIfNotNull("json")]
+        public static InstagramError? Parse(JObject? json) {
+            return json == null ? null : new InstagramError(json);
         }
 
         #endregion

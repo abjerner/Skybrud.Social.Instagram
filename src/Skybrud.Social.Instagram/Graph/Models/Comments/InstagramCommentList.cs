@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Newtonsoft.Json.Linq;
-using Skybrud.Essentials.Json.Extensions;
+using Skybrud.Essentials.Json.Newtonsoft.Extensions;
 using Skybrud.Social.Instagram.Graph.Models.Paging;
 
 namespace Skybrud.Social.Instagram.Graph.Models.Comments {
@@ -27,12 +28,12 @@ namespace Skybrud.Social.Instagram.Graph.Models.Comments {
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance based on the specified <paramref name="obj"/>.
+        /// Initializes a new instance based on the specified <paramref name="json"/> object.
         /// </summary>
-        /// <param name="obj">An instance of <see cref="JObject"/> representing the object.</param>
-        protected InstagramCommentList(JObject obj) : base(obj) {
-            Data = obj.GetArrayItems("data", InstagramComment.Parse);
-            Paging = obj.GetObject("paging", InstagramPaging.Parse);
+        /// <param name="json">An instance of <see cref="JObject"/> representing the object.</param>
+        protected InstagramCommentList(JObject json) : base(json) {
+            Data = json.GetArrayItems("data", InstagramComment.Parse);
+            Paging = json.GetObject("paging", InstagramPaging.Parse)!;
         }
 
         #endregion
@@ -40,12 +41,13 @@ namespace Skybrud.Social.Instagram.Graph.Models.Comments {
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <paramref name="obj"/> into an instance of <see cref="InstagramCommentList"/>.
+        /// Parses the specified <paramref name="json"/> object into an instance of <see cref="InstagramCommentList"/>.
         /// </summary>
-        /// <param name="obj">The instance of <see cref="JObject"/> to parse.</param>
-        /// <returns>An instance of <see cref="InstagramCommentList"/>.</returns>
-        public static InstagramCommentList Parse(JObject obj) {
-            return obj == null ? null : new InstagramCommentList(obj);
+        /// <param name="json">The instance of <see cref="JObject"/> to parse.</param>
+        /// <returns>An instance of <see cref="InstagramCommentList"/>. <paramref name="json"/> is <see langword="null"/>, <see langword="null"/> is returned instead.</returns>
+        [return: NotNullIfNotNull("json")]
+        public static InstagramCommentList? Parse(JObject? json) {
+            return json == null ? null : new InstagramCommentList(json);
         }
 
         #endregion

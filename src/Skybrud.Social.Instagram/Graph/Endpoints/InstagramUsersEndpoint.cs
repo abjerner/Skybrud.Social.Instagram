@@ -3,8 +3,6 @@ using Skybrud.Social.Instagram.Graph.Options.Users;
 using Skybrud.Social.Instagram.Graph.Responses.Media;
 using Skybrud.Social.Instagram.Graph.Responses.Users;
 
-// ReSharper disable InconsistentNaming
-
 namespace Skybrud.Social.Instagram.Graph.Endpoints {
 
     /// <summary>

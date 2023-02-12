@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
-using Skybrud.Essentials.Json.Extensions;
+using Skybrud.Essentials.Json.Newtonsoft.Extensions;
 
 namespace Skybrud.Social.Instagram.BasicDisplay.Models.Authentication {
 
@@ -24,7 +24,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Models.Authentication {
         /// </summary>
         /// <param name="json">The instance of <see cref="JObject"/> representing the object.</param>
         protected InstagramToken(JObject json) : base(json) {
-            AccessToken = json.GetString("access_token");
+            AccessToken = json.GetString("access_token")!;
         }
 
         #endregion
