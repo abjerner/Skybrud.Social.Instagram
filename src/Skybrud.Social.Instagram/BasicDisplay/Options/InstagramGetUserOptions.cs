@@ -20,7 +20,7 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Options {
         /// <summary>
         /// Gets or sets the fields to be returned by the API.
         /// </summary>
-        public InstagramFieldList Fields { get; set; }
+        public InstagramFieldList Fields { get; set; } = new();
 
         #endregion
 
@@ -37,8 +37,8 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Options {
         /// Initializes a instance based on the specified <paramref name="fields"/>.
         /// </summary>
         /// <param name="fields">The fields to be returned by the API.</param>
-        public InstagramGetUserOptions(InstagramFieldList fields)  {
-            Fields = fields ?? new InstagramFieldList();
+        public InstagramGetUserOptions(InstagramFieldList? fields)  {
+            Fields = fields ?? Fields;
         }
 
         /// <summary>
@@ -55,9 +55,9 @@ namespace Skybrud.Social.Instagram.BasicDisplay.Options {
         /// </summary>
         /// <param name="userId">The ID of the user.</param>
         /// <param name="fields">The fields to be returned by the API.</param>
-        public InstagramGetUserOptions(long userId, InstagramFieldList fields) {
+        public InstagramGetUserOptions(long userId, InstagramFieldList? fields) {
             UserId = userId;
-            Fields = fields ?? new InstagramFieldList();
+            Fields = fields ?? Fields;
         }
 
         #endregion
