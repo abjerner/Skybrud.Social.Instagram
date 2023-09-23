@@ -1,4 +1,8 @@
-# Skybrud.Social.Instagram [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md) [![NuGet](https://img.shields.io/nuget/v/Skybrud.Social.Instagram.svg)](https://www.nuget.org/packages/Skybrud.Social.Instagram) [![NuGet](https://img.shields.io/nuget/dt/Skybrud.Social.Instagram.svg)](https://www.nuget.org/packages/Skybrud.Social.Instagram)
+# Skybrud.Social.Instagram
+
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/abjerner/Skybrud.Social.Instagram/blob/v1/main/LICENSE.md)
+[![NuGet](https://img.shields.io/nuget/v/Skybrud.Social.Instagram.svg)](https://www.nuget.org/packages/Skybrud.Social.Instagram)
+[![NuGet](https://img.shields.io/nuget/dt/Skybrud.Social.Instagram.svg)](https://www.nuget.org/packages/Skybrud.Social.Instagram)
 
 **Skybrud.Social.Instagram** is a .NET wrapper and API implementation for the [**Instagram Basic Display API**](https://developers.facebook.com/docs/instagram-basic-display-api) and [**Instagram Graph API**](https://developers.facebook.com/docs/instagram-api).
 
