@@ -8,7 +8,7 @@ The Instagram API is divided into multiple endpoints serving different purposes 
 
 ## Installation
 
-{{overview}}
+{{installation}}
 
 
 
