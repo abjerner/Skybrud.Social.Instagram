@@ -1,3 +1,7 @@
+---
+teaser: Read more about authenticating with the Instagram Graph API.
+---
+
 # Authentication
 
 As the Instagram Graph API is an integrated part of the Facebook Graph API, you can use the [**Skybrud.Social.Facebook**](/skybrud.social.facebook/docs/authentication/) package for authenticating with the Facebook Graph API, and then use the obtained access token to make calls to the Instagram Graph API:

@@ -1,4 +1,8 @@
-# Setting up an authentication page
+---
+teaser: See examples for setting up an authentication page in a Razor view.
+---
+
+# Authentication Page
 
 When using the **Skybrud.Social.Instagram** package, the `InstagramBasicDisplayClient` helps you with much of the authentication.
 
