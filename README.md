@@ -14,6 +14,9 @@ The Instagram API is divided into multiple endpoints serving different purposes 
 
 ## Structure
 
+{{overview?title=APIs&kind=api}}
+
+
 The Instagram API is divided into multiple endpoints serving different purposes - eg. media, users and locations. Skybrud.Social follows the same structure as the API, so head over to the [list of endpoints](./platform-api/endpoints/) for more information. This is also where you will find  examples for the various endpoints / methods in the Instagram API.
 
 {{endpoints}}
